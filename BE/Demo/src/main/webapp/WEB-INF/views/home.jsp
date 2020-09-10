@@ -4,13 +4,11 @@
 
 <html>
 <head>
-	<title>Home</title>
+	<title>//55555//</title>
 </head>
 <body>
 <h1>
-	Hello Suram! 나는 김수람이라고 해.  
+	더블슬래시 5기 5팀 미니프로젝트
 </h1>
-
-<P>  The time on the server is ${serverTime}. </P>
 </body>
 </html>
