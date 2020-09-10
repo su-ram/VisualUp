@@ -1,0 +1,9 @@
+INDEX VERSION 1.4+C:\Users\user\Desktop\개발프로젝트\더블슬래시5기\미니프로젝트\BE\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+1057018554.index
+962707208.index
+2088481360.index
+3522812277.index
+1828026965.index
+3984605730.index
+1670890392.index
+1057018554.index
