@@ -130,7 +130,7 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log." suffix=".txt"/>
 
-      <Context docBase="C:\Users\user\Desktop\개발프로젝트\더블슬래시5기\미니프로젝트\BE\.metadata\.plugins\org.eclipse.wst.server.core\tmp1\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="C:\Users\user\Desktop\개발프로젝트\더블슬래시5기\미니프로젝트\BE\.metadata\.plugins\org.eclipse.wst.server.core\tmp1\wtpwebapps\Demo" path="/demo" reloadable="true" source="org.eclipse.jst.jee.server:Demo"/></Host>
+      <Context docBase="C:\Users\user\Desktop\개발프로젝트\더블슬래시5기\미니프로젝트\BE\.metadata\.plugins\org.eclipse.wst.server.core\tmp1\wtpwebapps\ROOT" path="" reloadable="false"/><Context docBase="C:\Users\user\Desktop\개발프로젝트\더블슬래시5기\미니프로젝트\BE\.metadata\.plugins\org.eclipse.wst.server.core\tmp1\wtpwebapps\Users\user\Desktop\개발프로젝트\더블슬래시5기\미니프로젝트\BE\.metadata\.plugins\org.eclipse.wst.server.core\tmp1\wtpwebapps\Users\user\Desktop\개발프로젝트\더블슬래시5기\미니프로젝트\BE\.metadata\.plugins\org.eclipse.wst.server.core\tmp1\wtpwebapps\Demo" path="/demo" reloadable="true" source="org.eclipse.jst.jee.server:Demo"/></Host>
     </Engine>
   </Service>
 </Server>
