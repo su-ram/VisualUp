@@ -2,6 +2,11 @@
 <faceted-project>
   <fixed facet="jst.web"/>
   <fixed facet="jst.java"/>
+<<<<<<< HEAD
   <installed facet="jst.java" version="1.8"/>
   <installed facet="jst.web" version="3.1"/>
+=======
+  <installed facet="jst.web" version="2.5"/>
+  <installed facet="jst.java" version="1.6"/>
+>>>>>>> 7e996e2eefae9b66a81d6651cc6cab6c007647b6
 </faceted-project>

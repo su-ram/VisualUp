@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<<<<<<< HEAD
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+=======
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/maven-v4_0_0.xsd">
+>>>>>>> 7e996e2eefae9b66a81d6651cc6cab6c007647b6
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.backend</groupId>
 	<artifactId>demo</artifactId>
@@ -9,7 +13,11 @@
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 	<properties>
 		<java-version>1.6</java-version>
+<<<<<<< HEAD
 		<org.springframework-version>5.0.7.RELEASE</org.springframework-version>
+=======
+		<org.springframework-version>3.1.1.RELEASE</org.springframework-version>
+>>>>>>> 7e996e2eefae9b66a81d6651cc6cab6c007647b6
 		<org.aspectj-version>1.6.10</org.aspectj-version>
 		<org.slf4j-version>1.6.6</org.slf4j-version>
 	</properties>
@@ -32,12 +40,21 @@
 			<artifactId>spring-webmvc</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
+<<<<<<< HEAD
+=======
+				
+>>>>>>> 7e996e2eefae9b66a81d6651cc6cab6c007647b6
 		<!-- AspectJ -->
 		<dependency>
 			<groupId>org.aspectj</groupId>
 			<artifactId>aspectjrt</artifactId>
 			<version>${org.aspectj-version}</version>
+<<<<<<< HEAD
 		</dependency>
+=======
+		</dependency>	
+		
+>>>>>>> 7e996e2eefae9b66a81d6651cc6cab6c007647b6
 		<!-- Logging -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
@@ -48,13 +65,21 @@
 			<groupId>org.slf4j</groupId>
 			<artifactId>jcl-over-slf4j</artifactId>
 			<version>${org.slf4j-version}</version>
+<<<<<<< HEAD
 			<!-- <scope>runtime</scope>-->
+=======
+			<scope>runtime</scope>
+>>>>>>> 7e996e2eefae9b66a81d6651cc6cab6c007647b6
 		</dependency>
 		<dependency>
 			<groupId>org.slf4j</groupId>
 			<artifactId>slf4j-log4j12</artifactId>
 			<version>${org.slf4j-version}</version>
+<<<<<<< HEAD
 			<!-- <scope>runtime</scope>-->
+=======
+			<scope>runtime</scope>
+>>>>>>> 7e996e2eefae9b66a81d6651cc6cab6c007647b6
 		</dependency>
 		<dependency>
 			<groupId>log4j</groupId>
@@ -80,17 +105,31 @@
 			</exclusions>
 			<scope>runtime</scope>
 		</dependency>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 7e996e2eefae9b66a81d6651cc6cab6c007647b6
 		<!-- @Inject -->
 		<dependency>
 			<groupId>javax.inject</groupId>
 			<artifactId>javax.inject</artifactId>
 			<version>1</version>
 		</dependency>
+<<<<<<< HEAD
 		<!-- Servlet -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
 			<version>3.1.0</version>
+=======
+				
+		<!-- Servlet -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>servlet-api</artifactId>
+			<version>2.5</version>
+			<scope>provided</scope>
+>>>>>>> 7e996e2eefae9b66a81d6651cc6cab6c007647b6
 		</dependency>
 		<dependency>
 			<groupId>javax.servlet.jsp</groupId>
@@ -103,6 +142,7 @@
 			<artifactId>jstl</artifactId>
 			<version>1.2</version>
 		</dependency>
+<<<<<<< HEAD
 		<!-- JSON  -->
 		 <dependency>
             <groupId>com.googlecode.json-simple</groupId>
@@ -131,10 +171,14 @@
 			<artifactId>spring-jdbc</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
+=======
+	
+>>>>>>> 7e996e2eefae9b66a81d6651cc6cab6c007647b6
 		<!-- Test -->
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
+<<<<<<< HEAD
 			<version>4.12</version>
 			<scope>test</scope>
 		</dependency>
@@ -161,6 +205,11 @@
     				 <version>1.30.10</version>
   				 </dependency>
 
+=======
+			<version>4.7</version>
+			<scope>test</scope>
+		</dependency>        
+>>>>>>> 7e996e2eefae9b66a81d6651cc6cab6c007647b6
 	</dependencies>
     <build>
         <plugins>
@@ -183,12 +232,20 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>2.5.1</version>
                 <configuration>
+<<<<<<< HEAD
                     <source>1.8</source>
                     <target>1.8</target>
                     <compilerArgument>-Xlint:all</compilerArgument>
                     <showWarnings>true</showWarnings>
                     <showDeprecation>true</showDeprecation>
 					<encoding>UTF-8</encoding>
+=======
+                    <source>1.6</source>
+                    <target>1.6</target>
+                    <compilerArgument>-Xlint:all</compilerArgument>
+                    <showWarnings>true</showWarnings>
+                    <showDeprecation>true</showDeprecation>
+>>>>>>> 7e996e2eefae9b66a81d6651cc6cab6c007647b6
                 </configuration>
             </plugin>
             <plugin>
@@ -201,4 +258,8 @@
             </plugin>
         </plugins>
     </build>
+<<<<<<< HEAD
 </project>
+=======
+</project>
+>>>>>>> 7e996e2eefae9b66a81d6651cc6cab6c007647b6
