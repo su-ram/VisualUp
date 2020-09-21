@@ -14,6 +14,5 @@
 </head>
 <body>
 <h3>메인 홈페이지</h3>
-  <a href="login/naver">네이버 로그인하기</a>
-  
+  ${user_page}
 </html>
