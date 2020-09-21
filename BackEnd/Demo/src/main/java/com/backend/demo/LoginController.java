@@ -33,20 +33,19 @@ import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @Slf4j
-@RequestMapping("/login/*")
+@RequestMapping("/login")
 public class LoginController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	private String Client_Id = "tIcE8QEmk0yLr1xspdzg";
 	private String Client_Secret = "4eOgnPfHrN";
 	
-	@RequestMapping("/login")
+	@RequestMapping(params="userid")
 	public String login(){
-		
 		return "defaultLogin";
 		
 	}
-	@RequestMapping("/naver")
+	@RequestMapping(params="type=naver")
 	public String naverLogin(HttpSession session, Model model) {
 		String redirectURI = URLEncoder.encode("http://visualup.koreacentral.cloudapp.azure.com:8080/login/callback");
 		SecureRandom random = new SecureRandom();
@@ -60,7 +59,7 @@ public class LoginController {
 	    
 	    return "loginNaver";
 	}
-	@RequestMapping("/google")
+	@RequestMapping(params="type=google")
 	public String googleLogin(HttpSession session, Model model) {
 		String redirectURI = URLEncoder.encode("http://localhost:8080/login/callback/google");
 		String google_client_id = "637540086741-c6k444vhqd1eid2aid6p86hmh4pldpje.apps.googleusercontent.com";
@@ -79,7 +78,7 @@ public class LoginController {
 	    
 	    return "loginGoogle";
 	}
-	@RequestMapping("/github")
+	@RequestMapping(params="type=github")
 	public String loginGithub(HttpServletRequest request, Model model) {
 		String code = request.getParameter("code");
 		System.out.println(code);
