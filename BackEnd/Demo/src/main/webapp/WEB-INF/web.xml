@@ -31,7 +31,6 @@
 	</servlet-mapping>
 	
 	
-	
 	<!-- Encoding UTF-8 -->
 	<filter> 
     <filter-name>encodingFilter</filter-name> 
