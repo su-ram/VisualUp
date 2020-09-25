@@ -4,11 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>카카오 로그인 페이지</title>
 </head>
 <body>
-<h1>구글 로그인</h1>
-<a href = "${apiURL}">구글 아이디로 로그인하기</a>
-${result}
+<img alt="카카오 로그인 버튼" src="/resources/kakao_login_medium_narrow.png">
 </body>
 </html>
