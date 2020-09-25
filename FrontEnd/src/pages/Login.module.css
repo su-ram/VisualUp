@@ -1,0 +1,63 @@
+.arrowLeft {
+    margin-top: 40px;
+    margin-left: 60px;
+}
+.logo {
+    margin-top: 40px;
+    width: 60px;
+    height: 60px;
+}
+.visualUp {
+    margin-top: -10px;
+    font-size: 2.2rem;
+    color: #7a5e2e;
+}
+.body {
+    background-color: rgba( 255, 255, 255, 0.5 );
+    margin-top: 25px;
+    margin-left: 36%;
+    width: 340px;
+    height: 380px;
+    justify-content: center;
+    align-items: center;
+}
+.btn1 {
+    width: 220px;
+    height: 35px;
+    margin-left: 18.5%;
+    margin-top: 10px;
+    border-radius: 12px;
+    border: 0;
+    background-color: red;
+    color: white;
+}
+.btn2 {
+    width: 220px;
+    height: 35px;
+    margin-left: 18.5%;
+    margin-top: 13px;
+    border-radius: 12px;
+    border: 0;
+    background-color: yellow;
+    color: #3c1e1e;
+}
+.btn3 {
+    width: 220px;
+    height: 35px;
+    margin-left: 18.5%;
+    margin-top: 13px;
+    border-radius: 12px;
+    border: 0;
+    background-color: #0080eb;
+    color: white;
+}
+.img {
+    float: left;
+    margin-left: 14px;
+    margin-top: 5px;
+}
+.font {
+    font-size: 5px;
+    font-weight: bold;
+    margin-top: 5px;
+}
