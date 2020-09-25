@@ -8,6 +8,6 @@
 </head>
 <body>
 <h3>GitHub으로 로그인 하기</h3>
-${result}
+<a href = "${apiurl}">로그인 ㄱ ㄱ</a>
 </body>
 </html>

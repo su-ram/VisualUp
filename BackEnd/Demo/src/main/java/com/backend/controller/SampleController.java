@@ -1,4 +1,4 @@
-package com.backend.demo;
+package com.backend.controller;
 
 import java.util.List;
 
@@ -30,5 +30,10 @@ public class SampleController {
 		return "userlist";
 	}
 	
+	@GetMapping("/facebook")
+	public String shareFB(Model model) {
+		
+		return "shareFB";
+	}
 	
 }
