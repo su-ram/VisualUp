@@ -1,3 +1,26 @@
+@font-face{ 
+    font-family:'fradmit'; 
+    src:url('/FrontEnd/public/font/FRADMIT.TTF.ttf') format('truetype');
+}
+
+@font-face{ 
+    font-family:'fradmd'; 
+    src:url('/FrontEnd/public/font/FRAMD.TTF.ttf') format('truetype');
+}
+
+@font-face{ 
+    font-family:'lgRegular'; 
+    src:url('/FrontEnd/public/font/LG_SMART_UI-REGULAR.TTF.ttf') format('truetype');
+}
+
+@font-face{ 
+    font-family:'lgSemibold'; 
+    src:url('/FrontEnd/public/font/LG_SMART_UI-SEMIBOLD.TTF.ttf') format('truetype');
+}
+
+
+
+
 /* CSS 초기화 */
 html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, 
 footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video{ /*모든 태그 기본값으로 초기화*/
@@ -8,10 +31,9 @@ font-size:100%;
 font: inherit;
 vertical-align:baseline;
 }
-
 body{/*body 태그의 폰트와 배경, 글자 행간 속성 설정*/
-font-family: Sans-serif, Helvetica;
-line-height:1;
+    font-family: 'lgRegular', 'lgSemi', Sans-serif, Helvetica!important;
+    line-height:1;
 }
 
 article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{ /*HTML5 태그들이 정상 작동하도록*/
