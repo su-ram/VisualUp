@@ -1,0 +1,36 @@
+Arguments: 
+  C:\Program Files\nodejs\node.exe C:\Program Files (x86)\Yarn\bin\yarn.js add global @ant-design/charts/Line
+
+PATH: 
+  C:\WinAVR-20100110\bin;C:\WinAVR-20100110\utils\bin;C:\Program Files (x86)\Atmel\AVR Tools\AVR Toolchain\bin;C:\Program Files (x86)\Common Files\Intel\Shared Libraries\redist\intel64\compiler;C:\Perl64\site\bin;C:\Perl64\bin;"C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files\Java\jdk1.8.0_191\bin";C:\WINDOWS\system32;C:\WINDOWS;"C:\WINDOWS\System32\Wbem;%SYSETMROOT%\System32\WindowsPowerShell\v1.0";C:\Program Files\Microsoft VS Code\bin;C:\div\Apache24\bin;C:\div\MySQL\bin;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;C:\Program Files\MATLAB\R2018b\bin;C:\AMP\Apache24\bin;C:\AMP\MySQL\bin;C:\Program Files\PuTTY\;C:\Program Files\Java\jdk1.8.0_191\bin;C:\Program Files\Intel\WiFi\bin\;C:\Program Files\Common Files\Intel\WirelessCommon\;C:\Program Files\dotnet\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;"sdk location\tool; sdk location\platform-tools;";";C:\Program Files\Java\jdk1.8.0_191\bin;";C:\Program Files (x86)\Yarn\bin\;C:\Program Files\nodejs;C:\Program Files\MongoDB\Server\4.4\bin;C:\vault;C:\Program Files\Git\cmd;C:\Program Files\MongoDB\Server\4.4\bin;C:\APM\Apache24\bin;C:\Program Files\Java\jre1.8.0_191\bin;C:\Users\heeeun.DESKTOP-95NK2BV\npm;
+
+Yarn version: 
+  1.22.4
+
+Node version: 
+  12.18.3
+
+Platform: 
+  win32 x64
+
+Trace: 
+  Error: https://registry.yarnpkg.com/@ant-design%2fcharts/Line: Request "https://registry.yarnpkg.com/@ant-design%2fcharts/Line" returned a 405
+      at Request.params.callback [as _callback] (C:\Program Files (x86)\Yarn\lib\cli.js:66105:18)
+      at Request.self.callback (C:\Program Files (x86)\Yarn\lib\cli.js:140748:22)
+      at Request.emit (events.js:315:20)
+      at Request.<anonymous> (C:\Program Files (x86)\Yarn\lib\cli.js:141720:10)
+      at Request.emit (events.js:315:20)
+      at IncomingMessage.<anonymous> (C:\Program Files (x86)\Yarn\lib\cli.js:141642:12)
+      at Object.onceWrapper (events.js:421:28)
+      at IncomingMessage.emit (events.js:327:22)
+      at endReadableNT (_stream_readable.js:1220:12)
+      at processTicksAndRejections (internal/process/task_queues.js:84:21)
+
+npm manifest: 
+  No manifest
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
