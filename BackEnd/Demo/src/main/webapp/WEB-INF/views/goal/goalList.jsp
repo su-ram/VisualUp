@@ -8,5 +8,6 @@
 </head>
 <body>
 ${goalList}
+테스트
 </body>
 </html>
