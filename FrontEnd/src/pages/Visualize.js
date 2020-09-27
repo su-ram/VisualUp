@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import { PageHeader } from '../components';
 import { Line } from '@ant-design/charts';
+import { Col, Typography } from 'antd';
 
 function Visualize(){
     const data = [
@@ -96,7 +98,15 @@ function Visualize(){
       },
     ],
   };
-  return <Line {...config} />;
+  return (
+    <Col>
+      <PageHeader
+        title="페이지의 타이틀입니다."
+        subtitle="서브 타이틀입니다."
+        />
+      <Line {...config} />;
+    </Col>
+  );
 }
 
 export default Visualize;
