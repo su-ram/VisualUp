@@ -16,7 +16,7 @@
     color: #7a5e2e;
 }
 .body {
-    background-color: rgba( 255, 255, 255, 0.5 );
+    background-color: rgba( 255, 255, 255, 0.7 );
     margin-top: 25px;
     margin-left: 36%;
     width: 340px;
@@ -42,7 +42,7 @@
     border-radius: 12px;
     border: 0;
     background-color: yellow;
-    color: #3c1e1e;
+    color: #5C411D;
 }
 .btn3 {
     width: 220px;
