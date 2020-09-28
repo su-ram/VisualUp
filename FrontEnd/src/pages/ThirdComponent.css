@@ -1,0 +1,41 @@
+.component.third-component {
+    background-color: rgb(243,239,236);
+  }
+  
+  .third-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content:center; /* 왜아무반응없지 */
+    margin:auto;
+  }
+  
+  .third-box.container{
+    display: flex;
+    justify-content: center;
+  }
+  
+  
+  .third-box-content{
+    width: 150px;
+    height : 250px;
+    margin: 10px;
+    display: inline-block;
+    background: #333;
+    border-radius: 5px;
+    color:rgb(231,229,230);
+    padding: 3px 8px;
+    text-align: center;
+  }
+  
+  .third-box-content h3{
+    color:rgb(231,229,230);
+  }
+  
+  .third-box-content img{
+    margin-top:10%;
+    height: 100px;
+    width:  100px;
+    border-radius: 100px;
+  }
+  

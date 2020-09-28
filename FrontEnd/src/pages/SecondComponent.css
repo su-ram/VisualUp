@@ -1,0 +1,73 @@
+.second-component {
+    background-color: rgb(235, 135, 135);
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    color: honeydew;
+  }
+ 
+  .second-component .second-container{
+    display: flex;
+    flex-direction: column;
+    padding-top: 40px;
+   
+  }
+
+  .second-component-text h5{
+    display: inline;
+    border: 1px solid;
+    border-radius: 20px;
+    padding : 0.5rem;
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+
+  .second-box-content:not(:last-of-type){
+    border-right: ivory 1px solid;
+    margin-right: 0;
+    padding-right: 20px;
+  }
+
+  .second-box-content:last-of-type{
+    margin-right : 0;
+    margin-left: 2rem;
+  }
+
+  .second-box-container{
+    display: inline-flex;
+    flex-direction: row;
+    background-color: rgb(0, 0, 0,0.25);
+    justify-content: space-around;
+    padding: 1rem;
+    text-align: center;
+    padding-left: 2rem;
+    padding-right: 2rem;
+    /*왜 가운데로 안가지..->align-itmes*/
+    width :870px;
+    height: 420px;
+  }
+  
+  .second-box-content{
+    margin: 2rem;
+  }
+ 
+  .second-box-content h3,h4,p{
+    margin-top: 2.5rem;
+  }
+  
+  .second-box-content img{
+    height: 120px;
+    width:  120px;
+    border-radius: 100px;
+    margin-bottom: 30px;
+  }
+  
+  .second-component .second-component-text {
+    text-align: center;
+    height: 150px;
+  }
+  
+  .second-box-content p{
+    font-size: 10px;
+  }

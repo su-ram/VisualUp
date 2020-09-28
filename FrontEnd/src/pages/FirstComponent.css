@@ -1,0 +1,24 @@
+.first-component {
+    background-color: rgb(241, 219, 184);
+  /*  display : flex;
+    flex-direction: column;
+    align-items: flex-start;*/
+}
+
+.first-component .first-component-text {
+    margin-top: 15rem;
+    color: rgb(0, 0, 0);
+    margin-left: 15rem;
+    font-family: sans-serif;
+    
+  }
+
+.first-component-text button {
+  margin-top: 2rem;
+}
+
+.first-component--inside-scroller {
+    position: absolute;
+    right: 20px;
+    top: 100px;
+}

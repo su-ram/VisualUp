@@ -1,0 +1,38 @@
+.links {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin: 0;
+    margin-bottom: 10px;
+    padding: 0;
+    background-color: rgb(255, 255, 255);
+    list-style-type: none;
+   /* position: absolute; 이놈이다..
+    z-index: 2;*/
+}
+
+
+
+.links .link {
+    cursor: pointer;
+}
+
+.link img {
+    /*width: 170px;
+    height: 100px;*/
+    margin-left: 4rem ;
+    margin-top: 0.7rem;
+    padding: 0.2rem;
+}
+
+.links .icon{
+    display: inline-flex;
+    margin-left: auto;
+    padding-right: 3rem;
+    margin-top: 1.5rem;
+}
+.icon .link {
+    padding : 0.5rem;
+    color: rgb(0,0, 0);
+}
+
