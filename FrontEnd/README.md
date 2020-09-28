@@ -19,7 +19,8 @@ https://www.notion.so/0de8b962068b49c7bced576db0d964c8?v=4963ccf5475848c585bedf5
 | URL        | 컴포넌트                |
 | ---------- | ----------------------- |
 | /login     | Login.js                |
-| /          | Main.js => Visualize.js |
+| /          | FullPage.js             |
+| /visualize | Main.js => Visualize.js |
 | /hashtag   | Main.js => HashTag.js   |
 | /GoalList  | Main.js => GoalList.js  |
 | /GoalSet   | Main.js => GoalSet.js   |
