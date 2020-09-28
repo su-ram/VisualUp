@@ -1,6 +1,5 @@
 import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
-import { Header } from '../components';
 import { HashTag, Visualize, GoalList, GoalSet } from '../pages';
 import { Col } from 'antd';
 import "./Main.css"
@@ -8,8 +7,6 @@ import "./Main.css"
 function Main(){
     return(
         <Col>
-            <Header/>
-            
             <Col id="contents">
                 <Switch>
                     <Route exact path="/" component={Visualize}/>
