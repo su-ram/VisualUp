@@ -1,3 +1,60 @@
-.component.fifth-component {
-    background-color: rgb(147,193,190);
-}
+.fifth-container {
+    position:relative;
+    width: 100%;
+    height: 100%;
+    display:flex;
+    flex-direction: column;
+   /* align-items: flex-end;*/ 
+   /* position:absolute;
+    width:100%;
+    bottom:0px;*/ 
+  
+  }
+  
+  .fifth-box-container{
+    position:relative;
+    width: 100%;
+    height: 100%;
+    display:flex;
+    flex-direction: column;
+  }
+  
+  .fifth-box-content-container {
+    margin-top: auto;
+    display:flex;
+    justify-content:space-around;
+    padding-bottom: 5rem;
+    width:100%;
+    padding:3%;
+    background-color: rgb(247, 243, 222);
+    /* align-items:flex-end;  */  /* justify-content(가로), align-items(세로)는 flex item을 정렬 */
+   /*  position:absolute;*/
+   }
+  
+  .fifth-box-content{
+    padding:3%;
+  }
+  
+  th{
+    padding:3%;
+  }
+  
+  .fifth-footer {
+    background-color: rgb(124, 111, 83);
+    width: 100%;
+    color: #fff;
+    margin-bottom: 4%;   /* 밑에 뜨는 거 방지(야매인가....) */
+    display: flex;
+    align-items: center;
+    padding:1%;
+  
+  }
+  .fifth-footer .icons{
+    display: inline-flex;
+    margin-left: auto;
+  }
+  
+  .fifth-footer .icons .icon {
+    margin : 5px;
+  }
+  
