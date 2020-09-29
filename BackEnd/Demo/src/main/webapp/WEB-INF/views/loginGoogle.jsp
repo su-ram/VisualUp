@@ -8,7 +8,8 @@
 </head>
 <body>
 <h1>구글 로그인</h1>
-<a href = "${apiURL}">구글 아이디로 로그인하기</a>
-${result}
+
+사용자 이름은 -> ${userName}<br>
+사용자 메일 주소는 -> ${userEmail}<br>
 </body>
 </html>
