@@ -6,7 +6,7 @@ import { ArrowLeftOutlined, MessageFilled, GoogleOutlined, GlobalOutlined } from
 function Login(){
     return(
         <div className={styles.background}>
-            <ArrowLeftOutlined className={styles.arrowLeft} style={{ fontSize: '30px'}} ></ArrowLeftOutlined>
+            <a><ArrowLeftOutlined className={styles.arrowLeft} style={{ fontSize: '30px'}} /></a>
             <br/><br/>
             <Col align="middle" className={styles.body}>
                 <img src={require("./MainLogo.png")} className={styles.logo}/>

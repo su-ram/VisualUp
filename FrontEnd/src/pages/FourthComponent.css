@@ -1,60 +1,40 @@
-.fourth-container {
-    position:relative;
-    width: 100%;
-    height: 100%;
-    display:flex;
-    flex-direction: column;
-   /* align-items: flex-end;*/ 
-   /* position:absolute;
-    width:100%;
-    bottom:0px;*/ 
-  
-  }
-  
-  .fourth-box-container{
-    position:relative;
-    width: 100%;
-    height: 100%;
-    display:flex;
-    flex-direction: column;
-  }
-  
-  .fourth-box-content-container {
-    margin-top: auto;
-    display:flex;
-    justify-content:space-around;
-    padding-bottom: 5rem;
-    width:100%;
-    padding:3%;
-    background-color: rgb(247, 243, 222);
-    /* align-items:flex-end;  */  /* justify-content(가로), align-items(세로)는 flex item을 정렬 */
-   /*  position:absolute;*/
-   }
-  
-  .fourth-box-content{
-    padding:3%;
-  }
-  
-  th{
-    padding:3%;
-  }
-  
-  .fourth-footer {
-    background-color: rgb(124, 111, 83);
-    width: 100%;
-    color: #fff;
-    margin-bottom: 4%;   /* 밑에 뜨는 거 방지(야매인가....) */
-    display: flex;
-    align-items: center;
-    padding:1%;
-  
-  }
-  .fourth-footer .icons{
-    display: inline-flex;
-    margin-left: auto;
-  }
-  
-  .fourth-footer .icons .icon {
-    margin : 5px;
-  }
-  
+.component.fourth-component {
+  background-color: rgb(243,239,236);
+}
+
+.fourth-container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content:center; /* 왜아무반응없지 */
+  margin:auto;
+}
+
+.fourth-box.container{
+  display: flex;
+  justify-content: center;
+}
+
+
+.fourth-box-content{
+  width: 150px;
+  height : 250px;
+  margin: 10px;
+  display: inline-block;
+  background: #333;
+  border-radius: 5px;
+  color:rgb(231,229,230);
+  padding: 3px 8px;
+  text-align: center;
+}
+
+.fourth-box-content h3{
+  color:rgb(231,229,230);
+}
+
+.fourth-box-content img{
+  margin-top:10%;
+  height: 100px;
+  width:  100px;
+  border-radius: 100px;
+}

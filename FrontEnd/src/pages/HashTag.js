@@ -41,7 +41,16 @@ function HashTag(){
                     <p className={styles.title}>알고리즘 공부</p>
                     <p className={styles.date}>2020.01.21~2021.12.31</p>
                 </Col>
-            </Row>
+            </Row> <br/><br/>
+            <ul>
+                <li class="num"><a href="#">&laquo;</a></li>
+                <li class="active"><a href="#">1</a></li>
+                <li class="num"><a href="#">2</a></li>
+                <li class="num"><a href="#">3</a></li>
+                <li class="num"><a href="#">4</a></li>
+                <li class="num"><a href="#">5</a></li>
+                <li class="num"><a href="#">&raquo;</a></li>
+            </ul>
         </div>
     );
 }
