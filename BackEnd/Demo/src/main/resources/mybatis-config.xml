@@ -6,6 +6,9 @@
     
         <typeAliases>
             <typeAlias type="com.backend.dto.UserVO" alias="UserVO"/>
+             <typeAlias type="com.backend.dto.GoalVO" alias="GoalVO"/>
         </typeAliases>
+        
+       
         
     </configuration>
