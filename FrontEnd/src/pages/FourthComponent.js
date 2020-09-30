@@ -1,70 +1,110 @@
 import React, { Fragment } from "react";
-import Logo from "../../src/img/logoFull.png";
-import { TwitterOutlined , InstagramOutlined  ,FacebookOutlined ,CopyrightOutlined   } from '@ant-design/icons';
+import ImgFace from "../../src/img/face.png";
+import {InstagramOutlined, TwitterOutlined, FacebookOutlined, GithubOutlined } from '@ant-design/icons';
 import "./FourthComponent.css"
 
 
 function FourthComponent() {
   return (
     <Fragment>
-      <div className="fourth-container">
-        <footer className="fourth-box-container">
-          <div className="fourth-box-content-container">
-            <div className="fourth-box-content">
-                <img src ={Logo} />
+      <div className="component fourth-component">
+        <div className = "fourth-container">
+          <div className="fourth-box container">
+            
+            <div className = "fourth-box-content">
+              <h3>Visual Up!</h3>
+              <h3>팀원소개</h3>
+              <h5>Visual Up Team Members</h5>
             </div>
 
-            <div className="fourth-box-content">
-              <table>
-                <tr>
-                  <th>ABOUT</th>
-                  <td>홍보 소개 사용자유형 사용후기 멤버소개</td>
-                </tr>
-                <tr>
-                  <th>PLAN</th>
-                  <td>목표설정 목표리스트 데일리체크</td>
-                </tr>
-                <tr>
-                  <th>CONTACT</th>
-                  <td>문의사항 SNS DOUBLESLASH</td>
-                </tr>
-                <tr>
-                  <th>MEMBERS</th>
-                  <td>홍영주 박미현 김서현 김수람 우희은 이소정 임정민 조은학</td>
-                </tr>
-              </table>
+            <div className = "fourth-box-content">
+              <img src =  {ImgFace} />
+              <h3>홍영주</h3>
+              <h5>기획</h5>
+              <InstagramOutlined style ={{fontSize : '18px', color : 'rgb(231,229,230)', padding:'3px'}}/>
+              <TwitterOutlined style ={{fontSize : '18px', color : 'rgb(231,229,230)', padding:'3px'}}/>
+              <FacebookOutlined style ={{fontSize : '18px', color : 'rgb(231,229,230)', padding:'3px'}}/>
+              <GithubOutlined style ={{fontSize : '18px', color : 'rgb(231,229,230)', padding:'3px'}}/>
             </div>
 
-            <div className="fourth-box-content">
-              <div className="fourth-subscribe">
-                <h5>Subscribe</h5>
-              </div>
-              <div className="fourth-info">
-                <address>+82 10 5555 5555</address>
-                <address>Seoul</address>
-                <email>visualupteam@mail.com</email>
-              </div>
+            <div className = "fourth-box-content">
+              <img src =  {ImgFace} />
+              <h3>박미현</h3>
+              <h5>디자인</h5>
+              <InstagramOutlined style ={{fontSize : '18px', color : 'rgb(231,229,230)', padding:'3px'}}/>
+              <TwitterOutlined style ={{fontSize : '18px', color : 'rgb(231,229,230)', padding:'3px'}}/>
+              <FacebookOutlined style ={{fontSize : '18px', color : 'rgb(231,229,230)', padding:'3px'}}/>
+              <GithubOutlined style ={{fontSize : '18px', color : 'rgb(231,229,230)', padding:'3px'}}/>
+            </div>
+
+            <div className = "fourth-box-content">
+              <img src =  {ImgFace} />
+              <h3>김서현</h3>
+              <h5>개발</h5>
+              <InstagramOutlined style ={{fontSize : '18px', color : 'rgb(231,229,230)', padding:'3px'}}/>
+              <TwitterOutlined style ={{fontSize : '18px', color : 'rgb(231,229,230)', padding:'3px'}}/>
+              <FacebookOutlined style ={{fontSize : '18px', color : 'rgb(231,229,230)', padding:'3px'}}/>
+              <GithubOutlined style ={{fontSize : '18px', color : 'rgb(231,229,230)', padding:'3px'}}/>
+            </div>
+
+            <div className = "fourth-box-content">
+              <img src =  {ImgFace} />
+              <h3>김수람</h3>
+              <h5>개발</h5>
+              <InstagramOutlined style ={{fontSize : '18px', color : 'rgb(231,229,230)', padding:'3px'}}/>
+              <TwitterOutlined style ={{fontSize : '18px', color : 'rgb(231,229,230)', padding:'3px'}}/>
+              <FacebookOutlined style ={{fontSize : '18px', color : 'rgb(231,229,230)', padding:'3px'}}/>
+              <GithubOutlined style ={{fontSize : '18px', color : 'rgb(231,229,230)', padding:'3px'}}/>
             </div>
           </div>
 
-          <div className="fourth-box-content fourth-footer">
-            <CopyrightOutlined />
-            <span>Visual Up 2020</span>
-            <div className ="icons">
-              <div className = "icon">
-                <InstagramOutlined style ={{fontSize : '30px'}} />
-              </div>
-              <div className = "icon">
-                <TwitterOutlined style ={{fontSize : '30px'}}/>
-              </div>
-              <div className = "icon">
-                <FacebookOutlined style ={{fontSize : '30px'}}/>
-              </div>
+          <div className="fourth-box container">
+            <div className = "fourth-box-content">
+              <img src =  {ImgFace} />
+              <h3>우희은</h3>
+              <h5>개발</h5>
+              <InstagramOutlined style ={{fontSize : '18px', color : 'rgb(231,229,230)', padding:'3px'}}/>
+              <TwitterOutlined style ={{fontSize : '18px', color : 'rgb(231,229,230)', padding:'3px'}}/>
+              <FacebookOutlined style ={{fontSize : '18px', color : 'rgb(231,229,230)', padding:'3px'}}/>
+              <GithubOutlined style ={{fontSize : '18px', color : 'rgb(231,229,230)', padding:'3px'}}/>
+            </div>
+
+            <div className = "fourth-box-content">
+              <img src =  {ImgFace} />
+              <h3>이소정</h3>
+              <h5>개발</h5>
+              <InstagramOutlined style ={{fontSize : '18px', color : 'rgb(231,229,230)', padding:'3px'}}/>
+              <TwitterOutlined style ={{fontSize : '18px', color : 'rgb(231,229,230)', padding:'3px'}}/>
+              <FacebookOutlined style ={{fontSize : '18px', color : 'rgb(231,229,230)', padding:'3px'}}/>
+              <GithubOutlined style ={{fontSize : '18px', color : 'rgb(231,229,230)', padding:'3px'}}/>
+            </div>
+
+            <div className = "fourth-box-content">
+              <img src =  {ImgFace} />
+              <h3>임정민</h3>
+              <h5>개발</h5>
+              <InstagramOutlined style ={{fontSize : '18px', color : 'rgb(231,229,230)', padding:'3px'}}/>
+              <TwitterOutlined style ={{fontSize : '18px', color : 'rgb(231,229,230)', padding:'3px'}}/>
+              <FacebookOutlined style ={{fontSize : '18px', color : 'rgb(231,229,230)', padding:'3px'}}/>
+              <GithubOutlined style ={{fontSize : '18px', color : 'rgb(231,229,230)', padding:'3px'}}/>
+            </div>
+
+            <div className = "fourth-box-content">
+              <img src =  {ImgFace} />
+              <h3>조은학</h3>
+              <h5>개발</h5>
+              <InstagramOutlined style ={{fontSize : '18px', color : 'rgb(231,229,230)', padding:'3px'}}/>
+              <TwitterOutlined style ={{fontSize : '18px', color : 'rgb(231,229,230)', padding:'3px'}}/>
+              <FacebookOutlined style ={{fontSize : '18px', color : 'rgb(231,229,230)', padding:'3px'}}/>
+              <GithubOutlined style ={{fontSize : '18px', color : 'rgb(231,229,230)', padding:'3px'}}/>
+            </div>
+
+            <div className="fourth-box-content">
+                
             </div>
           </div>
-          
-        </footer> 
-      </div> 
+        </div>
+      </div>
     </Fragment>
   );
 }
