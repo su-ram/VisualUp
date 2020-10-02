@@ -30,6 +30,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.backend.dto.UserVO;
+import com.backend.service.UserService;
+
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
@@ -52,12 +55,16 @@ public class LoginController {
 	private String access_Token;
 	private String client_Id;
 	private String client_Secret;
+	private String userName,userEmail;
+	@Autowired
+	private UserService userService;
 	
 	@RequestMapping(params="userid")
 	public String login(){
 		return "defaultLogin";
 		
 	}
+	
 	
 	
 	@RequestMapping(params="type=kakao")
@@ -96,10 +103,29 @@ public class LoginController {
         try {
         	json = (JSONObject)jsonParser.parse(resultString);
         	
+        	json = (JSONObject)json.get("kakao_account");
+        	userEmail = (String)json.get("email");
+        	
+        	json = (JSONObject)json.get("profile");
+        	userName = (String)json.get("nickname");
+        	
+        	
+     
+        	userService.newUser(userName, userEmail);
+        	
         }catch(Exception e) {
         	e.printStackTrace();
         }
 		model.addAttribute("result", json);
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		return "loginKakao";
 	}
 	
@@ -141,8 +167,7 @@ public class LoginController {
        
         resultString = get(endpoint,map);
         
-        String userName;
-        String userEmail;
+        
         
         
         try{
@@ -158,6 +183,11 @@ public class LoginController {
 	    	model.addAttribute("userName", userName);
 	    	model.addAttribute("userEmail", userEmail);
 	    	model.addAttribute("result", json);
+	    	
+	    	userService.newUser(userName, userEmail);
+	    	
+	    	
+	    	System.out.println(userName+", "+userEmail);
 	    	
 	    }catch(Exception e) {
 	    	
@@ -200,8 +230,7 @@ public class LoginController {
         
         String responseBody = get(endpoint,requestHeaders);
       
-        String userName;
-        String userEmail;
+       
         
         try{
 	    	json= (JSONObject)jsonParser.parse(responseBody); 
@@ -210,6 +239,10 @@ public class LoginController {
 	    	model.addAttribute("userName", userName);
 	        model.addAttribute("userEmail", userEmail);
 	        model.addAttribute("result", json);
+	        System.out.println(userName+", "+userEmail);
+	        
+	        userService.newUser(userName, userEmail);
+	        
 	        
 	    }catch(Exception e) {
 	    	e.printStackTrace();
