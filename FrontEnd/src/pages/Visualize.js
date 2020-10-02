@@ -3,7 +3,6 @@ import { PageHeader } from '../components';
 import { Line } from '@ant-design/charts';
 import { Col, DatePicker } from 'antd';
 import { CalendarOutlined } from '@ant-design/icons';
-import "./Visaulize.css";
 
 function Visualize(){
   const [data, setData] = useState([]);
