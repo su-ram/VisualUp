@@ -1,5 +1,7 @@
 package com.backend.dao;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
@@ -23,6 +25,12 @@ public class GoalDAOImple implements GoalDAO {
 	public String newGoalID() {
 		
 		return sqlSession.selectOne(Namespace+".generateNewGoalID");
+	}
+	
+	@Override
+	public List<GoalVO> getGoalList(String userid){
+		
+		return sqlSession.selectList(Namespace+".getGoalList",userid);
 	}
 
 }

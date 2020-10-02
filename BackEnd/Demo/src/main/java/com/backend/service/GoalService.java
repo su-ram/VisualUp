@@ -1,6 +1,6 @@
 package com.backend.service;
 
-import org.springframework.stereotype.Service;
+import java.util.List;
 
 import com.backend.dto.GoalVO;
 
@@ -8,4 +8,5 @@ import com.backend.dto.GoalVO;
 public interface GoalService {
 	public void insertGoal(GoalVO newgoal);
 	public String newGoalID();
+	public List<GoalVO> getGoalList(String userid);
 }

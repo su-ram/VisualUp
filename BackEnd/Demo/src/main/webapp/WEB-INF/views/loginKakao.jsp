@@ -4,11 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>카카오 로그인 페이지</title>
+<title>카카오 로그인 결과</title>
 </head>
 <body>
-
-
-
+${result}
 </body>
 </html>
