@@ -1,6 +1,19 @@
 .page-title-con{
     margin:15px 0;
 }
-.page-title-con>*{
+.page-title-con div{
     text-align: center;
+}
+.page-title-con div>*{
+    color: #5C411D;
+}
+.page-title>h2{
+    font-weight: 600;
+}
+.page-subtitle>h5{
+    margin: 0;
+    border-radius: 15px;
+    border: 1px solid #CFA051;
+    padding: 2px 20px;
+    display: inline-block;
 }
