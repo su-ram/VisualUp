@@ -21,6 +21,7 @@ import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.slf4j.Logger;
@@ -48,16 +49,53 @@ public class LoginController {
 	
 	
 	@RequestMapping(params="type=kakao")
-	public String kakaoLogin(HttpSession session, Model model) {
+	public String kakaoLogin(HttpSession session, HttpServletRequest request, Model model) throws IOException {
 		
+		/*
 		String apiurl = "https://kauth.kakao.com/oauth/authorize";
-		
 		apiurl +="?client_id=cead37f7d4b6971d3ce0be9d314f4852";
 		apiurl +="&redirect_uri=http://localhost:8080/login?type=kakao";
 		apiurl +="&response_type=code";
 		
+	*/
+		
+	    
+		
+		
+		
 		return "loginKakao";
 	}
+	
+	
+	@RequestMapping("/callback/kakao")
+	public String kakaoCallback(HttpSession session, HttpServletRequest request, Model model) throws IOException, ParseException{
+		
+		
+		String code = request.getParameter("code");
+		String apiURL = "https://kauth.kakao.com/oauth/token&grant_type=authorization_code";
+		HashMap<String,String> map = new HashMap<String,String>();
+		map.put("&client_id", "cead37f7d4b6971d3ce0be9d314f4852");
+		map.put("&redirect_uri", "http://localhost:8080/login?type=kakao");
+		map.put("&code", code);
+		
+		String result = requestToServer(apiURL,map);
+		System.out.println(result);
+
+		JSONParser paser = new JSONParser(); //JSON Parser객채를 만듭니다. parser를 통해서 파싱을 합니다.
+	    try{
+	    	JSONObject obj = (JSONObject) paser.parse(result); 
+	    	result=(String)obj.get("access_token");
+	    	
+	    }catch(Exception e) {
+	    	e.printStackTrace();
+	    	
+	    }
+		
+		return "callback";
+	}
+	
+	
+	
 	@RequestMapping(params="type=naver")
 	public String naverLogin(HttpSession session, Model model) {
 		String redirectURI = URLEncoder.encode("http://visualup.koreacentral.cloudapp.azure.com:8080/login/callback");
@@ -131,16 +169,22 @@ public class LoginController {
         String responseBody = get(apiURL,requestHeaders);
         System.out.println(responseBody);
 
-        Object data = new Object();
+        String userName;
+        String userEmail;
+        
         try{
 	    	JSONObject obj = (JSONObject) paser.parse(responseBody); 
-	    	data = obj.get("metadata");
+	    	userName = (String)obj.get("name");
+	    	userEmail = (String)obj.get("email");
+	    	model.addAttribute("userName", userName);
+	        model.addAttribute("userEmail", userEmail);
+	        
 	    }catch(Exception e) {
-	    	
+	    	e.printStackTrace();
 	    }
 	    
 	    
-        model.addAttribute("result",responseBody);
+        
         
 		
 		
@@ -149,6 +193,12 @@ public class LoginController {
 	
 	@RequestMapping("/callback/google")
 	public String googleCallback(HttpSession session, HttpServletRequest request, Model model) throws IOException, ParseException{
+		
+		//세션 설정
+		HttpSession httpSession = request.getSession();
+		
+		
+		
 		
 		String code = request.getParameter("code");
 		String apiurl = "https://oauth2.googleapis.com/token?grant_type=authorization_code";
@@ -189,17 +239,31 @@ public class LoginController {
        
         
         String responseBody = get(apiURL,requestHeaders);
-
-        Object data = new Object();
+        String userName;
+        String userEmail;
+        
+        
         try{
-	    	JSONObject obj = (JSONObject) paser.parse(responseBody); 
-	    	data = obj.get("metadata");
-	    }catch(Exception e) {
+        	JSONObject obj = (JSONObject) paser.parse(responseBody); 
+        	JSONArray jsonarray = (JSONArray)obj.get("names");
+        	JSONObject data = (JSONObject)jsonarray.get(0);
+        	userName = (String)data.get("displayName");
+        	
+        	jsonarray=(JSONArray)obj.get("emailAddresses");
+        	data = (JSONObject)jsonarray.get(0);
+        	userEmail = (String)data.get("value");
+	    
+	    	model.addAttribute("userName", userName);
+	    	model.addAttribute("userEmail", userEmail);
 	    	
+	    }catch(Exception e) {
+	    	System.out.println("There's an error....");
+	    	e.printStackTrace();
 	    }
 	    
-	    
-        model.addAttribute("result",responseBody);
+        
+   	
+       
         
        
 		return "loginGoogle";

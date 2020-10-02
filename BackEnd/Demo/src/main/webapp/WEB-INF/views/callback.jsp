@@ -7,7 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h3>콜백 페이지</h3>
-${result}
+<h3>깃허브 로그인 결과</h3>
+사용자 이름 : ${userName }<br>
+사용자 이메일 주소 : ${userEmail }<br>
 </body>
 </html>

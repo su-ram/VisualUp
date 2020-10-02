@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.backend.mapper.goalMapper">
+
+	<select id="generateNewGoalID" resultType="string">
+		select goalid from goal order by goalid desc limit 1
+	</select>
+    
+    <insert id="insertGoal" parameterType="GoalVO">
+        insert into goal values (#{goalid}, #{userid}, #{title}, #{content}, #{startDate}, #{endDate}, #{term},#{keywords}, #{open})
+    </insert>
+    
+    
+    
+</mapper>
