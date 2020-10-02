@@ -1,110 +1,418 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 import { PageHeader } from '../components';
 import { Line } from '@ant-design/charts';
-import { Col, Typography } from 'antd';
+import { Col, DatePicker } from 'antd';
+import { CalendarOutlined } from '@ant-design/icons';
 
 function Visualize(){
-    const data = [
-    {
-      date: '2019-01-01',
-      value: 3,
-    },
-    {
-      date: '2019-02-01',
-      value: 4,
-    },
-    {
-      date: '2019-03-01',
-      value: 3.5,
-    },
-    {
-      date: '2019-04-01',
-      value: 5,
-    },
-    {
-      date: '2019-05-01',
-      value: 4.9,
-    },
-    {
-      date: '2019-06-01',
-      value: 6,
-    },
-    {
-      date: '2019-07-01',
-      value: 7,
-    },
-    {
-      date: '2019-08-01',
-      value: 9,
-    },
-    {
-      date: '2019-09-01',
-      value: 3,
-    },
-    {
-      date: '2019-10-01',
-      value: 16,
-    },
-    {
-      date: '2019-11-01',
-      value: 6,
-    },
-    {
-      date: '2019-12-01',
-      value: 8,
-    },
-  ];
-  const maxValue = Math.max.apply(
-    [],
-    data.map((d) => d.value),
-  );
+  const [data, setData] = useState([]);
   const config = {
-    title: {
-      visible: true,
-      text: 'demo',
-    },
-    description: {
-      visible: true,
-      text: 'graph description',
-    },
-    forceFit: true,
-    padding: 'auto',
     data,
-    xField: 'date',
-    yField: 'value',
-    yAxis: { nice: true },
-    label: { visible: false },
-    markerPoints: [
-      {
-        visible: true,
-        data: [{ value: maxValue }],
-        label: {
-          visible: true,
-          formatter: () => '목표량',
-        },
-        style: { normal: { fill: 'rgba(255, 0, 0, 0.65)' } },
-        animation: {
-          endState: {
-            size: 4,
-            opacity: 0.3,
-          },
-          animateCfg: {
-            duration: 1500,
-            easing: 'easeLinear',
-            repeat: true,
-            delay: 1200,
-          },
-        },
-      },
-    ],
+    padding: 'auto',
+    xField: 'Date', // xfield에 적용할 변수
+    yField: 'scales', // yfield에 적용할 변수
+    //seriesField: 'category', // 클릭 시 해당 그래프만 나타남
+    legend: { position: 'left' }, // seriesField 위치,
+    shared: false,
+    xAxis:{
+      type: 'dateTime', // x축에 표시되는 양식
+      tickCount: 5, // 몇 조각으로 나눌 건지
+    },
+    slidable: true,
+    slider:{
+      start : 0.1, 
+      end : 0.5
+    },
+    //color: ['#E9BE78', '#6a93c5', '#6ac593'], // 선 색깔 지정
+    point : {
+      size: 5,
+      shape: 'circle',
+      style:{
+        fill: 'white',
+        stroke : '#2593fc',
+        lineWidth: 2,
+      }
+    }
   };
+
+  const name = "홍미주";
+
+  useEffect(()=>{
+    function defaultSetting(){
+      setData([
+        {
+          "Date": "2010-01",
+          "scales": 1998
+        },
+        {
+          "Date": "2010-02",
+          "scales": 1850
+        },
+        {
+          "Date": "2010-03",
+          "scales": 1720
+        },
+        {
+          "Date": "2010-04",
+          "scales": 1818
+        },
+        {
+          "Date": "2010-05",
+          "scales": 1920
+        },
+        {
+          "Date": "2010-06",
+          "scales": 1802
+        },
+        {
+          "Date": "2010-07",
+          "scales": 1945
+        },
+        {
+          "Date": "2010-08",
+          "scales": 1856
+        },
+        {
+          "Date": "2010-09",
+          "scales": 2107
+        },
+        {
+          "Date": "2010-10",
+          "scales": 2140
+        },
+        {
+          "Date": "2010-11",
+          "scales": 2311
+        },
+        {
+          "Date": "2010-12",
+          "scales": 1972
+        },
+        {
+          "Date": "2011-01",
+          "scales": 1760
+        },
+        {
+          "Date": "2011-02",
+          "scales": 1824
+        },
+        {
+          "Date": "2011-03",
+          "scales": 1801
+        },
+        {
+          "Date": "2011-04",
+          "scales": 2001
+        },
+        {
+          "Date": "2011-05",
+          "scales": 1640
+        },
+        {
+          "Date": "2011-06",
+          "scales": 1502
+        },
+        {
+          "Date": "2011-07",
+          "scales": 1621
+        },
+        {
+          "Date": "2011-08",
+          "scales": 1480
+        },
+        {
+          "Date": "2011-09",
+          "scales": 1549
+        },
+        {
+          "Date": "2011-10",
+          "scales": 1390
+        },
+        {
+          "Date": "2011-11",
+          "scales": 1325
+        },
+        {
+          "Date": "2011-12",
+          "scales": 1250
+        },
+        {
+          "Date": "2012-01",
+          "scales": 1394
+        },
+        {
+          "Date": "2012-02",
+          "scales": 1406
+        },
+        {
+          "Date": "2012-03",
+          "scales": 1578
+        },
+        {
+          "Date": "2012-04",
+          "scales": 1465
+        },
+        {
+          "Date": "2012-05",
+          "scales": 1689
+        },
+        {
+          "Date": "2012-06",
+          "scales": 1755
+        },
+        {
+          "Date": "2012-07",
+          "scales": 1495
+        },
+        {
+          "Date": "2012-08",
+          "scales": 1508
+        },
+        {
+          "Date": "2012-09",
+          "scales": 1433
+        },
+        {
+          "Date": "2012-10",
+          "scales": 1344
+        },
+        {
+          "Date": "2012-11",
+          "scales": 1201
+        },
+        {
+          "Date": "2012-12",
+          "scales": 1065
+        },
+        {
+          "Date": "2013-01",
+          "scales": 1255
+        },
+        {
+          "Date": "2013-02",
+          "scales": 1429
+        },
+        {
+          "Date": "2013-03",
+          "scales": 1398
+        },
+        {
+          "Date": "2013-04",
+          "scales": 1678
+        },
+        {
+          "Date": "2013-05",
+          "scales": 1524
+        },
+        {
+          "Date": "2013-06",
+          "scales": 1688
+        },
+        {
+          "Date": "2013-07",
+          "scales": 1500
+        },
+        {
+          "Date": "2013-08",
+          "scales": 1670
+        },
+        {
+          "Date": "2013-09",
+          "scales": 1734
+        },
+        {
+          "Date": "2013-10",
+          "scales": 1699
+        },
+        {
+          "Date": "2013-11",
+          "scales": 1508
+        },
+        {
+          "Date": "2013-12",
+          "scales": 1680
+        },
+        {
+          "Date": "2014-01",
+          "scales": 1750
+        },
+        {
+          "Date": "2014-02",
+          "scales": 1602
+        },
+        {
+          "Date": "2014-03",
+          "scales": 1834
+        },
+        {
+          "Date": "2014-04",
+          "scales": 1722
+        },
+        {
+          "Date": "2014-05",
+          "scales": 1430
+        },
+        {
+          "Date": "2014-06",
+          "scales": 1280
+        },
+        {
+          "Date": "2014-07",
+          "scales": 1367
+        },
+        {
+          "Date": "2014-08",
+          "scales": 1155
+        },
+        {
+          "Date": "2014-09",
+          "scales": 1289
+        },
+        {
+          "Date": "2014-10",
+          "scales": 1104
+        },
+        {
+          "Date": "2014-11",
+          "scales": 1246
+        },
+        {
+          "Date": "2014-12",
+          "scales": 1098
+        },
+        {
+          "Date": "2015-01",
+          "scales": 1189
+        },
+        {
+          "Date": "2015-02",
+          "scales": 1276
+        },
+        {
+          "Date": "2015-03",
+          "scales": 1033
+        },
+        {
+          "Date": "2015-04",
+          "scales": 956
+        },
+        {
+          "Date": "2015-05",
+          "scales": 845
+        },
+        {
+          "Date": "2015-06",
+          "scales": 1089
+        },
+        {
+          "Date": "2015-07",
+          "scales": 944
+        },
+        {
+          "Date": "2015-08",
+          "scales": 1043
+        },
+        {
+          "Date": "2015-09",
+          "scales": 893
+        },
+        {
+          "Date": "2015-10",
+          "scales": 840
+        },
+        {
+          "Date": "2015-11",
+          "scales": 934
+        },
+        {
+          "Date": "2015-12",
+          "scales": 810
+        },
+        {
+          "Date": "2016-01",
+          "scales": 782
+        },
+        {
+          "Date": "2016-02",
+          "scales": 1089
+        },
+        {
+          "Date": "2016-03",
+          "scales": 745
+        },
+        {
+          "Date": "2016-04",
+          "scales": 680
+        },
+        {
+          "Date": "2016-05",
+          "scales": 802
+        },
+        {
+          "Date": "2016-06",
+          "scales": 697
+        },
+        {
+          "Date": "2016-07",
+          "scales": 583
+        },
+        {
+          "Date": "2016-08",
+          "scales": 456
+        },
+        {
+          "Date": "2016-09",
+          "scales": 524
+        },
+        {
+          "Date": "2016-10",
+          "scales": 398
+        },
+        {
+          "Date": "2016-11",
+          "scales": 278
+        },
+        {
+          "Date": "2016-12",
+          "scales": 195
+        },
+        {
+          "Date": "2017-01",
+          "scales": 145
+        },
+        {
+          "Date": "2017-02",
+          "scales": 207
+        }
+      ]);
+    }
+    defaultSetting();
+  },[]);
+
+  const {RangePicker} = DatePicker;
+
+  function setGraphDate(time, timeString){
+    console.dir(time);
+    console.dir(timeString);
+  }
+
   return (
     <Col>
       <PageHeader
-        title="페이지의 타이틀입니다."
-        subtitle="서브 타이틀입니다."
+        title={name+"님의 목표 달성률"}
+        subtitle="목표 달성치를 그래프로 한 눈에 볼 수 있어요."
         />
-      <Line {...config} />;
+      <Col className="graph-con">
+        <div className="select-date-con">
+          <div class="date-title"><CalendarOutlined/><p>날짜 선택</p></div>
+          <div class="date-select">
+            <RangePicker onChange={setGraphDate}/>
+          </div>
+        </div>
+        <div>
+          {data.length!==0?<Line {...config} />:undefined}
+        </div>
+      </Col>
     </Col>
   );
 }

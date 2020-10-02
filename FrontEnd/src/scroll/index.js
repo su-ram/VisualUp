@@ -11,7 +11,7 @@ if (!global._babelPolyfill) {
 const DEFAULT_ANIMATION_TIMER = 1000;
 const DEFAULT_ANIMATION = "ease-in-out";
 const DEFAULT_CONTAINER_HEIGHT = "100vh";
-const DEFAULT_CONTAINER_WIDTH = "100vw";
+//const DEFAULT_CONTAINER_WIDTH = "100vw";
 const DEFAULT_COMPONENT_INDEX = 0;
 const DEFAULT_COMPONENTS_TO_RENDER_LENGTH = 0;
 
@@ -356,7 +356,7 @@ ReactPageScroller.defaultProps = {
   animationTimerBuffer: DEFAULT_ANIMATION_TIMER_BUFFER,
   transitionTimingFunction: DEFAULT_ANIMATION,
   containerHeight: DEFAULT_CONTAINER_HEIGHT,
-  containerWidth: DEFAULT_CONTAINER_WIDTH,
+  //containerWidth: DEFAULT_CONTAINER_WIDTH,
   blockScrollUp: false,
   blockScrollDown: false,
 };

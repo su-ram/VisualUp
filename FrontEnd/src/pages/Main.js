@@ -8,18 +8,16 @@ import Navigation from "./Navigation.js";
 
 function Main(){
     return(
-        <Col>
-            <Col id="contents">
-                <Navigation/>
-                <Switch>
-                    <Route exact path="/" component={FullPage}/>
-                    <Route exact path="/visualize" component={Visualize}/>
-                    <Route exact path="/hashtag" component={HashTag}/>
-                    <Route exact path="/goalList" component={GoalList}/>
-                    <Route exact path="/goalSet" component={GoalSet}/>
-                    <Redirect path="*" to="/error" />
-                </Switch>
-            </Col>
+        <Col id="contents">
+            <Navigation/>
+            <Switch>
+                <Route exact path="/" component={FullPage}/>
+                <Route exact path="/visualize" component={Visualize}/>
+                <Route exact path="/hashtag" component={HashTag}/>
+                <Route exact path="/goalList" component={GoalList}/>
+                <Route exact path="/goalSet" component={GoalSet}/>
+                <Redirect path="*" to="/error" />
+            </Switch>
         </Col>
     );
 }
