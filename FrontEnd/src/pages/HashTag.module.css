@@ -2,6 +2,8 @@
     text-align: center;
     color: #5C411D;
     font-weight: bold;
+    font-size: 2em;
+    margin-top: -5px;
 }
 .sub {
     border: 2px solid #E9BE78;
@@ -18,38 +20,38 @@
 .body {
     border-top: 2px solid #656563;
     border-bottom: 2px solid #656563;
-    width: 1280px;
-    height: 400px;
-    margin-top: 50px;
-    margin-left: 212px;
+    width: 74%;
+    height: 300px;
+    margin-top: 40px;
+    margin-left: 156px;
 }
 .content1 {
     border: 1.3px solid #606060;
-    width: 330px;
-    height: 300px;
-    margin-left: 72px;
+    width: 244px;
+    height: 234px;
+    margin-left: 52px;
     background-color: #f0f0f0;
 }
 .content2 {
     border: 1.3px solid #606060;
-    width: 330px;
-    height: 300px;
-    margin-left: 74px;
+    width: 244px;
+    height: 234px;
+    margin-left: 60px;
     background-color: #f0f0f0;
 }
 .content3 {
     border: 1.3px solid #606060;
-    width: 330px;
-    height: 300px;
-    margin-left: 74px;
+    width: 244px;
+    height: 234px;
+    margin-left: 60px;
     background-color: #f0f0f0;
 }
 .name {
     color: #5C411D;
     font-weight: bold;
-    font-size: 1.6em;
-    margin-top: 30px;
-    margin-left: 30px;
+    font-size: 1.3em;
+    margin-top: 28px;
+    margin-left: 24px;
     float: left;
 }
 .graph {
@@ -58,22 +60,22 @@
 .title {
     color: #5C411D;
     font-weight: bold;
-    font-size: 1.5em;
-    margin-top: 30px;
-    margin-left: 30px;
+    font-size: 1.3em;
+    margin-top: 8px;
+    margin-left: 24px;
     float: left;
 }
 .date {
     color: #7E602D;
-    font-size: 1.3em;
-    margin-top: -13px;
-    margin-left: 30px;
+    font-size: 1.1em;
+    margin-top: -18px;
+    margin-left: 24px;
     float: left;
 }
 ul {
 	list-style: none;
     display: inline-block;
-    margin-left: 40%;
+    margin-left: 37%;
 }
 ul li {
     float:left;
@@ -81,13 +83,14 @@ ul li {
 }
 ul li a {
     float: left;
-    padding: 9px;
-    width: 40px;
-    height: 38px;
+    padding: 5px;
+    width: 36px;
+    height: 34px;
 	color:#5C411D;
     border:1px solid#5C411D;
     border-radius: 5px;
-	text-align:center;
+    text-align:center;
+    margin-top: -12px;
 }
 ul li a:hover, ul li a:focus {
 	color:#fff;
