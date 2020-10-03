@@ -7,7 +7,11 @@
 <title>메인 페이지</title>
 </head>
 <body>
-${main_page}
-${result}
+${main_page}<br>
+${result}<br>
+<a href="/logout">로그아웃하기</a><br>
+${session}<br>
+당신의 회원번호는?? ${userid }<br>
+로그아웃 : ${logout}<br>
 </body>
 </html>

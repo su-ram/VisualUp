@@ -4,13 +4,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.backend.dto.DailyVO;
 import com.backend.dto.GoalVO;
 import com.backend.service.GoalService;
 
@@ -34,7 +34,15 @@ public class GoalController {
 	public @ResponseBody String newGoal(@RequestBody GoalVO newgoal) {
 		
 		String newgoalid = goalService.newGoalID();
-		newgoalid = newgoalid.substring(newgoalid.length()-3, newgoalid.length());
+		System.out.println(newgoalid);
+		
+		int start=0;
+		for(int i=0; i<newgoalid.length();i++) {
+			if(newgoalid.charAt(i)=='-') {
+				start = i+1;
+			}
+		}
+		newgoalid = newgoalid.substring(start, newgoalid.length());
 		int temp = Integer.parseInt(newgoalid)+1;
 		newgoalid = "goal-"+String.valueOf(temp);
 		newgoal.setGoalid(newgoalid);
@@ -42,6 +50,13 @@ public class GoalController {
 		goalService.insertGoal(newgoal);
 	
 		return "new goal accepted";
+	}
+	
+	@RequestMapping(value="/targetDate", method=RequestMethod.GET)
+	public @ResponseBody String getListByDate(@RequestParam("start") String start, @RequestParam("end") String end){
+		
+		return "bb";
+		
 	}
 	
 	

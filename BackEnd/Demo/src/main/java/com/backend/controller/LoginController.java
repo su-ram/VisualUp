@@ -30,7 +30,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.backend.dto.UserVO;
 import com.backend.service.UserService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -55,9 +54,12 @@ public class LoginController {
 	private String access_Token;
 	private String client_Id;
 	private String client_Secret;
-	private String userName,userEmail;
+	private String userName,userEmail,userId;
+
 	@Autowired
 	private UserService userService;
+	private HttpSession session;
+	
 	
 	@RequestMapping(params="userid")
 	public String login(){
@@ -65,12 +67,26 @@ public class LoginController {
 		
 	}
 	
-	
+	public String checkUser(String name, String email, String type) throws Exception{
+		//이름과 메일주소로 기존 회원인지 신규 회원인지 알려주는 메소드.
+		
+		String userid = userService.loginRequest(name, email);
+    	
+    	if(userid == null) {
+    		//새로운 사용자인 경우
+    		
+    		userid = userService.newUser(userName, userEmail,type);
+    		
+    		
+    	}
+		
+		return userid;
+	}
 	
 	@RequestMapping(params="type=kakao")
 	public String kakaoLogin(HttpSession session, HttpServletRequest request, Model model) throws IOException, ParseException {
 		//카카오 로그인 콜백 페이지 
-		
+		session = request.getSession();
 		code = request.getParameter("code");
 		endpoint = "https://kauth.kakao.com/oauth/token?grant_type=authorization_code";
 		map = new HashMap<String, String>();
@@ -109,24 +125,21 @@ public class LoginController {
         	json = (JSONObject)json.get("profile");
         	userName = (String)json.get("nickname");
         	
-        	
-     
-        	userService.newUser(userName, userEmail);
+        	userId = checkUser(userName,userEmail,"kakao");
+        	session.setAttribute("userid", userId);
+        	model.addAttribute("userid", userId);
         	
         }catch(Exception e) {
         	e.printStackTrace();
         }
 		model.addAttribute("result", json);
+		model.addAttribute("session", session);
+		model.addAttribute("token", access_Token);
 		
 		
 		
+		return "home/home";
 		
-		
-		
-		
-		
-		
-		return "loginKakao";
 	}
 	
 	
@@ -184,10 +197,7 @@ public class LoginController {
 	    	model.addAttribute("userEmail", userEmail);
 	    	model.addAttribute("result", json);
 	    	
-	    	userService.newUser(userName, userEmail);
-	    	
-	    	
-	    	System.out.println(userName+", "+userEmail);
+	    	model.addAttribute("userid", checkUser(userName,userEmail,"google"));
 	    	
 	    }catch(Exception e) {
 	    	
@@ -241,7 +251,7 @@ public class LoginController {
 	        model.addAttribute("result", json);
 	        System.out.println(userName+", "+userEmail);
 	        
-	        userService.newUser(userName, userEmail);
+	        model.addAttribute("userid", checkUser(userName,userEmail,"github"));
 	        
 	        
 	    }catch(Exception e) {

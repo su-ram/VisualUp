@@ -21,25 +21,20 @@ public class UserSerivceImpl implements UserService{
 	}
 	
 	@Override
-	public boolean newUser(String name, String email) throws Exception{
+	public String newUser(String name, String email, String type) throws Exception{
 		
-		List<UserVO> newuser = dao.newUser(name, email);
+		//새로운 사용자를 등록함 
+		String newid = getNewUserid();
 		
-		if (newuser.size() == 0) {
-			
-			
-			UserVO newbie = new UserVO();
-        	newbie.setName(name);
-        	newbie.setEmail(email);
-        	newbie.setUserid(getNewUserid());
-        	dao.newUser(newbie);
-        	
-        	
-        	return true;
 		
-		}
-		else
-			return false;
+		UserVO newbie = new UserVO();
+    	newbie.setName(name);
+    	newbie.setEmail(email);
+    	newbie.setUserid(newid);
+    	newbie.setType(type);
+    	dao.newUser(newbie);
+    	
+    	return newid;
 		
 	}
 	
@@ -62,6 +57,32 @@ public class UserSerivceImpl implements UserService{
 		
 		
 		return newId;
+	}
+
+	@Override
+	public String loginRequest(String name, String email) throws Exception {
+		//로그인 요청이 들어옴. 이미 회원인 사용자인지 tf 구분해서 리턴함. 새로운 회원 T, 기존 회원 F
+		
+		List<UserVO> newuser = dao.newUser(name, email);
+		if(newuser.size() == 0) {
+			return null;
+		}else {
+			return getUserid(name,email);
+		}
+		
+		
+		
+	}
+
+	@Override
+	public String getUserid(String name, String email) throws Exception {
+		// 기존 사용자의 회원번호 리턴
+		
+		UserVO user = new UserVO();
+		user.setEmail(email);
+		user.setName(name);
+		
+		return dao.getUserid(user);
 	}
 
 }

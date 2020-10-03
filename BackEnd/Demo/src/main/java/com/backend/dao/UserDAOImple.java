@@ -50,4 +50,10 @@ public class UserDAOImple implements UserDAO{
 		
 	}
 
+	@Override
+	public String getUserid(UserVO user) throws Exception {
+		
+		return sqlSession.selectOne(Namespace+".getUserid", user);
+	}
+
 }

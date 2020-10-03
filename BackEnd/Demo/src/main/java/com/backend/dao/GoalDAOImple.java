@@ -2,12 +2,15 @@ package com.backend.dao;
 
 import java.util.List;
 
+
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.backend.dto.GoalVO;
+
 @Repository
 public class GoalDAOImple implements GoalDAO {
 
@@ -17,6 +20,7 @@ public class GoalDAOImple implements GoalDAO {
 	
 	@Override
 	public int insertGoal(GoalVO goal){
+	
 		
 		return sqlSession.insert(Namespace+".insertGoal",goal);
 	}
