@@ -1,6 +1,8 @@
 package com.backend.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -20,6 +22,38 @@ public class UserDAOImple implements UserDAO{
 	public List<UserVO> selectUser() throws Exception{
 		
 		return sqlSession.selectList(Namespace+".selectUser");
+	}
+	
+	@Override
+	public List<UserVO> newUser(String name, String email) throws Exception{
+		Map<String, String> map = new HashMap<>();
+		map.put("name", name);
+		map.put("email", email);
+		
+		return sqlSession.selectList(Namespace+".newUserCheck",map);
+		
+	}
+	
+	@Override
+	public String getNewUserid() throws Exception{
+		
+		UserVO latest = sqlSession.selectOne(Namespace+".getNewUserid");
+		
+		return latest.getUserid();
+		
+	}
+
+	@Override
+	public void newUser(UserVO newUser) throws Exception {
+		
+		sqlSession.insert(Namespace+".newUser", newUser);
+		
+	}
+
+	@Override
+	public String getUserid(UserVO user) throws Exception {
+		
+		return sqlSession.selectOne(Namespace+".getUserid", user);
 	}
 
 }

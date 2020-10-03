@@ -20,19 +20,24 @@ public class RequestLogin {
 	}
 	
 	public String requestGoogle() {
-		String redirectURI = URLEncoder.encode("http://localhost:8080/login/callback/google");
-		String google_client_id = "637540086741-c6k444vhqd1eid2aid6p86hmh4pldpje.apps.googleusercontent.com";
-		String google_scope = "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile";
+		
+		
 	    requestURL = "https://accounts.google.com/o/oauth2/v2/auth?response_type=code&access_type=offline";
-	    requestURL += String.format("&client_id=%s&redirect_uri=%s&scope=%s",google_client_id, redirectURI, google_scope);
+	    requestURL += "&client_id=637540086741-c6k444vhqd1eid2aid6p86hmh4pldpje.apps.googleusercontent.com";
+	    requestURL += "&redirect_uri="+URLEncoder.encode("http://localhost:8080/login?type=google");
+	    requestURL += "&scope=https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile";
+	        
+	    
 	    
 		return requestURL;
 	}
 
 	public String requestGithub() {
+		
+		
 		requestURL = "https://github.com/login/oauth/authorize";
 		requestURL += "?client_id=f8d6a5e720a1e485d0ed";
-		requestURL += "&redirect_uri=http://localhost:8080/login/callback";
+		requestURL += "&redirect_uri=http://localhost:8080/login?type=github";
 		requestURL += "&scope=user";
 		
 	return requestURL;

@@ -1,5 +1,7 @@
 package com.backend.service;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
@@ -23,6 +25,11 @@ public class GoalServiceImpl implements GoalService {
 	@Override
 	public String newGoalID() {
 		return goal.newGoalID();
+	}
+	
+	@Override
+	public List<GoalVO> getGoalList(String userid){
+		return goal.getGoalList(userid);
 	}
 
 }

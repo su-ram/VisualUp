@@ -12,12 +12,13 @@ public class GoalVO {
 	private String goalid;
 	private String userid;
 	private String title;
-	private String content;
 	private String startDate;
 	private String endDate;
 	private int term;
 	private boolean open;
-	private String keywords;
+	private String hashtags;
+	private String template;
+	private int total;
 	
 
 }

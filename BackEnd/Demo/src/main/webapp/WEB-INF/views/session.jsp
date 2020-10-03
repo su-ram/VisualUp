@@ -4,10 +4,11 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>구글 로그인 결과</title>
+<title>세션 테스트</title>
 </head>
 <body>
-
-${result }
+id is ${result}<br>
+Your session is ${session }<br>
+Session2 is ${session2 }
 </body>
 </html>

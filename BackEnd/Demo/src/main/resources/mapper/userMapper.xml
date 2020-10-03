@@ -6,7 +6,23 @@
 <mapper namespace="com.backend.mapper.userMapper">
     
     <select id="selectUser" resultType="UserVO">
-        SELECT userid, name from sample
+        SELECT * from user
+    </select>
+    
+    <select id="newUserCheck" resultType="UserVO">
+    	select * from user where username='${name}' and useremail='${email}'
+    </select>
+    
+    <select id="getNewUserid" resultType="UserVO">
+    	select userid from user order by userid desc limit 1
+    </select>
+    
+    <insert id="newUser" parameterType="UserVO">
+    	insert into user values(#{userid},#{name},#{email},#{type},#{token});
+    </insert>
+    
+    <select id="getUserid" resultType="string">
+    	select userid from user where username='${name}' and useremail='${email}'
     </select>
     
 </mapper>

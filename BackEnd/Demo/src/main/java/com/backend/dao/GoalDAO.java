@@ -8,5 +8,6 @@ public interface GoalDAO {
 	
 	public int insertGoal(GoalVO goal);
 	public String newGoalID();
+	public List<GoalVO> getGoalList(String userid);
 
 }
