@@ -20,30 +20,36 @@
 .body {
     border-top: 2px solid #656563;
     border-bottom: 2px solid #656563;
-    width: 74%;
-    height: 300px;
+    width: 86%;
+    height: 6%;
     margin-top: 40px;
-    margin-left: 156px;
+    margin-left: 76px;
 }
 .content1 {
     border: 1.3px solid #606060;
-    width: 244px;
-    height: 234px;
-    margin-left: 52px;
+    width: 28%;
+    height: 4%;
+    margin-left: 28px;
+    margin-top: 30px;
+    margin-bottom: 30px;
     background-color: #f0f0f0;
 }
 .content2 {
     border: 1.3px solid #606060;
-    width: 244px;
-    height: 234px;
-    margin-left: 60px;
+    width: 28%;
+    height: 4%;
+    margin-left: 39px;
+    margin-top: 30px;
+    margin-bottom: 30px;
     background-color: #f0f0f0;
 }
 .content3 {
     border: 1.3px solid #606060;
-    width: 244px;
-    height: 234px;
-    margin-left: 60px;
+    width: 28%;
+    height: 4%;
+    margin-left: 39px;
+    margin-top: 30px;
+    margin-bottom: 30px;
     background-color: #f0f0f0;
 }
 .name {
@@ -75,7 +81,7 @@
 ul {
 	list-style: none;
     display: inline-block;
-    margin-left: 37%;
+    margin: 30%;
 }
 ul li {
     float:left;
