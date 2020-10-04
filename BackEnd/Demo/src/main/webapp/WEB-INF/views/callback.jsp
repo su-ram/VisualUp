@@ -4,11 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>깃허브 로그인 결과</title>
 </head>
 <body>
-<h3>깃허브 로그인 결과</h3>
-사용자 이름 : ${userName }<br>
-사용자 이메일 주소 : ${userEmail }<br>
+${result }
 </body>
 </html>

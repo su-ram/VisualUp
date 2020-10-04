@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.backend.mapper.dailyMapper">
+
+	<insert id="newDaily" parameterType="DailyVO">
+		insert into daily values(#{dailyid},#{userid},#{goalid},#{target},#{todayDate},#{whatIdone},#{done},#{hashtags})
+	
+	</insert>
+	
+	<select id="newDailyId" resultType="string">
+		select dailyid from daily order by dailyid desc limit 1
+	</select>
+    
+</mapper>

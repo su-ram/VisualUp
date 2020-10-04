@@ -10,8 +10,13 @@
 	</select>
     
     <insert id="insertGoal" parameterType="GoalVO">
-        insert into goal values (#{goalid}, #{userid}, #{title}, #{content}, #{startDate}, #{endDate}, #{term},#{keywords}, #{open})
+        insert into goal values (#{goalid}, #{userid}, #{title},#{startDate}, #{endDate}, #{term},#{hashtags},#{open},
+        #{total},#{template})
     </insert>
+    
+    <select id="getGoalList" resultType="GoalVO">
+    	select * from goal where userid = #{userid}
+    </select>
     
     
     

@@ -2,10 +2,12 @@ package com.backend.controller;
 
 import java.util.HashMap;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ExtendedModelMap;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -17,9 +19,12 @@ public class HomeController {
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
 	@RequestMapping(value = "/", method=RequestMethod.GET)
-	public String getHome(Model model) {
+	public String getHome(HttpServletRequest request,Model model) {
 		logger.info("HomeController is called");
+		HttpSession session = request.getSession();
+		String id = (String)session.getAttribute("userid");
 		model.addAttribute("main_page", "VisualUp 메인 페이지입니다" );
+		model.addAttribute("session", id);
 		
 		return "/home/home";
 	}
@@ -31,10 +36,23 @@ public class HomeController {
 		return "/home/userhome";
 	}
 	
+	@RequestMapping(value="/logout", method=RequestMethod.GET)
+	public String logout(HttpServletRequest request, Model model) {
+		
+		HttpSession session = request.getSession();
+		String id = (String)session.getAttribute("userid");
+		
+		session.invalidate();
+		model.addAttribute("logout", "회원번호"+id+"가 로그아웃되었음.ㅎ");
+		
+		return "home/home";
+	}
+	
 	@RequestMapping(value = "/login", method=RequestMethod.GET)
-	public String loginHome(Model model) {
+	public String loginHome(HttpServletRequest request, Model model) {
 		
-		
+		HttpSession session = request.getSession();
+		String id = (String)session.getAttribute("userid");
 		RequestLogin requestLogin = new RequestLogin();
 		
 		HashMap<String,String> map = new HashMap<String,String>();
@@ -46,6 +64,7 @@ public class HomeController {
 		
 
 		model.addAttribute("loginURL", map);
+		model.addAttribute("userid", id);
 	
 		return "/login/loginHome";
 	}

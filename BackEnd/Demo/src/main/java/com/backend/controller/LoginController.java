@@ -6,18 +6,16 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
-import java.math.BigInteger;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLEncoder;
-import java.security.SecureRandom;
 import java.text.ParseException;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -26,20 +24,42 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import com.backend.service.UserService;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Controller
 @Slf4j
 @RequestMapping("/login")
+@ComponentScan({"org.json.simple.parser.*","java.util.*"})
 public class LoginController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-	private String Client_Id = "tIcE8QEmk0yLr1xspdzg";
-	private String Client_Secret = "4eOgnPfHrN";
+	
+	private String code;
+	private String endpoint;
+	private String redirectUrl;
+	@Resource(name="Map")
+	private Map<String, String> map;
+	private String resultString;
+	@Autowired
+	private JSONParser jsonParser;
+	private JSONObject json;
+	private String access_Token;
+	private String client_Id;
+	private String client_Secret;
+	private String userName,userEmail,userId;
+
+	@Autowired
+	private UserService userService;
+	private HttpSession session;
+	
 	
 	@RequestMapping(params="userid")
 	public String login(){
@@ -47,278 +67,204 @@ public class LoginController {
 		
 	}
 	
-	
-	@RequestMapping(params="type=kakao")
-	public String kakaoLogin(HttpSession session, HttpServletRequest request, Model model) throws IOException {
+	public String checkUser(String name, String email, String type) throws Exception{
+		//이름과 메일주소로 기존 회원인지 신규 회원인지 알려주는 메소드.
 		
-		/*
-		String apiurl = "https://kauth.kakao.com/oauth/authorize";
-		apiurl +="?client_id=cead37f7d4b6971d3ce0be9d314f4852";
-		apiurl +="&redirect_uri=http://localhost:8080/login?type=kakao";
-		apiurl +="&response_type=code";
+		String userid = userService.loginRequest(name, email);
+    	
+    	if(userid == null) {
+    		//새로운 사용자인 경우
+    		
+    		userid = userService.newUser(userName, userEmail,type);
+    		
+    		
+    	}
 		
-	*/
-		
-	    
-		
-		
-		
-		return "loginKakao";
+		return userid;
 	}
 	
-	
-	@RequestMapping("/callback/kakao")
-	public String kakaoCallback(HttpSession session, HttpServletRequest request, Model model) throws IOException, ParseException{
-		
-		
-		String code = request.getParameter("code");
-		String apiURL = "https://kauth.kakao.com/oauth/token&grant_type=authorization_code";
-		HashMap<String,String> map = new HashMap<String,String>();
+	@RequestMapping(params="type=kakao")
+	public String kakaoLogin(HttpSession session, HttpServletRequest request, Model model) throws IOException, ParseException {
+		//카카오 로그인 콜백 페이지 
+		session = request.getSession();
+		code = request.getParameter("code");
+		endpoint = "https://kauth.kakao.com/oauth/token?grant_type=authorization_code";
+		map = new HashMap<String, String>();
 		map.put("&client_id", "cead37f7d4b6971d3ce0be9d314f4852");
 		map.put("&redirect_uri", "http://localhost:8080/login?type=kakao");
 		map.put("&code", code);
 		
-		String result = requestToServer(apiURL,map);
-		System.out.println(result);
-
-		JSONParser paser = new JSONParser(); //JSON Parser객채를 만듭니다. parser를 통해서 파싱을 합니다.
-	    try{
-	    	JSONObject obj = (JSONObject) paser.parse(result); 
-	    	result=(String)obj.get("access_token");
-	    	
-	    }catch(Exception e) {
-	    	e.printStackTrace();
-	    	
-	    }
+		resultString = requestToServer(endpoint,map);
 		
-		return "callback";
-	}
-	
-	
-	
-	@RequestMapping(params="type=naver")
-	public String naverLogin(HttpSession session, Model model) {
-		String redirectURI = URLEncoder.encode("http://visualup.koreacentral.cloudapp.azure.com:8080/login/callback");
-		SecureRandom random = new SecureRandom();
-	    String state = new BigInteger(130, random).toString();
-	    String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code";
-	    apiURL += String.format("&client_id=%s&redirect_uri=%s&state=%s",
-	        Client_Id, redirectURI, state);
-	    session.setAttribute("state", state);
-	    model.addAttribute("apiURL", apiURL);
-	    System.out.println(apiURL);
-	    
-	    return "loginNaver";
-	}
-	@RequestMapping(params="type=google")
-	public String googleLogin(HttpSession session, Model model) {
-
-		String redirectURI = URLEncoder.encode("http://localhost:8080/login/callback/google");
-		String google_client_id = "637540086741-c6k444vhqd1eid2aid6p86hmh4pldpje.apps.googleusercontent.com";
-		String google_scope = "https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile";
-	    String apiURL = "https://accounts.google.com/o/oauth2/v2/auth?response_type=code&access_type=offline";
-	    apiURL += String.format("&client_id=%s&redirect_uri=%s&scope=%s",
-	        google_client_id, redirectURI, google_scope);
-	    
-	    model.addAttribute("apiURL", apiURL);
-	    	    
-	    return "loginGoogle";
-	}
-
-	@RequestMapping(params="type=github")
-	public String loginGithub(HttpServletRequest request, Model model) {
-		String apiURL = "https://github.com/login/oauth/authorize";
-		apiURL += "?client_id=f8d6a5e720a1e485d0ed";
-		apiURL += "&redirect_uri=http://localhost:8080/login/callback";
-		apiURL += "&scope=user";
-		model.addAttribute("apiurl", apiURL);
 		
-		return "loginGithub";
-	}
-
-	@RequestMapping("/callback")
-	public String Callback(HttpSession session, HttpServletRequest request, Model model) throws IOException{
+		try {
+			json = (JSONObject)jsonParser.parse(resultString);
+			access_Token = (String)json.get("access_token");
+			
+		}catch(Exception e) {
+			e.printStackTrace();
+			
+		}
 		
-		String code = request.getParameter("code");
-		System.out.println(code);
-		String apiURL = "https://github.com/login/oauth/access_token";
-		HashMap<String,String> map = new HashMap<String,String>();
-		map.put("&client_id","f8d6a5e720a1e485d0ed");
-		map.put("&client_secret", "aa6ce5f3c042819efa5bc112f2f8e4663eae2ea1");
-		//map.put("&redirect_uri", "http://localhost:8080/login/callback?type=github");
-		map.put("&code", code);
-		String result = requestToServer(apiURL, map);
-	    System.out.println(result);
-
-		JSONParser paser = new JSONParser(); //JSON Parser객채를 만듭니다. parser를 통해서 파싱을 합니다.
-	    try{
-	    	JSONObject obj = (JSONObject) paser.parse(result); 
-	    	result=(String)obj.get("access_token");
-	    }catch(Exception e) {
-	    	
-	    }
-	    String token = result;
-	    String header = "token " + token;
-
-        apiURL = "https://api.github.com/user";
-
-        Map<String, String> requestHeaders = new HashMap<>();
+		endpoint = "https://kapi.kakao.com/v2/user/me";
+		String header = "Bearer "+access_Token;
+		Map<String, String> requestHeaders = new HashMap<>();
         requestHeaders.put("Authorization", header);
         requestHeaders.put("Accept", "application/json");
         
-        String responseBody = get(apiURL,requestHeaders);
-        System.out.println(responseBody);
-
-        String userName;
-        String userEmail;
-        
-        try{
-	    	JSONObject obj = (JSONObject) paser.parse(responseBody); 
-	    	userName = (String)obj.get("name");
-	    	userEmail = (String)obj.get("email");
-	    	model.addAttribute("userName", userName);
-	        model.addAttribute("userEmail", userEmail);
-	        
-	    }catch(Exception e) {
-	    	e.printStackTrace();
-	    }
-	    
-	    
+        resultString = get(endpoint,requestHeaders);
         
         
+        
+        try {
+        	json = (JSONObject)jsonParser.parse(resultString);
+        	
+        	json = (JSONObject)json.get("kakao_account");
+        	userEmail = (String)json.get("email");
+        	
+        	json = (JSONObject)json.get("profile");
+        	userName = (String)json.get("nickname");
+        	
+        	userId = checkUser(userName,userEmail,"kakao");
+        	session.setAttribute("userid", userId);
+        	model.addAttribute("userid", userId);
+        	
+        }catch(Exception e) {
+        	e.printStackTrace();
+        }
+		model.addAttribute("result", json);
+		model.addAttribute("session", session);
+		model.addAttribute("token", access_Token);
 		
 		
-		return "callback";
+		
+		return "home/home";
+		
 	}
 	
-	@RequestMapping("/callback/google")
-	public String googleCallback(HttpSession session, HttpServletRequest request, Model model) throws IOException, ParseException{
+	
+	@RequestMapping(params="type=google")
+	public String googleLogin(HttpSession session, HttpServletRequest request, Model model) throws IOException, ParseException{
+
+		code = request.getParameter("code");
+		endpoint = "https://oauth2.googleapis.com/token?grant_type=authorization_code";
+			
 		
-		//세션 설정
-		HttpSession httpSession = request.getSession();
-		
-		
-		
-		
-		String code = request.getParameter("code");
-		String apiurl = "https://oauth2.googleapis.com/token?grant_type=authorization_code";
-		
-		/*
-		apiurl += "&client_id=637540086741-c6k444vhqd1eid2aid6p86hmh4pldpje.apps.googleusercontent.com";
-		apiurl += "&client_secret=__BOsppoRfIu-xfU23qyzGit";
-		apiurl += "&redirect_uri=http://localhost:8080/login/callback/google";
-		apiurl += "&code="+code;
-		model.addAttribute("url", apiurl);
-		*/
-		
-		HashMap<String,String> map = new HashMap<String,String>();
 		
 		map.put("&client_id","637540086741-c6k444vhqd1eid2aid6p86hmh4pldpje.apps.googleusercontent.com");
 		map.put("&client_secret", "__BOsppoRfIu-xfU23qyzGit");
-		map.put("&redirect_uri", "http://localhost:8080/login/callback/google");
+		map.put("&redirect_uri", "http://localhost:8080/login?type=google");
 		map.put("&code", code);
-		String result = requestToServer(apiurl,map);
 		
-		JSONParser paser = new JSONParser(); //JSON Parser객채를 만듭니다. parser를 통해서 파싱을 합니다.
+		
+		resultString = requestToServer(endpoint,map);
+		
+		
 	    try{
-	    	JSONObject obj = (JSONObject) paser.parse(result); 
-	    	result=(String)obj.get("access_token");
+	    	json = (JSONObject)jsonParser.parse(resultString); 
+	    	access_Token=(String)json.get("access_token");
 	    }catch(Exception e) {
 	    	
 	    }
 	    
 	   
-	    String token = result;
-	    String header = "Bearer " + token; // Bearer 다음에 공백 추가
+	    
+	    String header = "Bearer " + access_Token; // Bearer 다음에 공백 추가
 
-        String apiURL = "https://people.googleapis.com/v1/people/me?personFields=names,emailAddresses&key=AIzaSyDpDsCLnD7Z-FINT_3J-72hmWmMPZP9ewI";
+        endpoint = "https://people.googleapis.com/v1/people/me?personFields=names,emailAddresses&key=AIzaSyDpDsCLnD7Z-FINT_3J-72hmWmMPZP9ewI";
 
-        Map<String, String> requestHeaders = new HashMap<>();
-        requestHeaders.put("Authorization", header);
-        requestHeaders.put("Accept", "application/json");
+        map.clear();
        
+        map.put("Authorization", header);
+        map.put("Accept", "application/json");
+       
+        resultString = get(endpoint,map);
         
-        String responseBody = get(apiURL,requestHeaders);
-        String userName;
-        String userEmail;
+        
         
         
         try{
-        	JSONObject obj = (JSONObject) paser.parse(responseBody); 
-        	JSONArray jsonarray = (JSONArray)obj.get("names");
+        	json = (JSONObject)jsonParser.parse(resultString); 
+        	JSONArray jsonarray = (JSONArray)json.get("names");
         	JSONObject data = (JSONObject)jsonarray.get(0);
         	userName = (String)data.get("displayName");
         	
-        	jsonarray=(JSONArray)obj.get("emailAddresses");
+        	jsonarray=(JSONArray)json.get("emailAddresses");
         	data = (JSONObject)jsonarray.get(0);
         	userEmail = (String)data.get("value");
 	    
 	    	model.addAttribute("userName", userName);
 	    	model.addAttribute("userEmail", userEmail);
+	    	model.addAttribute("result", json);
+	    	
+	    	model.addAttribute("userid", checkUser(userName,userEmail,"google"));
 	    	
 	    }catch(Exception e) {
-	    	System.out.println("There's an error....");
+	    	
 	    	e.printStackTrace();
 	    }
 	    
         
-   	
-       
-        
-       
-		return "loginGoogle";
+	    	    
+	    return "home/home";
 	}
 
-	
-	@RequestMapping("/callback/naver")
-	public String navercallBack(HttpSession session, HttpServletRequest request, Model model) throws IOException, ParseException{
-		String code = request.getParameter("code");
-	    String state = request.getParameter("state");
+
+	@RequestMapping(params="type=github")
+	public String Callback(HttpSession session, HttpServletRequest request, Model model) throws IOException{
+		
+		code = request.getParameter("code");
+		endpoint = "https://github.com/login/oauth/access_token";
+		map = new HashMap<String,String>();
+		map.put("&client_id","f8d6a5e720a1e485d0ed");
+		map.put("&client_secret", "aa6ce5f3c042819efa5bc112f2f8e4663eae2ea1");
+		map.put("&code", code);
+		resultString = requestToServer(endpoint, map);
 	    
-	   
-	    String apiurl;
-	    apiurl = "https://nid.naver.com/oauth2.0/token?grant_type=authorization_code&";
-	    apiurl += "client_id=" + Client_Id;
-	    apiurl += "&client_secret=" + Client_Secret;
-	    apiurl += "&redirect_uri=" + "http://visualup.koreacentral.cloudapp.azure.com:8080/login/callback";
-	    apiurl += "&code=" + code;
-	    apiurl += "&state=" + state;
-	    
-	    System.out.println(apiurl);
-	    String result = requestToServer(apiurl, new HashMap<String,String>());
-	    JSONParser paser = new JSONParser(); //JSON Parser객채를 만듭니다. parser를 통해서 파싱을 합니다.
+
+		
 	    try{
-	    	JSONObject obj = (JSONObject) paser.parse(result); 
-	    	result=(String)obj.get("access_token");
+	    	json = (JSONObject)jsonParser.parse(resultString); 
+	    	access_Token=(String)json.get("access_token");
 	    }catch(Exception e) {
 	    	
 	    }
 	    
-	   
-	    String token = result;
-	    String header = "Bearer " + token; // Bearer 다음에 공백 추가
+	    String header = "token " + access_Token;
 
-        String apiURL = "https://openapi.naver.com/v1/nid/me";
+        endpoint = "https://api.github.com/user";
 
         Map<String, String> requestHeaders = new HashMap<>();
         requestHeaders.put("Authorization", header);
+        requestHeaders.put("Accept", "application/json");
+        
+        String responseBody = get(endpoint,requestHeaders);
+      
        
-        String responseBody = get(apiURL,requestHeaders);
-
-        System.out.println(responseBody);
-        Object data = new Object();
+        
         try{
-	    	JSONObject obj = (JSONObject) paser.parse(responseBody); 
-	    	data = obj.get("response");
+	    	json= (JSONObject)jsonParser.parse(responseBody); 
+	    	userName = (String)json.get("name");
+	    	userEmail = (String)json.get("email");
+	    	model.addAttribute("userName", userName);
+	        model.addAttribute("userEmail", userEmail);
+	        model.addAttribute("result", json);
+	        System.out.println(userName+", "+userEmail);
+	        
+	        model.addAttribute("userid", checkUser(userName,userEmail,"github"));
+	        
+	        
 	    }catch(Exception e) {
-	    	
+	    	e.printStackTrace();
 	    }
-        model.addAttribute("result",data);
 	    
-		return "callback";
+	   
+		
+		return "home/home";
 	}
 	
-	public String requestToServer(String apiurl, HashMap < String, String > pList) throws IOException {
+	
+	public String requestToServer(String apiurl, Map < String, String > pList) throws IOException {
 		
 		URL url = new URL(apiurl);
 		HttpURLConnection con = (HttpURLConnection)url.openConnection();
@@ -328,6 +274,7 @@ public class LoginController {
         con.setDoInput(true); // 서버에서 읽기 모드 지정 
         con.setDoOutput(true);
         con.setRequestProperty("Accept", "application/json");
+        con.setRequestProperty("Content-Type", "application/x-www-form-urlencoded;charset=utf-8");
 
 		StringBuffer buffer = new StringBuffer();
 
@@ -348,6 +295,8 @@ public class LoginController {
         writer.write(buffer.toString());
         writer.flush();
 		
+        
+        
 		
 		int responseCode = con.getResponseCode();
 		
@@ -373,6 +322,10 @@ public class LoginController {
 	      return res.toString();
 	    }
 		
+		
+		
+        
+        
 	}
 	
 	private static String get(String apiUrl, Map<String, String> requestHeaders){
@@ -407,7 +360,7 @@ public class LoginController {
 	        }
 	    }
 
-	    private static String readBody(InputStream body){
+	 private static String readBody(InputStream body){
 	        InputStreamReader streamReader = new InputStreamReader(body);
 
 	        try (BufferedReader lineReader = new BufferedReader(streamReader)) {

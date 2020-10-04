@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.backend.dto.UserVO;
@@ -62,4 +65,41 @@ public class SampleController {
 		return "Success";
 	}
 	
+	
+	@GetMapping("/session")
+	public String session(HttpServletRequest request, @RequestParam("id") String id, Model model) {
+		
+		HttpSession session = request.getSession();
+		session.setMaxInactiveInterval(10);
+		session.setAttribute("type", id);
+		
+		model.addAttribute("result", id);
+		model.addAttribute("session", session);
+		
+		return "session";
+		
+	}
+	
+	@GetMapping("/session2")
+	public String session2(HttpServletRequest request, Model model) {
+		
+		HttpSession session = request.getSession();
+		String str = (String)session.getAttribute("type");
+		model.addAttribute("session", session);
+		model.addAttribute("session2", str);
+		return "session";
+		
+	}
+	
+	@GetMapping("/logout")
+	public String logout(HttpServletRequest request, Model model) {
+		
+		HttpSession session = request.getSession();
+		session.invalidate();
+		
+		
+		model.addAttribute("session", session);
+		
+		return "session";
+	}
 }
