@@ -84,14 +84,15 @@ public class LoginController {
 	}
 	
 	@RequestMapping(params="type=kakao")
-	public String kakaoLogin(HttpSession session, HttpServletRequest request, Model model) throws IOException, ParseException {
+	public String kakaoLogin(HttpServletRequest request, Model model) throws IOException, ParseException {
 		//카카오 로그인 콜백 페이지 
+		
 		session = request.getSession();
 		code = request.getParameter("code");
 		endpoint = "https://kauth.kakao.com/oauth/token?grant_type=authorization_code";
 		map = new HashMap<String, String>();
 		map.put("&client_id", "cead37f7d4b6971d3ce0be9d314f4852");
-		map.put("&redirect_uri", "http://localhost:8080/login?type=kakao");
+		map.put("&redirect_uri", "http://visualup.koreacentral.cloudapp.azure.com:8080/login?type=kakao");
 		map.put("&code", code);
 		
 		resultString = requestToServer(endpoint,map);
@@ -144,8 +145,10 @@ public class LoginController {
 	
 	
 	@RequestMapping(params="type=google")
-	public String googleLogin(HttpSession session, HttpServletRequest request, Model model) throws IOException, ParseException{
+	public String googleLogin(HttpServletRequest request, Model model) throws IOException, ParseException{
 
+		session = request.getSession();
+		
 		code = request.getParameter("code");
 		endpoint = "https://oauth2.googleapis.com/token?grant_type=authorization_code";
 			
@@ -153,7 +156,7 @@ public class LoginController {
 		
 		map.put("&client_id","637540086741-c6k444vhqd1eid2aid6p86hmh4pldpje.apps.googleusercontent.com");
 		map.put("&client_secret", "__BOsppoRfIu-xfU23qyzGit");
-		map.put("&redirect_uri", "http://localhost:8080/login?type=google");
+		map.put("&redirect_uri", "http://visualup.koreacentral.cloudapp.azure.com:8080/login?type=google");
 		map.put("&code", code);
 		
 		
@@ -198,6 +201,8 @@ public class LoginController {
 	    	model.addAttribute("result", json);
 	    	
 	    	model.addAttribute("userid", checkUser(userName,userEmail,"google"));
+	    	session.setAttribute("userid", userId);
+	    	
 	    	
 	    }catch(Exception e) {
 	    	
@@ -211,7 +216,9 @@ public class LoginController {
 
 
 	@RequestMapping(params="type=github")
-	public String Callback(HttpSession session, HttpServletRequest request, Model model) throws IOException{
+	public String Callback(HttpServletRequest request, Model model) throws IOException{
+		
+		session = request.getSession();
 		
 		code = request.getParameter("code");
 		endpoint = "https://github.com/login/oauth/access_token";
@@ -249,9 +256,9 @@ public class LoginController {
 	    	model.addAttribute("userName", userName);
 	        model.addAttribute("userEmail", userEmail);
 	        model.addAttribute("result", json);
-	        System.out.println(userName+", "+userEmail);
 	        
 	        model.addAttribute("userid", checkUser(userName,userEmail,"github"));
+	        session.setAttribute("userid", userId);
 	        
 	        
 	    }catch(Exception e) {

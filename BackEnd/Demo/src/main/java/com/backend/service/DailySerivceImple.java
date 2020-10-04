@@ -16,26 +16,13 @@ public class DailySerivceImple implements DailyService {
 	@Override
 	public void newDaily(DailyVO newDaily) {
 		
-		String latest = dailydao.newDailyId();
-		int start=0;
-		
-		for(int i=0; i< latest.length(); i++) {
-			
-			if(latest.charAt(i) == '-') {
-				start = i +1;
-				break;
-			}
-			
-		}
-		
-		
-		String newid = latest.substring(start, latest.length());
-		int temp = Integer.parseInt(newid)+1;
-		newid = "daily-"+String.valueOf(temp);
+		String newid = "daily"+dailydao.newDailyId();
 		
 		newDaily.setDailyid(newid);
 		
 		dailydao.newDaily(newDaily);
+		
+		
 	}
 
 }
