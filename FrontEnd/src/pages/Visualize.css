@@ -1,0 +1,24 @@
+.graph-header{
+    display: flex;
+    flex-direction: column;
+}
+.select-date-con{
+    margin-bottom: 10px;
+}
+.date-title{
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+.date-title>p{
+    margin: 0;
+}
+.date-title>span{
+    margin-right: 5px;
+}
+.date-title svg{
+    font-size:22px;
+}
+.select-graph-con{
+    display: flex;
+}
