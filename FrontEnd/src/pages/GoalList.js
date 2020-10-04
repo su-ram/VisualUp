@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import { Card, Col, Row, Pagination } from 'antd';
 import {  EllipsisOutlined } from '@ant-design/icons';
 import styles from './GoalList.module.css';
