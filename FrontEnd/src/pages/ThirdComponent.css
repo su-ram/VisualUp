@@ -1,0 +1,39 @@
+.third-component{
+    background-color: aqua;
+}
+
+
+.card-container {
+    width: 150px;
+    height : 250px;
+    margin: 10px;
+    display: inline-block;
+    background: rgb(231,229,230);
+    border-radius: 5px;
+    color:black;
+    padding: 3px 8px;
+    text-align: center;
+}
+
+.card-container h3{
+    text-align:center;
+}
+
+.components {
+    height: 100%;
+    width: 100%;
+}
+
+.slider{
+    width: 80%;
+    margin:auto;
+
+}
+
+.slick-slide{
+    margin: 5px;
+}
+
+.slick-prev, .slick-next {
+    top: 25% !important;
+}

@@ -1,97 +1,45 @@
-import React from "react";
-import ImgFace from "../../src/img/face.png";
-import {InstagramOutlined, TwitterOutlined, FacebookOutlined, GithubOutlined } from '@ant-design/icons';
+import React, {Component} from "react";
 import "./ThirdComponent.css"
-import jQuery from "jquery";
-window.$ = window.jQuery = jQuery;
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
-
-function ThirdComponent() {
-  return (
-    <div>
-    <div className="component third-component">
-     {/* <div className = "third-class">
-           <div className = "third-box-content">
-              <img src =  {ImgFace} />
-              <h3>홍영주</h3>
-              <h5>기획</h5>
-              <InstagramOutlined style ={{fontSize : '18px', color : 'rgb(231,229,230)', padding:'3px'}}/>
-              <TwitterOutlined style ={{fontSize : '18px', color : 'rgb(231,229,230)', padding:'3px'}}/>
-              <FacebookOutlined style ={{fontSize : '18px', color : 'rgb(231,229,230)', padding:'3px'}}/>
-              <GithubOutlined style ={{fontSize : '18px', color : 'rgb(231,229,230)', padding:'3px'}}/>
+export default class ThirdComponent extends Component {
+  render() {
+    const settings = {
+      className: "center",
+      centerMode: true,
+      infinite: true,
+      centerPadding: "10px",
+      slidesToShow: 3,
+      speed: 500
+    };
+    return (
+      <div className="components third-component">
+        <h1>Center Mode</h1>
+        <div className="slider">
+          <Slider {...settings}>
+            <div className="card-container">
+              <h3>1</h3>
             </div>
-
-            <div className = "third-box-content">
-              <img src =  {ImgFace} />
-              <h3>박미현</h3>
-              <h5>디자인</h5>
-              <InstagramOutlined style ={{fontSize : '18px', color : 'rgb(231,229,230)', padding:'3px'}}/>
-              <TwitterOutlined style ={{fontSize : '18px', color : 'rgb(231,229,230)', padding:'3px'}}/>
-              <FacebookOutlined style ={{fontSize : '18px', color : 'rgb(231,229,230)', padding:'3px'}}/>
-              <GithubOutlined style ={{fontSize : '18px', color : 'rgb(231,229,230)', padding:'3px'}}/>
+            <div className="card-container">
+              <h3>2</h3>
             </div>
-
-            <div className = "third-box-content">
-              <img src =  {ImgFace} />
-              <h3>김서현</h3>
-              <h5>개발</h5>
-              <InstagramOutlined style ={{fontSize : '18px', color : 'rgb(231,229,230)', padding:'3px'}}/>
-              <TwitterOutlined style ={{fontSize : '18px', color : 'rgb(231,229,230)', padding:'3px'}}/>
-              <FacebookOutlined style ={{fontSize : '18px', color : 'rgb(231,229,230)', padding:'3px'}}/>
-              <GithubOutlined style ={{fontSize : '18px', color : 'rgb(231,229,230)', padding:'3px'}}/>
+            <div className="card-container">
+              <h3>3</h3>
             </div>
-
-            <div className = "third-box-content">
-              <img src =  {ImgFace} />
-              <h3>김수람</h3>
-              <h5>개발</h5>
-              <InstagramOutlined style ={{fontSize : '18px', color : 'rgb(231,229,230)', padding:'3px'}}/>
-              <TwitterOutlined style ={{fontSize : '18px', color : 'rgb(231,229,230)', padding:'3px'}}/>
-              <FacebookOutlined style ={{fontSize : '18px', color : 'rgb(231,229,230)', padding:'3px'}}/>
-              <GithubOutlined style ={{fontSize : '18px', color : 'rgb(231,229,230)', padding:'3px'}}/>
+            <div className="card-container">
+              <h3>4</h3>
             </div>
-          </div>
-
-            <div className = "third-box-content">
-              <img src =  {ImgFace} />
-              <h3>우희은</h3>
-              <h5>개발</h5>
-              <InstagramOutlined style ={{fontSize : '18px', color : 'rgb(231,229,230)', padding:'3px'}}/>
-              <TwitterOutlined style ={{fontSize : '18px', color : 'rgb(231,229,230)', padding:'3px'}}/>
-              <FacebookOutlined style ={{fontSize : '18px', color : 'rgb(231,229,230)', padding:'3px'}}/>
-              <GithubOutlined style ={{fontSize : '18px', color : 'rgb(231,229,230)', padding:'3px'}}/>
+            <div className="card-container">
+              <h3>5</h3>
             </div>
-
-            $('.third-class').slick({{
-              centerMode: true,
-              centerPadding: '60px',
-              slidesToShow: 3,
-              responsive: [
-                {
-                  breakpoint: 768,
-                  settings: {
-                    arrows: false,
-                    centerMode: true,
-                    centerPadding: '40px',
-                    slidesToShow: 3
-                  }
-                },
-                {
-                  breakpoint: 480,
-                  settings: {
-                    arrows: false,
-                    centerMode: true,
-                    centerPadding: '40px',
-                    slidesToShow: 1
-                  }
-                }
-              ]
-            }});*/}
-       </div>
-    </div>
-  );
-};
-
-
-
-export default ThirdComponent;
+            <div className="card-container">
+              <h3>6</h3>
+            </div>
+          </Slider>
+        </div>
+      </div>
+    );
+  }
+}

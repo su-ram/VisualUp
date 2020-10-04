@@ -16,6 +16,8 @@
     "react-page-scroller": "^2.0.7-beta",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^3.4.3",
+    "react-slick": "^0.27.11",
+    "react-slick-carousel": "^0.14.9",
     "slick-carousel": "^1.8.1"
   },
   "scripts": {
