@@ -382,27 +382,27 @@ function Visualize() {
               },
               {
                 "date": "2018/8/11",
-                "type": "download",
+                "type": "git commit",
                 "value": 43
               },
               {
                 "date": "2018/8/12",
-                "type": "download",
+                "type": "git commit",
                 "value": 41
               },
               {
                 "date": "2018/8/13",
-                "type": "download",
+                "type": "git commit",
                 "value": 64
               },
               {
                 "date": "2018/8/14",
-                "type": "download",
+                "type": "git commit",
                 "value": 16
               },
               {
                 "date": "2018/8/15",
-                "type": "download",
+                "type": "git commit",
                 "value": 44
               }
             ]
@@ -502,6 +502,17 @@ function Visualize() {
     };
     return config;
   }
+
+  function renderGraph(graphType, dataType){
+    if (dataSet.length === 0)
+      return undefined;
+    switch(graphType){
+      case "Area" : return <Area {...getConfig(dataType)}/>
+      case "Line" : return <Line {...getConfig(dataType)}/>
+      case "Bar" : return <Bar {...getConfig(dataType)}/>
+    }
+  }
+
   return (
     <Col>
       <PageHeader
@@ -519,20 +530,17 @@ function Visualize() {
           <Tabs defaultActiveKey="1" className="graph-tab-con" tabBarExtraContent={operations}>
             <TabPane tab="All" key="1">
               <div>
-                {dataSet.length !== 0 ? <Area {...getConfig("group")} /> : undefined}
+                {renderGraph("Area", "group")}
               </div>
             </TabPane>
             <TabPane tab="set1" key="2">
               <div>
-                {dataSet.length !== 0 ? <Line {...getConfig("set1")} /> : undefined }
-                {
-                  // 이것도 모듈화 하기
-                }
+                {renderGraph("Line", "set1")}
               </div>
             </TabPane>
             <TabPane tab="set2" key="3">
               <div>
-                {dataSet.length !== 0 ? <Bar {...getConfig("set2")} /> : undefined}
+                {renderGraph("Line", "set2")}
               </div>
             </TabPane>
           </Tabs>
