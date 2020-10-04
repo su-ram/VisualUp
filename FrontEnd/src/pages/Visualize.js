@@ -430,13 +430,26 @@ function Visualize() {
       return;
     }
     const selDate = new Date(timeString);
-    const firstDateNum = new Date(dataSet[0].date);
-    const lastDateNum = new Date(dataSet[dataSet.length - 1].date);
+    const groupData = dataSet["group"];
+    const firstDate = groupData[0].date;
+    const firstDateNum = new Date(firstDate);
+    const lastDate = groupData[groupData.length-1].date;
+    const lastDateNum = new Date(lastDate);
 
     const wholeDateLength = lastDateNum - firstDateNum;
     const selDateLength = selDate - firstDateNum;
+
+    if(wholeDateLength<selDateLength){ // 선택된 날짜가 마지막 날짜 이후라면
+      alert( `마지막 기록 날짜(${lastDate}) 이전의 날짜를 선택해주세요.`);
+      return;
+    }
+    if(selDateLength<0){
+      alert(`첫 기록 날짜(${firstDate}) 이후의 날짜를 선택해주세요.`);
+      return;
+    }
+
     setGraphDate(selDate);
-    setGraphRate(parseFloat((selDateLength / wholeDateLength).toFixed(1))); // %로 나타내기
+    setGraphRate(parseFloat((selDateLength / wholeDateLength).toFixed(2))); // %로 나타내기
   }
 
   function gotoGoalSet() { // add goal 버튼 클릭 시
