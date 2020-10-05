@@ -2,6 +2,8 @@ import React from 'react';
 import styles from './HashTag.module.css';
 import { Col, Row, Progress } from 'antd';
 
+//해시태그 테이블에서 해시태그 결과를 검색하면 그 user의 그래프를 가져옴.
+
 function HashTag(){
     return(
         <div>
