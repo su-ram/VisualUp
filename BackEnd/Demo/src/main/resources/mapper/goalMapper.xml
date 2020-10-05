@@ -5,9 +5,13 @@
  
 <mapper namespace="com.backend.mapper.goalMapper">
 
-	<select id="generateNewGoalID" resultType="string">
-		select goalid from goal order by goalid desc limit 1
+	<select id="generateNewGoalID" resultType="Integer">
+		select newgoal from newid
 	</select>
+	
+	<update id="updateNewGoal" parameterType="Integer">
+		update newid set newgoal=#{newGoal}
+	</update>
     
     <insert id="insertGoal" parameterType="GoalVO">
         insert into goal values (#{goalid}, #{userid}, #{title},#{startDate}, #{endDate}, #{term},#{hashtags},#{open},
@@ -18,6 +22,19 @@
     	select * from goal where userid = #{userid}
     </select>
     
+    <select id="checkGoalId" resultType="string">
+    	select goalid from goal where goalid=#{goalid}
+    </select>
     
+    <update id="updateGoal" parameterType="GoalVO">
+    	update goal 
+    	set title=#{title},startdate=#{startDate},enddate=#{endDate},term=#{term},hashtags=#{hashtags},open=#{open},total=#{total},template=#{template}
+    	where goalid=#{goalid}
+    </update>
+    
+    <delete id="deleteGoal" parameterType="string">
+    	delete from goal
+    	where goalid=#{goalid}
+    </delete>
     
 </mapper>

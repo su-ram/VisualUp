@@ -12,24 +12,54 @@ import com.backend.dto.GoalVO;
 public class GoalServiceImpl implements GoalService {
 	
 	@Inject
-	private GoalDAO goal;
+	private GoalDAO goalDao;
 
 	@Override
 	public void insertGoal(GoalVO newgoal){
 		
-		goal.insertGoal(newgoal);
+		goalDao.insertGoal(newgoal);
 		
 
 	}
 	
 	@Override
 	public String newGoalID() {
-		return goal.newGoalID();
+		return goalDao.newGoalID();
 	}
 	
 	@Override
 	public List<GoalVO> getGoalList(String userid){
-		return goal.getGoalList(userid);
+		return goalDao.getGoalList(userid);
+	}
+
+	@Override
+	public boolean updateGoal(GoalVO goal) {
+		
+		String goalid = goal.getGoalid();
+		if (goalDao.checkGoalId(goalid)) {
+			goalDao.updateGoal(goal);
+			return true;
+		}		
+		return false;
+	}
+
+	@Override
+	public boolean deleteGoal(String goalid) {
+		
+		if(goalDao.checkGoalId(goalid)) {
+			goalDao.deleteGoal(goalid);
+			return true;
+		}
+		
+		
+		return false;
+	}
+
+	@Override
+	public void selectTargetDate(String userid, String start, String end) {
+
+		
+		
 	}
 
 }

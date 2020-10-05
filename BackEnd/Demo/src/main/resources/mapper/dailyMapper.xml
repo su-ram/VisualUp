@@ -10,8 +10,12 @@
 	
 	</insert>
 	
-	<select id="newDailyId" resultType="string">
-		select dailyid from daily order by dailyid desc limit 1
+	<select id="newDailyId" resultType="Integer">
+		select newdaily from newid
 	</select>
+	
+	<update id="updateNewId" parameterType="Integer">
+		update newid set newdaily = #{newdaily}
+	</update>
     
 </mapper>

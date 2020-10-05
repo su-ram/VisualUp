@@ -13,8 +13,8 @@
     	select * from user where username='${name}' and useremail='${email}'
     </select>
     
-    <select id="getNewUserid" resultType="UserVO">
-    	select userid from user order by userid desc limit 1
+    <select id="getNewUserid" resultType="Integer">
+    	select newuser from newid
     </select>
     
     <insert id="newUser" parameterType="UserVO">
@@ -24,5 +24,9 @@
     <select id="getUserid" resultType="string">
     	select userid from user where username='${name}' and useremail='${email}'
     </select>
+    
+    <update id="updateNewUser" parameterType="Integer">
+    	update newid set newuser = #{newUser}
+    </update>
     
 </mapper>
