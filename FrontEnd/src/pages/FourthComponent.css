@@ -28,13 +28,33 @@
   text-align: center;
 }
 
+.fourth-box-content.only{
+  background: limegreen;
+  border:solid #333 5px;   /* style지정하지 않으면 none이다 */
+}
+
+.fourth-box-content h1{
+  color:rgb(231,229,230);
+}
+
 .fourth-box-content h3{
   color:rgb(231,229,230);
 }
+
+.fourth-box-content h5{
+  color:rgb(231,229,230);
+}
+
+.fourth-box-content h4{
+  color:rgb(231,229,230);
+}
+
+
 
 .fourth-box-content img{
   margin-top:10%;
   height: 100px;
   width:  100px;
   border-radius: 100px;
+  padding-bottom:5%;
 }
