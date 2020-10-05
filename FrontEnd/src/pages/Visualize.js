@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import { PageHeader } from '../components';
 import { Area, Line, Bar } from '@ant-design/charts';
 import { Col, DatePicker, Tabs, Button } from 'antd';
-import { CalendarOutlined } from '@ant-design/icons';
+import { CalendarOutlined, RightOutlined, SettingFilled } from '@ant-design/icons';
 import moment from 'moment';
 import "./Visualize.css";
-import GaugeLayer from '@antv/g2plot/lib/plots/gauge/layer';
+import { getIcon } from '../components/Icon';
 
 const { TabPane } = Tabs;
 
@@ -373,8 +373,15 @@ function Visualize() {
               Object.keys(dataSet).length>0?
                 Object.keys(dataSet).map((title, index)=>
                   <TabPane tab={title} key={index}>
-                    <div>
+                    <div className="visual-graph-con">
                       {renderGraph(title)}
+                      {title!=="group"?
+                        <React.Fragment>
+                          <span className="dailycheck-btn">{getIcon("rightOutlined")}</span>
+                          <span className="setting-btn"><SettingFilled /></span>
+                        </React.Fragment>
+                        :undefined
+                      }
                     </div>
                   </TabPane>
                 ):"로딩중입니다..."
