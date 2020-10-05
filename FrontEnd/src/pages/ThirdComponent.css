@@ -36,12 +36,12 @@
     top: 25% !important;
 }
 */
-
 .slider {
     margin: 0 auto;
     padding: 0px 40px 40px 40px;
     margin-top: 10rem;
     width: 70%;
+    height:100px;
 }
  .card-container h3 {
       background: #5f9ea0;
