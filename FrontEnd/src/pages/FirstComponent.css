@@ -13,8 +13,21 @@
     
   }
 
+.first-component-text>h1{
+    font-weight: 600;
+    color: #724e10;
+}
+
+.first-component-text>h4{
+  font-weight: 500;
+  color: #724e10;
+}
+
 .first-component-text button {
   margin-top: 2rem;
+  background-color: #724e10;
+  color: aliceblue;
+  
 }
 
 .first-component--inside-scroller {

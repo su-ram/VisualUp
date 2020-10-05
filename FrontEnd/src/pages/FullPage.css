@@ -27,7 +27,7 @@ h2 {
 .pagination-additional-class {
     flex-direction: column;
     position: fixed;
-    width: 100%;
+    width: 70%;
     top: 40%;
     padding-right : 5%;
     display: inline-flex;
@@ -66,4 +66,5 @@ h2 {
     border: 1px solid #ddd;
     border-radius: 15px;
     align-self: flex-end;
+    
   }

@@ -62,7 +62,7 @@
 .btn2 {
     width: 220px;
     height: 35px;
-    margin-left: 18.5%;
+    margin-left: 20px;
     margin-top: 10px;
     border-radius: 12px;
     border: 1;
@@ -75,4 +75,3 @@
     font-weight: bold;
     margin-top: 5px;
 }
-
