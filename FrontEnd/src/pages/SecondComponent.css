@@ -11,17 +11,8 @@
     display: flex;
     flex-direction: column;
     padding-top: 40px;
-   
   }
 
-  .second-component-text h5{
-    display: inline;
-    border: 1px solid;
-    border-radius: 20px;
-    padding : 0.5rem;
-    padding-left: 2rem;
-    padding-right: 2rem;
-  }
 
   .second-box-content:not(:last-of-type){
     border-right: ivory 1px solid;
@@ -52,8 +43,17 @@
     margin: 2rem;
   }
  
-  .second-box-content h3,h4,p{
-    margin-top: 2.5rem;
+  .second-box-content h3{
+    font-size: 22px;
+    font-weight: 600;
+  }
+
+  .second-box-content h4{
+    font-weight: 600;
+  }
+
+  .second-box-content h4,p{
+    margin-top: 2rem;
   }
   
   .second-box-content img{
