@@ -1,0 +1,67 @@
+.hash-body {
+    border-top: 2px solid #656563;
+    border-bottom: 2px solid #656563;
+    width: 68%;
+    margin: 0 auto;
+}
+.hash-cont {
+    border: 1.3px solid #606060;
+    width: 28%;
+    height: 30%;
+    margin-left: 42px;
+    margin-top: 38px;
+    margin-bottom: 38px;
+    background-color: #f0f0f0;
+}
+.hash-userName {
+    color: #5C411D;
+    font-weight: bold;
+    font-size: 1.5em;
+    margin-top: 28px;
+    margin-left: 24px;
+    float: left;
+}
+.hash-graph {
+    margin-top: 3px;
+}
+.hash-goal {
+    color: #5C411D;
+    font-weight: bold;
+    font-size: 1.5em;
+    margin-top: 60px;
+    margin-left: 24px;
+    float: left;
+}
+.hash-date {
+    color: #7E602D;
+    font-size: 1.1em;
+    /*margin-top: -18px;*/
+    margin-left: 24px;
+    float: left;
+}
+ul {
+	list-style: none;
+    display: inline-block;
+    margin-left: 38%;
+}
+ul li {
+    float:left;
+    margin-left: 9px;
+}
+ul li a {
+    float: left;
+    padding: 5px;
+    width: 36px;
+    height: 34px;
+	color:#5C411D;
+    border:1px solid#5C411D;
+    border-radius: 5px;
+    text-align:center;
+    margin-top: -12px;
+}
+ul li a:hover, ul li a:focus {
+	color:#fff;
+    border: 2px solid #5C411D;
+    border-radius: 5px;
+	background-color: #5C411D;
+}
