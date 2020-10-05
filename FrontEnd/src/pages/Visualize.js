@@ -1,8 +1,8 @@
-import React, { useState, useEffect, Fragment } from 'react';
+import React, { useState, useEffect } from 'react';
 import { PageHeader } from '../components';
 import { Area, Line, Bar } from '@ant-design/charts';
-import { Col, DatePicker, Tabs, Button } from 'antd';
-import { CalendarOutlined, RightOutlined, SettingFilled } from '@ant-design/icons';
+import { Col, DatePicker, Tabs, Button, Tooltip, Drawer } from 'antd';
+import { CalendarOutlined,  SettingFilled } from '@ant-design/icons';
 import moment from 'moment';
 import "./Visualize.css";
 import { getIcon } from '../components/Icon';
@@ -10,6 +10,8 @@ import { getIcon } from '../components/Icon';
 const { TabPane } = Tabs;
 
 function Visualize() {
+  const [visible, setVisible] = useState(false);
+
   const range = 0.6; // 나중에 비율 조정
   const [name, setName] = useState("");
   const [dataSet, setDataSet] = useState({});
@@ -354,14 +356,22 @@ function Visualize() {
     }
   }
 
+  function onClose(){
+    setVisible(false);
+  }
+
+  function showDrawer(){
+    setVisible(true);
+  }
+
   return (
     <Col>
       <PageHeader
         title={name + "님의 목표 달성률"}
         subtitle="목표 달성치를 그래프로 한 눈에 볼 수 있어요."
       />
-      <Col className="graph-con">
-        <div className="graph-header">
+      <Col>
+        <div className="graph-con">
           <div className="select-date-con">
             <div className="date-title"><CalendarOutlined /><p>날짜 선택</p></div>
             <div className="date-select">
@@ -373,20 +383,43 @@ function Visualize() {
               Object.keys(dataSet).length>0?
                 Object.keys(dataSet).map((title, index)=>
                   <TabPane tab={title} key={index}>
-                    <div className="visual-graph-con">
+                    <div id={title==="group"?"group":""}className="visual-graph-con">
                       {renderGraph(title)}
                       {title!=="group"?
                         <React.Fragment>
-                          <span className="dailycheck-btn">{getIcon("rightOutlined")}</span>
-                          <span className="setting-btn"><SettingFilled /></span>
+                          <Tooltip placement="topLeft" title="데일리 체크">
+                            <span className="dailycheck-btn" onClick={showDrawer}>{getIcon("leftOutlined")}</span>
+                          </Tooltip>
+                          <Tooltip placement="bottom" title="목표 수정하기">
+                            <span className="setting-btn"><SettingFilled /></span>
+                          </Tooltip>
                         </React.Fragment>
                         :undefined
-                      }
+                        }
+                      <div className="sns-con">
+                        <button className="sns-btn"><img src="/img/internet.png"/></button>
+                        <button className="sns-btn"><img src="/img/tweet.png"/></button>
+                        <button className="sns-btn"><img src="/img/facebook.png"/></button>
+                        <button className="sns-btn"><img src="/img/instagram.png"/></button>
+                      </div>
                     </div>
                   </TabPane>
-                ):"로딩중입니다..."
+                )
+                :"로딩중입니다..."
             }
           </Tabs>
+          <Drawer
+            title="Basic Drawer"
+            placement="right"
+            closable={false}
+            onClose={onClose}
+            visible={visible}
+            getContainer={false}
+            style={{ position: 'absolute', display: visible?"block":"none" }}
+            mask = {false}
+          >
+            <p>Some contents...</p>
+          </Drawer>
         </div>
       </Col>
     </Col>
