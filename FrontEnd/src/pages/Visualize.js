@@ -18,6 +18,7 @@ function Visualize() {
   const [graphDate, setGraphDate] = useState(undefined);
   const [graphRate, setGraphRate] = useState(1 - range / 2);
   const [graphConfig, setGraphConfig] = useState({});
+  const [selectedGoalId, setSelGoalId] = useState(-1);
 
   const operations = <Button onClick={gotoGoalSet}>Add Goal</Button>;
 
@@ -304,7 +305,6 @@ function Visualize() {
     const data = dataSet[title];
     const config = {
       data, // 이름이 무조건 data여야함
-      //width: '100',
       xField: 'date', // xfield에 적용할 변수
       yField: 'value', // yfield에 적용할 변수
       forceFit: true,
@@ -356,7 +356,7 @@ function Visualize() {
     }
   }
 
-  function onClose(){
+  function closeDrawer(){
     setVisible(false);
   }
 
@@ -378,48 +378,47 @@ function Visualize() {
               {graphDate !== undefined ? <DatePicker defaultValue={moment(graphDate)} onChange={selectGraphDate} /> : "로딩중입니다..."}
             </div>
           </div>
-          <Tabs defaultActiveKey="1" className="graph-tab-con" tabBarExtraContent={operations}>
+          <Tabs centered defaultActiveKey="1" className="graph-tab-con" tabBarExtraContent={operations}>
             {
               Object.keys(dataSet).length>0?
                 Object.keys(dataSet).map((title, index)=>
                   <TabPane tab={title} key={index}>
-                    <div id={title==="group"?"group":""}className="visual-graph-con">
+                    <div id={title==="group"?"group":""} className="visual-graph-con">
                       {renderGraph(title)}
-                      {title!=="group"?
-                        <React.Fragment>
-                          <Tooltip placement="topLeft" title="데일리 체크">
-                            <span className="dailycheck-btn" onClick={showDrawer}>{getIcon("leftOutlined")}</span>
-                          </Tooltip>
-                          <Tooltip placement="bottom" title="목표 수정하기">
-                            <span className="setting-btn"><SettingFilled /></span>
-                          </Tooltip>
-                        </React.Fragment>
+                      {title!=="group" && !visible?
+                        <Tooltip placement="topLeft" title="데일리 체크">
+                          <span className="dailycheck-btn left" onClick={showDrawer}>{getIcon("leftOutlined")}</span>
+                        </Tooltip>:undefined
+                      }
+                      {
+                        visible?
+                        <div className="dailycheck-drawer">
+                          <span className="dailycheck-btn right" onClick={closeDrawer}>{getIcon("rightOutlined")}</span>
+                        </div>
                         :undefined
-                        }
+                      }
+                    </div>
+                    <div className="bottom-graph-con">
                       <div className="sns-con">
                         <button className="sns-btn"><img src="/img/internet.png"/></button>
                         <button className="sns-btn"><img src="/img/tweet.png"/></button>
                         <button className="sns-btn"><img src="/img/facebook.png"/></button>
                         <button className="sns-btn"><img src="/img/instagram.png"/></button>
                       </div>
+                      {title!=="group"?
+                        <Tooltip placement="bottom" title="목표 수정하기">
+                          <a href={"/goalSet/"}><span className="setting-btn"><SettingFilled /></span></a>
+                          {// goalSet 뒤에 해당 goalId 붙여줘야함 => dataSet에 goalId 저장필요
+                          }
+                        </Tooltip>
+                      :undefined
+                      }
                     </div>
                   </TabPane>
                 )
                 :"로딩중입니다..."
             }
           </Tabs>
-          <Drawer
-            title="Basic Drawer"
-            placement="right"
-            closable={false}
-            onClose={onClose}
-            visible={visible}
-            getContainer={false}
-            style={{ position: 'absolute', display: visible?"block":"none" }}
-            mask = {false}
-          >
-            <p>Some contents...</p>
-          </Drawer>
         </div>
       </Col>
     </Col>
