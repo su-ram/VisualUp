@@ -37,9 +37,11 @@ public class UserDAOImple implements UserDAO{
 	@Override
 	public String getNewUserid() throws Exception{
 		
-		UserVO latest = sqlSession.selectOne(Namespace+".getNewUserid");
+		int latest = (Integer)sqlSession.selectOne(Namespace+".getNewUserid")+1;
 		
-		return latest.getUserid();
+		updateNewUser(latest);
+		
+		return String.valueOf(latest);
 		
 	}
 
@@ -54,6 +56,13 @@ public class UserDAOImple implements UserDAO{
 	public String getUserid(UserVO user) throws Exception {
 		
 		return sqlSession.selectOne(Namespace+".getUserid", user);
+	}
+
+	@Override
+	public void updateNewUser(int newUser) throws Exception {
+		
+		sqlSession.update(Namespace+".updateNewUser", newUser);
+		
 	}
 
 }
