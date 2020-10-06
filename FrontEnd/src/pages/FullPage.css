@@ -37,6 +37,7 @@ h2 {
 
 .pagination-additional-class > li > a, .pagination-additional-class > li> span {
     margin-right: 0px;
+
 } 
 
 .demo-page-contain {
@@ -54,6 +55,8 @@ h2 {
  @media (max-width: 768px) {
     .pagination-additional-class > li > a, .pagination-additional-class > li > span {
         margin-right: 5px;
+        border-radius: 15px;
+
     }
 } 
 
@@ -61,10 +64,16 @@ h2 {
 
 .pager li>a {
     display: inline-block;
-    padding: 5px 5px;
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 15px;
     align-self: flex-end;
-    
+    padding: 5px;
+    width: 10px;
+    height: 10px;
+    color: #5C411D;
+    border: 1px solid#5C411D;
+    text-align: center;
+    margin-top: 15px;
   }
+
