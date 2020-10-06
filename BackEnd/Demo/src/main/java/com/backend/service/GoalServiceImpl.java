@@ -16,6 +16,8 @@ public class GoalServiceImpl implements GoalService {
 
 	@Override
 	public void insertGoal(GoalVO newgoal){
+		String hashId = goalDao.newHashId();
+		
 		
 		goalDao.insertGoal(newgoal);
 		
@@ -35,7 +37,7 @@ public class GoalServiceImpl implements GoalService {
 	@Override
 	public boolean updateGoal(GoalVO goal) {
 		
-		String goalid = goal.getGoalid();
+		String goalid = goal.getGoalId();
 		if (goalDao.checkGoalId(goalid)) {
 			goalDao.updateGoal(goal);
 			return true;
@@ -60,6 +62,12 @@ public class GoalServiceImpl implements GoalService {
 
 		
 		
+	}
+
+	@Override
+	public List<GoalVO> goalByHashtag(String name) {
+		// TODO Auto-generated method stub
+		return goalDao.goalByHashtag(name);
 	}
 
 }

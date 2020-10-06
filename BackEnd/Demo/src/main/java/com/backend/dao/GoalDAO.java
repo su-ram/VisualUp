@@ -13,5 +13,13 @@ public interface GoalDAO {
 	public void updateGoal(GoalVO goal);
 	public void deleteGoal(String goalid);
 	public void updateNewGoal(int newGoal);
+	public String newHashId();
+	public void updateHashId(int id);
+	public void newHashtags(List<String> tags, String goalid);
+	public List<GoalVO> goalByHashtag(String name);
+	
+	
+	
+	
 
 }

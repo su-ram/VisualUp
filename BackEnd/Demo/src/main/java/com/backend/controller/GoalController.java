@@ -41,7 +41,7 @@ public class GoalController {
 	public ResponseEntity<Void> updateGoal(HttpServletRequest request, @RequestBody GoalVO goal){
 		
 		String userid = (String)request.getSession().getAttribute("userid");
-		goal.setUserid(userid);
+		goal.setUserId(userid);
 		
 		if(goalService.updateGoal(goal)) {
 			return new ResponseEntity<>(HttpStatus.CREATED);
@@ -56,12 +56,12 @@ public class GoalController {
 		String userid = (String)request.getSession().getAttribute("userid");
 		String newgoalid = "goal"+goalService.newGoalID();
 		
-		newgoal.setUserid(userid);
-		newgoal.setGoalid(newgoalid);
+		newgoal.setUserId(userid);
+		newgoal.setGoalId(newgoalid);
 		
 		goalService.insertGoal(newgoal);
 	
-		return "new goal accepted";
+		return "new goal accepted"+" "+ request.getSession();
 	}
 	
 	@RequestMapping(value="/targetDate", method=RequestMethod.GET)
@@ -107,6 +107,12 @@ public class GoalController {
 		}
 		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 		
+	}
+	
+	@RequestMapping(value="/hashtag", params="name", method=RequestMethod.GET)
+	public @ResponseBody List<GoalVO> goalsByHashtag(HttpServletRequest request) {
+		String hashtag = request.getParameter("name");
+		return goalService.goalByHashtag(hashtag);
 	}
 	
 	

@@ -12,4 +12,5 @@ public interface GoalService {
 	public boolean updateGoal(GoalVO goal);
 	public boolean deleteGoal(String goalid);
 	public void selectTargetDate(String userid, String start, String end);
+	public List<GoalVO> goalByHashtag(String name);
 }
