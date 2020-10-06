@@ -131,6 +131,7 @@ function GoalSet(){
             
             </Col>
             </Row>
+            
             </div>
     );
 }

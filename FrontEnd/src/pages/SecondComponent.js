@@ -1,4 +1,5 @@
 import React, { Fragment } from "react";
+import { PageHeader } from '../components';
 import ImgCode from "../../src/img/coding.jpg";
 import ImgStu from "../../src/img/studing.jpg";
 import ImgGraph from "../../src/img/graph.jpg";
@@ -12,8 +13,10 @@ function SecondComponent() {
       <div className="component second-component">
         <div className = "second-container">
           <div className= "second-component-text">
-            <h1>이런 분들에게 추천해요!</h1>
-            <h5>Visual Up과 함께 해주실 분들을 찾습니다!</h5>
+          <PageHeader
+            title="이런 분들에게 추천해요!"
+            subtitle="Visual Up과 함께 해주실 분들을 찾습니다!"
+           />
           </div>
 
           <div className = "second-box-container">

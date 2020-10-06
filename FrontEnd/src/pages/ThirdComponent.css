@@ -1,8 +1,21 @@
-.third-component{
-    background-color: aqua;
+ .third-component{
+    background-color: rgb(167, 228, 159);
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    align-items: center;
 }
 
+.components {
+    height: 100%;
+    width: 100%;
+}
 
+.third-component-text{
+    margin-top: 3rem;
+}
+
+/*
 .card-container {
     width: 150px;
     height : 250px;
@@ -15,25 +28,44 @@
     text-align: center;
 }
 
-.card-container h3{
-    text-align:center;
-}
-
-.components {
-    height: 100%;
-    width: 100%;
-}
-
-.slider{
-    width: 80%;
-    margin:auto;
-
-}
-
 .slick-slide{
     margin: 5px;
 }
 
 .slick-prev, .slick-next {
     top: 25% !important;
+}
+*/
+
+.slider {
+    margin: 0 auto;
+    padding: 0px 40px 40px 40px;
+    margin-top: 10rem;
+    width: 70%;
+}
+ .card-container h3 {
+      background: #5f9ea0;
+      color: #fff;
+      font-size: 36px;
+      line-height: 100px;
+      margin: 10px;
+      padding: 5%;
+      position: relative;
+      text-align: center;
+  }
+  .slick-next:before, .slick-prev:before {
+      color: #000;
+  }
+  .center .slick-center h3 {
+      color: #e67e22;
+      opacity: 1;
+      -ms-transform: scale(1.08);
+      transform: scale(1.08);
+  }
+  .center h3 {
+      transition: all .3s ease;
+  }
+
+  .slick-next:before, .slick-prev:before {
+    color: #000;
 }
