@@ -22,3 +22,30 @@
 .select-graph-con{
     display: flex;
 }
+
+.visual-graph-con>div:first-child{
+    display: inline-block;
+    width:95%;
+    height: auto;
+}
+.dailycheck-btn{
+    display: inline-block;
+    width:5%;
+    align-items: center;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #5C411D;
+}
+.setting-btn{
+    position: absolute;
+    bottom: -15%;
+    font-size: 2rem;
+    right: 3%;
+    cursor: pointer;
+    color: #5C411D;
+}
+.setting-btn>span{
+    padding: 5px;
+    border-radius: 5rem;
+    border: 3px solid #5C411D;
+}

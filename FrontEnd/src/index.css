@@ -1,6 +1,6 @@
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  font-family: 'lgSemibold','lgRegular', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -10,4 +10,24 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+@font-face{ 
+  font-family:'fradmit'; 
+  src:url('/font/FRADMIT.ttf') format('truetype');
+}
+
+@font-face{ 
+  font-family:'fradmd'; 
+  src:url('/font/FRAMD.ttf') format('truetype');
+}
+
+@font-face{ 
+  font-family:'lgRegular'; 
+  src:url('/font/LG_REGULAR.ttf') format('truetype');
+}
+
+@font-face{ 
+  font-family:'lgSemibold'; 
+  src:url('/font/LG_SEMIBOLD.ttf') format('truetype');
 }
