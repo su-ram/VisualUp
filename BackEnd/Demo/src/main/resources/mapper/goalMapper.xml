@@ -14,8 +14,8 @@
 	</update>
     
     <insert id="insertGoal" parameterType="GoalVO">
-        insert into goal values (#{goalid}, #{userid}, #{title},#{startDate}, #{endDate}, #{term},#{hashtags},#{open},
-        #{total},#{template})
+        insert into goal values (#{goalId}, #{userId}, #{title},#{startDate}, #{endDate}, #{termGoal},#{hashtags},#{open},
+  #{template},#{graphColor},#{term})
     </insert>
     
     <select id="getGoalList" resultType="GoalVO">
@@ -37,4 +37,15 @@
     	where goalid=#{goalid}
     </delete>
     
+    <select id="newHashId" resultType="Integer">
+    	select newHash from newid
+    </select>
+    
+    <update id="updateHashId" parameterType="Integer">
+    	update newid set newHash=#{id}
+    </update>
+    
+    <select id="goalByHashtag" parameterType="string" resultType="GoalVO">
+    	select * from goal where hashtags like CONCAT('%', #{name}, '%')
+    </select>
 </mapper>

@@ -73,4 +73,29 @@ public class GoalDAOImple implements GoalDAO {
 		
 	}
 
+	@Override
+	public String newHashId() {
+		int hashId = (Integer)sqlSession.selectOne(Namespace+".newHashId")+1;
+		
+		return String.valueOf(hashId);
+	}
+
+	@Override
+	public void updateHashId(int id) {
+		
+		sqlSession.update(Namespace+".updateHashId", id);
+		
+	}
+
+	@Override
+	public void newHashtags(List<String> tags, String goalid) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public List<GoalVO> goalByHashtag(String name) {
+		return sqlSession.selectList(Namespace+".goalByHashtag", name);
+	}
+
 }

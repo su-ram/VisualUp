@@ -6,7 +6,8 @@
 <mapper namespace="com.backend.mapper.dailyMapper">
 
 	<insert id="newDaily" parameterType="DailyVO">
-		insert into daily values(#{dailyid},#{userid},#{goalid},#{target},#{todayDate},#{whatIdone},#{done},#{hashtags})
+		insert into daily 
+		values(#{dailyId},#{userId},#{goalId},#{todayDate},#{whatIdone},#{stars})
 	
 	</insert>
 	
