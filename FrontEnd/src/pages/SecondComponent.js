@@ -5,6 +5,7 @@ import ImgStu from "../../src/img/studing.jpg";
 import ImgGraph from "../../src/img/graph.jpg";
 import ImgClock from "../../src/img/clock.png";
 import "./SecondComponent.css"
+import BGimg from "../../src/img/BGimg.png"
 
 
 function SecondComponent() {
@@ -58,6 +59,7 @@ function SecondComponent() {
             </div>
           </div>
         </div>
+        <img className = "bg-img"src = {BGimg} />
       </div>
     </Fragment>
   );

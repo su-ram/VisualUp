@@ -1,10 +1,18 @@
  .third-component{
-    background-color: rgb(167, 228, 159);
     display: flex;
     position: relative;
     flex-direction: column;
     align-items: center;
 }
+
+.third-component .bg-img {
+    position: absolute;
+    top: 0%;
+    right: 0%;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+  }
 
 .components {
     height: 100%;
@@ -46,7 +54,7 @@
       background: #5f9ea0;
       color: #fff;
       font-size: 36px;
-      line-height: 100px;
+      line-height: 300px;
       margin: 10px;
       padding: 5%;
       position: relative;
@@ -64,7 +72,3 @@
   .center h3 {
       transition: all .3s ease;
   }
-
-  .slick-next:before, .slick-prev:before {
-    color: #000;
-}
