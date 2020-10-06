@@ -4,7 +4,7 @@ import { FourthBox } from '../components';
 import logo from "../../src/img/logo.png";
 // import {InstagramOutlined, TwitterOutlined, FacebookOutlined, GithubOutlined } from '@ant-design/icons';
 import "./FourthComponent.css"
-
+import BGimg from "../../src/img/BGimg.png"
 
 function FourthComponent() {
   return (
@@ -69,6 +69,7 @@ function FourthComponent() {
           
           </div>
         </div>
+        <img className = "bg-img"src = {BGimg} />
       </div>
     </Fragment>
   );
