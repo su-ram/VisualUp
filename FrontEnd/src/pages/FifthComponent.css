@@ -1,4 +1,5 @@
 .fifth-container {
+    background-image : url('../../src/img/BGimg.png');
     position:relative;
     width: 100%;
     height: 100%;
@@ -25,28 +26,80 @@
     justify-content:space-around;
     padding-bottom: 5rem;
     width:100%;
-    padding:3%;
-    background-color: rgb(247, 243, 222);
+    padding:2% 3% 0% 1%;
+    background-color:#FFF1D6;
     /* align-items:flex-end;  */  /* justify-content(가로), align-items(세로)는 flex item을 정렬 */
    /*  position:absolute;*/
    }
   
   .fifth-box-content{
-    padding:3%;
+    padding:2% 1% 2% 0%;
+    color:#5C411D;
+    font: normal normal normal 15px/15px LG Smart UI, FRADMD;
   }
   
+  .fifth-box-content.table{
+    font-size:15px;
+  }
+
   th{
-    padding:3%;
+    padding:3% 10% 3% 0%;
+    font-size:20px;
+  }
+  
+  .fifth-subscribe{
+    margin-bottom:50%;
+    
+  }
+
+  .fifth-subscribe h4{
+    margin-bottom:5%;
+    color: #80612D;
+    font-size:15px;
+  }
+
+  
+  .fifth-subscribe input {
+    width: 150px;
+    height: 30px;
+    border: 1px solid #80612D;
+    background: #FFF1D6;
+    color:  #80612D;
+    margin-right:3%;
+    
+  }
+
+  .fifth-subscribe input::placeholder {
+    color:  #80612D;
+    text-align: center;
+    font-size:15px;
+
+  }
+
+  .fifth-subscribe button {
+    width: 90px;
+    height: 30px;
+    background: #80612D 0% 0% no-repeat padding-box;
+    border: 3px solid #80612D;
+    opacity: 1;
+    color: aliceblue;
+    text-align: center;
+    font-size:11px;
+  }
+
+  .fifth-info {
+    font-size:15px;
   }
   
   .fifth-footer {
-    background-color: rgb(124, 111, 83);
+    background-color:#5C411D;
     width: 100%;
     color: #fff;
     margin-bottom: 4%;   /* 밑에 뜨는 거 방지(야매인가....) */
     display: flex;
     align-items: center;
     padding:1%;
+    padding-bottom: 2%;
   
   }
   .fifth-footer .icons{
@@ -57,4 +110,3 @@
   .fifth-footer .icons .icon {
     margin : 5px;
   }
-  

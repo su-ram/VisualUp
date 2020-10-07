@@ -1,20 +1,58 @@
-.first-component {
-    background-color: rgb(241, 219, 184);
-  /*  display : flex;
-    flex-direction: column;
-    align-items: flex-start;*/
+
+
+.first-component .bg-img{
+  position: absolute;
+  top: 0%;
+  right: 0%;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
 }
 
 .first-component .first-component-text {
-    margin-top: 15rem;
-    color: rgb(0, 0, 0);
-    margin-left: 15rem;
-    font-family: sans-serif;
-    
-  }
+    margin-top: 11rem;
+    margin-left: 10rem;
+    z-index: 10 !important;
+}
+
+.first-component-text>h1{
+  top: 418px;
+  left: 140px;
+  width: 753px;
+  height: 245px;
+  font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-600) 60px/80px var(--unnamed-font-family-lg-smart-ui);
+  letter-spacing: var(--unnamed-character-spacing-0);
+  color: var(--unnamed-color-5d4215);
+  text-align: left;
+  font: normal normal 600 40px/80px LG Smart UI;
+  letter-spacing: 0px;
+  color: #5D4215;
+  opacity: 1;
+}
+
+.first-component-text>h4{
+  top: 360px;
+  left: 140px;
+  width: 100px;
+  height: 28px;
+  font: italic normal var(--unnamed-font-weight-normal) var(--unnamed-font-size-25)/var(--unnamed-line-spacing-28) var(--unnamed-font-family-franklin-gothic);
+  letter-spacing: var(--unnamed-character-spacing-0);
+  color: var(--unnamed-color-5d4215);
+  text-align: left;
+  font: italic normal normal 25px/28px Franklin Gothic;
+  letter-spacing: 0px;
+  color: #5D4215;
+  opacity: 1;
+}
 
 .first-component-text button {
-  margin-top: 2rem;
+  width: 110px;
+  height: 40px;
+  background: #80612D 0% 0% no-repeat padding-box;
+  border: 3px solid #80612D;
+  opacity: 1;
+  color: aliceblue;
+  
 }
 
 .first-component--inside-scroller {
