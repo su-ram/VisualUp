@@ -64,6 +64,7 @@ function FourthComponent() {
               img={SJ}
               name="이소정"
               part="개발"
+              // insta={}
             />
 
             <FourthBox

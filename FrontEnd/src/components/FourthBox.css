@@ -24,7 +24,7 @@
     color:#5C411D;
   }
   
-  .fourth-img{
+  .fourth-img{ 
     margin-top:10%;
     height: 100px;
     width:  100px;
@@ -33,9 +33,8 @@
   }
   
   .internet{
-    width:18px;
-    font-size: 2rem;
+    width:1em;
+    height:1em;
     /* cursor: pointer; */
     color: #5C411D;
-
   }
