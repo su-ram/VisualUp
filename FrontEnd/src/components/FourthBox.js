@@ -6,18 +6,18 @@ import { getIcon } from '../components/Icon';
 
 
 function FourthBox(props){
-
+    const url = props.img
     return (
         <div className = "fourth-box-content">
-            <img className="fourth-img">{props.img}</img>
-            {/* <div className="fourth-img">{props.img}</div> */}
-            {/* <img src =  {props.ImgFace} /> */}
-            <div className="fourth-name"><h3>{props.name}</h3></div>
-            <div className="fourth-part"><h5>{props.part}</h5></div>
-            <InstagramOutlined style ={{fontSize : '18px', color : '#5C411D', padding:'3px'}}/>
-            <FacebookOutlined style ={{fontSize : '18px', color : '#5C411D', padding:'3px'}}/>
-            <GithubOutlined style ={{fontSize : '18px', color : '#5C411D', padding:'3px'}}/>
-            <span className="internet" >{getIcon("internet")}</span>
+            <div className="only-text">
+                <img className="fourth-img" src = {url}/>   {/* 컴포넌트로 이미지 넣기 */}
+                <div className="fourth-name"><h3>{props.name}</h3></div>
+                <div className="fourth-part"><h5>{props.part}</h5></div>
+                <InstagramOutlined style ={{fontSize : '18px', color : '#5C411D', padding:'3px'}}/>
+                <FacebookOutlined style ={{fontSize : '18px', color : '#5C411D', padding:'3px'}}/>
+                <GithubOutlined style ={{fontSize : '18px', color : '#5C411D', padding:'3px'}}/>
+                <span className="internet" >{getIcon("internet")}</span>
+            </div>
         </div>
 
     );

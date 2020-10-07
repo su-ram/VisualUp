@@ -23,19 +23,33 @@ function FifthComponent() {
               <table>
                 <tr>
                   <th>ABOUT</th>
-                  <td>홍보 소개  사용자유형  사용후기  멤버소개</td>
+                  <td>홍보 소개&nbsp; &nbsp; 
+                    사용자유형&nbsp; &nbsp; 
+                    사용후기&nbsp; &nbsp; 
+                    멤버소개</td>
                 </tr>
                 <tr>
                   <th>PLAN</th>
-                  <td>목표설정  목표리스트  데일리체크</td>
+                  <td>목표설정&nbsp; &nbsp;
+                    목표리스트&nbsp; &nbsp;
+                    데일리체크</td>
                 </tr>
                 <tr>
                   <th>CONTACT</th>
-                  <td>문의사항  SNS  DOUBLESLASH</td>
+                  <td>문의사항&nbsp; &nbsp;
+                    SNS&nbsp; &nbsp;
+                    DOUBLESLASH</td>
                 </tr>
                 <tr>
                   <th>MEMBERS</th>
-                  <td>홍영주  박미현  김서현  김수람  우희은  이소정  임정민  조은학</td>
+                  <td>홍영주&nbsp; &nbsp;
+                    박미현&nbsp; &nbsp;
+                    김서현&nbsp; &nbsp;
+                    김수람&nbsp; &nbsp;
+                    우희은&nbsp; &nbsp;
+                    이소정&nbsp; &nbsp;
+                    임정민&nbsp; &nbsp;
+                    조은학</td>
                 </tr>
               </table>
             </div>

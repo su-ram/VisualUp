@@ -35,8 +35,7 @@
   .fifth-box-content{
     padding:2% 1% 2% 0%;
     color:#5C411D;
-    font: normal normal normal 15px/15px LG Smart UI;
-    font: normal normal normal 15px/15px FRADMD;
+    font: normal normal normal 15px/15px LG Smart UI, FRADMD;
   }
   
   .fifth-box-content.table{
@@ -61,7 +60,7 @@
 
   
   .fifth-subscribe input {
-    width: 130px;
+    width: 150px;
     height: 30px;
     border: 1px solid #80612D;
     background: #FFF1D6;
@@ -78,7 +77,7 @@
   }
 
   .fifth-subscribe button {
-    width: 100px;
+    width: 90px;
     height: 30px;
     background: #80612D 0% 0% no-repeat padding-box;
     border: 3px solid #80612D;

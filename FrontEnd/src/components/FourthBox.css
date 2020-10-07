@@ -2,13 +2,14 @@
     width: 200px;
     height : 300px;
     margin: 10px;
-    display: inline-block;
+    /* display: inline-block; */
     background: white;
     opacity: 70%;
     border-radius: 5px;
     padding: 3px 8px;
     text-align: center;
-  }
+    display:table;   /* 가운데정렬 힘드네,,, */  
+  }  
     
   .fourth-box-content h3{     /* 이름 굵게 */
     color:#5C411D;
@@ -23,7 +24,7 @@
     color:#5C411D;
   }
   
-  .fourth-img>img{
+  .fourth-img{
     margin-top:10%;
     height: 100px;
     width:  100px;

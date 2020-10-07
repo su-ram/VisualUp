@@ -1,11 +1,17 @@
 import React, { Fragment } from "react";
 import { FourthBox } from '../components';
-// import ImgFace from "./img/face.png";
 import full_logo from "../../src/img/full_logo.png";
 import DOUBLESLASH from "../../src/img/DOUBLESLASH.png";
 // import {InstagramOutlined, TwitterOutlined, FacebookOutlined, GithubOutlined } from '@ant-design/icons';
 import "./FourthComponent.css"
 // import BGimg from "../../src/img/BGimg.png"
+//각자사진
+import HE from "../../src/img/HE.jpg";
+import EH from "../../src/img/EH.jpg";
+import SJ from "../../src/img/SJ.jpg";
+import MH from "../../src/img/MH.jpg";
+import JM from "../../src/img/JM.jpg";
+
 
 function FourthComponent() {
   return (
@@ -24,11 +30,13 @@ function FourthComponent() {
             </div>
 
             <FourthBox
+              // img = {ImgFace}
               name="홍영주"
               part="기획"
            />
 
             <FourthBox
+              img={MH}
               name="박미현"
               part="디자인"
            />
@@ -47,22 +55,25 @@ function FourthComponent() {
 
           <div className="fourth-box container">
             <FourthBox
+              img={HE}            
               name="우희은"
               part="개발"
             />
 
             <FourthBox
-              // img = {full_logo}
+              img={SJ}
               name="이소정"
               part="개발"
             />
 
             <FourthBox
+              img={JM}
               name="임정민"
               part="개발"
             />
 
             <FourthBox
+              img={EH}
               name="조은학"
               part="개발"
             />
