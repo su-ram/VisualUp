@@ -8,7 +8,7 @@ import { UserOutlined , UnorderedListOutlined ,SearchOutlined  } from '@ant-desi
 class Navigation extends React.Component {
   render() {
     return (
-      <div>
+      <div className="navigation-bar">
         <div className="links">
           <div className="link logo">
             <Link to="/">

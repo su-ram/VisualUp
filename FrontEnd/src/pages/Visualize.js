@@ -1,23 +1,18 @@
-import React, { useState, useEffect, Fragment } from 'react';
-import { PageHeader } from '../components';
-import { Area, Line, Bar } from '@ant-design/charts';
-import { Col, DatePicker, Tabs, Button } from 'antd';
-import { CalendarOutlined, RightOutlined, SettingFilled } from '@ant-design/icons';
-import moment from 'moment';
+import React, { useState, useEffect } from 'react';
+import { PageHeader, Graph } from '../components';
+import { Col, DatePicker } from 'antd';
+import { CalendarOutlined } from '@ant-design/icons';
+import moment, { max } from 'moment';
 import "./Visualize.css";
-import { getIcon } from '../components/Icon';
 
-const { TabPane } = Tabs;
 
 function Visualize() {
-  const range = 0.6; // 나중에 비율 조정
-  const [name, setName] = useState("");
-  const [dataSet, setDataSet] = useState({});
-  const [graphDate, setGraphDate] = useState(undefined);
-  const [graphRate, setGraphRate] = useState(1 - range / 2);
-  const [graphConfig, setGraphConfig] = useState({});
 
-  const operations = <Button onClick={gotoGoalSet}>Add Goal</Button>;
+  const [name, setName] = useState("");
+  const [dataSet, setDataSet] = useState([]);
+  const [dailySet, setDailySet] = useState([]);
+  const [groupDataSet, setGDataset] = useState({});
+  const [graphDate, setGraphDate] = useState(undefined);
 
   useEffect(() => {
     // setting 시 category가 순차적으로 나와야 함
@@ -28,242 +23,201 @@ function Visualize() {
   async function getGoalDataFromDB() {
     // db에서 해당 목표 정보 받아오기
     const dbData = {
-      "userId": 1,
-      "userName": "홍미주",
+      "userId": "user103",
+      "userName": "김수람",
       "goals": [
         {
-          "goalId": 1,
-          "title": "목표 제목", //
-          "startDate": new Date(),
-          "endDate": new Date(),
-          "term": 2,
-          "hashtags": ["hashtag1", "hashtag2", "hashtag3"],
-          "isOpened": true,
-          "target": "주기별 목표량",
-          "template": "Line", //
-          "graphColor": "#ade09d", //
-          "dataSet":[
-              {
-                "date": "2018/8/1",
-                "type": "coding test",
-                "value": 22
-              },
-              {
-                "date": "2018/8/2",
-                "type": "coding test",
-                "value": 20
-              },
-              {
-                "date": "2018/8/3",
-                "type": "coding test",
-                "value": 29
-              },
-              {
-                "date": "2018/8/4",
-                "type": "coding test",
-                "value": 45
-              },
-              {
-                "date": "2018/8/5",
-                "type": "coding test",
-                "value": 82
-              },
-              {
-                "date": "2018/8/6",
-                "type": "coding test",
-                "value": 20
-              },
-              {
-                "date": "2018/8/7",
-                "type": "coding test",
-                "value": 19
-              },
-              {
-                "date": "2018/8/8",
-                "type": "coding test",
-                "value": 23
-              },
-              {
-                "date": "2018/8/9",
-                "type": "coding test",
-                "value": 29
-              },
-              {
-                "date": "2018/8/10",
-                "type": "coding test",
-                "value": 67
-              },
-              {
-                "date": "2018/8/11",
-                "type": "coding test",
-                "value": 31
-              },
-              {
-                "date": "2018/8/12",
-                "type": "coding test",
-                "value": 34
-              },
-              {
-                "date": "2018/8/13",
-                "type": "coding test",
-                "value": 28
-              },
-              {
-                "date": "2018/8/14",
-                "type": "coding test",
-                "value": 47
-              },
-              {
-                "date": "2018/8/15",
-                "type": "coding test",
-                "value": 43
-              }
-            ], //
-          "dailyData": [
+          "goalId": "데이터 분석을 위한 파이썬 문법 공부",
+          "title": "python",
+          "startDate": new Date("2020-10-22"),
+          "endDate": new Date("2020-12-31"),
+          "termGoal": "예제 문제 1개씩 코드로 구현하기",
+          "term": 5,
+          "hastags": "coding, commit, python, os",
+          "open": true,
+          "template": "Line",
+          "graphColor": "#e09da4",
+          "dailys": [
             {
-              "dailyId": 1,
-              "todayDate": new Date(),
-              "isDone": true,
-              "WhatIdone": "오늘 한 일",
-              "stars": 5,
+              "date": "2020/10/22",
+              "whatIDone": "예제 문제 2개 코드로 구현하기",
+              "value": 100
+            },
+            {
+              "date": "2020/10/27",
+              "whatIDone": "예제 문제 2개 코드로 구현하기",
+              "value": 0
+            },
+            {
+              "date": "2020/11/01",
+              "whatIDone": "예제 문제 2개 코드로 구현하기",
+              "value": 40
+            },
+            {
+              "date": "2020/11/06",
+              "whatIDone": "예제 문제 2개 코드로 구현하기",
+              "value": 60
+            },
+            {
+              "date": "2020/11/11",
+              "whatIDone": "예제 문제 2개 코드로 구현하기",
+              "value": 20
+            },
+            {
+              "date": "2020/11/16",
+              "whatIDone": "예제 문제 2개 코드로 구현하기",
+              "value": 40
+            },
+            {
+              "date": "2020/11/21",
+              "whatIDone": "예제 문제 2개 코드로 구현하기",
+              "value": 20
+            },
+            {
+              "date": "2020/11/26",
+              "whatIDone": "예제 문제 2개 코드로 구현하기",
+              "value": 10
             }
           ]
-        },{
-          "goalId": 2,
-          "title": "목표 제목2", //
-          "startDate": new Date(),
-          "endDate": new Date(),
-          "term": 2,
-          "hashtags": ["hashtag1", "hashtag2", "hashtag3"],
-          "isOpened": true,
-          "target": "주기별 목표량",
-          "template": "Bar", //
-          "graphColor": "#e09da4", //
-          "dataSet":[
+        }
+        ,{
+          "goalId": "웹 백엔드 Node.js 마스터",
+          "title": "nodejs",
+          "startDate": new Date("2020-10-07"),
+          "endDate": new Date("2020-12-31"),
+          "termGoal": "토이 프로젝트 1개씩",
+          "term": 10,
+          "hastags": "coding, commit, js, web",
+          "open": true,
+          "template": "Bar",
+          "graphColor": "#e09da4",
+          "dailys": [
             {
-              "date": "2018/8/1",
-              "type": "git commit",
-              "value": 46
+              "date": "2020/10/07",
+              "whatIDone": "예제 문제 2개 코드로 구현하기",
+              "value": 20
             },
             {
-              "date": "2018/8/2",
-              "type": "git commit",
-              "value": 61
+              "date": "2020/10/17",
+              "whatIDone": "예제 문제 2개 코드로 구현하기",
+              "value": 100
             },
             {
-              "date": "2018/8/3",
-              "type": "git commit",
-              "value": 50
+              "date": "2020/10/27",
+              "whatIDone": "예제 문제 2개 코드로 구현하기",
+              "value": 60
             },
             {
-              "date": "2018/8/4",
-              "type": "git commit",
-              "value": 62
+              "date": "2020/11/06",
+              "whatIDone": "예제 문제 2개 코드로 구현하기",
+              "value": 40
             },
             {
-              "date": "2018/8/5",
-              "type": "git commit",
-              "value": 64
+              "date": "2020/11/16",
+              "whatIDone": "예제 문제 2개 코드로 구현하기",
+              "value": 20
             },
             {
-              "date": "2018/8/6",
-              "type": "git commit",
-              "value": 18
-            },
-            {
-              "date": "2018/8/7",
-              "type": "git commit",
-              "value": 42
-            },
-            {
-              "date": "2018/8/8",
-              "type": "git commit",
-              "value": 29
-            },
-            {
-              "date": "2018/8/9",
-              "type": "git commit",
-              "value": 38
-            },
-            {
-              "date": "2018/8/10",
-              "type": "git commit",
-              "value": 36
-            },
-            {
-              "date": "2018/8/11",
-              "type": "git commit",
-              "value": 43
-            },
-            {
-              "date": "2018/8/12",
-              "type": "git commit",
-              "value": 41
-            },
-            {
-              "date": "2018/8/13",
-              "type": "git commit",
-              "value": 64
-            },
-            {
-              "date": "2018/8/14",
-              "type": "git commit",
-              "value": 16
-            },
-            {
-              "date": "2018/8/15",
-              "type": "git commit",
-              "value": 44
-            }
-          ], //
-          "dailyData": [
-            {
-              "dailyId": 1,
-              "todayDate": new Date(),
-              "isDone": true,
-              "WhatIdone": "오늘 한 일",
-              "stars": 4,
+              "date": "2020/11/26",
+              "whatIDone": "예제 문제 2개 코드로 구현하기",
+              "value": 60
             }
           ]
         }
       ]
-    }
+    };
 
-    const tmpConfig = {};
-    const tmpData = {"group": []};
-
-    await dbData.goals.map((goal)=>{
-      tmpConfig[goal.title]={
-        "template" : goal.template,
-        "graphColor" : goal.graphColor
-      };
-      tmpData[goal.title]=goal.dataSet;
-      goal.dataSet.map((data)=>{
-        tmpData["group"].push(data);
-      })
-    })
-    tmpConfig["group"] = {
-      "template" : "Area",
-      "graphColor" : ["#e09da4","#ade09d","#9db8e0"],
-    }
-
-    // 개별 graph setting
-    await setName(dbData.userName);
-    await setGraphConfig(tmpConfig);
-    await setDataSet(tmpData);
+    await processDataToStore(dbData);
 
   }
 
-  useEffect(() => { // 데이터 중, 가장 큰 날짜 구하기 => default 세팅
-    function defaultGroupDate() {
-      if (Object.keys(dataSet).length > 0) {
-        const arr = dataSet["group"];
-        setGraphDate(arr[arr.length - 1].date);
-      }
-    }
-    defaultGroupDate();
-  }, [dataSet]);
+  async function processDataToStore(dbData){
+    const tmpData = [];
+    const tmpDaily = [];
+    const tmpGData = [];
 
+    let minStartDate = Number.MAX_VALUE;
+    let maxEndDate = 0;
+
+    await dbData.goals.map(async (goal, index) => {
+      await tmpData.push({ // 기본 data 넣기
+        "title" : goal.title,
+        "startDate" : goal.startDate,
+        "endDate" : goal.endDate,
+        "template": goal.template,
+        "graphColor": goal.graphColor,
+        "dataSet" : [] 
+      });
+      await tmpDaily.push({ // daily data 넣기
+        "title" : goal.title,
+        "dailys": goal.dailys,
+        "termGoal" : goal.termGoal,
+        "term" : goal.term,
+        "hashtags" : goal.hashtags
+      });
+
+      await goal.dailys.map((daily, index2)=>{ // 그래프 data 넣기
+        tmpData[index].dataSet.push({ // 개별 그래프 data
+          "date": daily.date,
+          "type": goal.title,
+          "value" : daily.value
+        });
+        tmpGData.push({
+          "date": (index2+1)+"주기",
+          "type" : goal.title,
+          "value": daily.value
+        });
+      });
+
+      // group 그래프에 넣기 위한 startDate, endDate
+      if(minStartDate>goal.startDate){
+        minStartDate = goal.startDate;
+      }
+      if(maxEndDate<goal.endDate){
+        maxEndDate = goal.endDate;
+      }
+    });
+
+    await setName(dbData.userName); // name setting
+    await setDataSet(tmpData); // 개별 graph setting
+    await setDailySet(tmpDaily); // daily data setting
+
+    await setGDataset({
+      "title" : "group",
+      "startDate" : minStartDate,
+      "endDate" : maxEndDate,
+      "template": "Area",
+      "graphColor": ["#e09da4", "#ade09d", "#9db8e0"],
+      "dataSet": tmpGData
+    });
+    //await putGroupGraphData(tmpData, minStartDate, maxEndDate);
+    await setGraphDate(maxEndDate);
+  }
+/*
+  function putGroupGraphData(graphData, min, max){
+    const tmpGData = [];
+
+    graphData.map((datas)=>{
+      datas.map((data, index)=>{
+        tmpGData.push({
+          "date": index+"주기",
+          "value": data.value,
+          "type" : data.type
+        })
+      });
+    })
+    
+    // 그룹 graph setting
+    setGDataset({
+      "title" : "group",
+      "startDate" : min,
+      "endDate" : max,
+      "template": "Area",
+      "graphColor": ["#e09da4", "#ade09d", "#9db8e0"],
+      "dataSet": tmpGData
+    });
+  }
+*/
   function selectGraphDate(timeString) {
     // datepicker에서 고른 날짜를 전체 기간의 %로 환산하여 표현 
     // => 아래의 slider를 표현하기 위함
@@ -271,87 +225,9 @@ function Visualize() {
     if (timeString === null) { // 날짜를 삭제해도 기존 날짜로 유지
       return;
     }
-    const selDate = new Date(timeString);
-    const groupData = dataSet["group"];
-    const firstDate = groupData[0].date;
-    const firstDateNum = new Date(firstDate);
-    const lastDate = groupData[groupData.length - 1].date;
-    const lastDateNum = new Date(lastDate);
 
-    const wholeDateLength = lastDateNum - firstDateNum;
-    const selDateLength = selDate - firstDateNum;
-
-    if (wholeDateLength < selDateLength) { // 선택된 날짜가 마지막 날짜 이후라면
-      alert(`마지막 기록 날짜(${lastDate}) 이전의 날짜를 선택해주세요.`);
-      return;
-    }
-    if (selDateLength < 0) {
-      alert(`첫 기록 날짜(${firstDate}) 이후의 날짜를 선택해주세요.`);
-      return;
-    }
-
+    const selDate = timeString;
     setGraphDate(selDate);
-    setGraphRate(parseFloat((selDateLength / wholeDateLength).toFixed(2))); // %로 나타내기
-  }
-
-  function gotoGoalSet() { // add goal 버튼 클릭 시
-    window.location.href = "/GoalSet";
-  }
-
-  function getConfig(title) {
-    const data = dataSet[title];
-    const config = {
-      data, // 이름이 무조건 data여야함
-      //width: '100',
-      xField: 'date', // xfield에 적용할 변수
-      yField: 'value', // yfield에 적용할 변수
-      forceFit: true,
-      color: graphConfig[title].graphColor, // 선 색깔 지정
-      seriesField: 'type', // 클릭 시 해당 그래프만 나타남
-      legend: {
-        visible: true,
-        position: 'bottom-left',
-      },
-      xAxis: {
-        type: 'dateTime', // x축 표시 형식
-        tickCount: 10, // 몇 조각으로 나눌 건지
-      },
-      yAxis: { formatter: (v) => `${v}%` }, // y축 표시 형식
-      interactions: [
-        {
-          type: 'slider',
-          cfg: {
-            start: graphRate - range / 2,
-            end: graphRate + range / 2,
-          },
-        },
-      ],
-      label: {
-        visible: true,
-        type: 'line',
-      },
-      point: {
-        visible: true,
-        size: 3,
-        shape: 'circle',
-        style: {
-          fill: 'transparent',
-          stroke: 'white',
-          lineWidth: 2,
-        },
-      },
-      //smooth: true, // 그래프 부드럽게
-    };
-    return config;
-  }
-
-  function renderGraph(title) {
-    const type = graphConfig[title].template;
-    switch (type) {
-      case "Area": return <Area {...getConfig(title)} />
-      case "Line": return <Line {...getConfig(title)} />
-      case "Bar": return <Bar {...getConfig(title)} />
-    }
   }
 
   return (
@@ -360,33 +236,23 @@ function Visualize() {
         title={name + "님의 목표 달성률"}
         subtitle="목표 달성치를 그래프로 한 눈에 볼 수 있어요."
       />
-      <Col className="graph-con">
-        <div className="graph-header">
+      <Col>
+        <div className="graph-con">
           <div className="select-date-con">
             <div className="date-title"><CalendarOutlined /><p>날짜 선택</p></div>
             <div className="date-select">
               {graphDate !== undefined ? <DatePicker defaultValue={moment(graphDate)} onChange={selectGraphDate} /> : "로딩중입니다..."}
             </div>
-          </div>
-          <Tabs defaultActiveKey="1" className="graph-tab-con" tabBarExtraContent={operations}>
-            {
-              Object.keys(dataSet).length>0?
-                Object.keys(dataSet).map((title, index)=>
-                  <TabPane tab={title} key={index}>
-                    <div className="visual-graph-con">
-                      {renderGraph(title)}
-                      {title!=="group"?
-                        <React.Fragment>
-                          <span className="dailycheck-btn">{getIcon("rightOutlined")}</span>
-                          <span className="setting-btn"><SettingFilled /></span>
-                        </React.Fragment>
-                        :undefined
-                      }
-                    </div>
-                  </TabPane>
-                ):"로딩중입니다..."
-            }
-          </Tabs>
+          </div>    
+          {graphDate!==undefined?
+            <Graph
+              dataSet={dataSet}
+              dailySet = {dailySet}
+              groupDataSet = {groupDataSet}
+              graphDate = {graphDate}
+            />
+            :undefined
+          } 
         </div>
       </Col>
     </Col>

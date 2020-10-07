@@ -1,14 +1,25 @@
-.graph-header{
+#contents>.ant-col{
+    display: flex;
+    flex-direction: column;
+}
+
+.graph-con{
     display: flex;
     flex-direction: column;
 }
 .select-date-con{
     margin-bottom: 10px;
+    display: flex;
+    z-index:1;
+    width: 30%;
+}
+.graph-con>.ant-tabs{
+    transform: translate(0px, -50px);
 }
 .date-title{
     display: flex;
     align-items: center;
-    margin-bottom: 10px;
+    margin-right: 10px;
 }
 .date-title>p{
     margin: 0;
@@ -19,28 +30,115 @@
 .date-title svg{
     font-size:22px;
 }
+.graph-tab-con .ant-tabs-nav-wrap {
+    justify-content: flex-end!important;
+}
+
 .select-graph-con{
     display: flex;
 }
 
+#group>div:first-child{
+    width: 100%;
+}
+
+.visual-graph-con{
+    display: flex;
+}
 .visual-graph-con>div:first-child{
-    display: inline-block;
-    width:95%;
+    /*display: inline-block;*/ 
+    max-width: 100%;
+    min-width: 50%;
+    flex-basis: auto;
+    flex-shrink: 1;
+    flex-grow: 1;
     height: auto;
 }
+.visual-graph-con canvas{
+    height: 350px!important;
+}
+
+.dailycheck-drawer{
+    animation: growDrawer 1s ease-in-out 0s 1 forwards;
+    flex-basis: auto;
+    flex-grow: 0;
+    flex-shrink: 0;
+    border-left: 1px solid #5D4215;
+    background-color: white;
+    z-index: 1;
+    position: relative;
+}
+@keyframes growDrawer{
+    from{
+        width:0%;
+    }
+    to{
+        width: 50%;
+    }
+}
+
 .dailycheck-btn{
-    display: inline-block;
-    width:5%;
     align-items: center;
     font-size: 2rem;
     cursor: pointer;
     color: #5C411D;
-}
-.setting-btn{
     position: absolute;
-    bottom: -15%;
+    top: 40%;
+}
+.visual-graph-con .left{
+    right: 0;
+}
+.dailycheck-drawer .right{
+    left: -4%;
+    background-color: white;
+}
+.dailycheck-icon-con{
+    display:flex;
+    justify-content: space-between;
+    margin: 0 5px;
+}
+.dailycheck-icon{
+    cursor: pointer;
+}
+.dailycheck-icon>span{
+    font-size: 1.3rem;
+    color : #5C411D;
+    padding: 5px;
+    border-radius: 10px;
+    border: 1px solid #5C411D;
+}
+
+
+
+
+
+
+
+.bottom-graph-con{
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.sns-con{
+    display: inline-block;
+}
+.sns-btn{
+    width: 35px;
+    max-height: 35px;
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    outline : none;
+    cursor: pointer;
+}
+.sns-btn>img{
+    width: 100%;
+}
+
+.setting-btn{
     font-size: 2rem;
-    right: 3%;
     cursor: pointer;
     color: #5C411D;
 }
