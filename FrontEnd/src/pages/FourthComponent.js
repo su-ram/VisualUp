@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import { FourthBox } from '../components';
-// import ImgFace from "./img/face.png";
+import ImgFace from "../../src/img/face.png";
 import full_logo from "../../src/img/full_logo.png";
 import DOUBLESLASH from "../../src/img/DOUBLESLASH.png";
 // import {InstagramOutlined, TwitterOutlined, FacebookOutlined, GithubOutlined } from '@ant-design/icons';
@@ -24,6 +24,7 @@ function FourthComponent() {
             </div>
 
             <FourthBox
+              img = {ImgFace}
               name="홍영주"
               part="기획"
            />
