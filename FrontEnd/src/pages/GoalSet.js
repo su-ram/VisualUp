@@ -32,7 +32,7 @@ function GoalSet(){
         const { value, name } = e.target;
         setInputs({
           ...inputs,
-          [name]: value 
+          set: value 
         });
       };
 

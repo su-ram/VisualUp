@@ -57,36 +57,6 @@
 .visual-graph-con canvas{
     height: 350px!important;
 }
-.setting-btn{
-    position: absolute;
-    bottom: 0;
-    font-size: 2rem;
-    right: 2%;
-    cursor: pointer;
-    color: #5C411D;
-}
-.setting-btn>span{
-    padding: 5px;
-    border-radius: 5rem;
-    border: 3px solid #5C411D;
-}
-
-.sns-con{
-    display: inline-block;
-    margin: 20px 1%;
-}
-.sns-btn{
-    width: 35px;
-    max-height: 35px;
-    background-color: transparent;
-    border: none;
-    padding: 0;
-    outline : none;
-    cursor: pointer;
-}
-.sns-btn>img{
-    width: 100%;
-}
 
 .dailycheck-drawer{
     animation: growDrawer 1s ease-in-out 0s 1 forwards;
@@ -121,4 +91,59 @@
 .dailycheck-drawer .right{
     left: -4%;
     background-color: white;
+}
+.dailycheck-icon-con{
+    display:flex;
+    justify-content: space-between;
+    margin: 0 5px;
+}
+.dailycheck-icon{
+    cursor: pointer;
+}
+.dailycheck-icon>span{
+    font-size: 1.3rem;
+    color : #5C411D;
+    padding: 5px;
+    border-radius: 10px;
+    border: 1px solid #5C411D;
+}
+
+
+
+
+
+
+
+.bottom-graph-con{
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.sns-con{
+    display: inline-block;
+}
+.sns-btn{
+    width: 35px;
+    max-height: 35px;
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    outline : none;
+    cursor: pointer;
+}
+.sns-btn>img{
+    width: 100%;
+}
+
+.setting-btn{
+    font-size: 2rem;
+    cursor: pointer;
+    color: #5C411D;
+}
+.setting-btn>span{
+    padding: 5px;
+    border-radius: 5rem;
+    border: 3px solid #5C411D;
 }
