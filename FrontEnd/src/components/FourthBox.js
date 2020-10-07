@@ -9,7 +9,8 @@ function FourthBox(props){
 
     return (
         <div className = "fourth-box-content">
-            <div className="fourth-img">{props.img}</div>
+            <img className="fourth-img">{props.img}</img>
+            {/* <div className="fourth-img">{props.img}</div> */}
             {/* <img src =  {props.ImgFace} /> */}
             <div className="fourth-name"><h3>{props.name}</h3></div>
             <div className="fourth-part"><h5>{props.part}</h5></div>
