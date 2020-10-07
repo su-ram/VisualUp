@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import { PageHeader } from '../components';
 import Slider from "react-slick";
 import "./ThirdComponent.css";
+import BGimg from "../../src/img/BGimg.png"
 
 export default class ThirdComponent extends Component {
   render() {
@@ -46,6 +47,7 @@ export default class ThirdComponent extends Component {
             </div>
           </Slider>
         </div>
+        <img className = "bg-img"src = {BGimg} />
       </div>
     );
   }
