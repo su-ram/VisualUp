@@ -1,6 +1,8 @@
 package com.backend.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,10 +23,17 @@ public class DailyController {
 	private DailyService dailyService;
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public @ResponseBody String newDaily(@RequestBody DailyVO newDaily) {
+	public ResponseEntity<?> newDaily(@RequestBody DailyVO newDaily) {
+		//데일리 체크 생성
 		
-		dailyService.newDaily(newDaily);
-		return "new dailyCehck accepted";
+		
+		String result = dailyService.newDaily(newDaily);
+		
+		if(result == null) {
+			return new ResponseEntity<String>("goalId가 없습니다.", HttpStatus.BAD_REQUEST);
+		}else {
+			return ResponseEntity.status(HttpStatus.OK).body(result);
+		}
 	}
 
 }

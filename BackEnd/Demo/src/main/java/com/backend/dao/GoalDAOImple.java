@@ -2,14 +2,13 @@ package com.backend.dao;
 
 import java.util.List;
 
-
-
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.backend.dto.GoalVO;
+import com.backend.dto.UserVO;
 
 @Repository
 public class GoalDAOImple implements GoalDAO {
@@ -97,5 +96,30 @@ public class GoalDAOImple implements GoalDAO {
 	public List<GoalVO> goalByHashtag(String name) {
 		return sqlSession.selectList(Namespace+".goalByHashtag", name);
 	}
+
+	@Override
+	public boolean checkUserId(String id) {
+		UserVO user = (UserVO)sqlSession.selectOne(Namespace+".checkUserId", id);
+		
+		if(user == null)
+			return false;
+		else			
+			return true;
+	}
+
+	@Override
+	public String getTermGoal(String id) {
+		
+		return sqlSession.selectOne(Namespace+".getTermGoal", id);
+	}
+
+	@Override
+	public List<GoalVO> goalById(String id) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(Namespace+".goalById", id);
+	}
+	
+	
+	
 
 }

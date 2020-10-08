@@ -2,6 +2,7 @@ package com.backend.controller;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -9,7 +10,11 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -32,36 +37,70 @@ public class GoalController {
 	private GoalService goalService;
 
 	@RequestMapping(params="userid", method=RequestMethod.GET, produces="application/json;charset=utf-8")
-	public @ResponseBody List<GoalVO> getGoalList(@RequestParam("userid") String userid) {
+	public ResponseEntity<?> getGoalList(@RequestParam("userid") String userid) {
+		//사용자의 목표 조회
 		
-		return goalService.getGoalList(userid);
+		List<GoalVO> result = goalService.getGoalList(userid);
+		
+		if (result == null) {
+			return new ResponseEntity<String>("userid가 없습니다.", HttpStatus.BAD_REQUEST);
+		}
+		else
+			return ResponseEntity.status(HttpStatus.OK).body(result);
+		
+		
+		
+		
 	}
 	
 	@RequestMapping(method=RequestMethod.PUT)
-	public ResponseEntity<Void> updateGoal(HttpServletRequest request, @RequestBody GoalVO goal){
+	public ResponseEntity<?> updateGoal(HttpServletRequest request, @RequestBody GoalVO goal){
+		//목표 수정
 		
-		String userid = (String)request.getSession().getAttribute("userid");
+		
+		String goalid = (String)request.getParameter("goalId");
+		String userid = goal.getUserId();
+		
+		if(userid == null) {
+			userid = (String)request.getSession().getAttribute("userid");
+		}
+		
 		goal.setUserId(userid);
+		goal.setGoalId(goalid);
 		
 		if(goalService.updateGoal(goal)) {
-			return new ResponseEntity<>(HttpStatus.CREATED);
+			return new ResponseEntity<String>(goalid+"가 정상적으로 수정되었습니다.",HttpStatus.CREATED);
 		}
-		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		return new ResponseEntity<String>("goalId가 없습니다.", HttpStatus.BAD_REQUEST);
 		
 	}
 	
 	@RequestMapping(method=RequestMethod.POST)
-	public @ResponseBody String newGoal(HttpServletRequest request , @RequestBody GoalVO newgoal) {
+	public ResponseEntity<?> newGoal(HttpServletRequest request , @RequestBody GoalVO newgoal) {
+		//새로운 목표 생성
 		
-		String userid = (String)request.getSession().getAttribute("userid");
+		
+		String userid = newgoal.getUserId();
 		String newgoalid = "goal"+goalService.newGoalID();
 		
-		newgoal.setUserId(userid);
+		if(userid == null) {
+			
+			userid = (String)request.getSession().getAttribute("userid");
+			newgoal.setUserId(userid);
+		}
+		
 		newgoal.setGoalId(newgoalid);
 		
-		goalService.insertGoal(newgoal);
+		if(goalService.checkUserId(userid)) {
+			goalService.insertGoal(newgoal);
+			return new ResponseEntity<String>("새로운 목표 생성 : "+newgoalid, HttpStatus.OK);
+		}else {
+			return new ResponseEntity<String>("userlId가 없습니다.", HttpStatus.BAD_REQUEST);
+		}
+		
+		
 	
-		return "new goal accepted"+" "+ request.getSession();
+		
 	}
 	
 	@RequestMapping(value="/targetDate", method=RequestMethod.GET)
@@ -99,13 +138,15 @@ public class GoalController {
 		
 	}
 	
-	@RequestMapping(params="goalid", method=RequestMethod.DELETE)
-	public ResponseEntity<Void> removeGoal(@RequestParam("goalid") String goalid) {
+	@RequestMapping(method=RequestMethod.DELETE)
+	public ResponseEntity<?> removeGoal(HttpServletRequest request) {
+		//목표를 삭제하는 메소드
 		
+		String goalid = request.getParameter("goalId");
 		if(goalService.deleteGoal(goalid)) {
-			return new ResponseEntity<>(HttpStatus.OK);
+			return new ResponseEntity<String>(goalid+"가 정상적으로 삭제되었습니다.", HttpStatus.OK);
 		}
-		return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+		return new ResponseEntity<String>("goalId가 없습니다.", HttpStatus.BAD_REQUEST);
 		
 	}
 	

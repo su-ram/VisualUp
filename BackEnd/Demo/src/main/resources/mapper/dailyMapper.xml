@@ -7,7 +7,7 @@
 
 	<insert id="newDaily" parameterType="DailyVO">
 		insert into daily 
-		values(#{dailyId},#{userId},#{goalId},#{todayDate},#{whatIdone},#{stars})
+		values(#{dailyId},#{goalId},#{todayDate},#{whatIdone},#{stars})
 	
 	</insert>
 	
@@ -19,4 +19,11 @@
 		update newid set newdaily = #{newdaily}
 	</update>
     
+    <select id="checkGoalId" parameterType="string" resultType="string">
+    	select goalId from goal where goalId=#{id}
+    </select>
+    
+    <select id="getByGoal" resultType="DailyVO">
+    	select * from daily where goalId=#{id}
+    </select>
 </mapper>

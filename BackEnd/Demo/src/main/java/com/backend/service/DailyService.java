@@ -1,10 +1,11 @@
 package com.backend.service;
 
-import org.springframework.stereotype.Service;
+import java.util.List;
 
 import com.backend.dto.DailyVO;
 
 
 public interface DailyService {
-	public void newDaily(DailyVO newDaily);
+	public String newDaily(DailyVO newDaily);
+	public List<DailyVO> getByGoal(String goalid);
 }
