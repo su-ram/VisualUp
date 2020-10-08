@@ -27,12 +27,13 @@ h2 {
 .pagination-additional-class {
     flex-direction: column;
     position: fixed;
-    width: 70%;
+    width: 65%;
     top: 40%;
     padding-right : 5%;
     display: inline-flex;
     align-items:flex-end;    
     list-style: none;
+    z-index: 20 !important;
 }
 
 .pagination-additional-class > li > a, .pagination-additional-class > li> span {
