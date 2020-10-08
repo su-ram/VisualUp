@@ -70,11 +70,8 @@ public class SampleController {
 	public String session(HttpServletRequest request, @RequestParam("id") String id, Model model) {
 		
 		HttpSession session = request.getSession();
-		session.setMaxInactiveInterval(10);
-		session.setAttribute("type", id);
-		
-		model.addAttribute("result", id);
-		model.addAttribute("session", session);
+		String str = (String)session.getAttribute("userid");
+		System.out.println(session+", "+str);
 		
 		return "session";
 		
@@ -84,9 +81,7 @@ public class SampleController {
 	public String session2(HttpServletRequest request, Model model) {
 		
 		HttpSession session = request.getSession();
-		String str = (String)session.getAttribute("type");
-		model.addAttribute("session", session);
-		model.addAttribute("session2", str);
+		
 		return "session";
 		
 	}

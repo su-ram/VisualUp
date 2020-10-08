@@ -23,8 +23,16 @@ public class DailyDAOImple implements DailyDAO{
 
 	@Override
 	public String newDailyId() {
+		int latest = (Integer)sqlSession.selectOne(Namespace+".newDailyId")+1;
+		updateNewId(latest);
+		return String.valueOf(latest);
+	}
+
+
+	@Override
+	public void updateNewId(int newdaily) {
+		sqlSession.update(Namespace+".updateNewId", newdaily);
 		
-		return sqlSession.selectOne(Namespace+".newDailyId");
 	}
 
 }

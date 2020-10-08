@@ -1,5 +1,9 @@
 package com.backend.service;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
@@ -16,26 +20,13 @@ public class DailySerivceImple implements DailyService {
 	@Override
 	public void newDaily(DailyVO newDaily) {
 		
-		String latest = dailydao.newDailyId();
-		int start=0;
-		
-		for(int i=0; i< latest.length(); i++) {
-			
-			if(latest.charAt(i) == '-') {
-				start = i +1;
-				break;
-			}
-			
-		}
-		
-		
-		String newid = latest.substring(start, latest.length());
-		int temp = Integer.parseInt(newid)+1;
-		newid = "daily-"+String.valueOf(temp);
-		
-		newDaily.setDailyid(newid);
-		
+		String newid = "daily"+dailydao.newDailyId();
+		DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+		newDaily.setTodayDate(format.format(new Date()));
+		newDaily.setDailyId(newid);
 		dailydao.newDaily(newDaily);
+		
+		
 	}
 
 }
