@@ -1,6 +1,8 @@
 package com.backend.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,8 +56,35 @@ public class DailyDAOImple implements DailyDAO{
 
 	@Override
 	public List<DailyVO> getByGoal(String id) {
-		// TODO Auto-generated method stub
+		
 		return sqlSession.selectList(Namespace+".getByGoal", id);
+	}
+
+
+	@Override
+	public boolean checkDailyId(String id) {
+		
+		
+		DailyVO data = sqlSession.selectOne(Namespace+".checkDaily", id);
+		
+		if (data == null)
+			return false;
+		
+		return true;
+	}
+
+
+	@Override
+	public void updateDaily(DailyVO daily) {
+		
+		sqlSession.update(Namespace+".updateDaily", daily);
+	}
+
+
+	@Override
+	public void deleteDaily(String id) {
+
+		sqlSession.delete(Namespace+".deleteDaily", id);
 	}
 
 }

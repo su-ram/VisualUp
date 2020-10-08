@@ -36,7 +36,7 @@ public class GoalController {
 	@Autowired
 	private GoalService goalService;
 
-	@RequestMapping(params="userid", method=RequestMethod.GET, produces="application/json;charset=utf-8")
+	@RequestMapping(params="userid", method=RequestMethod.GET, produces="text/plain; charset=utf-8")
 	public ResponseEntity<?> getGoalList(@RequestParam("userid") String userid) {
 		//사용자의 목표 조회
 		
@@ -53,7 +53,7 @@ public class GoalController {
 		
 	}
 	
-	@RequestMapping(method=RequestMethod.PUT)
+	@RequestMapping(method=RequestMethod.PUT, produces="text/plain; charset=utf-8")
 	public ResponseEntity<?> updateGoal(HttpServletRequest request, @RequestBody GoalVO goal){
 		//목표 수정
 		
@@ -75,7 +75,7 @@ public class GoalController {
 		
 	}
 	
-	@RequestMapping(method=RequestMethod.POST)
+	@RequestMapping(method=RequestMethod.POST, produces="text/plain; charset=utf-8")
 	public ResponseEntity<?> newGoal(HttpServletRequest request , @RequestBody GoalVO newgoal) {
 		//새로운 목표 생성
 		
@@ -103,7 +103,7 @@ public class GoalController {
 		
 	}
 	
-	@RequestMapping(value="/targetDate", method=RequestMethod.GET)
+	@RequestMapping(value="/targetDate", method=RequestMethod.GET, produces="text/plain; charset=utf-8")
 	public @ResponseBody String getListByDate(HttpServletRequest request){
 		
 		String start, end, userid;
@@ -138,7 +138,7 @@ public class GoalController {
 		
 	}
 	
-	@RequestMapping(method=RequestMethod.DELETE)
+	@RequestMapping(method=RequestMethod.DELETE, produces="text/plain; charset=utf-8")
 	public ResponseEntity<?> removeGoal(HttpServletRequest request) {
 		//목표를 삭제하는 메소드
 		

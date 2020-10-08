@@ -11,4 +11,8 @@ public interface DailyDAO {
 	public void updateNewId(int newdaily);
 	public boolean checkGoalId(String id);
 	public List<DailyVO> getByGoal(String id);
+	public boolean checkDailyId(String id);
+	public void updateDaily(DailyVO daily);
+	public void deleteDaily(String id);
+	
 }

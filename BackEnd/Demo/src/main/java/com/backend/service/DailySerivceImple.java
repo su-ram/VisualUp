@@ -42,4 +42,24 @@ public class DailySerivceImple implements DailyService {
 		return dailydao.getByGoal(goalid);
 	}
 
+	@Override
+	public boolean checkDaily(String id) {
+		
+		
+		return dailydao.checkDailyId(id);
+	}
+
+	@Override
+	public void updateDaily(DailyVO daily) {
+		
+		dailydao.updateDaily(daily);
+		
+	}
+
+	@Override
+	public void deleteDaily(String id) {
+		
+		dailydao.deleteDaily(id);
+	}
+
 }

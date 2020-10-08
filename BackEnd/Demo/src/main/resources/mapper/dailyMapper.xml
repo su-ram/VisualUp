@@ -5,12 +5,6 @@
  
 <mapper namespace="com.backend.mapper.dailyMapper">
 
-	<insert id="newDaily" parameterType="DailyVO">
-		insert into daily 
-		values(#{dailyId},#{goalId},#{todayDate},#{whatIdone},#{stars})
-	
-	</insert>
-	
 	<select id="newDailyId" resultType="Integer">
 		select newdaily from newid
 	</select>
@@ -26,4 +20,27 @@
     <select id="getByGoal" resultType="DailyVO">
     	select * from daily where goalId=#{id}
     </select>
+    
+    <select id="checkDaily" parameterType="string" resultType="DailyVO">
+    	select * from daily where dailyId=#{dailyId}
+    </select>
+    
+    <insert id="newDaily" parameterType="DailyVO">
+		insert into daily 
+		values(#{dailyId},#{goalId},#{todayDate},#{whatIdone},#{stars})
+	</insert>
+		
+    <update id="updateDaily" parameterType="DailyVO">
+    
+    	update daily
+    	set whatIdone=#{whatIdone}, stars=#{stars}
+    	where dailyId=#{dailyId}
+    	
+    </update>
+    
+    <delete id="deleteDaily" parameterType="string">
+    	delete from daily
+    	where dailyId=#{dailyId}
+    </delete>
+    
 </mapper>
