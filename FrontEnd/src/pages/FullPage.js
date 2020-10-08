@@ -26,7 +26,7 @@ export default class FullPage extends React.Component {
     for (let i = 1; i <= 5; i++) {
       pageNumbers.push(
         <Pager.Item key={i} eventKey={i - 1} onSelect={this.handlePageChange}>
-          {/* {1} */}
+          {/* {1} */}/
         </Pager.Item>,
       );
     }
