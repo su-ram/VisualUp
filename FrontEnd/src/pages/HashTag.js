@@ -1,45 +1,62 @@
-import React from 'react';
-import styles from './HashTag.module.css';
-import { Col, Row, Progress } from 'antd';
+import React, { useState, useEffect } from 'react';
+import { Col, Row, Input } from 'antd';
+import "./HashTag.css";
 
 function HashTag(){
+
+    //그래프를 가져올 수 있을까
+
+    const [hashTag, setHashTag] = useState('');
+    const [name, setName] = useState({});
+    const [graph, setGraph] = useState({});
+    const [title, setTitle] = useState({});
+    const [startDate, setStartDate] = useState({});
+    const [endDate, setEndDate] = useState({});
+
+    const onChange = e => {
+        setHashTag(e.target.value);
+    };
+
+    const onSubmit = e => {
+        e.preventDefault();
+    }
+
     return(
         <div>
-            <h1 className={styles.mainTitle}>#취업준비</h1>
-            <Col align="middle" className={styles.sub}><p className={styles.subSub}>해시태그 검색 결과입니다.</p></Col>
-            <Row align="middle" className={styles.body}>
-                <Col align="middle" className={styles.content1}>
-                    <p className={styles.name}>권은찬 님</p>
-                    <div className={styles.graph} style={{ width: 200 }}>
-                        <Progress percent={30} size="small" />
-                        <Progress percent={50} size="small" status="active" />
-                        <Progress percent={70} size="small" status="exception" />
-                        <Progress percent={100} size="small" />
-                    </div>
-                    <p className={styles.title}>코딩테스트 풀기</p>
-                    <p className={styles.date}>2019.12.01~2020.12.31</p>
+            <div className="page-title-con">
+                <div className="page-title">
+                    <form onSubmit={onSubmit}>
+                        <input className="hash-submit" type="submit" value="#" />
+                        <input
+                            className="hash-input"
+                            type="text"
+                            value={hashTag}
+                            placeholder="해시태그 검색"
+                            onChange={onChange}
+                        />
+                    </form>
+                </div><br/>
+                <div className="page-subtitle"><h5>{hashTag} 검색결과입니다.</h5></div>
+            </div><br/><br/>
+           
+            <Row align="middle" className="hash-body">
+                <Col align="middle" className="hash-cont">
+                    <p className="hash-userName">name</p>
+                    <div className="hash-graph">graph</div>
+                    <p className="hash-goal">title</p>
+                    <p className="hash-date">startDate~endDate</p>
                 </Col>
-                <Col align="middle" className={styles.content2}>
-                    <p className={styles.name}>김소은 님</p>
-                    <div className={styles.graph} style={{ width: 200 }}>
-                        <Progress percent={30} size="small" />
-                        <Progress percent={50} size="small" status="active" />
-                        <Progress percent={70} size="small" status="exception" />
-                        <Progress percent={100} size="small" />
-                    </div>
-                    <p className={styles.title}>Spring 공부</p>
-                    <p className={styles.date}>2018.10.31~2021.10.20</p>
+                <Col align="middle" className="hash-cont">
+                    <p className="hash-userName">name</p>
+                    <div className="hash-graph">graph</div>
+                    <p className="hash-goal">title</p>
+                    <p className="hash-date">startDate~endDate</p>
                 </Col>
-                <Col align="middle" className={styles.content3}>
-                    <p className={styles.name}>문근철 님</p>
-                    <div className={styles.graph} style={{ width: 200 }}>
-                        <Progress percent={30} size="small" />
-                        <Progress percent={50} size="small" status="active" />
-                        <Progress percent={70} size="small" status="exception" />
-                        <Progress percent={100} size="small" />
-                    </div>
-                    <p className={styles.title}>알고리즘 공부</p>
-                    <p className={styles.date}>2020.01.21~2021.12.31</p>
+                <Col align="middle" className="hash-cont">
+                    <p className="hash-userName">name</p>
+                    <div className="hash-graph">graph</div>
+                    <p className="hash-goal">title</p>
+                    <p className="hash-date">startDate~endDate</p>
                 </Col>
             </Row> <br/><br/>
             <ul>
@@ -53,6 +70,6 @@ function HashTag(){
             </ul>
         </div>
     );
-}
+}  
 
 export default HashTag;
