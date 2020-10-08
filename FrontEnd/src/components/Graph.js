@@ -27,7 +27,7 @@ export default function Graph(props){
             const start = selectedGoalIdx===-1?groupDataSet.startDate:dataSet[selectedGoalIdx].startDate;
             const end = selectedGoalIdx===-1?groupDataSet.endDate:dataSet[selectedGoalIdx].endDate;
             const length = Date.parse(end)-Date.parse(start);
-            const selLength = Date.parse(end)-Date.parse(selDate);
+            const selLength = Date.parse(selDate)-Date.parse(start);
     
             if (length < selLength) { // 선택된 날짜가 마지막 날짜 이후라면
                 alert(`첫 기록 날짜(${Date(start).toString()}) 이후의 날짜를 선택해주세요.`);
@@ -37,8 +37,6 @@ export default function Graph(props){
                 alert(`마지막 기록 날짜(${Date(end).toString()}) 이전의 날짜를 선택해주세요.`);
                 return;
             }
-
-            console.log(length, selLength);
 
             setGraphRate(parseFloat((selLength / length).toFixed(2))); // %로 나타내기
         }
@@ -53,7 +51,7 @@ export default function Graph(props){
         xField: 'date', // xfield에 적용할 변수
         yField: 'value', // yfield에 적용할 변수
         forceFit: true,
-        color: 'red', // 선 색깔 지정
+        color: dataSet[idx].graphColor, // 선 색깔 지정
         xAxis: {
           type: 'dateTime', // x축 표시 형식
           tickCount: 10, // 몇 조각으로 나눌 건지
@@ -89,7 +87,6 @@ export default function Graph(props){
 
     function getGroupConfig() {
         const data = groupDataSet.dataSet;
-        console.log(data);
         const config = {
           data, // 이름이 무조건 data여야함
           xField: 'date', // xfield에 적용할 변수
@@ -102,7 +99,7 @@ export default function Graph(props){
           },
           xAxis: {
             type: 'dateTime', // x축 표시 형식
-            tickCount: 10, // 몇 조각으로 나눌 건지
+            tickCount: 5, // 몇 조각으로 나눌 건지
           },
           yAxis: { formatter: (v) => `${v}%` }, // y축 표시 형식
           interactions: [
@@ -191,34 +188,34 @@ export default function Graph(props){
                 </TabPane>
                 {
                 Object.keys(dataSet).length > 0 ?
-                    Object.keys(dataSet).map((title, index) =>
-                    <TabPane tab={title} key={index}>
-                        <div id={title === "group" ? "group" : ""} className="visual-graph-con">
-                        {renderGraph(index)}
-                        {!visible ?
-                            <Tooltip placement="topLeft" title="데일리 체크">
-                            <span className="dailycheck-btn left" onClick={showDrawer}>{getIcon("leftOutlined")}</span>
-                            </Tooltip> : undefined
-                        }
-                        {visible ?
-                            <div className="dailycheck-drawer">
-                                <div className="dailycheck-header">
-                                <span className="dailycheck-btn right" onClick={closeDrawer}>{getIcon("rightOutlined")}</span>
-                                </div>
-                                <div className="dailycheck-body">
-                                    <div className="dailycheck-icon-con">
-                                        <span className="dailycheck-icon" onClick={prev}><ArrowLeftOutlined /></span>
-                                        <span className="dailycheck-icon" onClick={next}><ArrowRightOutlined /></span>
-                                    </div>
-                                    <Carousel ref={slider} dots={false}>
-                                        {
-                                            console.dir(dailySet[selectedGoalIdx])
-                                        }
-                                    </Carousel>
-                                </div>
-                            </div>
-                            : undefined
-                        }
+                    Object.keys(dataSet).map((index) =>
+                    <TabPane tab={dataSet[index].title} key={index}>
+                        <div id={dataSet[index].title === "group" ? "group" : ""} className="visual-graph-con">
+                          {renderGraph(index)}
+                          {!visible ?
+                              <Tooltip placement="topLeft" title="데일리 체크">
+                              <span className="dailycheck-btn left" onClick={showDrawer}>{getIcon("leftOutlined")}</span>
+                              </Tooltip> : undefined
+                          }
+                          {visible ?
+                              <div className="dailycheck-drawer">
+                                  <div className="dailycheck-header">
+                                  <span className="dailycheck-btn right" onClick={closeDrawer}>{getIcon("rightOutlined")}</span>
+                                  </div>
+                                  <div className="dailycheck-body">
+                                      <div className="dailycheck-icon-con">
+                                          <span className="dailycheck-icon" onClick={prev}><ArrowLeftOutlined /></span>
+                                          <span className="dailycheck-icon" onClick={next}><ArrowRightOutlined /></span>
+                                      </div>
+                                      <Carousel ref={slider} dots={false}>
+                                          {
+                                              console.dir(dailySet[selectedGoalIdx])
+                                          }
+                                      </Carousel>
+                                  </div>
+                              </div>
+                              : undefined
+                          }
                         </div>
                         <div className="bottom-graph-con">
                         <div className="sns-con">
@@ -227,7 +224,7 @@ export default function Graph(props){
                             <button className="sns-btn"><img src="/img/facebook.png" /></button>
                             <button className="sns-btn"><img src="/img/instagram.png" /></button>
                         </div>
-                        {title !== "group" ?
+                        {dataSet[index].title !== "group" ?
                             <Tooltip placement="bottom" title="목표 수정하기">
                             <a href={"/goalSet/"}><span className="setting-btn"><SettingFilled /></span></a>
                             {// goalSet 뒤에 해당 goalId 붙여줘야함 => dataSet에 goalId 저장필요

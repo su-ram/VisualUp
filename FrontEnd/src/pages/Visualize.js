@@ -36,7 +36,7 @@ function Visualize() {
           "hastags": "coding, commit, python, os",
           "open": true,
           "template": "Line",
-          "graphColor": "#e09da4",
+          "graphColor": "#FF6B29",
           "dailys": [
             {
               "date": "2020/10/22",
@@ -90,7 +90,7 @@ function Visualize() {
           "hastags": "coding, commit, js, web",
           "open": true,
           "template": "Bar",
-          "graphColor": "#e09da4",
+          "graphColor": "#4EE23E",
           "dailys": [
             {
               "date": "2020/10/07",
@@ -135,6 +135,7 @@ function Visualize() {
     const tmpData = [];
     const tmpDaily = [];
     const tmpGData = [];
+    const tmpGroupColor = [];
 
     let minStartDate = Number.MAX_VALUE;
     let maxEndDate = 0;
@@ -168,7 +169,6 @@ function Visualize() {
           "value": daily.value
         });
       });
-
       // group 그래프에 넣기 위한 startDate, endDate
       if(minStartDate>goal.startDate){
         minStartDate = goal.startDate;
@@ -176,6 +176,8 @@ function Visualize() {
       if(maxEndDate<goal.endDate){
         maxEndDate = goal.endDate;
       }
+
+      tmpGroupColor.push(goal.graphColor); // 그룹 색 지정
     });
 
     await setName(dbData.userName); // name setting
@@ -187,37 +189,13 @@ function Visualize() {
       "startDate" : minStartDate,
       "endDate" : maxEndDate,
       "template": "Area",
-      "graphColor": ["#e09da4", "#ade09d", "#9db8e0"],
+      "graphColor": tmpGroupColor,
       "dataSet": tmpGData
     });
     //await putGroupGraphData(tmpData, minStartDate, maxEndDate);
     await setGraphDate(maxEndDate);
   }
-/*
-  function putGroupGraphData(graphData, min, max){
-    const tmpGData = [];
 
-    graphData.map((datas)=>{
-      datas.map((data, index)=>{
-        tmpGData.push({
-          "date": index+"주기",
-          "value": data.value,
-          "type" : data.type
-        })
-      });
-    })
-    
-    // 그룹 graph setting
-    setGDataset({
-      "title" : "group",
-      "startDate" : min,
-      "endDate" : max,
-      "template": "Area",
-      "graphColor": ["#e09da4", "#ade09d", "#9db8e0"],
-      "dataSet": tmpGData
-    });
-  }
-*/
   function selectGraphDate(timeString) {
     // datepicker에서 고른 날짜를 전체 기간의 %로 환산하여 표현 
     // => 아래의 slider를 표현하기 위함
