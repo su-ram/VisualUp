@@ -3,6 +3,7 @@ import { getIcon } from '../components/Icon';
 import { Tabs, Tooltip, Carousel, Button } from 'antd';
 import { Area, Line, Bar } from '@ant-design/charts';
 import { SettingFilled, ArrowLeftOutlined, ArrowRightOutlined } from '@ant-design/icons';
+import "./Graph.css";
 
 const { TabPane } = Tabs;
 
@@ -218,11 +219,11 @@ export default function Graph(props){
                           }
                         </div>
                         <div className="bottom-graph-con">
-                        <div className="sns-con">
-                            <button className="sns-btn"><img src="/img/internet.png" /></button>
-                            <button className="sns-btn"><img src="/img/tweet.png" /></button>
-                            <button className="sns-btn"><img src="/img/facebook.png" /></button>
-                            <button className="sns-btn"><img src="/img/instagram.png" /></button>
+                        <div className="visual-sns-con">
+                            <button className="visual-sns-btn"><img src="/img/internet.png" /></button>
+                            <button className="visual-sns-btn"><img src="/img/tweet.png" /></button>
+                            <button className="visual-sns-btn"><img src="/img/facebook.png" /></button>
+                            <button className="visual-sns-btn"><img src="/img/instagram.png" /></button>
                         </div>
                         {dataSet[index].title !== "group" ?
                             <Tooltip placement="bottom" title="목표 수정하기">
