@@ -43,7 +43,7 @@ function GoalSet(){
       ];
     
     return(
-        <div>
+        <div className ="page-set">
         <h1 className={styles.mainTitle}>목표 입력</h1>
             <Col align="middle" className={styles.sub}><p className={styles.subSub}>본인이 달성할 목표를 상세하게 적어주세요.</p></Col>
         <Row justify="center" >

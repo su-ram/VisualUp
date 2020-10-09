@@ -262,7 +262,7 @@ function Visualize() {
         subtitle="목표 달성치를 그래프로 한 눈에 볼 수 있어요."
       />
       <Col>
-        <div className="graph-con">
+        <div className="graph-con page-set">
           <div className="select-date-con">
             <div className="date-title"><CalendarOutlined /><p>날짜 선택</p></div>
             <div className="date-select">
