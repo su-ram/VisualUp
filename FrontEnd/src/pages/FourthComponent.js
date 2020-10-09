@@ -68,13 +68,16 @@ function FourthComponent() {
               part="개발"
               insta ="https://www.instagram.com/heun_w/"
               facebook = "https://www.facebook.com/profile.php?id=100014172587733"
-              blog = "https://github.com/gmldms784?tab=repositories"
+              blog = "https://github.com/gmldms784"
             />
 
             <FourthBox
               img={SJ}
               name="이소정"
               part="개발"
+              insta="https://www.instagram.com/iso3295/"
+              facebook = "https://www.facebook.com/profile.php?id=100031926961932"
+              blog = "https://github.com/SJLEE316"
             />
 
             <FourthBox
