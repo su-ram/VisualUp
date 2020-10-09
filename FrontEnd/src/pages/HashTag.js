@@ -23,8 +23,8 @@ function HashTag(){
 
     return(
         <div>
-            <div className="page-title-con">
-                <div className="page-title">
+            <div className="hashtag-page-title-con">
+                <div className="hashtag-page-title">
                     <form onSubmit={onSubmit}>
                         <input className="hash-submit" type="submit" value="#" />
                         <input
