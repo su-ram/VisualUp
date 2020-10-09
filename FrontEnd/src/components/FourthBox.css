@@ -33,8 +33,8 @@
   }
   
   .internet{
-    width:1em;
-    height:1em;
+    width:1px;
+    height:1px;
     /* cursor: pointer; */
     color: #5C411D;
   }
