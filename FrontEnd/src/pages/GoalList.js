@@ -17,7 +17,7 @@ const menu = (
 
 function GoalList(){
     return(
-      <div>
+      <div className ="page-set">
             <h1 className={styles.mainTitle}>홍미주 님의 목표 리스트</h1>
             <Col align="middle" className={styles.sub}><p className={styles.subSub}>본인이 계획한 모든 목표들을 한 눈에 볼 수 있어요</p></Col>
             <Row align="middle" className={styles.body} justify="center">
