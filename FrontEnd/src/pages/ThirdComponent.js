@@ -28,22 +28,40 @@ export default class ThirdComponent extends Component {
         <div className="slider">
         <Slider {...settings}>
             <div className="card-container">
-              <h3>1</h3>
+            <div className = "card-container-box">
+                <div>graph</div>
+                <div className ="third-name">홍미주님</div>
+              </div>
             </div>
             <div className="card-container">
-              <h3>2</h3>
+            <div className = "card-container-box">
+                <div>graph</div>
+                <div className ="third-name">홍미주님</div>
+              </div>
             </div>
             <div className="card-container">
-              <h3>3</h3>
+            <div className = "card-container-box">
+                <div>graph</div>
+                <div className ="third-name">홍미주님</div>
+              </div>
             </div>
             <div className="card-container">
-              <h3>4</h3>
+            <div className = "card-container-box">
+                <div>graph</div>
+                <div className ="third-name">홍미주님</div>
+              </div>
             </div>
             <div className="card-container">
-              <h3>5</h3>
+            <div className = "card-container-box">
+                <div>graph</div>
+                <div className ="third-name">홍미주님</div>
+              </div>
             </div>
             <div className="card-container">
-              <h3>6</h3>
+            <div className = "card-container-box">
+                <div>graph</div>
+                <div className ="third-name">홍미주님</div>
+              </div>
             </div>
           </Slider>
         </div>

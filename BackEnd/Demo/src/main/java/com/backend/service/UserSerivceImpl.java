@@ -28,9 +28,9 @@ public class UserSerivceImpl implements UserService{
 		
 		
 		UserVO newbie = new UserVO();
-    	newbie.setName(name);
-    	newbie.setEmail(email);
-    	newbie.setUserid(newid);
+    	newbie.setUserName(name);
+    	newbie.setUserEmail(email);
+    	newbie.setUserId(newid);
     	newbie.setType(type);
     	dao.newUser(newbie);
     	
@@ -69,10 +69,22 @@ public class UserSerivceImpl implements UserService{
 		// 기존 사용자의 회원번호 리턴
 		
 		UserVO user = new UserVO();
-		user.setEmail(email);
-		user.setName(name);
+		user.setUserEmail(email);
+		user.setUserName(name);
 		
 		return dao.getUserid(user);
+	}
+
+	@Override
+	public UserVO getUserById(String id) throws Exception {
+		
+		return dao.getById(id);
+	}
+
+	@Override
+	public boolean checkUser(String id) throws Exception {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

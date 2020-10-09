@@ -1,7 +1,6 @@
-.navigation-bar{
-    height: 30px;
-}
-
+/* .navigation-bar{
+    height: 50px;
+} */
 
 .links {
     display: flex;
@@ -12,8 +11,8 @@
     padding: 0;
     background-color: rgb(255, 255, 255);
     list-style-type: none;
-   /* position: absolute; 이놈이다..
-    z-index: 2;*/
+   /* position: absolute; 이놈이다..*/
+   /* z-index: 0 !important;  */
 }
 
 

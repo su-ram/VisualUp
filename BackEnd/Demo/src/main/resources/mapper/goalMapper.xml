@@ -22,14 +22,14 @@
     	select * from goal where userid = #{userid}
     </select>
     
-    <select id="checkGoalId" resultType="string">
-    	select goalid from goal where goalid=#{goalid}
+    <select id="checkGoalId" parameterType="string" resultType="string">
+    	select goalId from goal where goalId=#{goalid}
     </select>
     
     <update id="updateGoal" parameterType="GoalVO">
     	update goal 
-    	set title=#{title},startdate=#{startDate},enddate=#{endDate},term=#{term},hashtags=#{hashtags},open=#{open},total=#{total},template=#{template}
-    	where goalid=#{goalid}
+    	set title=#{title},startDate=#{startDate},endDate=#{endDate},term=#{term},hashtags=#{hashtags},open=#{open},termGoal=#{termGoal},template=#{template}, graphColor=#{graphColor}
+    	where goalId=#{goalId}
     </update>
     
     <delete id="deleteGoal" parameterType="string">
@@ -47,5 +47,18 @@
     
     <select id="goalByHashtag" parameterType="string" resultType="GoalVO">
     	select * from goal where hashtags like CONCAT('%', #{name}, '%')
+    </select>
+    
+    <select id="checkUserId" parameterType="string" resultType="UserVO">
+    	select * from user where userId=#{id}
+    </select>
+    
+    <select id="getTermGoal" parameterType="string" resultType="string">
+    	select termGoal from goal where goalId=#{id}
+    </select>
+    
+    
+    <select id="goalById" parameterType="string" resultType="GoalVO">
+    	select * from goal where goalId=#{id}
     </select>
 </mapper>

@@ -9,6 +9,7 @@ import "./FourthComponent.css"
 import HE from "../../src/img/HE.jpg";
 import EH from "../../src/img/EH.jpg";
 import SJ from "../../src/img/SJ.jpg";
+import YJ from "../../src/img/YJ.jpg";
 import MH from "../../src/img/MH.jpg";
 import JM from "../../src/img/JM.jpg";
 
@@ -30,25 +31,32 @@ function FourthComponent() {
             </div>
 
             <FourthBox
-              // img = {ImgFace}
+              img = {YJ}
               name="홍영주"
               part="기획"
+              insta = "https://www.instagram.com/0ju_o/"
+              
            />
 
             <FourthBox
               img={MH}
               name="박미현"
               part="디자인"
+              insta = "https://www.instagram.com/mivseen/"
+              facebook = "https://www.facebook.com/profile.php?id=100007164814913"
+              blog = "https://blog.naver.com/algus_0216"
            />
 
             <FourthBox
               name="김서현"
               part="개발"
+              blog = "https://blog.naver.com/algus_0216"
            />
 
             <FourthBox
               name="김수람"
               part="개발"
+              blog = "https://github.com/su-ram"
            />
 
           </div>
@@ -58,19 +66,26 @@ function FourthComponent() {
               img={HE}            
               name="우희은"
               part="개발"
+              insta ="https://www.instagram.com/heun_w/"
+              facebook = "https://www.facebook.com/profile.php?id=100014172587733"
+              blog = "https://github.com/gmldms784"
             />
 
             <FourthBox
               img={SJ}
               name="이소정"
               part="개발"
-              // insta={}
+              insta="https://www.instagram.com/iso3295/"
+              facebook = "https://www.facebook.com/profile.php?id=100031926961932"
+              blog = "https://github.com/SJLEE316"
             />
 
             <FourthBox
               img={JM}
               name="임정민"
               part="개발"
+              insta = "https://www.instagram.com/805_im_stagram"
+              blog = "https://github.com/lim-jeongmin"
             />
 
             <FourthBox

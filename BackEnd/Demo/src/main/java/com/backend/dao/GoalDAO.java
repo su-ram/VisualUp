@@ -17,6 +17,9 @@ public interface GoalDAO {
 	public void updateHashId(int id);
 	public void newHashtags(List<String> tags, String goalid);
 	public List<GoalVO> goalByHashtag(String name);
+	public boolean checkUserId(String id);
+	public String getTermGoal(String id);
+	public List<GoalVO> goalById(String id);
 	
 	
 	

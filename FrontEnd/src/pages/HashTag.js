@@ -24,8 +24,8 @@ function HashTag(){
 
     return(
         <div>
-            <div className="page-title-con">
-                <div className="page-title">
+            <div className="hashtag-page-title-con">
+                <div className="hashtag-page-title">
                     <form onSubmit={onSubmit}>
                         <div className="hash-top">
                         <SearchOutlined className="hash-icon"/>

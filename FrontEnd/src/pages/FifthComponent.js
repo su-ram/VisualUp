@@ -6,7 +6,7 @@ import "./FifthComponent.css"
 
 function FifthComponent() {
 
-  function gotoMain() { // 
+  function gotoMain() {
     window.location.href = "/";
   }
 
