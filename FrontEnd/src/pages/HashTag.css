@@ -1,13 +1,13 @@
-.page-title-con{
+.hashtag-page-title-con{
     margin:15px 0;
 }
-.page-title-con div{
+.hashtag-page-title-con div{
     text-align: center;
 }
-.page-title-con div>*{
+.hashtag-page-title-con div>*{
     color: #5C411D;
 }
-.page-title>h2{
+.hashtag-page-title>h2{
     font-weight: 600;
 }
 .page-subtitle>h5{

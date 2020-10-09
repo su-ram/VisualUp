@@ -24,7 +24,7 @@ function FourthBox(props){
                 </Link> */}
                 <InstagramOutlined style ={{fontSize : '18px', color : '#5C411D', padding:'3px'}}/>
                 <FacebookOutlined style ={{fontSize : '18px', color : '#5C411D', padding:'3px'}}/>
-                <span className="internet" >{getIcon("internet")}</span>
+                {getIcon("internet", {width: '21px'},{padding: '0 0 7px 3px'})}
 
 
                 {/* <GithubOutlined style ={{fontSize : '18px', color : '#5C411D', padding:'3px'}}/> */}
