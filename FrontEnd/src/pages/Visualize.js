@@ -12,7 +12,7 @@ function Visualize() {
   const [dataSet, setDataSet] = useState([]);
   const [dailySet, setDailySet] = useState([]);
   const [groupDataSet, setGDataset] = useState({});
-  const [graphDate, setGraphDate] = useState(undefined);
+  const [graphDate, setGraphDate] = useState("");
 
   useEffect(() => {
     // setting 시 category가 순차적으로 나와야 함
@@ -27,10 +27,10 @@ function Visualize() {
       "userName": "김수람",
       "goals": [
         {
-          "goalId": "데이터 분석을 위한 파이썬 문법 공부",
+          "goalId": "goal123",
           "title": "python",
-          "startDate": new Date("2020-10-22"),
-          "endDate": new Date("2020-12-31"),
+          "startDate": "2020-10-22",
+          "endDate": "2020-12-31",
           "termGoal": "예제 문제 1개씩 코드로 구현하기",
           "term": 5,
           "hastags": "coding, commit, python, os",
@@ -76,20 +76,50 @@ function Visualize() {
             {
               "date": "2020/11/26",
               "whatIDone": "예제 문제 2개 코드로 구현하기",
-              "value": 10
+              "value": 0
+            },
+            {
+              "date": "2020/12/01",
+              "whatIDone": "예제 문제 2개 코드로 구현하기",
+              "value": 40
+            },
+            {
+              "date": "2020/12/06",
+              "whatIDone": "예제 문제 2개 코드로 구현하기",
+              "value": 80
+            },
+            {
+              "date": "2020/12/11",
+              "whatIDone": "예제 문제 2개 코드로 구현하기",
+              "value": 100
+            },
+            {
+              "date": "2020/12/16",
+              "whatIDone": "예제 문제 2개 코드로 구현하기",
+              "value": 20
+            },
+            {
+              "date": "2020/12/21",
+              "whatIDone": "예제 문제 2개 코드로 구현하기",
+              "value": 40
+            },
+            {
+              "date": "2020/12/26",
+              "whatIDone": "예제 문제 2개 코드로 구현하기",
+              "value": 0
             }
           ]
         }
         ,{
-          "goalId": "웹 백엔드 Node.js 마스터",
+          "goalId": "goal124",
           "title": "nodejs",
-          "startDate": new Date("2020-10-07"),
-          "endDate": new Date("2020-12-31"),
+          "startDate": "2020-10-07",
+          "endDate": "2020-12-31",
           "termGoal": "토이 프로젝트 1개씩",
           "term": 10,
           "hastags": "coding, commit, js, web",
           "open": true,
-          "template": "Bar",
+          "template": "Line",
           "graphColor": "#4EE23E",
           "dailys": [
             {
@@ -121,6 +151,21 @@ function Visualize() {
               "date": "2020/11/26",
               "whatIDone": "예제 문제 2개 코드로 구현하기",
               "value": 60
+            },
+            {
+              "date": "2020/12/06",
+              "whatIDone": "예제 문제 2개 코드로 구현하기",
+              "value": 80
+            },
+            {
+              "date": "2020/12/16",
+              "whatIDone": "예제 문제 2개 코드로 구현하기",
+              "value": 20
+            },
+            {
+              "date": "2020/12/26",
+              "whatIDone": "예제 문제 2개 코드로 구현하기",
+              "value": 100
             }
           ]
         }
@@ -137,11 +182,12 @@ function Visualize() {
     const tmpGData = [];
     const tmpGroupColor = [];
 
-    let minStartDate = Number.MAX_VALUE;
+    let minStartDate = "2022/10/10";
     let maxEndDate = 0;
 
     await dbData.goals.map(async (goal, index) => {
       await tmpData.push({ // 기본 data 넣기
+        "goalId" : goal.goalId,
         "title" : goal.title,
         "startDate" : goal.startDate,
         "endDate" : goal.endDate,
@@ -170,10 +216,10 @@ function Visualize() {
         });
       });
       // group 그래프에 넣기 위한 startDate, endDate
-      if(minStartDate>goal.startDate){
+      if(Date.parse(minStartDate)>Date.parse(goal.startDate)){
         minStartDate = goal.startDate;
       }
-      if(maxEndDate<goal.endDate){
+      if(Date.parse(maxEndDate)<Date.parse(goal.endDate)){
         maxEndDate = goal.endDate;
       }
 
@@ -196,7 +242,7 @@ function Visualize() {
     await setGraphDate(maxEndDate);
   }
 
-  function selectGraphDate(timeString) {
+  function selectGraphDate(_, timeString) {
     // datepicker에서 고른 날짜를 전체 기간의 %로 환산하여 표현 
     // => 아래의 slider를 표현하기 위함
 
@@ -219,10 +265,10 @@ function Visualize() {
           <div className="select-date-con">
             <div className="date-title"><CalendarOutlined /><p>날짜 선택</p></div>
             <div className="date-select">
-              {graphDate !== undefined ? <DatePicker defaultValue={moment(graphDate)} onChange={selectGraphDate} /> : "로딩중입니다..."}
+              {graphDate !== "" ? <DatePicker defaultValue={moment(graphDate)} onChange={selectGraphDate} /> : "로딩중입니다..."}
             </div>
           </div>    
-          {graphDate!==undefined?
+          {graphDate!==""?
             <Graph
               dataSet={dataSet}
               dailySet = {dailySet}

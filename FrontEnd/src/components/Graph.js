@@ -11,13 +11,13 @@ export default function Graph(props){
     const range = 0.8; // 나중에 비율 조정
     const {dataSet, dailySet, groupDataSet, graphDate} = props;
     const [selectedGoalIdx, setSelGoalIdx] = useState(-1);
+    const [selectedDate, setSelDate] = useState(graphDate);
     const [graphRate, setGraphRate] = useState(1);
     const [visible, setVisible] = useState(false);
 
     const operations = <Button onClick={gotoGoalSet}>Add Goal</Button>;
 
     const slider = useRef(null);
-
     useEffect(()=>{
         function calGraphRate(){
             // datepicker에서 고른 날짜를 전체 기간의 %로 환산하여 표현 
@@ -55,7 +55,7 @@ export default function Graph(props){
         color: dataSet[idx].graphColor, // 선 색깔 지정
         xAxis: {
           type: 'dateTime', // x축 표시 형식
-          tickCount: 10, // 몇 조각으로 나눌 건지
+          //tickCount: 10, // 몇 조각으로 나눌 건지
         },
         yAxis: { formatter: (v) => `${v}%` }, // y축 표시 형식
         interactions: [
@@ -67,10 +67,6 @@ export default function Graph(props){
             },
           },
         ],
-        label: {
-          visible: true,
-          type: 'line',
-        },
         point: {
           visible: true,
           size: 3,
@@ -106,6 +102,7 @@ export default function Graph(props){
           interactions: [
             {
               type: 'slider',
+              visible: false,
               cfg: {
                 start: graphRate - range / 2,
                 end: graphRate + range / 2,
@@ -185,58 +182,55 @@ export default function Graph(props){
         <React.Fragment>
             <Tabs centered defaultActiveKey="-1" className="graph-tab-con" tabBarExtraContent={operations} onChange={tabChanged}>
                 <TabPane tab="group" key={-1}>
+                  <div id="group" className="visual-graph-con">
                     {renderGroupGraph()}
+                  </div>
                 </TabPane>
                 {
-                Object.keys(dataSet).length > 0 ?
-                    Object.keys(dataSet).map((index) =>
-                    <TabPane tab={dataSet[index].title} key={index}>
-                        <div id={dataSet[index].title === "group" ? "group" : ""} className="visual-graph-con">
-                          {renderGraph(index)}
-                          {!visible ?
-                              <Tooltip placement="topLeft" title="데일리 체크">
-                              <span className="dailycheck-btn left" onClick={showDrawer}>{getIcon("leftOutlined")}</span>
-                              </Tooltip> : undefined
-                          }
-                          {visible ?
-                              <div className="dailycheck-drawer">
-                                  <div className="dailycheck-header">
-                                  <span className="dailycheck-btn right" onClick={closeDrawer}>{getIcon("rightOutlined")}</span>
-                                  </div>
-                                  <div className="dailycheck-body">
-                                      <div className="dailycheck-icon-con">
-                                          <span className="dailycheck-icon" onClick={prev}><ArrowLeftOutlined /></span>
-                                          <span className="dailycheck-icon" onClick={next}><ArrowRightOutlined /></span>
-                                      </div>
-                                      <Carousel ref={slider} dots={false}>
-                                          {
-                                              console.dir(dailySet[selectedGoalIdx])
-                                          }
-                                      </Carousel>
-                                  </div>
-                              </div>
-                              : undefined
-                          }
-                        </div>
-                        <div className="bottom-graph-con">
-                        <div className="visual-sns-con">
-                            <button className="visual-sns-btn"><img src="/img/internet.png" /></button>
-                            <button className="visual-sns-btn"><img src="/img/tweet.png" /></button>
-                            <button className="visual-sns-btn"><img src="/img/facebook.png" /></button>
-                            <button className="visual-sns-btn"><img src="/img/instagram.png" /></button>
-                        </div>
-                        {dataSet[index].title !== "group" ?
-                            <Tooltip placement="bottom" title="목표 수정하기">
-                            <a href={"/goalSet/"}><span className="setting-btn"><SettingFilled /></span></a>
-                            {// goalSet 뒤에 해당 goalId 붙여줘야함 => dataSet에 goalId 저장필요
+                  Object.keys(dataSet).length > 0 ? //dataSet이 들어왔으면
+                      Object.keys(dataSet).map((index) =>
+                      <TabPane tab={dataSet[index].title} key={index}>
+                          <div className="visual-graph-con">
+                            {renderGraph(index)}
+                            {!visible ?
+                                <Tooltip placement="topLeft" title="데일리 체크">
+                                  <span className="dailycheck-btn left" onClick={showDrawer}>{getIcon("leftOutlined")}</span>
+                                </Tooltip> : undefined
                             }
-                            </Tooltip>
-                            : undefined
-                        }
+                            {visible ?
+                                <div className="dailycheck-drawer">
+                                    <div className="dailycheck-header">
+                                    <span className="dailycheck-btn right" onClick={closeDrawer}>{getIcon("rightOutlined")}</span>
+                                    </div>
+                                    <div className="dailycheck-body">
+                                        <div className="dailycheck-icon-con">
+                                            <span className="dailycheck-icon" onClick={prev}><ArrowLeftOutlined /></span>
+                                            <span className="dailycheck-icon" onClick={next}><ArrowRightOutlined /></span>
+                                        </div>
+                                        <Carousel ref={slider} dots={false}>
+                                            {
+                                                console.dir(dailySet[index])
+                                            }
+                                        </Carousel>
+                                    </div>
+                                </div>
+                                : undefined
+                            }
+                          </div>
+                          <div className="bottom-graph-con">
+                          <div className="visual-sns-con">
+                              <button className="visual-sns-btn"><img src="/img/internet.png" /></button>
+                              <button className="visual-sns-btn"><img src="/img/tweet.png" /></button>
+                              <button className="visual-sns-btn"><img src="/img/facebook.png" /></button>
+                              <button className="visual-sns-btn"><img src="/img/instagram.png" /></button>
+                          </div>
+                          <Tooltip placement="bottom" title="목표 수정하기">
+                            <a href={"/goalSet/"+dataSet[index].goalId}><span className="setting-btn"><SettingFilled /></span></a>
+                          </Tooltip>
                         </div>
-                    </TabPane>
-                    )
-                    : "로딩중입니다..."
+                      </TabPane>
+                      )
+                      : "로딩중입니다..."
                 }
           </Tabs>
         </React.Fragment>
