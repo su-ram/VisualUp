@@ -242,7 +242,7 @@ function Visualize() {
     await setGraphDate(maxEndDate);
   }
 
-  function selectGraphDate(_, timeString) {
+  async function selectGraphDate(_, timeString) {
     // datepicker에서 고른 날짜를 전체 기간의 %로 환산하여 표현 
     // => 아래의 slider를 표현하기 위함
 
@@ -251,8 +251,9 @@ function Visualize() {
     }
 
     const selDate = timeString;
-    setGraphDate(selDate);
+    await setGraphDate(selDate);
   }
+  
 
   return (
     <Col>
@@ -267,13 +268,14 @@ function Visualize() {
             <div className="date-select">
               {graphDate !== "" ? <DatePicker defaultValue={moment(graphDate)} onChange={selectGraphDate} /> : "로딩중입니다..."}
             </div>
-          </div>    
+          </div> 
           {graphDate!==""?
             <Graph
               dataSet={dataSet}
               dailySet = {dailySet}
               groupDataSet = {groupDataSet}
               graphDate = {graphDate}
+              setGraphDate = {setGraphDate}
             />
             :undefined
           } 
