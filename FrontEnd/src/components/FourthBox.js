@@ -29,7 +29,7 @@ function FourthBox(props){
                  <FacebookOutlined style ={{fontSize : '18px', color : '#5C411D', padding:'3px'}}/>
                 </a>
                 <a href = {props.blog} >
-                    <span className="internet" >{getIcon("internet")}</span>
+                    <span className="internet" >{getIcon("internet", {width: '24px'},{padding: '0 0 7px 3px'})}</span>
                 </a>
 
                 {/* <GithubOutlined style ={{fontSize : '18px', color : '#5C411D', padding:'3px'}}/> */}
