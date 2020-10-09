@@ -22,7 +22,7 @@ function HashTag(){
     }
 
     return(
-        <div>
+        <div className="page-set">
             <div className="page-title-con">
                 <div className="page-title">
                     <form onSubmit={onSubmit}>
