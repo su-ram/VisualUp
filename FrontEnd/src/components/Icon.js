@@ -1,4 +1,5 @@
-import React, {Fragment} from 'react';
+import React from 'react';
+import "./Icon.css"
 
 const icons = {
     "rightOutlined" : "/img/rightOutlined.png",
@@ -6,10 +7,10 @@ const icons = {
     "internet" : "/img/internet.png"
 }
 
-export function getIcon(type){
+export function getIcon(type, style, style2){
     return (
-        <React.Fragment>
-            <img src = {icons[type]}/>
-        </React.Fragment>
+        <span className="img-con" style={style}>
+            <img src = {icons[type]} style={style2}/>
+        </span>
     );
 }
