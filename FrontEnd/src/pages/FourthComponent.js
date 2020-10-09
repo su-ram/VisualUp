@@ -9,6 +9,7 @@ import "./FourthComponent.css"
 import HE from "../../src/img/HE.jpg";
 import EH from "../../src/img/EH.jpg";
 import SJ from "../../src/img/SJ.jpg";
+import YJ from "../../src/img/YJ.jpg";
 import MH from "../../src/img/MH.jpg";
 import JM from "../../src/img/JM.jpg";
 
@@ -30,7 +31,7 @@ function FourthComponent() {
             </div>
 
             <FourthBox
-              // img = {ImgFace}
+              img = {YJ}
               name="홍영주"
               part="기획"
               insta = "https://www.instagram.com/0ju_o/"
