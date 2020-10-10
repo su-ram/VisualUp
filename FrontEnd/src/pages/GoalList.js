@@ -1,8 +1,8 @@
-import React, {useEffect} from 'react';
+import React,{useState, useEffect} from 'react';
 import { Menu, Card, Col, Row, Pagination, Dropdown } from 'antd';
 import { MoreOutlined, ArrowRightOutlined } from '@ant-design/icons';
 import styles from './GoalList.module.css';
-
+import axios from 'axios'
 const menu = (
   <Menu>
     <Menu.Item>
@@ -13,9 +13,53 @@ const menu = (
     </Menu.Item>
   </Menu>
 );
-
+const api= "http://visualup.koreacentral.cloudapp.azure.com:8080 /goal"
 
 function GoalList(){
+   const [goal, setGoal]= useState([]);
+   const [error, setError] = useState(null);
+   const [isLoaded, setIsLoaded] = useState(false);
+   useEffect(()=>{
+   fetch(api)
+      .then(res => res.json())
+      .then(
+        (result) => {
+          setIsLoaded(true);
+          setGoal(result.goal);
+        },(error) => {
+          setIsLoaded(true);
+          setError(error);
+        }
+      )
+  }, [])  
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  } else if (!isLoaded) {
+    return <div>Loading...</div>;
+  } else {
+    return (
+      <ul>
+        {goal.map(goal => (
+          <li key={goal.title}>
+            {goal.title}
+            {goal.termgoal}
+            {goal.open}
+            {goal.startDate}
+            {goal.endDate}
+            {goal.term}
+            {goal.hashtags}
+            {goal.template}
+            {goal.graphColor}
+          </li>
+        ))}
+      </ul>
+    );
+  }
+   
+   
+
+
+
     return(
       <div>
             <h1 className={styles.mainTitle}>홍미주 님의 목표 리스트</h1>

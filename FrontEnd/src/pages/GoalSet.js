@@ -38,24 +38,28 @@ function GoalSet(){
         { label: '선 그래프', value: '선 그래프' },
         { label: '막대 그래프', value: '막대 그래프' },
       ];
-    
       const api= "http://visualup.koreacentral.cloudapp.azure.com:8080 /goal"
       const onSubmit = async() => {
-          const obj={
-        goal: goal,
+        try{
+        const status= {
+        title: goal,
         date:date,
-        period:period,
-        periodgoal:periodgoal,
-        hashtag1:hashtag1,
-        hashtag2:hashtag2,
-        hashtag3:hashtag3,
-        hashtag4:hashtag4,
-        graph:graph,
-        checked:false
+        term:period,
+        //startdate, enddate:period,, graphcolor추가해야함, hashtag 묶어야지
+        termgoal:periodgoal,
+        hashtags:hashtag1,
+        template:graph,
+        open:false
       };
-      //const { data: post } = await axios.post(api, obj);
-      console.log(obj);
+      //const { data: post } = await axios.post(api, status);
+      console.log(status);
+      if (status === 201) {
+        alert("목표가 등록되었습니다.");
+      }} catch (e) {
+        alert("userid가 없습니다.");
+      } 
     }
+    
 
     return(
         <div>
