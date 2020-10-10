@@ -75,3 +75,10 @@
     font-weight: bold;
     margin-top: 5px;
 }
+.input{
+    height: 30px;
+    width: 100%;
+    background-color: white;
+    border-color: #5C411D;
+    font-weight: 500;
+}
