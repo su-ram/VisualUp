@@ -22,9 +22,7 @@ function GoalSet(){
 
     const onChangegoal = e => setgoal(e.target.value);
     const onChangedate = e => setdate(e.target.value);
-    function onDateChange(value) {
-        console.log('changed', value);
-      }
+    const onDateChange = e => setperiod(e.target.value);
     const onChangeperiodgoal = e => setperiodgoal(e.target.value);
     const onChangehashtag1 = e => sethashtag1(e.target.value);
     const onChangehashtag2 = e => sethashtag2(e.target.value);
@@ -55,8 +53,8 @@ function GoalSet(){
         graph:graph,
         checked:false
       };
-      const { data: post } = await axios.post(api, obj);
-      console.log(post);
+      //const { data: post } = await axios.post(api, obj);
+      console.log(obj);
     }
 
     return(
@@ -65,28 +63,22 @@ function GoalSet(){
             <Col align="middle" className={styles.sub}><p className={styles.subSub}>본인이 달성할 목표를 상세하게 적어주세요.</p></Col>
         <Row justify="center" >
             <Col span={9} offset={3}>
-                <Col span={13}>
+                <Col span={12}>
                 <p className={styles.name}><EditOutlined />목표</p>
                 <br />
                 <input className={styles.input} placeholder="ex)코딩 테스트 풀기" onChange={onChangegoal} value={goal}/>
-                </Col>
                 <br />
                 <br />
-                <Col span={15}>
                 <p className={styles.name}><CalendarOutlined />날짜 선택</p>
                 <br />
                 <br />
                 <DatePicker.RangePicker  onChange={onChangedate} value={date} style={{ width: '100%' }} />
-                </Col>
                 <br />
-                <Col span={13}>
                 <p className={styles.name}><BarsOutlined />주기
                 <br />
-                <input className={styles.input} value={period} min={1} max={10} defaultValue={3} onChange={onDateChange} />
+                <input className={styles.input} value={period} placeholder="ex)3" onChange={onDateChange} />
                 일마다
                 </p>
-                    </Col>
-                    <Col span={13}>
                 <p className={styles.name}><EditOutlined />주기별 목표</p>
                 <br />
                 <input className={styles.input} placeholder="ex)코딩 테스트 문제 5개 풀기" onChange={onChangeperiodgoal} value={periodgoal}/>
