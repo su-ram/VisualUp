@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Col, Row, Input } from 'antd';
+import { Col, Row } from 'antd';
+import { SearchOutlined } from '@ant-design/icons';
 import "./HashTag.css";
 
 function HashTag(){
@@ -26,7 +27,8 @@ function HashTag(){
             <div className="hashtag-page-title-con">
                 <div className="hashtag-page-title">
                     <form onSubmit={onSubmit}>
-                        <input className="hash-submit" type="submit" value="#" />
+                        <div className="hash-top">
+                        <SearchOutlined className="hash-icon"/>
                         <input
                             className="hash-input"
                             type="text"
@@ -34,6 +36,8 @@ function HashTag(){
                             placeholder="해시태그 검색"
                             onChange={onChange}
                         />
+                        <input className="hash-submit" type="submit" value="검색" />
+                        </div>
                     </form>
                 </div><br/>
                 <div className="page-subtitle"><h5>{hashTag} 검색결과입니다.</h5></div>
