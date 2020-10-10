@@ -1,0 +1,81 @@
+.slick-slide{
+    padding: 0 20px;
+}
+
+.dailycheck-con{
+    width: 80%;
+    margin: auto;
+}
+
+.dailycheck-drawer{
+    animation: growDrawer forwards; /*1s ease-in-out 0s 1 forwards;*/
+    flex-basis: auto;
+    flex-grow: 0;
+    flex-shrink: 0;
+    border-left: 1px solid #5D4215;
+    background-color: white;
+    z-index: 1;
+    position: relative;
+}
+@keyframes growDrawer{
+    from{
+        width:0%;
+    }
+    to{
+        width: 50%;
+    }
+}
+
+.dailycheck-contents-con{
+    display: flex;
+    flex-direction: column;
+    color: #5D4215;
+    font-size: 1rem;
+}
+.dailycheck-contents-con p{
+    margin: 0;
+}
+.check-db-data{
+    font-size : 1.1rem;
+    color: black;
+}
+.dailycheck-term>.check-db-data{
+    margin: 0 10px;
+}
+.dailycheck-term-goal>.check-db-data{
+    margin-left: 10px;
+}
+.dailycheck-contents-con div{
+    display: flex;
+    padding-bottom: 5px;
+}
+.dailycheck-contents-con>div{
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+.dailycheck-underborder{
+    border-bottom: 1px solid #F0C379;
+}
+.dailycheck-title>p{
+    font-size: 1.5rem;
+}
+.dailycheck-what-i-done{
+    flex-direction: column;
+}
+.what-i-done-box>textarea{
+    border: 1px solid rgb(255, 229, 178);
+}
+
+.star{
+    -webkit-text-stroke: 1px solid #5D4215;
+}
+
+.ant-input-disabled{
+    color: black!important;
+}
+.dailycheck-hashtags{
+    justify-content: flex-end!important;
+}
+.dailycheck-hashtags>p{
+    font-size: 14px;
+}

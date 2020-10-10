@@ -34,11 +34,11 @@ function Visualize() {
         {
           "goalId": "goal123",
           "title": "python",
-          "startDate": "2020-10-22",
-          "endDate": "2020-12-31",
+          "startDate": "2020/10/22",
+          "endDate": "2020/12/31",
           "termGoal": "예제 문제 1개씩 코드로 구현하기",
           "term": 5,
-          "hastags": "coding, commit, python, os",
+          "hashtags": "coding, commit, python, os",
           "open": true,
           "template": "Line",
           "graphColor": "#FF6B29",
@@ -118,11 +118,11 @@ function Visualize() {
         ,{
           "goalId": "goal124",
           "title": "nodejs",
-          "startDate": "2020-10-07",
-          "endDate": "2020-12-31",
+          "startDate": "2020/10/07",
+          "endDate": "2020/12/31",
           "termGoal": "토이 프로젝트 1개씩",
           "term": 10,
-          "hastags": "coding, commit, js, web",
+          "hashtags": "coding, commit, js, web",
           "open": true,
           "template": "Line",
           "graphColor": "#4EE23E",
@@ -173,6 +173,44 @@ function Visualize() {
               "value": 100
             }
           ]
+        },{
+          "goalId": "goal125",
+          "title": "typescript",
+          "startDate": "2020/10/02",
+          "endDate": "2020/12/31",
+          "termGoal": "1 chapter씩",
+          "term": 2,
+          "hashtags": "coding, commit, js, web, typescript",
+          "open": true,
+          "template": "Line",
+          "graphColor": "#41A0FF",
+          "dailys": [
+            {
+              "date": "2020/10/02",
+              "whatIDone": "Chapter 1 clear",
+              "value": 100
+            },
+            {
+              "date": "2020/10/04",
+              "whatIDone": "Chapter 2 clear",
+              "value": 20
+            },
+            {
+              "date": "2020/10/06",
+              "whatIDone": "Chapter 3 clear",
+              "value": 80
+            },
+            {
+              "date": "2020/10/08",
+              "whatIDone": "Chapter 4 clear",
+              "value": 20
+            },
+            {
+              "date": "2020/10/10",
+              "whatIDone": "예제 문제 2개 코드로 구현하기",
+              "value": 0
+            }
+          ]
         }
       ]
     };
@@ -210,8 +248,7 @@ function Visualize() {
       });
 
       await goal.dailys.map((daily, index2)=>{ // 기본 data에 그래프 data 넣기
-        console.log(index, index2);
-        tmpData[index].dataSet.push({ // 개별 그래프 data
+        tmpData[index+1].dataSet.push({ // 개별 그래프 data
           "date": daily.date,
           "type": goal.title,
           "value" : daily.value
@@ -234,8 +271,6 @@ function Visualize() {
         maxEndDate = goal.endDate;
       }
     }
-
-    await console.log(minStartDate, maxEndDate);
     
     // 기본 data의 앞부분에 그룹 data 넣기
     await tmpData.splice(0,0,{

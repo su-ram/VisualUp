@@ -19,8 +19,6 @@ export default function Graph(props){
 
     useEffect(()=>{
         function calGraphIdx(){
-          if(selectedGoalIdx===0) // group은 dailyset없어서 idx 필요없음
-            return;
 
           let diff = Number.MAX_VALUE;
           let idx = dailySet[selectedGoalIdx].dailys.length-1; // 제일 마지막 daily 가리키기
@@ -35,7 +33,8 @@ export default function Graph(props){
           setSelDateIdx(idx);
         }
 
-        calGraphIdx();
+        if(Number(selectedGoalIdx)!==0) // group은 dailyset없어서 idx 필요없음
+          calGraphIdx();
     },[graphDate, selectedGoalIdx]);
 
     useEffect(()=>{ // 결정된 dailySet idx로 이동
@@ -44,6 +43,7 @@ export default function Graph(props){
 
     function tabChanged(key){
         setSelGoalIdx(key);
+        setVisible(false);
     }
 
     function closeDrawer() {
@@ -76,10 +76,26 @@ export default function Graph(props){
     function getSNSCon(){
       return(
         <div className="visual-sns-con">
-          <button className="visual-sns-btn"><img src="/img/internet.png" /></button>
-          <button className="visual-sns-btn"><img src="/img/tweet.png" /></button>
-          <button className="visual-sns-btn"><img src="/img/facebook.png" /></button>
-          <button className="visual-sns-btn"><img src="/img/instagram.png" /></button>
+          {/*
+          <Tooltip placement="top" title="인터넷에 공유">
+            <button className="visual-sns-btn"><img src="/img/internet.png" /></button>
+          </Tooltip>
+          */}
+          <Tooltip placement="top" title="트위터에 공유">
+            <div>
+              <a class="twitter-share-button"
+                href="http://www.twitter.com/share?url=https://www.notion.so/invite/338103323a4685fd95e7cfb2589a3ec8483e818f">
+                Tweet</a>
+            </div>
+          </Tooltip>
+          <Tooltip placement="top" title="페이스북에 공유">
+            <div class="fb-share-button" data-href="https://www.notion.so/invite/338103323a4685fd95e7cfb2589a3ec8483e818f" data-layout="button" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Facebook</a></div>
+          </Tooltip>
+          {/*
+          <Tooltip placement="top" title="인스타그램에 공유">
+            <button className="visual-sns-btn"><img src="/img/instagram.png" /></button>
+          </Tooltip>
+          */}
         </div>
       );
     }
@@ -140,7 +156,9 @@ export default function Graph(props){
               visible? // 보이게 설정되어있는지
                 <div className="dailycheck-drawer">
                   <div className="dailycheck-header">
-                  <span className="dailycheck-btn right" onClick={closeDrawer}>{getIcon("rightOutlined")}</span>
+                  <Tooltip placement="top" title="데일리 체크 닫기">
+                    <span className="dailycheck-btn right" onClick={closeDrawer}>{getIcon("rightOutlined")}</span>
+                  </Tooltip>
                   </div>
                   <div className="dailycheck-body">
                       <div className="dailycheck-icon-con">
@@ -157,12 +175,12 @@ export default function Graph(props){
                       </div>
                       {
                         index===selectedGoalIdx? // carousel이 하나의 ref만 가능해서 이렇게 구현
-                        <DailyCheck
-                          carousel = {carousel}
-                          dailySet = {dailySet}
-                          selectedGoalIdx = {selectedGoalIdx}
-                          goTo = {goTo}
-                        />:undefined
+                          <DailyCheck
+                            carousel = {carousel}
+                            dailySet = {dailySet}
+                            selectedGoalIdx = {selectedGoalIdx}
+                            goTo = {goTo}
+                          />:undefined
                       }
                   </div>
                 </div>
