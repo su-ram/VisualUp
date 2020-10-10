@@ -37,7 +37,8 @@ function GoalList(){
   } else if (!isLoaded) {
     return <div>Loading...</div>;
   } else {
-    return (
+    return(
+      <div>
       <ul>
         {goal.map(goal => (
           <li key={goal.title}>
@@ -53,14 +54,6 @@ function GoalList(){
           </li>
         ))}
       </ul>
-    );
-  }
-   
-   
-
-
-
-    return(
       <div>
             <h1 className={styles.mainTitle}>홍미주 님의 목표 리스트</h1>
             <Col align="middle" className={styles.sub}><p className={styles.subSub}>본인이 계획한 모든 목표들을 한 눈에 볼 수 있어요</p></Col>
@@ -119,7 +112,8 @@ function GoalList(){
             </ul>
             <br/><br/>
             <button type="button" className={styles.btn}><p className={styles.font}>목표 등록하러 가기 <ArrowRightOutlined style={{ fontSize: '25px'}}/> </p> </button>
+      </div>
       </div>)
 }
-
+}
 export default GoalList;
