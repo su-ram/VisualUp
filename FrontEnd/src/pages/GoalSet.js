@@ -47,7 +47,7 @@ function GoalSet(){
         term:period,
         //startdate, enddate:period,, graphcolor추가해야함, hashtag 묶어야지
         termgoal:periodgoal,
-        hashtags:hashtag1+","+hashtag2+","+hashtag3+","+hashtag4,
+        hashtags:hashtag1+", "+hashtag2+", "+hashtag3+", "+hashtag4,
         template:graph,
         open:false
       };
