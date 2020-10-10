@@ -1,4 +1,3 @@
-  
 import React, {useState} from 'react';
 import { Input, Col, Row, Checkbox, InputNumber, DatePicker, Switch } from 'antd';
 import "antd/dist/antd.css";
