@@ -1,8 +1,8 @@
-import React, {useEffect} from 'react';
+import React,{useState, useEffect} from 'react';
 import { Menu, Card, Col, Row, Pagination, Dropdown } from 'antd';
 import { MoreOutlined, ArrowRightOutlined } from '@ant-design/icons';
 import styles from './GoalList.module.css';
-
+import axios from 'axios'
 const menu = (
   <Menu>
     <Menu.Item>
@@ -13,11 +13,48 @@ const menu = (
     </Menu.Item>
   </Menu>
 );
-
+const api= "http://visualup.koreacentral.cloudapp.azure.com:8080 /goal"
 
 function GoalList(){
+   const [goal, setGoal]= useState([]);
+   const [error, setError] = useState(null);
+   const [isLoaded, setIsLoaded] = useState(false);
+   useEffect(()=>{
+   fetch(api)
+      .then(res => res.json())
+      .then(
+        (result) => {
+          setIsLoaded(true);
+          setGoal(result.goal);
+        },(error) => {
+          setIsLoaded(true);
+          setError(error);
+        }
+      )
+  }, [])  
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  } else if (!isLoaded) {
+    return <div>Loading...</div>;
+  } else {
     return(
-      <div className ="page-set">
+      <div>
+      <ul>
+        {goal.map(goal => (
+          <li key={goal.title}>
+            {goal.title}
+            {goal.termgoal}
+            {goal.open}
+            {goal.startDate}
+            {goal.endDate}
+            {goal.term}
+            {goal.hashtags}
+            {goal.template}
+            {goal.graphColor}
+          </li>
+        ))}
+      </ul>
+      <div>
             <h1 className={styles.mainTitle}>홍미주 님의 목표 리스트</h1>
             <Col align="middle" className={styles.sub}><p className={styles.subSub}>본인이 계획한 모든 목표들을 한 눈에 볼 수 있어요</p></Col>
             <Row align="middle" className={styles.body} justify="center">
@@ -75,7 +112,8 @@ function GoalList(){
             </ul>
             <br/><br/>
             <button type="button" className={styles.btn}><p className={styles.font}>목표 등록하러 가기 <ArrowRightOutlined style={{ fontSize: '25px'}}/> </p> </button>
+      </div>
       </div>)
 }
-
+}
 export default GoalList;
