@@ -23,67 +23,17 @@
     height: 350px!important;
 }
 
-
-.dailycheck-drawer{
-    animation: growDrawer 1s ease-in-out 0s 1 forwards;
-    flex-basis: auto;
-    flex-grow: 0;
-    flex-shrink: 0;
-    border-left: 1px solid #5D4215;
-    background-color: white;
-    z-index: 1;
-    position: relative;
-}
-@keyframes growDrawer{
-    from{
-        width:0%;
-    }
-    to{
-        width: 50%;
-    }
-}
-
-.dailycheck-btn{
-    align-items: center;
-    font-size: 2rem;
-    cursor: pointer;
-    color: #5C411D;
-    position: absolute;
-    top: 40%;
-}
 .visual-graph-con .left{
     right: 0;
 }
-.dailycheck-drawer .right{
-    left: -4%;
-    background-color: white;
-}
-.dailycheck-icon-con{
-    display:flex;
-    justify-content: space-between;
-    margin: 0 5px;
-}
-.dailycheck-icon{
-    cursor: pointer;
-}
-.dailycheck-icon>span{
-    font-size: 1.3rem;
-    color : #5C411D;
-    padding: 5px;
-    border-radius: 10px;
-    border: 1px solid #5C411D;
-}
-
-
-.bottom-graph-con{
-    margin-top: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
 
 .visual-sns-con{
-    display: inline-block;
+    display: flex;
+    align-items: center;
+    height: 20px;
+}
+.visual-sns-con>div{
+    margin-right: 10px;
 }
 .visual-sns-btn{
     width: 35px;
@@ -113,4 +63,43 @@
 }
 #not-visible>*{
     display: none;
+}
+.dailycheck-btn{
+    align-items: center;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #5C411D;
+    position: absolute;
+    top: 40%;
+}
+
+.dailycheck-drawer .right{
+    left: -4%;
+    background-color: white;
+}
+.dailycheck-icon-con{
+    position: absolute;
+    top: 10%;
+    display: flex;
+    justify-content: space-between;
+    width: 90%!important;
+    z-index: 1;
+    margin: 0 5%;
+}
+.dailycheck-icon{
+    cursor: pointer;
+}
+.dailycheck-icon>span{
+    font-size: 1.3rem;
+    color : #5C411D;
+    padding: 5px;
+    border-radius: 10px;
+    border: 1px solid #5C411D;
+}
+
+.bottom-graph-con{
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
