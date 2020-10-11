@@ -79,3 +79,15 @@
 .dailycheck-hashtags>p{
     font-size: 14px;
 }
+
+/* stars */
+.star_on, .star_off{
+    font-size: 1.5rem;
+    margin: 0 5px;
+}
+.star_on{
+    color: #ffb100!important;
+}
+.dailycheck-stars .today{
+    cursor: pointer;
+}

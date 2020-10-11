@@ -83,13 +83,13 @@ export default function Graph(props){
           */}
           <Tooltip placement="top" title="트위터에 공유">
             <div>
-              <a class="twitter-share-button"
+              <a className="twitter-share-button"
                 href="http://www.twitter.com/share?url=https://www.notion.so/invite/338103323a4685fd95e7cfb2589a3ec8483e818f">
                 Tweet</a>
             </div>
           </Tooltip>
           <Tooltip placement="top" title="페이스북에 공유">
-            <div class="fb-share-button" data-href="https://www.notion.so/invite/338103323a4685fd95e7cfb2589a3ec8483e818f" data-layout="button" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Facebook</a></div>
+            <div className="fb-share-button" data-href="https://www.notion.so/invite/338103323a4685fd95e7cfb2589a3ec8483e818f" data-layout="button" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" className="fb-xfbml-parse-ignore">Facebook</a></div>
           </Tooltip>
           {/*
           <Tooltip placement="top" title="인스타그램에 공유">
@@ -180,6 +180,7 @@ export default function Graph(props){
                             dailySet = {dailySet}
                             selectedGoalIdx = {selectedGoalIdx}
                             goTo = {goTo}
+                            goalIdx = {index}
                           />:undefined
                       }
                   </div>
