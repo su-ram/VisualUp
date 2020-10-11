@@ -2,22 +2,37 @@ import React, { useState, useEffect } from 'react';
 import { Col, Row } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import "./HashTag.css";
-import axios from 'axios'
+import axios from 'axios';
     
 function HashTag(){
-
-    const [data, setData] = useState({ hits: [] });
+    //post가 data임
+    const [data, setData] = useState([]);
     const [hashtag, setHashTag] = useState("");
     const [search, setSearch] = useState("");
 
     useEffect(() => {
-      const fetchData = async () => {
-        const result = await axios(
+      const fetchPosts = async () => {
+        const res = await axios(
           `http://visualup.koreacentral.cloudapp.azure.com:8080/goal/hashtag?name=${search}`
-        );
-        setData(result.data);
+        ).then((res)=>{
+            console.dir(res);
+            setData(res.data);
+          })
+          .catch((err)=>{ 
+            console.dir(err);
+            const status = err?.response?.status;
+            if (status === undefined) {
+              console.dir("데이터를 불러오던 중 예기치 못한 예외가 발생하였습니다.\n" + JSON.stringify(err));
+            }
+            else if (status === 400) {
+              console.dir("400에러");
+            }
+            else if (status === 500) {
+              console.dir("내부 서버 오류입니다. 잠시만 기다려주세요.");
+            }
+          });
       };
-      fetchData();
+      fetchPosts();
     }, [search]);
 
     console.log(data);
@@ -40,9 +55,10 @@ function HashTag(){
                 </div><br/>
                 <div className="page-subtitle"><h5>{hashtag} 검색결과입니다.</h5></div>
             </div><br/><br/>
-           
+
             <Row align="middle" className="hash-body">
                 <Col align="middle" className="hash-cont">
+                
                 </Col>
                 <Col align="middle" className="hash-cont">
                     <p className="hash-userName">name</p>
