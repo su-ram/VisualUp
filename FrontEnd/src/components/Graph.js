@@ -9,7 +9,7 @@ import "./Graph.css";
 const { TabPane } = Tabs;
 
 export default function Graph(props){
-    const range = 0.8; // 나중에 비율 조정
+    const range = 0.6; // 나중에 비율 조정
 
     const {dataSet, dailySet, graphDate, graphRate, setGraphDate, selectedGoalIdx, setSelGoalIdx} = props;
     const [selDateIdx, setSelDateIdx] = useState(-1);
@@ -18,7 +18,7 @@ export default function Graph(props){
     const carousel = useRef(null);
 
     useEffect(()=>{
-        function calGraphIdx(){
+        function calDailyIdx(){
 
           let diff = Number.MAX_VALUE;
           let idx = dailySet[selectedGoalIdx].dailys.length-1; // 제일 마지막 daily 가리키기
@@ -34,7 +34,9 @@ export default function Graph(props){
         }
 
         if(Number(selectedGoalIdx)!==0) // group은 dailyset없어서 idx 필요없음
-          calGraphIdx();
+          calDailyIdx();
+
+        // tab 변경 시 endDate가 같아도, daily index는 갱신되어야하기 떄문에, selectedGoalIdx 변경도 같이 받기
     },[graphDate, selectedGoalIdx]);
 
     useEffect(()=>{ // 결정된 dailySet idx로 이동
@@ -102,6 +104,19 @@ export default function Graph(props){
 
     function getConfig(idx) {
       const data = dataSet[idx].dataSet;
+
+      let start; let end;
+      if(graphRate<=(range/2)){
+        start = 0;
+        end = range;
+      }else if(graphRate>=(1-range/2)){
+        start = 1-range;
+        end = 1;
+      }else{
+        start = (graphRate-(range/2)).toFixed(2);
+        end = (graphRate+(range/2)).toFixed(2);
+      }
+
       const config = {
         data, // 이름이 무조건 data여야함
         xField: 'date', // xfield에 적용할 변수
@@ -118,8 +133,8 @@ export default function Graph(props){
           {
             type: 'slider',
             cfg: {
-              start: graphRate - range / 2,
-              end: graphRate + range / 2,
+              start: start,
+              end: end,
             },
           },
         ],
@@ -128,7 +143,7 @@ export default function Graph(props){
           size: 3,
           shape: 'circle',
           style: {
-            fill: 'transparent',
+            fill: '#5D4215',
             stroke: 'white',
             lineWidth: 2,
           },
@@ -179,6 +194,7 @@ export default function Graph(props){
                             carousel = {carousel}
                             dailySet = {dailySet}
                             selectedGoalIdx = {selectedGoalIdx}
+                            selDateIdx = {selDateIdx}
                             goTo = {goTo}
                             goalIdx = {index}
                           />:undefined

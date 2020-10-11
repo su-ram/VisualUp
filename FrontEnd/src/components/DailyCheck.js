@@ -17,17 +17,17 @@ const cheerUp = [
     "젊었을 때 형성된 습관이 모든 차이를 만든다.",
     "좋은 것을 포기하는 걸 두려워하지 마라.",
     "행동은 모든 성공의 기본 열쇠이다."
-];
+]; // cheerup 멘트 모음
 
 function DailyCheck(props){
-    const {carousel, dailySet, selectedGoalIdx, goTo, goalIdx} = props;
+    const {carousel, dailySet, selectedGoalIdx, selDateIdx, goTo, goalIdx} = props;
 
     useEffect(()=>{
-        goTo(dailySet[selectedGoalIdx].dailys.length-1, true);
-    },[selectedGoalIdx]);
+        goTo(selDateIdx, true);
+    },[selDateIdx]);
 
     function setStar(index, num){
-        // 별 누르면 setting
+        // 별 누르면 갯수만큼 켜지게 하기
 
         for(let i=0; i<=num; i++){
             let target = null;
@@ -63,7 +63,6 @@ function DailyCheck(props){
     }
 
     function getStars(value, date, index){
-        // 회의 후 결정 => 오늘이 아닌 날짜 수정 가능하게 할 건지
 
         let star = Math.floor(value/20);
         let starArray = [];
@@ -107,12 +106,6 @@ function DailyCheck(props){
         return (cheerUp[num]);
     }
 
-    function getDateString(date){
-        return (date.getFullYear() + "/" 
-                + (date.getMonth()+1 <= 9 ? "0" : "") + (date.getMonth()+1) + "/"
-                + (date.getDate() <= 9 ? "0" : "") + date.getDate());
-    }
-
     function isToday(date){
         const now = new Date();
         let dateStr = getDateString(now);
@@ -128,13 +121,14 @@ function DailyCheck(props){
     }
 
     function saveToDB(){
-        // DB에 저장하기
+        // goal 단위로 DB에 저장하기 => daily 단위도 가능한지 물어보기
+        // 저장 후 다시 받아오기 => 해당 goal에 대해서만! => Visaulize에서 실행
     }
 
     function getDailyCheck(data, title, term, termGoal, hashtags, index) {
         return (
             <div key={index} className="dailycheck-contents-con">
-              <div className="dailycheck-underborder dailycheck-title"><p className="check-db-data">{title}</p>{isToday(data.date)?<button onClick={saveToDB}>저장하기</button>:undefined}</div>
+              <div className="dailycheck-underborder dailycheck-title"><p className="check-db-data">{title}</p>{isToday(data.date)?<button className="save-btn" onClick={saveToDB}>저장하기</button>:undefined}</div>
               <div>
                 <div className="dailycheck-underborder dailycheck-term">주기 <p className="check-db-data">{term}</p>일 마다</div>
                 <div className="dailycheck-underborder dailycheck-term-goal">주기별 목표 : <p className="check-db-data">{termGoal}</p></div>

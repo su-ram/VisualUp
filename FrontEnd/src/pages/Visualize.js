@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { PageHeader, Graph } from '../components';
 import { Col, DatePicker } from 'antd';
 import { CalendarOutlined } from '@ant-design/icons';
-import moment, { max } from 'moment';
+import moment from 'moment';
 import "./Visualize.css";
 import axios from "axios";
 
@@ -19,21 +19,32 @@ function Visualize() {
 
   useEffect(() => {
     // 여러 데이터를 array로 받기
-    getGoalDataFromDB();
-  }, []);
+    getDataFromDB();
+  },[]);
 
   useEffect(()=>{
-    calGraphRate();
-  },[graphDate, selectedGoalIdx]);
+    // tab 클릭 시 마다 마지막 날짜로 이동
+    // 이렇게 안하면, tab 변경했을 때, 기간 제대로 설정하라는 alert가 뜸
 
-  async function getGoalDataFromDB() {
+    if(dataSet.length>0)
+      setGraphDate(dataSet[0].endDate);
+
+  },[selectedGoalIdx]);
+
+  useEffect(()=>{
+    // 날짜가 바뀌었을 때 rate 다시 계산
+
+    calGraphRate();
+  },[graphDate]);
+
+  function getDataFromDB() {
     // db에서 해당 목표 정보 받아오기
     var headers = {
       'Access-Control-Allow-Origin': '*',        
       'Accept': 'application/json',
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/x-www-form-urlencoded'
     }
-    await axios.get("visualup.koreacentral.cloudapp.azure.com:8080/graph?userId=user103", headers)
+    axios.get("visualup.koreacentral.cloudapp.azure.com:8080/graph?userId=user103", headers)
     .then((res)=>{
       console.dir(res);
     })
@@ -152,7 +163,7 @@ function Visualize() {
           "graphColor": "#4EE23E",
           "dailys": [
             {
-              "date": "2020/10/10",
+              "date": "2020/10/11",
               "whatIDone": "예제 문제 2개 코드로 구현하기",
               "value": 20
             },
@@ -197,10 +208,11 @@ function Visualize() {
               "value": 100
             }
           ]
-        },{
+        }
+        ,{
           "goalId": "goal125",
           "title": "typescript",
-          "startDate": "2020/10/02",
+          "startDate": "2020/10/01",
           "endDate": "2020/12/31",
           "termGoal": "1 chapter씩",
           "term": 2,
@@ -210,36 +222,41 @@ function Visualize() {
           "graphColor": "#41A0FF",
           "dailys": [
             {
-              "date": "2020/10/02",
+              "date": "2020/10/01",
               "whatIDone": "Chapter 1 clear",
               "value": 100
             },
             {
-              "date": "2020/10/04",
+              "date": "2020/10/03",
               "whatIDone": "Chapter 2 clear",
               "value": 20
             },
             {
-              "date": "2020/10/06",
+              "date": "2020/10/05",
               "whatIDone": "Chapter 3 clear",
               "value": 80
             },
             {
-              "date": "2020/10/08",
+              "date": "2020/10/07",
               "whatIDone": "Chapter 4 clear",
               "value": 20
             },
             {
-              "date": "2020/10/10",
+              "date": "2020/10/9",
               "whatIDone": "예제 문제 2개 코드로 구현하기",
               "value": 0
+            },
+            {
+              "date": "2020/10/11",
+              "whatIDone": "예제 문제 2개 코드로 구현하기",
+              "value": 60
             }
           ]
         }
       ]
     };
 
-    await processDataToStore(dbData);
+    const a = processDataToStore(dbData);
   }
 
   async function processDataToStore(dbData){
@@ -247,13 +264,11 @@ function Visualize() {
     const tmpDaily = [{"title":"group"}]; // 기본 data와 index를 맞추기 위해 하나 넣어두기
     const tmpGData = [];
     const tmpGroupColor = [];
+    let minStartDate = dbData.goals[0].startDate; let maxEndDate =dbData.goals[0].endDate;
 
-    let minStartDate = dbData.goals[0].startDate;
-    let maxEndDate = dbData.goals[0].endDate;
-
-    await dbData.goals.map(async (goal, index) => {
+    const a = await dbData.goals.map(async (goal, index) => {
       // db에서 불러온 data에서 필요한 정보 추출
-      await tmpData.push({ // 기본 data 넣기
+      const a = tmpData.push({ // 기본 data 넣기
         "goalId" : goal.goalId,
         "title" : goal.title,
         "startDate" : goal.startDate,
@@ -262,8 +277,7 @@ function Visualize() {
         "graphColor": goal.graphColor,
         "dataSet" : [] 
       });
-      
-      await tmpDaily.push({ // daily data 넣기
+      const b = tmpDaily.push({ // daily data 넣기
         "title" : goal.title,
         "dailys": goal.dailys,
         "termGoal" : goal.termGoal,
@@ -271,8 +285,10 @@ function Visualize() {
         "hashtags" : goal.hashtags
       });
 
-      await goal.dailys.map((daily, index2)=>{ // 기본 data에 그래프 data 넣기
-        tmpData[index+1].dataSet.push({ // 개별 그래프 data
+      await a; await b;
+
+      goal.dailys.map((daily, index2)=>{ // 기본 data에 그래프 data 넣기
+        tmpData[index].dataSet.push({ // 개별 그래프 data
           "date": daily.date,
           "type": goal.title,
           "value" : daily.value
@@ -284,20 +300,18 @@ function Visualize() {
         });
       });
       tmpGroupColor.push(goal.graphColor); // 그룹 색 지정
-    });
 
-    for(const goal in dbData.goals){
-      // group 그래프에 넣기 위한 startDate, endDate
       if(Date.parse(minStartDate)>Date.parse(goal.startDate)){
         minStartDate = goal.startDate;
       }
       if(Date.parse(maxEndDate)<Date.parse(goal.endDate)){
         maxEndDate = goal.endDate;
       }
-    }
-    
+    });
+    await a;
+
     // 기본 data의 앞부분에 그룹 data 넣기
-    await tmpData.splice(0,0,{
+    const b = tmpData.splice(0,0,{
       "title" : "group",
       "startDate" : minStartDate,
       "endDate" : maxEndDate,
@@ -305,21 +319,23 @@ function Visualize() {
       "graphColor": tmpGroupColor,
       "dataSet": tmpGData
     });
+    await b;
 
-    await setName(dbData.userName); // name setting
-    await setDataSet(tmpData); // 개별 graph setting
-    await setDailySet(tmpDaily); // daily data setting
+    setName(dbData.userName); // name setting
+    const c = setDataSet(tmpData); // 개별 graph setting
+    const d = setDailySet(tmpDaily); // daily data setting
+    await c; await d;
 
-    await setGraphDate(maxEndDate); // graph 표시할 날짜 가장 마지막 날짜로 setting
+    setGraphDate(maxEndDate); // graph 표시할 날짜 가장 마지막 날짜로 setting
   }
 
-  async function selectGraphDate(_, timeString) {
-    if (timeString === null) { // 날짜를 삭제해도 기존 날짜로 유지
+  function selectGraphDate(time, timeString) {
+    if (time === null) { // 날짜를 삭제해도 기존 날짜로 유지
       return;
     }
 
     const selDate = timeString;
-    await setGraphDate(selDate);
+    setGraphDate(selDate);
   }
 
   function calGraphRate(){
@@ -346,6 +362,11 @@ function Visualize() {
     }
 
     setGraphRate(parseFloat((selLength / length).toFixed(2))); // %로 나타내기
+  }
+
+  function getGoalDataFromDB(){
+    // goal마다 따로 받아와서 저장 => dataSet과 dailySet 업데이트 하면 됨
+    // 
   }
   
 
