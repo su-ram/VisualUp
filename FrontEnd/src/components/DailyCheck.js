@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Carousel, Input } from 'antd';
 import "./DailyCheck.css";
+import {getDateString} from "../shared/GetDateString";
 import {StarFilled } from '@ant-design/icons';
 
 const { TextArea } = Input;
