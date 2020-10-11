@@ -69,8 +69,8 @@ function Visualize() {
         {
           "goalId": "goal123",
           "title": "python",
-          "startDate": "2020/10/22",
-          "endDate": "2020/12/31",
+          "startDate": "2020-10-22",
+          "endDate": "2020-12-31",
           "termGoal": "예제 문제 1개씩 코드로 구현하기",
           "term": 5,
           "hashtags": "coding, commit, python, os",
@@ -79,72 +79,72 @@ function Visualize() {
           "graphColor": "#FF6B29",
           "dailys": [
             {
-              "date": "2020/10/22",
+              "date": "2020-10-22",
               "whatIDone": "예제 문제 2개 코드로 구현하기",
               "value": 100
             },
             {
-              "date": "2020/10/27",
+              "date": "2020-10-27",
               "whatIDone": "예제 문제 2개 코드로 구현하기",
               "value": 0
             },
             {
-              "date": "2020/11/01",
+              "date": "2020-11-01",
               "whatIDone": "예제 문제 2개 코드로 구현하기",
               "value": 40
             },
             {
-              "date": "2020/11/06",
+              "date": "2020-11-06",
               "whatIDone": "예제 문제 2개 코드로 구현하기",
               "value": 60
             },
             {
-              "date": "2020/11/11",
+              "date": "2020-11-11",
               "whatIDone": "예제 문제 2개 코드로 구현하기",
               "value": 20
             },
             {
-              "date": "2020/11/16",
+              "date": "2020-11-16",
               "whatIDone": "예제 문제 2개 코드로 구현하기",
               "value": 40
             },
             {
-              "date": "2020/11/21",
+              "date": "2020-11-21",
               "whatIDone": "예제 문제 2개 코드로 구현하기",
               "value": 20
             },
             {
-              "date": "2020/11/26",
+              "date": "2020-11-26",
               "whatIDone": "예제 문제 2개 코드로 구현하기",
               "value": 0
             },
             {
-              "date": "2020/12/01",
+              "date": "2020-12-01",
               "whatIDone": "예제 문제 2개 코드로 구현하기",
               "value": 40
             },
             {
-              "date": "2020/12/06",
+              "date": "2020-12-06",
               "whatIDone": "예제 문제 2개 코드로 구현하기",
               "value": 80
             },
             {
-              "date": "2020/12/11",
+              "date": "2020-12-11",
               "whatIDone": "예제 문제 2개 코드로 구현하기",
               "value": 100
             },
             {
-              "date": "2020/12/16",
+              "date": "2020-12-16",
               "whatIDone": "예제 문제 2개 코드로 구현하기",
               "value": 20
             },
             {
-              "date": "2020/12/21",
+              "date": "2020-12-21",
               "whatIDone": "예제 문제 2개 코드로 구현하기",
               "value": 40
             },
             {
-              "date": "2020/12/26",
+              "date": "2020-12-26",
               "whatIDone": "예제 문제 2개 코드로 구현하기",
               "value": 0
             }
@@ -153,8 +153,8 @@ function Visualize() {
         ,{
           "goalId": "goal124",
           "title": "nodejs",
-          "startDate": "2020/10/07",
-          "endDate": "2020/12/31",
+          "startDate": "2020-10-07",
+          "endDate": "2020-12-31",
           "termGoal": "토이 프로젝트 1개씩",
           "term": 10,
           "hashtags": "coding, commit, js, web",
@@ -163,47 +163,47 @@ function Visualize() {
           "graphColor": "#4EE23E",
           "dailys": [
             {
-              "date": "2020/10/11",
+              "date": "2020-10-11",
               "whatIDone": "예제 문제 2개 코드로 구현하기",
               "value": 20
             },
             {
-              "date": "2020/10/17",
+              "date": "2020-10-17",
               "whatIDone": "예제 문제 2개 코드로 구현하기",
               "value": 100
             },
             {
-              "date": "2020/10/27",
+              "date": "2020-10-27",
               "whatIDone": "예제 문제 2개 코드로 구현하기",
               "value": 60
             },
             {
-              "date": "2020/11/06",
+              "date": "2020-11-06",
               "whatIDone": "예제 문제 2개 코드로 구현하기",
               "value": 40
             },
             {
-              "date": "2020/11/16",
+              "date": "2020-11-16",
               "whatIDone": "예제 문제 2개 코드로 구현하기",
               "value": 20
             },
             {
-              "date": "2020/11/26",
+              "date": "2020-11-26",
               "whatIDone": "예제 문제 2개 코드로 구현하기",
               "value": 60
             },
             {
-              "date": "2020/12/06",
+              "date": "2020-12-06",
               "whatIDone": "예제 문제 2개 코드로 구현하기",
               "value": 80
             },
             {
-              "date": "2020/12/16",
+              "date": "2020-12-16",
               "whatIDone": "예제 문제 2개 코드로 구현하기",
               "value": 20
             },
             {
-              "date": "2020/12/26",
+              "date": "2020-12-26",
               "whatIDone": "예제 문제 2개 코드로 구현하기",
               "value": 100
             }
@@ -212,8 +212,8 @@ function Visualize() {
         ,{
           "goalId": "goal125",
           "title": "typescript",
-          "startDate": "2020/10/01",
-          "endDate": "2020/12/31",
+          "startDate": "2020-10-01",
+          "endDate": "2020-12-31",
           "termGoal": "1 chapter씩",
           "term": 2,
           "hashtags": "coding, commit, js, web, typescript",
@@ -222,32 +222,32 @@ function Visualize() {
           "graphColor": "#41A0FF",
           "dailys": [
             {
-              "date": "2020/10/01",
+              "date": "2020-10-01",
               "whatIDone": "Chapter 1 clear",
               "value": 100
             },
             {
-              "date": "2020/10/03",
+              "date": "2020-10-03",
               "whatIDone": "Chapter 2 clear",
               "value": 20
             },
             {
-              "date": "2020/10/05",
+              "date": "2020-10-05",
               "whatIDone": "Chapter 3 clear",
               "value": 80
             },
             {
-              "date": "2020/10/07",
+              "date": "2020-10-07",
               "whatIDone": "Chapter 4 clear",
               "value": 20
             },
             {
-              "date": "2020/10/9",
+              "date": "2020-10-9",
               "whatIDone": "예제 문제 2개 코드로 구현하기",
               "value": 0
             },
             {
-              "date": "2020/10/11",
+              "date": "2020-10-11",
               "whatIDone": "예제 문제 2개 코드로 구현하기",
               "value": 60
             }
@@ -271,8 +271,8 @@ function Visualize() {
       const a = tmpData.push({ // 기본 data 넣기
         "goalId" : goal.goalId,
         "title" : goal.title,
-        "startDate" : goal.startDate,
-        "endDate" : goal.endDate,
+        "startDate" : goal.dailys[0].date,
+        "endDate" : goal.dailys[goal.dailys.length-1].date,
         "template": goal.template,
         "graphColor": goal.graphColor,
         "dataSet" : [] 
@@ -352,11 +352,11 @@ function Visualize() {
     const length = Date.parse(end)-Date.parse(start);
     const selLength = Date.parse(selDate)-Date.parse(start);
 
-    if (selLength < 0) {
+    if (selLength < 0) { // 하루 이상 차이 x
         alert(`첫 기록 날짜(${start}) 이후의 날짜를 선택해주세요.`);
         return;
     }
-    if (length < selLength) { // 선택된 날짜가 마지막 날짜 이후라면
+    if (length+1 < selLength) { // 선택된 날짜가 마지막 날짜 이후라면
         alert(`마지막 기록 날짜(${end}) 이전의 날짜를 선택해주세요.`);
         return;
     }
