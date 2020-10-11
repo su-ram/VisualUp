@@ -65,4 +65,11 @@ public class UserDAOImple implements UserDAO{
 		
 	}
 
+	@Override
+	public UserVO getById(String userid) throws Exception {
+		UserVO user = sqlSession.selectOne(Namespace+".getById", userid);
+		
+		return user;
+	}
+
 }

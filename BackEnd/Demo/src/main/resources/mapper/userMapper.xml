@@ -29,4 +29,10 @@
     	update newid set newuser = #{newUser}
     </update>
     
+    
+    <select id="getById" parameterType="string" resultType="UserVO">
+    	select * from user where userId= #{userid}
+    </select>
+    
+   
 </mapper>

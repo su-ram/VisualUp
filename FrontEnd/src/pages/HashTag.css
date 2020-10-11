@@ -17,11 +17,42 @@
     padding: 2px 20px;
     display: inline-block;
 }
+.hash-top {
+    width: 340px;
+    height: 50px;
+    border: 2px solid var(--unnamed-color-f0c379);
+    border: 2px solid #F0C379;
+    opacity: 1;
+    margin: 0 auto;
+}
+.hash-icon {
+    float: left;
+    color: #5D4215;
+    font-size: 32px;
+    margin-left: 9px;
+    margin-top: 6px;
+}
 .hash-input {
-    
+    width: 220px;
+    height: 36px;
+    margin-top: 5px;
+    margin-left: 5px;
+    border-left: 2px solid #F0C379;
+    outline: 0;
+    border-right: 0;
+    border-top: 0;
+    border-bottom: 0;
 }
 .hash-submit {
-
+    width: 65px;
+    height: 49px;
+    float: right;
+    margin-top: -1px;
+    border: 0;
+    background-color: #F0C379;
+    color: #5D4215;
+    font-size: 18px;
+    font-weight: normal;
 }
 .hash-body {
     border-top: 2px solid #656563;

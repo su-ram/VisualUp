@@ -11,5 +11,7 @@ public interface UserService {
 	public String getNewUserid() throws Exception;
 	public String loginRequest(String name, String email) throws Exception;
 	public String getUserid(String name, String email) throws Exception;
+	public UserVO getUserById(String id) throws Exception;
+	public boolean checkUser(String id) throws Exception;
 
 }
