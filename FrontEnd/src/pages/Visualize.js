@@ -27,7 +27,7 @@ function Visualize() {
     // 이렇게 안하면, tab 변경했을 때, 기간 제대로 설정하라는 alert가 뜸
 
     if(dataSet.length>0)
-      setGraphDate(dataSet[0].endDate);
+      setGraphDate(dataSet[selectedGoalIdx].endDate);
 
   },[selectedGoalIdx]);
 
@@ -260,7 +260,7 @@ function Visualize() {
   }
 
   async function processDataToStore(dbData){
-    const tmpData = [];
+    const tmpData = [{}];
     const tmpDaily = [{"title":"group"}]; // 기본 data와 index를 맞추기 위해 하나 넣어두기
     const tmpGData = [];
     const tmpGroupColor = [];
@@ -288,7 +288,7 @@ function Visualize() {
       await a; await b;
 
       goal.dailys.map((daily, index2)=>{ // 기본 data에 그래프 data 넣기
-        tmpData[index].dataSet.push({ // 개별 그래프 data
+        tmpData[index+1].dataSet.push({ // 개별 그래프 data
           "date": daily.date,
           "type": goal.title,
           "value" : daily.value
@@ -311,15 +311,14 @@ function Visualize() {
     await a;
 
     // 기본 data의 앞부분에 그룹 data 넣기
-    const b = tmpData.splice(0,0,{
+    tmpData[0] = {
       "title" : "group",
       "startDate" : minStartDate,
       "endDate" : maxEndDate,
       "template": "Area",
       "graphColor": tmpGroupColor,
       "dataSet": tmpGData
-    });
-    await b;
+    };
 
     setName(dbData.userName); // name setting
     const c = setDataSet(tmpData); // 개별 graph setting
@@ -381,7 +380,7 @@ function Visualize() {
           <div className="select-date-con">
             <div className="date-title"><CalendarOutlined /><p>날짜 선택</p></div>
             <div className="date-select">
-              {graphDate !== ""?<DatePicker defaultValue={moment(graphDate)} onChange={selectGraphDate} /> : "로딩중입니다..."}
+              {graphDate !== ""?<DatePicker value={moment(graphDate)} onChange={selectGraphDate} /> : "로딩중입니다..."}
             </div>
           </div> 
           {graphDate!==""?
