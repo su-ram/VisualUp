@@ -1,15 +1,18 @@
-
 import React, {useState} from 'react';
 import axios from 'axios';
 import { Col, Row, Checkbox, DatePicker, Switch } from 'antd';
 import "antd/dist/antd.css";
 import styles from './GoalSet.module.css';
+import moment from 'moment';
+
+
 import { LineChartOutlined, BarChartOutlined, PieChartOutlined, AlignLeftOutlined, EditOutlined, CheckOutlined, CalendarOutlined, BarsOutlined, PushpinOutlined } from '@ant-design/icons'
 
-  
+
+
 function GoalSet(){
     const [goal, setgoal] = useState("");
-    const [date, setdate] = useState("");
+    const [date, setdate] = useState([]);
     const [period, setperiod] = useState("");
     const [periodgoal, setperiodgoal] = useState("");
     const [hashtag1, sethashtag1] = useState("");
@@ -19,9 +22,21 @@ function GoalSet(){
     const [graph, setgraph] = useState("");
     const [graphcolor, setgraphcolor] = useState("");
     const [checked, setchecked] = useState(false);
+    const { RangePicker } = DatePicker;
 
+
+    async function onChangedate(_, timeString) {
+      if (timeString === null) { // 날짜를 삭제해도 기존 날짜로 유지
+        return;
+      }
+      const selDate = timeString;
+      await setdate(selDate);
+    }
+
+    function onOk(value) {
+      console.log('onOk: ', value);
+    }
     const onChangegoal = e => setgoal(e.target.value);
-    const onChangedate = e => setdate(e.target.value);
     const onDateChange = e => setperiod(e.target.value);
     const onChangeperiodgoal = e => setperiodgoal(e.target.value);
     const onChangehashtag1 = e => sethashtag1(e.target.value);
@@ -38,7 +53,7 @@ function GoalSet(){
         { label: '선 그래프', value: '선 그래프' },
         { label: '막대 그래프', value: '막대 그래프' },
       ];
-      const api= "http://visualup.koreacentral.cloudapp.azure.com:8080 /goal"
+      const api= "https://virtserver.swaggerhub.com/VisualUp/VisualUp_Api/1.0.0/goal"
       const onSubmit = async() => {
         try{
         const status= {
@@ -51,7 +66,7 @@ function GoalSet(){
         template:graph,
         open:false
       };
-      //const { data: post } = await axios.post(api, status);
+      const { data: post } = await axios.post(api, status);
       console.log(status);
       if (status === 201) {
         alert("목표가 등록되었습니다.");
@@ -76,7 +91,14 @@ function GoalSet(){
                 <p className={styles.name}><CalendarOutlined />날짜 선택</p>
                 <br />
                 <br />
-                <DatePicker.RangePicker  onChange={onChangedate} value={date} style={{ width: '100%' }} />
+                  <RangePicker
+                    ranges={{
+                      Today: [moment(date[0]), moment(date[1])],
+                      'This Month': [moment().startOf('month'), moment().endOf('month')],
+                    }}
+                    onChange={onChangedate}
+                    onOk={onOk}
+                  />
                 <br />
                 <p className={styles.name}><BarsOutlined />주기
                 <br />
