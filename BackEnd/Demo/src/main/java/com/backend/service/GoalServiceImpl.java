@@ -93,4 +93,15 @@ public class GoalServiceImpl implements GoalService {
 		return goalDao.goalById(id);
 	}
 
+	@Override
+	public GoalVO getGoalInfo(String id) {
+		
+		List<GoalVO> result = goalDao.goalById(id);
+		
+		if (result.size() == 0)
+			return null;
+		
+		return result.get(0);
+	}
+
 }
