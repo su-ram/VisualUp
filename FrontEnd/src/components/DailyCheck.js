@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Carousel, Input } from 'antd';
 import "./DailyCheck.css";
+import {getDateString} from "../shared/GetDateString";
 import {StarFilled } from '@ant-design/icons';
 
 const { TextArea } = Input;
@@ -10,27 +11,67 @@ const cheerUp = [
     "고개를 들어라. 각도가 곧 태도다.",
     "노력은 설명하는 것이 아닌 증명하는 것이다.",
     "안하는 것보다 늦게하는 것이 낫다",
-    "능력은 꿈에 어울리게 성장하기 마련이다."
-];
+    "능력은 꿈에 어울리게 성장하기 마련이다.",
+    "나중엔 습관이 사람을 만든다.",
+    "탁월함은 행동이 아니라 습관이다.",
+    "젊었을 때 형성된 습관이 모든 차이를 만든다.",
+    "좋은 것을 포기하는 걸 두려워하지 마라.",
+    "행동은 모든 성공의 기본 열쇠이다."
+]; // cheerup 멘트 모음
 
 function DailyCheck(props){
-    const {carousel, dailySet, selectedGoalIdx, goTo} = props;
+    const {carousel, dailySet, selectedGoalIdx, selDateIdx, goTo, goalIdx} = props;
 
     useEffect(()=>{
-        goTo(dailySet[selectedGoalIdx].dailys.length-1, true);
-    },[selectedGoalIdx]);
+        goTo(selDateIdx, true);
+    },[selDateIdx]);
 
-    function getStars(value, date){
-        // 회의 후 결정 => 오늘이 아닌 날짜 수정 가능하게 할 건지
+    function setStar(index, num){
+        // 별 누르면 갯수만큼 켜지게 하기
 
-        let star = value/20;
+        for(let i=0; i<=num; i++){
+            let target = null;
+            const obj = document.getElementsByClassName(`star${goalIdx}${index}${i}`);
+            for(let i=0; i<obj.length; i++){
+                if(obj[i].parentNode.parentNode.parentNode.parentNode.parentNode.classList.contains('slick-current')){
+                    target = obj[i];
+                    break;
+                }
+            }
+            if(obj===null || target===null)
+                continue;
+
+            target.classList.remove('star_off');
+            target.classList.add('star_on');
+            
+        }
+        for(let i=num+1; i<5; i++){
+            let target = null;
+            const obj = document.getElementsByClassName(`star${goalIdx}${index}${i}`);
+            for(let i=0; i<obj.length; i++){
+                if(obj[i].parentNode.parentNode.parentNode.parentNode.parentNode.classList.contains('slick-current')){
+                    target = obj[i];
+                    break;
+                }
+            }
+            if(obj===null || target===null)
+                continue;
+                
+            target.classList.remove('star_on');
+            target.classList.add('star_off');
+        }
+    }
+
+    function getStars(value, date, index){
+
+        let star = Math.floor(value/20);
         let starArray = [];
         
-        for(var i=0; i<star; i++){
-            starArray.push(<StarFilled key={i} className="star" style={{fontSize: "1.5rem", color: "#ffb100"}}/>);
+        for(let i=0; i<star; i++){
+            starArray.push(<StarFilled key={i} onClick={isToday(date)?(e)=>setStar(index, i):undefined} className={"star_on "+(isToday(date)?"today ":"") + `star${goalIdx}${index}${i}`}/>);
         }
-        for(var i=0; i<5-star; i++){
-            starArray.push(<StarFilled key={star+i} className="star" style={{fontSize: "1.5rem", color: "#b9b9b9"}}/>)
+        for(let j=0; j<5-star; j++){
+            starArray.push(<StarFilled key={star+j} onClick={isToday(date)?(e)=>setStar(index, star+j):undefined} className={"star_off "+(isToday(date)?"today ":"")+ `star${goalIdx}${index}${star+j}`}/>)
         }
 
         return(starArray);
@@ -65,12 +106,6 @@ function DailyCheck(props){
         return (cheerUp[num]);
     }
 
-    function getDateString(date){
-        return (date.getFullYear() + "/" 
-                + (date.getMonth()+1 <= 9 ? "0" : "") + (date.getMonth()+1) + "/"
-                + (date.getDate() <= 9 ? "0" : "") + date.getDate());
-    }
-
     function isToday(date){
         const now = new Date();
         let dateStr = getDateString(now);
@@ -85,17 +120,22 @@ function DailyCheck(props){
         return strArr;
     }
 
+    function saveToDB(){
+        // goal 단위로 DB에 저장하기 => daily 단위도 가능한지 물어보기
+        // 저장 후 다시 받아오기 => 해당 goal에 대해서만! => Visaulize에서 실행
+    }
+
     function getDailyCheck(data, title, term, termGoal, hashtags, index) {
         return (
             <div key={index} className="dailycheck-contents-con">
-              <div className="dailycheck-underborder dailycheck-title"><p className="check-db-data">{title}</p></div>
+              <div className="dailycheck-underborder dailycheck-title"><p className="check-db-data">{title}</p>{isToday(data.date)?<button className="save-btn" onClick={saveToDB}>저장하기</button>:undefined}</div>
               <div>
                 <div className="dailycheck-underborder dailycheck-term">주기 <p className="check-db-data">{term}</p>일 마다</div>
                 <div className="dailycheck-underborder dailycheck-term-goal">주기별 목표 : <p className="check-db-data">{termGoal}</p></div>
               </div>
               <div>
                 <div className="dailycheck-underborder dailycheck-date"><p className="check-db-data">{data.date}{getDay(data.date)}</p></div>
-                <div className="dailycheck-underborder dailycheck-stars">{getStars(data.value, data.date)}</div>
+                <div className="dailycheck-underborder dailycheck-stars">{getStars(data.value, data.date, index)}</div>
               </div>
               <div className="dailycheck-what-i-done">
                   <div>오늘 하루 정리</div>

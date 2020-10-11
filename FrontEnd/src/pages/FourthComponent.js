@@ -76,7 +76,6 @@ function FourthComponent() {
               name="이소정"
               part="개발"
               insta="https://www.instagram.com/iso3295/"
-              facebook = "https://www.facebook.com/profile.php?id=100031926961932"
               blog = "https://github.com/SJLEE316"
             />
 
@@ -92,6 +91,7 @@ function FourthComponent() {
               img={EH}
               name="조은학"
               part="개발"
+              blog ="https://github.com/Cho-Eunhak"
             />
 
             <div className = "fourth-box-content only">
