@@ -4,6 +4,7 @@ import { Col, DatePicker } from 'antd';
 import { CalendarOutlined } from '@ant-design/icons';
 import moment, { max } from 'moment';
 import "./Visualize.css";
+import axios from "axios";
 
 
 function Visualize() {
@@ -27,6 +28,29 @@ function Visualize() {
 
   async function getGoalDataFromDB() {
     // db에서 해당 목표 정보 받아오기
+    var headers = {
+      'Access-Control-Allow-Origin': '*',        
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    }
+    await axios.get("visualup.koreacentral.cloudapp.azure.com:8080/graph?userId=user103", headers)
+    .then((res)=>{
+      console.dir(res);
+    })
+    .catch((err)=>{ 
+      console.dir(err);
+      const status = err?.response?.status;
+      if (status === undefined) {
+        console.dir("데이터를 불러오던 중 예기치 못한 예외가 발생하였습니다.\n" + JSON.stringify(err));
+      }
+      else if (status === 400) {
+        console.dir("400에러");
+      }
+      else if (status === 500) {
+        console.dir("내부 서버 오류입니다. 잠시만 기다려주세요.");
+      }
+    });
+
     const dbData = {
       "userId": "user103",
       "userName": "김수람",
@@ -128,7 +152,7 @@ function Visualize() {
           "graphColor": "#4EE23E",
           "dailys": [
             {
-              "date": "2020/10/07",
+              "date": "2020/10/10",
               "whatIDone": "예제 문제 2개 코드로 구현하기",
               "value": 20
             },

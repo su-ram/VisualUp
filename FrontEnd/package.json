@@ -9,6 +9,7 @@
     "@testing-library/react": "^9.3.2",
     "@testing-library/user-event": "^7.1.2",
     "antd": "^4.6.5",
+    "axios": "^0.20.0",
     "global": "^4.4.0",
     "jquery": "^3.5.1",
     "react": "^16.13.1",
