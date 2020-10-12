@@ -39,12 +39,14 @@ function Visualize() {
   },[graphDate]);
 
   useEffect(()=>{
-    processDataToStore(dbData);
-  },[dbData])
+    if(Object.keys(dbData).length!==0)
+      processDataToStore(dbData);
+  },[dbData]);
 
   function getDataFromDB() {
     // db에서 해당 목표 정보 받아오기
-    var headers = {
+    
+    const headers = {
       'Access-Control-Allow-Origin': '*',        
       'Accept': 'application/json',
       'Content-Type': 'application/x-www-form-urlencoded'
@@ -52,9 +54,9 @@ function Visualize() {
     axios.get("http://visualup.koreacentral.cloudapp.azure.com:8080/graph?userId=user103", headers)
     .then((res)=>{
       setDBdata(res.data);
+      console.log(res.data);
     })
-    .catch((err)=>{ 
-      console.dir(err);
+    .catch((err)=>{
       const status = err?.response?.status;
       if (status === undefined) {
         console.dir("데이터를 불러오던 중 예기치 못한 예외가 발생하였습니다.\n" + JSON.stringify(err));
@@ -67,36 +69,230 @@ function Visualize() {
         console.dir("내부 서버 오류입니다. 잠시만 기다려주세요.");
       }
     });
+    /*
+    setDBdata({
+      "userId": "user103",
+      "userName": "김수람",
+      "goals": [
+        {
+          "goalId": "goal123",
+          "title": "python",
+          "startDate": "2020-10-22",
+          "endDate": "2020-12-31",
+          "termGoal": "예제 문제 1개씩 코드로 구현하기",
+          "term": 5,
+          "hashtags": "coding, commit, python, os",
+          "open": true,
+          "template": "Line",
+          "graphColor": "#FF6B29",
+          "dailySet": [
+            {
+              "date": "2020-10-22",
+              "whatIDone": "예제 문제 2개 코드로 구현하기",
+              "value": 100
+            },
+            {
+              "date": "2020-10-27",
+              "whatIDone": "예제 문제 2개 코드로 구현하기",
+              "value": 0
+            },
+            {
+              "date": "2020-11-01",
+              "whatIDone": "예제 문제 2개 코드로 구현하기",
+              "value": 40
+            },
+            {
+              "date": "2020-11-06",
+              "whatIDone": "예제 문제 2개 코드로 구현하기",
+              "value": 60
+            },
+            {
+              "date": "2020-11-11",
+              "whatIDone": "예제 문제 2개 코드로 구현하기",
+              "value": 20
+            },
+            {
+              "date": "2020-11-16",
+              "whatIDone": "예제 문제 2개 코드로 구현하기",
+              "value": 40
+            },
+            {
+              "date": "2020-11-21",
+              "whatIDone": "예제 문제 2개 코드로 구현하기",
+              "value": 20
+            },
+            {
+              "date": "2020-11-26",
+              "whatIDone": "예제 문제 2개 코드로 구현하기",
+              "value": 0
+            },
+            {
+              "date": "2020-12-01",
+              "whatIDone": "예제 문제 2개 코드로 구현하기",
+              "value": 40
+            },
+            {
+              "date": "2020-12-06",
+              "whatIDone": "예제 문제 2개 코드로 구현하기",
+              "value": 80
+            },
+            {
+              "date": "2020-12-11",
+              "whatIDone": "예제 문제 2개 코드로 구현하기",
+              "value": 100
+            },
+            {
+              "date": "2020-12-16",
+              "whatIDone": "예제 문제 2개 코드로 구현하기",
+              "value": 20
+            },
+            {
+              "date": "2020-12-21",
+              "whatIDone": "예제 문제 2개 코드로 구현하기",
+              "value": 40
+            },
+            {
+              "date": "2020-12-26",
+              "whatIDone": "예제 문제 2개 코드로 구현하기",
+              "value": 0
+            }
+          ]
+        }
+        ,{
+          "goalId": "goal124",
+          "title": "nodejs",
+          "startDate": "2020-10-07",
+          "endDate": "2020-12-31",
+          "termGoal": "토이 프로젝트 1개씩",
+          "term": 10,
+          "hashtags": "coding, commit, js, web",
+          "open": true,
+          "template": "Line",
+          "graphColor": "#4EE23E",
+          "dailySet": [
+            {
+              "date": "2020-10-11",
+              "whatIDone": "예제 문제 2개 코드로 구현하기",
+              "value": 20
+            },
+            {
+              "date": "2020-10-17",
+              "whatIDone": "예제 문제 2개 코드로 구현하기",
+              "value": 100
+            },
+            {
+              "date": "2020-10-27",
+              "whatIDone": "예제 문제 2개 코드로 구현하기",
+              "value": 60
+            },
+            {
+              "date": "2020-11-06",
+              "whatIDone": "예제 문제 2개 코드로 구현하기",
+              "value": 40
+            },
+            {
+              "date": "2020-11-16",
+              "whatIDone": "예제 문제 2개 코드로 구현하기",
+              "value": 20
+            },
+            {
+              "date": "2020-11-26",
+              "whatIDone": "예제 문제 2개 코드로 구현하기",
+              "value": 60
+            },
+            {
+              "date": "2020-12-06",
+              "whatIDone": "예제 문제 2개 코드로 구현하기",
+              "value": 80
+            },
+            {
+              "date": "2020-12-16",
+              "whatIDone": "예제 문제 2개 코드로 구현하기",
+              "value": 20
+            },
+            {
+              "date": "2020-12-26",
+              "whatIDone": "예제 문제 2개 코드로 구현하기",
+              "value": 100
+            }
+          ]
+        }
+        ,{
+          "goalId": "goal125",
+          "title": "typescript",
+          "startDate": "2020-10-01",
+          "endDate": "2020-12-31",
+          "termGoal": "1 chapter씩",
+          "term": 2,
+          "hashtags": "coding, commit, js, web, typescript",
+          "open": true,
+          "template": "Line",
+          "graphColor": "#41A0FF",
+          "dailySet": [
+            {
+              "date": "2020-10-01",
+              "whatIDone": "Chapter 1 clear",
+              "value": 100
+            },
+            {
+              "date": "2020-10-03",
+              "whatIDone": "Chapter 2 clear",
+              "value": 20
+            },
+            {
+              "date": "2020-10-05",
+              "whatIDone": "Chapter 3 clear",
+              "value": 80
+            },
+            {
+              "date": "2020-10-07",
+              "whatIDone": "Chapter 4 clear",
+              "value": 20
+            },
+            {
+              "date": "2020-10-09",
+              "whatIDone": "예제 문제 2개 코드로 구현하기",
+              "value": 0
+            },
+            {
+              "date": "2020-10-12",
+              "whatIDone": "예제 문제 2개 코드로 구현하기",
+              "value": 60
+            }
+          ]
+        }
+      ]
+    });*/
+
   }
 
   async function processDataToStore(dbData){
-    console.log(dbData);
     const tmpData = [{}];
     const tmpDaily = [{"title":"group"}]; // 기본 data와 index를 맞추기 위해 하나 넣어두기
     const tmpGData = [];
     const tmpGroupColor = [];
     let minStartDate = dbData.goals[0].startDate; let maxEndDate =dbData.goals[0].endDate;
 
-    const a = await dbData.goals.map(async (goal, index) => {
+    const a = dbData.goals.map((goal, index) => {
       // db에서 불러온 data에서 필요한 정보 추출
-      const a = tmpData.push({ // 기본 data 넣기
+      const graphColor = goal.graphColor==null?"#5D4215":goal.graphColor;
+
+      tmpData.push({ // 기본 data 넣기
         "goalId" : goal.goalId,
         "title" : goal.title,
         "startDate" : goal.dailySet[0].date,
         "endDate" : goal.dailySet[goal.dailySet.length-1].date,
         "template": goal.template,
-        "graphColor": goal.graphColor,
+        "graphColor": graphColor,
         "dataSet" : [] 
       });
-      const b = tmpDaily.push({ // daily data 넣기
+      tmpDaily.push({ // daily data 넣기
         "title" : goal.title,
-        "dailySet": goal.dailySet,
+        "dailys": goal.dailySet,
         "termGoal" : goal.termGoal,
         "term" : goal.term,
         "hashtags" : goal.hashtags
       });
-
-      await a; await b;
 
       goal.dailySet.map((daily, index2)=>{ // 기본 data에 그래프 data 넣기
         tmpData[index+1].dataSet.push({ // 개별 그래프 data
@@ -110,7 +306,7 @@ function Visualize() {
           "value": daily.value
         });
       });
-      tmpGroupColor.push(goal.graphColor); // 그룹 색 지정
+      tmpGroupColor.push(graphColor); // 그룹 색 지정
 
       if(Date.parse(minStartDate)>Date.parse(goal.startDate)){
         minStartDate = goal.startDate;
@@ -119,6 +315,7 @@ function Visualize() {
         maxEndDate = goal.endDate;
       }
     });
+
     await a;
 
     // 기본 data의 앞부분에 그룹 data 넣기
@@ -131,12 +328,11 @@ function Visualize() {
       "dataSet": tmpGData
     };
 
-    setName(dbData.userName); // name setting
-    const c = setDataSet(tmpData); // 개별 graph setting
-    const d = setDailySet(tmpDaily); // daily data setting
-    await c; await d;
+    await setName(dbData.userName); // name setting
+    await setDailySet(tmpDaily); // daily data setting
+    await setDataSet(tmpData); // 개별 graph setting
 
-    setGraphDate(maxEndDate); // graph 표시할 날짜 가장 마지막 날짜로 setting
+    await setGraphDate(maxEndDate); // graph 표시할 날짜 가장 마지막 날짜로 setting
   }
 
   function selectGraphDate(time, timeString) {
@@ -151,7 +347,6 @@ function Visualize() {
   function calGraphRate(){
     // datepicker에서 고른 날짜를 전체 기간의 %로 환산하여 표현 
     // => 아래의 slider를 표현하기 위함
-
     if(dataSet.length===0) // 첫 setting 후 진행
       return;
 
@@ -174,9 +369,34 @@ function Visualize() {
     setGraphRate(parseFloat((selLength / length).toFixed(2))); // %로 나타내기
   }
 
-  function getGoalDataFromDB(){
+  function getGoalDataFromDB(idx){
     // goal마다 따로 받아와서 저장 => dataSet과 dailySet 업데이트 하면 됨
-    // 
+    console.log(dbData.goals[idx-1].goalId); // group은 idx에서 빼야함
+
+    const headers = {
+      'Access-Control-Allow-Origin': '*',        
+      'Accept': 'application/json',
+      'Content-Type': 'application/x-www-form-urlencoded',
+    }
+    axios.get(`http://visualup.koreacentral.cloudapp.azure.com:8080/graph/goal?goalId=${dbData.goals[idx-1].goalId}`, headers)
+    .then((res)=>{
+      let tmpDB = dbData;
+      tmpDB.goals[idx-1]=res.data[0];
+      setDBdata(tmpDB);
+    })
+    .catch((err)=>{
+      const status = err?.response?.status;
+      if (status === undefined) {
+        console.dir("데이터를 불러오던 중 예기치 못한 예외가 발생하였습니다.\n" + JSON.stringify(err));
+      }
+      else if (status === 400) {
+        alert("");
+        console.dir("400에러");
+      }
+      else if (status === 500) {
+        console.dir("내부 서버 오류입니다. 잠시만 기다려주세요.");
+      }
+    });
   }
   
 
@@ -203,6 +423,7 @@ function Visualize() {
               setGraphDate = {setGraphDate}
               selectedGoalIdx = {selectedGoalIdx}
               setSelGoalIdx = {setSelGoalIdx}
+              getGoalDataFromDB = {getGoalDataFromDB}
             />
             :undefined
           } 
