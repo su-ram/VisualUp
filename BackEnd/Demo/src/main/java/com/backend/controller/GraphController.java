@@ -37,6 +37,8 @@ public class GraphController {
 	
 	@RequestMapping(value="/goal",params="goalId", method=RequestMethod.GET)
 	public @ResponseBody JSONArray goalGraphData(HttpServletRequest request) {
+		// 특정 목표에 대한 데일리 체크 
+		
 		
 		goalId = request.getParameter("goalId");
 		
@@ -106,22 +108,19 @@ public class GraphController {
 			JSONArray dailySet = new JSONArray();
 			JSONObject daily;
 			String termGoal;
-			System.out.println(dailys.size()+", "+goalid);
+			
 			for(int j=0; j<dailys.size(); j++) {
 				
 				daily = new JSONObject();
 				daily.put("date", dailys.get(j).getTodayDate());
 				
 				
-				termGoal = goalService.getTermGoal(dailys.get(j).getGoalId());
-				
-				daily.put("termGoal", termGoal);
-				
 				float value = dailys.get(j).getStars();
 				value = (value/5)*100;
+				
+				
 				daily.put("value", value);
-				
-				
+				daily.put("whatIdone", dailys.get(j).getWhatIdone());
 				dailySet.add(daily);
 				
 			}
@@ -134,6 +133,8 @@ public class GraphController {
 	}
 		return array;
 	}
+	
+	
 	public JSONObject createGraphData(UserVO user) throws Exception{
 		
 		JSONObject data = new JSONObject();
@@ -148,67 +149,8 @@ public class GraphController {
 		
 		return data;
 		
-		/*
-		JSONArray array = new JSONArray();
-		
-		JSONObject goal;
-		String goalid;
-		List<DailyVO> dailys;
-		
-		
-		
-		
-		for(int i=0; i<goals.size(); i++) {
-			
-			goal = new JSONObject();
-			goalid = goals.get(i).getGoalId();
-			
-			goal.put("goalId", goalid);
-			goal.put("title", goals.get(i).getTitle());
-			goal.put("startDate", goals.get(i).getStartDate());
-			goal.put("endDate", goals.get(i).getEndDate());
-			goal.put("termGoal", goals.get(i).getTermGoal());
-			goal.put("term", goals.get(i).getTerm());
-			goal.put("hashtags", goals.get(i).getHashtags());
-			goal.put("open", goals.get(i).isOpen());
-			goal.put("template", goals.get(i).getTemplate());
-			goal.put("graphColor", goals.get(i).getGraphColor());
-			
-			
-			//여기서부터 데일리 내용들 입력 
-			
-			dailys = dailyService.getByGoal(goalid);
-			JSONArray dailySet = new JSONArray();
-			JSONObject daily;
-			String termGoal;
-			System.out.println(dailys.size()+", "+goalid);
-			for(int j=0; j<dailys.size(); j++) {
-				
-				daily = new JSONObject();
-				daily.put("date", dailys.get(j).getTodayDate());
-				
-				
-				termGoal = goalService.getTermGoal(dailys.get(j).getGoalId());
-				
-				daily.put("termGoal", termGoal);
-				
-				float value = dailys.get(j).getStars();
-				value = (value/5)*100;
-				daily.put("value", value);
-				
-				
-				dailySet.add(daily);
-				
-			}*/
-			
-		
-		
 			
 		}
-		
-		
-		
-		
 		
 		
 		

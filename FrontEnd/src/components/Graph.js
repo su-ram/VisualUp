@@ -11,7 +11,7 @@ const { TabPane } = Tabs;
 export default function Graph(props){
     const range = 0.6; // 나중에 비율 조정
 
-    const {dataSet, dailySet, graphDate, graphRate, setGraphDate, selectedGoalIdx, setSelGoalIdx} = props;
+    const {dataSet, dailySet, graphDate, graphRate, setGraphDate, selectedGoalIdx, setSelGoalIdx, getGoalDataFromDB} = props;
     const [selDateIdx, setSelDateIdx] = useState(-1);
     const [visible, setVisible] = useState(false);
 
@@ -33,7 +33,9 @@ export default function Graph(props){
           setSelDateIdx(idx);
         }
 
-        if(Number(selectedGoalIdx)!==0) // group은 dailyset없어서 idx 필요없음
+        if(Number(selectedGoalIdx)!==0) 
+          // dailySet이 들어온 후에 계산
+          // group은 dailyset없어서 idx 필요없음
           calDailyIdx();
 
         // tab 변경 시 endDate가 같아도, daily index는 갱신되어야하기 떄문에, selectedGoalIdx 변경도 같이 받기
@@ -148,6 +150,9 @@ export default function Graph(props){
             lineWidth: 2,
           },
         },
+        label:{
+          visible: false,
+        }
         //smooth: true, // 그래프 부드럽게
       };
       return config;
@@ -197,6 +202,7 @@ export default function Graph(props){
                             selDateIdx = {selDateIdx}
                             goTo = {goTo}
                             goalIdx = {index}
+                            getGoalDataFromDB = {getGoalDataFromDB}
                           />:undefined
                       }
                   </div>
@@ -206,7 +212,7 @@ export default function Graph(props){
                   <span className="dailycheck-btn left" onClick={showDrawer}>{getIcon("leftOutlined")}</span>
                 </Tooltip>
               :undefined // 그룹은 dailycheck 안보임
-            }
+              }
           </div>
           <div className="bottom-graph-con">
             {getSNSCon()}
@@ -215,7 +221,7 @@ export default function Graph(props){
                 <a href={"/goalSet/"+dataSet[index].goalId}><span className="setting-btn"><SettingFilled /></span></a>
               </Tooltip>
               :undefined
-            }
+              }
           </div>
         </TabPane>
       );
@@ -226,7 +232,7 @@ export default function Graph(props){
         <React.Fragment>   
           <Tabs centered defaultActiveKey="0" className="graph-tab-con" tabBarExtraContent={operations} onChange={tabChanged}>
             {
-              dataSet!==null? // dataSet이 들어왔으면
+              Object.keys(dataSet).length!==0? // dataSet이 들어왔으면
                 Object.keys(dataSet).map((index) =>
                   // goal을 하나씩 TabPane으로 만들기
                   getTabPane(index)

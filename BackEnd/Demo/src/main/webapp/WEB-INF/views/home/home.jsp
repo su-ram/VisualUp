@@ -13,5 +13,11 @@ ${result}<br>
 ${session}<br>
 당신의 회원번호는?? ${userid }<br>
 로그아웃 : ${logout}<br>
+
+<form action="http://visualup.koreacentral.cloudapp.azure.com/goal/hashtag" method="get">
+<input type="text" name = "name">
+<input type="submit">
+</form>
 </body>
+
 </html>

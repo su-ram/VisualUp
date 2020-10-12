@@ -115,7 +115,7 @@ public class GoalDAOImple implements GoalDAO {
 
 	@Override
 	public List<GoalVO> goalById(String id) {
-		// TODO Auto-generated method stub
+		
 		return sqlSession.selectList(Namespace+".goalById", id);
 	}
 	

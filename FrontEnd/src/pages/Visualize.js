@@ -10,6 +10,7 @@ import axios from "axios";
 function Visualize() {
   // db와 연동되는 api는 이곳에서 => data 다루는 곳
 
+  const [dbData, setDBdata] = useState({});
   const [name, setName] = useState("");
   const [dataSet, setDataSet] = useState([]);
   const [dailySet, setDailySet] = useState([]);
@@ -37,32 +38,39 @@ function Visualize() {
     calGraphRate();
   },[graphDate]);
 
+  useEffect(()=>{
+    if(Object.keys(dbData).length!==0)
+      processDataToStore(dbData);
+  },[dbData]);
+
   function getDataFromDB() {
     // db에서 해당 목표 정보 받아오기
-    var headers = {
+    
+    const headers = {
       'Access-Control-Allow-Origin': '*',        
       'Accept': 'application/json',
       'Content-Type': 'application/x-www-form-urlencoded'
     }
-    axios.get("visualup.koreacentral.cloudapp.azure.com:8080/graph?userId=user103", headers)
+    axios.get("http://visualup.koreacentral.cloudapp.azure.com:8080/graph?userId=user103", headers)
     .then((res)=>{
-      console.dir(res);
+      setDBdata(res.data);
+      console.log(res.data);
     })
-    .catch((err)=>{ 
-      console.dir(err);
+    .catch((err)=>{
       const status = err?.response?.status;
       if (status === undefined) {
         console.dir("데이터를 불러오던 중 예기치 못한 예외가 발생하였습니다.\n" + JSON.stringify(err));
       }
       else if (status === 400) {
+        alert("");
         console.dir("400에러");
       }
       else if (status === 500) {
         console.dir("내부 서버 오류입니다. 잠시만 기다려주세요.");
       }
     });
-
-    const dbData = {
+    /*
+    setDBdata({
       "userId": "user103",
       "userName": "김수람",
       "goals": [
@@ -77,7 +85,7 @@ function Visualize() {
           "open": true,
           "template": "Line",
           "graphColor": "#FF6B29",
-          "dailys": [
+          "dailySet": [
             {
               "date": "2020-10-22",
               "whatIDone": "예제 문제 2개 코드로 구현하기",
@@ -161,7 +169,7 @@ function Visualize() {
           "open": true,
           "template": "Line",
           "graphColor": "#4EE23E",
-          "dailys": [
+          "dailySet": [
             {
               "date": "2020-10-11",
               "whatIDone": "예제 문제 2개 코드로 구현하기",
@@ -220,7 +228,7 @@ function Visualize() {
           "open": true,
           "template": "Line",
           "graphColor": "#41A0FF",
-          "dailys": [
+          "dailySet": [
             {
               "date": "2020-10-01",
               "whatIDone": "Chapter 1 clear",
@@ -242,21 +250,20 @@ function Visualize() {
               "value": 20
             },
             {
-              "date": "2020-10-9",
+              "date": "2020-10-09",
               "whatIDone": "예제 문제 2개 코드로 구현하기",
               "value": 0
             },
             {
-              "date": "2020-10-11",
+              "date": "2020-10-12",
               "whatIDone": "예제 문제 2개 코드로 구현하기",
               "value": 60
             }
           ]
         }
       ]
-    };
+    });*/
 
-    const a = processDataToStore(dbData);
   }
 
   async function processDataToStore(dbData){
@@ -266,28 +273,28 @@ function Visualize() {
     const tmpGroupColor = [];
     let minStartDate = dbData.goals[0].startDate; let maxEndDate =dbData.goals[0].endDate;
 
-    const a = await dbData.goals.map(async (goal, index) => {
+    const a = dbData.goals.map((goal, index) => {
       // db에서 불러온 data에서 필요한 정보 추출
-      const a = tmpData.push({ // 기본 data 넣기
+      const graphColor = goal.graphColor==null?"#5D4215":goal.graphColor;
+
+      tmpData.push({ // 기본 data 넣기
         "goalId" : goal.goalId,
         "title" : goal.title,
-        "startDate" : goal.dailys[0].date,
-        "endDate" : goal.dailys[goal.dailys.length-1].date,
+        "startDate" : goal.dailySet[0].date,
+        "endDate" : goal.dailySet[goal.dailySet.length-1].date,
         "template": goal.template,
-        "graphColor": goal.graphColor,
+        "graphColor": graphColor,
         "dataSet" : [] 
       });
-      const b = tmpDaily.push({ // daily data 넣기
+      tmpDaily.push({ // daily data 넣기
         "title" : goal.title,
-        "dailys": goal.dailys,
+        "dailys": goal.dailySet,
         "termGoal" : goal.termGoal,
         "term" : goal.term,
         "hashtags" : goal.hashtags
       });
 
-      await a; await b;
-
-      goal.dailys.map((daily, index2)=>{ // 기본 data에 그래프 data 넣기
+      goal.dailySet.map((daily, index2)=>{ // 기본 data에 그래프 data 넣기
         tmpData[index+1].dataSet.push({ // 개별 그래프 data
           "date": daily.date,
           "type": goal.title,
@@ -299,7 +306,7 @@ function Visualize() {
           "value": daily.value
         });
       });
-      tmpGroupColor.push(goal.graphColor); // 그룹 색 지정
+      tmpGroupColor.push(graphColor); // 그룹 색 지정
 
       if(Date.parse(minStartDate)>Date.parse(goal.startDate)){
         minStartDate = goal.startDate;
@@ -308,6 +315,7 @@ function Visualize() {
         maxEndDate = goal.endDate;
       }
     });
+
     await a;
 
     // 기본 data의 앞부분에 그룹 data 넣기
@@ -320,12 +328,11 @@ function Visualize() {
       "dataSet": tmpGData
     };
 
-    setName(dbData.userName); // name setting
-    const c = setDataSet(tmpData); // 개별 graph setting
-    const d = setDailySet(tmpDaily); // daily data setting
-    await c; await d;
+    await setName(dbData.userName); // name setting
+    await setDailySet(tmpDaily); // daily data setting
+    await setDataSet(tmpData); // 개별 graph setting
 
-    setGraphDate(maxEndDate); // graph 표시할 날짜 가장 마지막 날짜로 setting
+    await setGraphDate(maxEndDate); // graph 표시할 날짜 가장 마지막 날짜로 setting
   }
 
   function selectGraphDate(time, timeString) {
@@ -340,7 +347,6 @@ function Visualize() {
   function calGraphRate(){
     // datepicker에서 고른 날짜를 전체 기간의 %로 환산하여 표현 
     // => 아래의 slider를 표현하기 위함
-
     if(dataSet.length===0) // 첫 setting 후 진행
       return;
 
@@ -363,9 +369,34 @@ function Visualize() {
     setGraphRate(parseFloat((selLength / length).toFixed(2))); // %로 나타내기
   }
 
-  function getGoalDataFromDB(){
+  function getGoalDataFromDB(idx){
     // goal마다 따로 받아와서 저장 => dataSet과 dailySet 업데이트 하면 됨
-    // 
+    console.log(dbData.goals[idx-1].goalId); // group은 idx에서 빼야함
+
+    const headers = {
+      'Access-Control-Allow-Origin': '*',        
+      'Accept': 'application/json',
+      'Content-Type': 'application/x-www-form-urlencoded',
+    }
+    axios.get(`http://visualup.koreacentral.cloudapp.azure.com:8080/graph/goal?goalId=${dbData.goals[idx-1].goalId}`, headers)
+    .then((res)=>{
+      let tmpDB = dbData;
+      tmpDB.goals[idx-1]=res.data[0];
+      setDBdata(tmpDB);
+    })
+    .catch((err)=>{
+      const status = err?.response?.status;
+      if (status === undefined) {
+        console.dir("데이터를 불러오던 중 예기치 못한 예외가 발생하였습니다.\n" + JSON.stringify(err));
+      }
+      else if (status === 400) {
+        alert("");
+        console.dir("400에러");
+      }
+      else if (status === 500) {
+        console.dir("내부 서버 오류입니다. 잠시만 기다려주세요.");
+      }
+    });
   }
   
 
@@ -392,6 +423,7 @@ function Visualize() {
               setGraphDate = {setGraphDate}
               selectedGoalIdx = {selectedGoalIdx}
               setSelGoalIdx = {setSelGoalIdx}
+              getGoalDataFromDB = {getGoalDataFromDB}
             />
             :undefined
           } 

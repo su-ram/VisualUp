@@ -16,5 +16,6 @@ public interface GoalService {
 	public List<GoalVO> goalByHashtag(String name);
 	public boolean checkUserId(String id);
 	public String getTermGoal(String id);
+	public GoalVO getGoalInfo(String id);
 	
 }

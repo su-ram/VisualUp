@@ -37,7 +37,7 @@ public class RequestLogin {
 		
 		requestURL = "https://github.com/login/oauth/authorize";
 		requestURL += "?client_id=f8d6a5e720a1e485d0ed";
-		requestURL += "&redirect_uri=http://http://visualup.koreacentral.cloudapp.azure.com:8080/login?type=github";
+		requestURL += "&redirect_uri=http://visualup.koreacentral.cloudapp.azure.com:8080/login?type=github";
 		requestURL += "&scope=user";
 		
 	return requestURL;
