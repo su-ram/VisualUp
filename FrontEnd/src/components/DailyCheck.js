@@ -3,6 +3,7 @@ import { Carousel, Input } from 'antd';
 import "./DailyCheck.css";
 import {getDateString} from "../shared/GetDateString";
 import {StarFilled } from '@ant-design/icons';
+import axios from "axios";
 
 const { TextArea } = Input;
 const cheerUp = [
@@ -20,7 +21,7 @@ const cheerUp = [
 ]; // cheerup 멘트 모음
 
 function DailyCheck(props){
-    const {carousel, dailySet, selectedGoalIdx, selDateIdx, goTo, goalIdx} = props;
+    const {carousel, dailySet, selectedGoalIdx, selDateIdx, goTo, goalIdx, getGoalDataFromDB} = props;
 
     useEffect(()=>{
         goTo(selDateIdx, true);
@@ -68,10 +69,10 @@ function DailyCheck(props){
         let starArray = [];
         
         for(let i=0; i<star; i++){
-            starArray.push(<StarFilled key={i} onClick={isToday(date)?(e)=>setStar(index, i):undefined} className={"star_on "+(isToday(date)?"today ":"") + `star${goalIdx}${index}${i}`}/>);
+            starArray.push(<StarFilled key={i} onClick={isToday(date)?()=>setStar(index, i):undefined} className={"star_on "+(isToday(date)?"today ":"") + `star${goalIdx}${index}${i}`}/>);
         }
         for(let j=0; j<5-star; j++){
-            starArray.push(<StarFilled key={star+j} onClick={isToday(date)?(e)=>setStar(index, star+j):undefined} className={"star_off "+(isToday(date)?"today ":"")+ `star${goalIdx}${index}${star+j}`}/>)
+            starArray.push(<StarFilled key={star+j} onClick={isToday(date)?()=>setStar(index, star+j):undefined} className={"star_off "+(isToday(date)?"today ":"")+ `star${goalIdx}${index}${star+j}`}/>)
         }
 
         return(starArray);
@@ -114,21 +115,61 @@ function DailyCheck(props){
     }
 
     function getHashTag(str){
+        if(str==null)
+            return "";
         let strArr = str.split(', ');
         for(let i=0; i<strArr.length; i++)
             strArr[i] = "#" + strArr[i] + " ";
         return strArr;
     }
 
-    function saveToDB(){
+    function saveToDB(idx){
         // goal 단위로 DB에 저장하기 => daily 단위도 가능한지 물어보기
         // 저장 후 다시 받아오기 => 해당 goal에 대해서만! => Visaulize에서 실행
+        //dailyId 받아오고 나서 하기
+        getGoalDataFromDB(selectedGoalIdx);
+
+    }
+    function deleteAtDB(idx){
+        // dailycheck Data 삭제
+        if(window.confirm("정말 삭제하시겠습니까?")){
+            /*
+            const headers = {
+                'Access-Control-Allow-Origin': '*',        
+                'Accept': 'application/json',
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+            axios.get("http://visualup.koreacentral.cloudapp.azure.com:8080/graph?userId=user103", headers)
+            .then((res)=>{
+            setDBdata(res.data);
+            console.log(res.data);
+            })
+            .catch((err)=>{
+            const status = err?.response?.status;
+            if (status === undefined) {
+                console.dir("데이터를 불러오던 중 예기치 못한 예외가 발생하였습니다.\n" + JSON.stringify(err));
+            }
+            else if (status === 400) {
+                alert("");
+                console.dir("400에러");
+            }
+            else if (status === 500) {
+                console.dir("내부 서버 오류입니다. 잠시만 기다려주세요.");
+            }
+            });*/
+            // dailyId 받아오고 나서 하기
+        }
     }
 
     function getDailyCheck(data, title, term, termGoal, hashtags, index) {
         return (
             <div key={index} className="dailycheck-contents-con">
-              <div className="dailycheck-underborder dailycheck-title"><p className="check-db-data">{title}</p>{isToday(data.date)?<button className="save-btn" onClick={saveToDB}>저장하기</button>:undefined}</div>
+              <div className="dailycheck-underborder dailycheck-title"><p className="check-db-data">{title}</p>
+                <div>
+                  <button className="delete-btn" onClick={()=>deleteAtDB(index)}>삭제하기</button>
+                  {/*isToday(data.date)?*/<button className="save-btn" onClick={()=>saveToDB(index)}>저장하기</button>/*:undefined*/}
+                </div>
+              </div>
               <div>
                 <div className="dailycheck-underborder dailycheck-term">주기 <p className="check-db-data">{term}</p>일 마다</div>
                 <div className="dailycheck-underborder dailycheck-term-goal">주기별 목표 : <p className="check-db-data">{termGoal}</p></div>
@@ -150,7 +191,7 @@ function DailyCheck(props){
     return(
         <Carousel ref={carousel} className="dailycheck-con" dots={false}>
             {
-                dailySet!==null?
+                Object.keys(dailySet).length!==0?
                     dailySet[selectedGoalIdx].dailys.map((daily, index)=>
                         getDailyCheck(daily,
                         dailySet[selectedGoalIdx].title, 
