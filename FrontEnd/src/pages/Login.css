@@ -30,7 +30,7 @@
 .google-btn {
     width: 280px;
     height: 46px;
-    margin: 0 auto;
+    margin-left: 60px;
     border-radius: 12px;
     border: 0;
     background-color: red;
@@ -39,7 +39,7 @@
 .kakao-btn {
     width: 280px;
     height: 46px;
-    margin: 0 auto;
+    margin-left: 60px;
     border-radius: 12px;
     border: 0;
     background-color: yellow;
@@ -48,7 +48,7 @@
 .sns-btn {
     width: 280px;
     height: 46px;
-    margin: 0 auto;
+    margin-left: 60px;
     border-radius: 12px;
     border: 0;
     background-color: #0080eb;
