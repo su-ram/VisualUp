@@ -17,6 +17,9 @@
     padding: 2px 20px;
     display: inline-block;
 }
+.hash-total {
+    overflow: auto;
+}
 .hash-top {
     width: 340px;
     height: 50px;
@@ -54,20 +57,11 @@
     font-size: 18px;
     font-weight: normal;
 }
-.hash-body {
-    border-top: 2px solid #656563;
-    border-bottom: 2px solid #656563;
-    width: 68%;
-    margin: 0 auto;
-}
-.hash-cont {
+.hash-col {
     border: 1.3px solid #606060;
-    width: 28%;
-    height: 30%;
-    margin-left: 42px;
-    margin-top: 38px;
-    margin-bottom: 38px;
-    background-color: #f0f0f0;
+    width: 380px;
+    float: left;
+    margin: 0 auto;
 }
 .hash-userName {
     color: #5C411D;
@@ -97,12 +91,13 @@
     font-size: 1.1em;
     margin-top: 50px;
     margin-left: -140px;
+    margin-bottom: 20px;
     float: left;
 }
 ul {
 	list-style: none;
     display: inline-block;
-    margin-left: 37.5%;
+    margin: 46%;
 }
 ul li {
     float:left;
@@ -117,7 +112,7 @@ ul li a {
     border:1px solid#5C411D;
     border-radius: 5px;
     text-align:center;
-    margin-top: -12px;
+    margin-top: 28px;
 }
 ul li a:hover, ul li a:focus {
 	color:#fff;

@@ -3,20 +3,29 @@ import { Col, Row } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import "./HashTag.css";
 import axios from 'axios';
+import Posts from '../components/Posts';
+import Pagination from '../components/Pagination';
     
 function HashTag(){
-    //post가 data임
+
     const [data, setData] = useState([]);
     const [hashtag, setHashTag] = useState("");
     const [search, setSearch] = useState("");
 
+    const [loading, setLoading] = useState(false);
+    const [currentPage, setCurrentPage] = useState(1);
+    const [postsPerPage] = useState(3);
+
+    //수람님이 새로 주신 주소는 net::ERR_CERT_AUTHORITY_INVALID 뜸
     useEffect(() => {
       const fetchPosts = async () => {
+        setLoading(true);
         const res = await axios(
           `http://visualup.koreacentral.cloudapp.azure.com:8080/goal/hashtag?name=${search}`
         ).then((res)=>{
             console.dir(res);
             setData(res.data);
+            setLoading(false);
           })
           .catch((err)=>{ 
             console.dir(err);
@@ -35,8 +44,16 @@ function HashTag(){
       fetchPosts();
     }, [search]);
 
+    //Get current posts
+    const indexOfLastPost = currentPage * postsPerPage;
+    const indexOfFirstPost = indexOfLastPost - postsPerPage;
+    const currentPosts = data.slice(indexOfFirstPost, indexOfLastPost);
+
+    //Change page
+    const paginate = pageNumber => setCurrentPage(pageNumber);
+
     return(
-        <div>
+        <div className="hash-total">
             <div className="hashtag-page-title-con">
                 <div className="hashtag-page-title">
                         <div className="hash-top">
@@ -53,28 +70,14 @@ function HashTag(){
                 </div><br/>
                 <div className="page-subtitle"><h5>{hashtag} 검색결과입니다.</h5></div>
             </div><br/><br/>
-
-            <Row align="middle" className="hash-body">
-                <Col align="middle" className="hash-cont">
-                  {data.map((hash) => (
-                    <div key={hash.userId}>
-                      <div className="hash-userName">{hash.userId}</div>
-                      <div className="hash-graph">_graph자리_</div>
-                      <div className="hash-goal">{hash.title}</div>
-                      <div className="hash-date">{hash.startDate}~{hash.endDate}</div>
-                    </div>
-                  ))}
-                </Col>
-            </Row> <br/><br/>
-            <ul>
-                <li class="num"><a href="#">&laquo;</a></li>
-                <li class="active"><a href="#">1</a></li>
-                <li class="num"><a href="#">2</a></li>
-                <li class="num"><a href="#">3</a></li>
-                <li class="num"><a href="#">4</a></li>
-                <li class="num"><a href="#">5</a></li>
-                <li class="num"><a href="#">&raquo;</a></li>
-            </ul>
+            <Row>
+            <Posts data={currentPosts} loading={loading} />
+            </Row>
+            <Pagination 
+              postsPerPage={postsPerPage} 
+              totalPosts={data.length} 
+              paginate={paginate}
+              />
         </div>
     );
 };
