@@ -22,14 +22,16 @@ import javax.servlet.http.HttpSession;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.backend.dto.UserVO;
 import com.backend.service.UserService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -40,7 +42,7 @@ import lombok.extern.slf4j.Slf4j;
 @ComponentScan({"org.json.simple.parser.*","java.util.*"})
 public class LoginController {
 	
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
+	//private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
 	private String code;
 	private String endpoint;
@@ -67,10 +69,10 @@ public class LoginController {
 		
 	}
 	
-	public String checkUser(String name, String email, String type) throws Exception{
+	public String checkUser(UserVO user, String type) throws Exception{
 		//이름과 메일주소로 기존 회원인지 신규 회원인지 알려주는 메소드.
 		
-		String userid = userService.loginRequest(name, email);
+		String userid = userService.loginRequest(user);
     	
     	if(userid == null) {
     		//새로운 사용자인 경우
@@ -84,15 +86,17 @@ public class LoginController {
 	}
 	
 	@RequestMapping(params="type=kakao")
-	public String kakaoLogin(HttpServletRequest request, Model model) throws IOException, ParseException {
+	public ResponseEntity<String> kakaoLogin(HttpServletRequest request, Model model) throws IOException, ParseException {
 		//카카오 로그인 콜백 페이지 
 		
 		session = request.getSession();
+		
+		
 		code = request.getParameter("code");
 		endpoint = "https://kauth.kakao.com/oauth/token?grant_type=authorization_code";
 		map = new HashMap<String, String>();
 		map.put("&client_id", "cead37f7d4b6971d3ce0be9d314f4852");
-		map.put("&redirect_uri", "http://visualup.koreacentral.cloudapp.azure.com:8080/login?type=kakao");
+		map.put("&redirect_uri", "https://visualup.koreacentral.cloudapp.azure.com/login?type=kakao");
 		map.put("&code", code);
 		
 		resultString = requestToServer(endpoint,map);
@@ -126,37 +130,38 @@ public class LoginController {
         	json = (JSONObject)json.get("profile");
         	userName = (String)json.get("nickname");
         	
-        	userId = checkUser(userName,userEmail,"kakao");
+        	UserVO user = new UserVO();
+        	user.setToken(access_Token);
+        	user.setUserEmail(userEmail);
+        	user.setUserName(userName);
+        	
+        	userId = checkUser(user,"kakao");
         	session.setAttribute("userid", userId);
-        	model.addAttribute("userid", userId);
+        	
         	
         }catch(Exception e) {
         	e.printStackTrace();
         }
-		model.addAttribute("result", json);
-		model.addAttribute("session", session);
-		model.addAttribute("token", access_Token);
 		
 		
-		
-		return "home/home";
+		System.out.println(userId);
+		System.out.println("you are logged in session : "+session.toString());
+		return new ResponseEntity<String>(session.toString(), HttpStatus.OK);
 		
 	}
 	
 	
 	@RequestMapping(params="type=google")
-	public String googleLogin(HttpServletRequest request, Model model) throws IOException, ParseException{
+	public @ResponseBody String googleLogin(HttpServletRequest request, Model model) throws IOException, ParseException{
 
 		session = request.getSession();
 		
 		code = request.getParameter("code");
 		endpoint = "https://oauth2.googleapis.com/token?grant_type=authorization_code";
-			
-		
-		
+
 		map.put("&client_id","637540086741-c6k444vhqd1eid2aid6p86hmh4pldpje.apps.googleusercontent.com");
 		map.put("&client_secret", "__BOsppoRfIu-xfU23qyzGit");
-		map.put("&redirect_uri", "http://visualup.koreacentral.cloudapp.azure.com:8080/login?type=google");
+		map.put("&redirect_uri", "https://visualup.koreacentral.cloudapp.azure.com/login?type=google");
 		map.put("&code", code);
 		
 		
@@ -196,11 +201,12 @@ public class LoginController {
         	data = (JSONObject)jsonarray.get(0);
         	userEmail = (String)data.get("value");
 	    
-	    	model.addAttribute("userName", userName);
-	    	model.addAttribute("userEmail", userEmail);
-	    	model.addAttribute("result", json);
+        	UserVO user = new UserVO();
+        	user.setToken(access_Token);
+        	user.setUserEmail(userEmail);
+        	user.setUserName(userName);
 	    	
-	    	model.addAttribute("userid", checkUser(userName,userEmail,"google"));
+	    	userId = checkUser(user,"google");
 	    	session.setAttribute("userid", userId);
 	    	
 	    	
@@ -211,12 +217,12 @@ public class LoginController {
 	    
         
 	    	    
-	    return "home/home";
+	    return "google login : "+userId;
 	}
 
 
 	@RequestMapping(params="type=github")
-	public String Callback(HttpServletRequest request, Model model) throws IOException{
+	public @ResponseBody String Callback(HttpServletRequest request, Model model) throws IOException{
 		
 		session = request.getSession();
 		
@@ -246,18 +252,21 @@ public class LoginController {
         requestHeaders.put("Accept", "application/json");
         
         String responseBody = get(endpoint,requestHeaders);
-      
+        
        
         
         try{
 	    	json= (JSONObject)jsonParser.parse(responseBody); 
 	    	userName = (String)json.get("name");
 	    	userEmail = (String)json.get("email");
-	    	model.addAttribute("userName", userName);
-	        model.addAttribute("userEmail", userEmail);
-	        model.addAttribute("result", json);
+
+
+	    	UserVO user = new UserVO();
+        	user.setToken(access_Token);
+        	user.setUserEmail(userEmail);
+        	user.setUserName(userName);
 	        
-	        model.addAttribute("userid", checkUser(userName,userEmail,"github"));
+	        userId = checkUser(user,"github");
 	        session.setAttribute("userid", userId);
 	        
 	        
@@ -267,7 +276,7 @@ public class LoginController {
 	    
 	   
 		
-		return "home/home";
+		return responseBody;
 	}
 	
 	
@@ -356,7 +365,7 @@ public class LoginController {
         }
     }
 	
-	 private static HttpURLConnection connect(String apiUrl){
+	private static HttpURLConnection connect(String apiUrl){
 	        try {
 	            URL url = new URL(apiUrl);
 	            return (HttpURLConnection)url.openConnection();
@@ -367,7 +376,7 @@ public class LoginController {
 	        }
 	    }
 
-	 private static String readBody(InputStream body){
+	private static String readBody(InputStream body){
 	        InputStreamReader streamReader = new InputStreamReader(body);
 
 	        try (BufferedReader lineReader = new BufferedReader(streamReader)) {
