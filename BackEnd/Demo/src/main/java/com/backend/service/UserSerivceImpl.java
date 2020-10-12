@@ -49,15 +49,22 @@ public class UserSerivceImpl implements UserService{
 	}
 
 	@Override
-	public String loginRequest(String name, String email) throws Exception {
+	public String loginRequest(UserVO user) throws Exception {
 		//로그인 요청이 들어옴. 이미 회원인 사용자인지 
 		
 		
-		List<UserVO> newuser = dao.newUser(name, email);
+		List<UserVO> newuser = dao.newUserCheck(user);
+		
 		if(newuser.size() == 0) {
 			return null;
 		}else {
-			return getUserid(name,email);
+			
+			UserVO alreadyUser = newuser.get(0);
+			alreadyUser.setToken(user.getToken());
+			dao.updateToken(alreadyUser);
+			
+			
+			return alreadyUser.getUserId();
 		}
 		
 		
@@ -83,6 +90,12 @@ public class UserSerivceImpl implements UserService{
 
 	@Override
 	public boolean checkUser(String id) throws Exception {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean updateToken(UserVO user) throws Exception {
 		// TODO Auto-generated method stub
 		return false;
 	}

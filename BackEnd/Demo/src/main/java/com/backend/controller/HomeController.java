@@ -37,7 +37,7 @@ public class HomeController {
 		return "/home/userhome";
 	}
 	
-	@RequestMapping(value="/logout", method=RequestMethod.GET)
+	@RequestMapping(value="/logoutSample", method=RequestMethod.GET)
 	public String logout(HttpServletRequest request, Model model) {
 		
 		HttpSession session = request.getSession();

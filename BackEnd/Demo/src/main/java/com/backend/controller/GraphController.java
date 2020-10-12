@@ -53,7 +53,7 @@ public class GraphController {
 		
 		
 	}
-	@RequestMapping(params="userId", method=RequestMethod.GET)
+	@RequestMapping(method=RequestMethod.GET)
 	public @ResponseBody JSONObject getGraphData(HttpServletRequest request) {
 		//그래프 데이터 요청. 모든 목표들에 대해서. 
 		
@@ -118,7 +118,7 @@ public class GraphController {
 				float value = dailys.get(j).getStars();
 				value = (value/5)*100;
 				
-				
+				daily.put("dailyId", dailys.get(j).getDailyId());
 				daily.put("value", value);
 				daily.put("whatIdone", dailys.get(j).getWhatIdone());
 				dailySet.add(daily);

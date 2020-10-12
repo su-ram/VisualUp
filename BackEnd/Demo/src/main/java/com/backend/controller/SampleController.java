@@ -39,7 +39,9 @@ public class SampleController {
 	
 	@GetMapping("/test")
 	public String thisisTest(Model model) {
-		return "test";
+		
+		return "redirect:http://www.naver.com";
+		
 	}
 	
 	@PostMapping("/response")
@@ -81,7 +83,8 @@ public class SampleController {
 	public String session2(HttpServletRequest request, Model model) {
 		
 		HttpSession session = request.getSession();
-		
+		System.out.println(session);
+
 		return "session";
 		
 	}

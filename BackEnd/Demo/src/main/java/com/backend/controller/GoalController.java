@@ -1,9 +1,5 @@
 package com.backend.controller;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,7 +13,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.backend.dto.GoalVO;
@@ -42,10 +37,12 @@ public class GoalController {
 		
 		return responseHeaders; 
 	}
-	@RequestMapping(params="userid", method=RequestMethod.GET)
-	public ResponseEntity<?> getGoalList(@RequestParam("userid") String userid) {
+	@RequestMapping(method=RequestMethod.GET)
+	public ResponseEntity<?> getGoalList(HttpServletRequest request) {
 		//사용자의 목표 조회
 		
+		
+		String userid = (String)request.getSession().getAttribute("userid");
 		List<GoalVO> result = goalService.getGoalList(userid);
 		
 		if (result == null) {
@@ -61,7 +58,7 @@ public class GoalController {
 		
 	}
 	
-	@RequestMapping(method=RequestMethod.PUT)
+	@RequestMapping(params="goalId", method=RequestMethod.PUT)
 	public ResponseEntity<?> updateGoal(HttpServletRequest request, @RequestBody GoalVO goal){
 		//목표 수정
 		
