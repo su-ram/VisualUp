@@ -35,8 +35,6 @@ function HashTag(){
       fetchPosts();
     }, [search]);
 
-    console.log(data);
-
     return(
         <div>
             <div className="hashtag-page-title-con">
@@ -58,19 +56,14 @@ function HashTag(){
 
             <Row align="middle" className="hash-body">
                 <Col align="middle" className="hash-cont">
-                
-                </Col>
-                <Col align="middle" className="hash-cont">
-                    <p className="hash-userName">name</p>
-                    <div className="hash-graph">graph</div>
-                    <p className="hash-goal">title</p>
-                    <p className="hash-date">startDate~endDate</p>
-                </Col>
-                <Col align="middle" className="hash-cont">
-                    <p className="hash-userName">name</p>
-                    <div className="hash-graph">graph</div>
-                    <p className="hash-goal">title</p>
-                    <p className="hash-date">startDate~endDate</p>
+                  {data.map((hash) => (
+                    <div key={hash.userId}>
+                      <div className="hash-userName">{hash.userId}</div>
+                      <div className="hash-graph">_graph자리_</div>
+                      <div className="hash-goal">{hash.title}</div>
+                      <div className="hash-date">{hash.startDate}~{hash.endDate}</div>
+                    </div>
+                  ))}
                 </Col>
             </Row> <br/><br/>
             <ul>
