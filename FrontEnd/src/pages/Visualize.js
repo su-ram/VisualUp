@@ -10,6 +10,7 @@ import axios from "axios";
 function Visualize() {
   // db와 연동되는 api는 이곳에서 => data 다루는 곳
 
+  const [dbData, setDBdata] = useState({});
   const [name, setName] = useState("");
   const [dataSet, setDataSet] = useState([]);
   const [dailySet, setDailySet] = useState([]);
@@ -37,6 +38,10 @@ function Visualize() {
     calGraphRate();
   },[graphDate]);
 
+  useEffect(()=>{
+    processDataToStore(dbData);
+  },[dbData])
+
   function getDataFromDB() {
     // db에서 해당 목표 정보 받아오기
     var headers = {
@@ -44,9 +49,9 @@ function Visualize() {
       'Accept': 'application/json',
       'Content-Type': 'application/x-www-form-urlencoded'
     }
-    axios.get("visualup.koreacentral.cloudapp.azure.com:8080/graph?userId=user103", headers)
+    axios.get("http://visualup.koreacentral.cloudapp.azure.com:8080/graph?userId=user103", headers)
     .then((res)=>{
-      console.dir(res);
+      setDBdata(res.data);
     })
     .catch((err)=>{ 
       console.dir(err);
@@ -55,211 +60,17 @@ function Visualize() {
         console.dir("데이터를 불러오던 중 예기치 못한 예외가 발생하였습니다.\n" + JSON.stringify(err));
       }
       else if (status === 400) {
+        alert("");
         console.dir("400에러");
       }
       else if (status === 500) {
         console.dir("내부 서버 오류입니다. 잠시만 기다려주세요.");
       }
     });
-
-    const dbData = {
-      "userId": "user103",
-      "userName": "김수람",
-      "goals": [
-        {
-          "goalId": "goal123",
-          "title": "python",
-          "startDate": "2020-10-22",
-          "endDate": "2020-12-31",
-          "termGoal": "예제 문제 1개씩 코드로 구현하기",
-          "term": 5,
-          "hashtags": "coding, commit, python, os",
-          "open": true,
-          "template": "Line",
-          "graphColor": "#FF6B29",
-          "dailys": [
-            {
-              "date": "2020-10-22",
-              "whatIDone": "예제 문제 2개 코드로 구현하기",
-              "value": 100
-            },
-            {
-              "date": "2020-10-27",
-              "whatIDone": "예제 문제 2개 코드로 구현하기",
-              "value": 0
-            },
-            {
-              "date": "2020-11-01",
-              "whatIDone": "예제 문제 2개 코드로 구현하기",
-              "value": 40
-            },
-            {
-              "date": "2020-11-06",
-              "whatIDone": "예제 문제 2개 코드로 구현하기",
-              "value": 60
-            },
-            {
-              "date": "2020-11-11",
-              "whatIDone": "예제 문제 2개 코드로 구현하기",
-              "value": 20
-            },
-            {
-              "date": "2020-11-16",
-              "whatIDone": "예제 문제 2개 코드로 구현하기",
-              "value": 40
-            },
-            {
-              "date": "2020-11-21",
-              "whatIDone": "예제 문제 2개 코드로 구현하기",
-              "value": 20
-            },
-            {
-              "date": "2020-11-26",
-              "whatIDone": "예제 문제 2개 코드로 구현하기",
-              "value": 0
-            },
-            {
-              "date": "2020-12-01",
-              "whatIDone": "예제 문제 2개 코드로 구현하기",
-              "value": 40
-            },
-            {
-              "date": "2020-12-06",
-              "whatIDone": "예제 문제 2개 코드로 구현하기",
-              "value": 80
-            },
-            {
-              "date": "2020-12-11",
-              "whatIDone": "예제 문제 2개 코드로 구현하기",
-              "value": 100
-            },
-            {
-              "date": "2020-12-16",
-              "whatIDone": "예제 문제 2개 코드로 구현하기",
-              "value": 20
-            },
-            {
-              "date": "2020-12-21",
-              "whatIDone": "예제 문제 2개 코드로 구현하기",
-              "value": 40
-            },
-            {
-              "date": "2020-12-26",
-              "whatIDone": "예제 문제 2개 코드로 구현하기",
-              "value": 0
-            }
-          ]
-        }
-        ,{
-          "goalId": "goal124",
-          "title": "nodejs",
-          "startDate": "2020-10-07",
-          "endDate": "2020-12-31",
-          "termGoal": "토이 프로젝트 1개씩",
-          "term": 10,
-          "hashtags": "coding, commit, js, web",
-          "open": true,
-          "template": "Line",
-          "graphColor": "#4EE23E",
-          "dailys": [
-            {
-              "date": "2020-10-11",
-              "whatIDone": "예제 문제 2개 코드로 구현하기",
-              "value": 20
-            },
-            {
-              "date": "2020-10-17",
-              "whatIDone": "예제 문제 2개 코드로 구현하기",
-              "value": 100
-            },
-            {
-              "date": "2020-10-27",
-              "whatIDone": "예제 문제 2개 코드로 구현하기",
-              "value": 60
-            },
-            {
-              "date": "2020-11-06",
-              "whatIDone": "예제 문제 2개 코드로 구현하기",
-              "value": 40
-            },
-            {
-              "date": "2020-11-16",
-              "whatIDone": "예제 문제 2개 코드로 구현하기",
-              "value": 20
-            },
-            {
-              "date": "2020-11-26",
-              "whatIDone": "예제 문제 2개 코드로 구현하기",
-              "value": 60
-            },
-            {
-              "date": "2020-12-06",
-              "whatIDone": "예제 문제 2개 코드로 구현하기",
-              "value": 80
-            },
-            {
-              "date": "2020-12-16",
-              "whatIDone": "예제 문제 2개 코드로 구현하기",
-              "value": 20
-            },
-            {
-              "date": "2020-12-26",
-              "whatIDone": "예제 문제 2개 코드로 구현하기",
-              "value": 100
-            }
-          ]
-        }
-        ,{
-          "goalId": "goal125",
-          "title": "typescript",
-          "startDate": "2020-10-01",
-          "endDate": "2020-12-31",
-          "termGoal": "1 chapter씩",
-          "term": 2,
-          "hashtags": "coding, commit, js, web, typescript",
-          "open": true,
-          "template": "Line",
-          "graphColor": "#41A0FF",
-          "dailys": [
-            {
-              "date": "2020-10-01",
-              "whatIDone": "Chapter 1 clear",
-              "value": 100
-            },
-            {
-              "date": "2020-10-03",
-              "whatIDone": "Chapter 2 clear",
-              "value": 20
-            },
-            {
-              "date": "2020-10-05",
-              "whatIDone": "Chapter 3 clear",
-              "value": 80
-            },
-            {
-              "date": "2020-10-07",
-              "whatIDone": "Chapter 4 clear",
-              "value": 20
-            },
-            {
-              "date": "2020-10-9",
-              "whatIDone": "예제 문제 2개 코드로 구현하기",
-              "value": 0
-            },
-            {
-              "date": "2020-10-11",
-              "whatIDone": "예제 문제 2개 코드로 구현하기",
-              "value": 60
-            }
-          ]
-        }
-      ]
-    };
-
-    const a = processDataToStore(dbData);
   }
 
   async function processDataToStore(dbData){
+    console.log(dbData);
     const tmpData = [{}];
     const tmpDaily = [{"title":"group"}]; // 기본 data와 index를 맞추기 위해 하나 넣어두기
     const tmpGData = [];
@@ -271,15 +82,15 @@ function Visualize() {
       const a = tmpData.push({ // 기본 data 넣기
         "goalId" : goal.goalId,
         "title" : goal.title,
-        "startDate" : goal.dailys[0].date,
-        "endDate" : goal.dailys[goal.dailys.length-1].date,
+        "startDate" : goal.dailySet[0].date,
+        "endDate" : goal.dailySet[goal.dailySet.length-1].date,
         "template": goal.template,
         "graphColor": goal.graphColor,
         "dataSet" : [] 
       });
       const b = tmpDaily.push({ // daily data 넣기
         "title" : goal.title,
-        "dailys": goal.dailys,
+        "dailySet": goal.dailySet,
         "termGoal" : goal.termGoal,
         "term" : goal.term,
         "hashtags" : goal.hashtags
@@ -287,7 +98,7 @@ function Visualize() {
 
       await a; await b;
 
-      goal.dailys.map((daily, index2)=>{ // 기본 data에 그래프 data 넣기
+      goal.dailySet.map((daily, index2)=>{ // 기본 data에 그래프 data 넣기
         tmpData[index+1].dataSet.push({ // 개별 그래프 data
           "date": daily.date,
           "type": goal.title,

@@ -68,10 +68,10 @@ function DailyCheck(props){
         let starArray = [];
         
         for(let i=0; i<star; i++){
-            starArray.push(<StarFilled key={i} onClick={isToday(date)?(e)=>setStar(index, i):undefined} className={"star_on "+(isToday(date)?"today ":"") + `star${goalIdx}${index}${i}`}/>);
+            starArray.push(<StarFilled key={i} onClick={isToday(date)?()=>setStar(index, i):undefined} className={"star_on "+(isToday(date)?"today ":"") + `star${goalIdx}${index}${i}`}/>);
         }
         for(let j=0; j<5-star; j++){
-            starArray.push(<StarFilled key={star+j} onClick={isToday(date)?(e)=>setStar(index, star+j):undefined} className={"star_off "+(isToday(date)?"today ":"")+ `star${goalIdx}${index}${star+j}`}/>)
+            starArray.push(<StarFilled key={star+j} onClick={isToday(date)?()=>setStar(index, star+j):undefined} className={"star_off "+(isToday(date)?"today ":"")+ `star${goalIdx}${index}${star+j}`}/>)
         }
 
         return(starArray);
@@ -151,7 +151,7 @@ function DailyCheck(props){
         <Carousel ref={carousel} className="dailycheck-con" dots={false}>
             {
                 dailySet!==null?
-                    dailySet[selectedGoalIdx].dailys.map((daily, index)=>
+                    dailySet[selectedGoalIdx].dailySet.map((daily, index)=>
                         getDailyCheck(daily,
                         dailySet[selectedGoalIdx].title, 
                         dailySet[selectedGoalIdx].term, 

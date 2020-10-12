@@ -21,9 +21,9 @@ export default function Graph(props){
         function calDailyIdx(){
 
           let diff = Number.MAX_VALUE;
-          let idx = dailySet[selectedGoalIdx].dailys.length-1; // 제일 마지막 daily 가리키기
+          let idx = dailySet[selectedGoalIdx].dailySet.length-1; // 제일 마지막 daily 가리키기
 
-          dailySet[selectedGoalIdx].dailys.map((daily, index)=>{ // 선택된 날짜와 가장 가까운 dailySet으로 가기
+          dailySet[selectedGoalIdx].dailySet.map((daily, index)=>{ // 선택된 날짜와 가장 가까운 dailySet으로 가기
             const tmp = Math.abs(Date.parse(graphDate)-Date.parse(daily.date));
             if(tmp<diff){
               diff = tmp;
@@ -58,14 +58,14 @@ export default function Graph(props){
     function prev() {
       if (carousel.current !== null){
         carousel.current.slick.slickPrev();
-        setGraphDate(dailySet[selectedGoalIdx].dailys[selDateIdx-1].date);
+        setGraphDate(dailySet[selectedGoalIdx].dailySet[selDateIdx-1].date);
       }
     }
 
     function next() {
       if (carousel.current !== null){
         carousel.current.slick.slickNext();
-        setGraphDate(dailySet[selectedGoalIdx].dailys[selDateIdx+1].date);
+        setGraphDate(dailySet[selectedGoalIdx].dailySet[selDateIdx+1].date);
       }
     }
 
@@ -183,7 +183,7 @@ export default function Graph(props){
                             <ArrowLeftOutlined />
                           </span>
                           <span className="dailycheck-icon" 
-                                id={selDateIdx<dailySet[selectedGoalIdx].dailys.length-1?"visible":"not-visible"} 
+                                id={selDateIdx<dailySet[selectedGoalIdx].dailySet.length-1?"visible":"not-visible"} 
                                 onClick={next}>
                             <ArrowRightOutlined />
                           </span>
