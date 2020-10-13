@@ -42,9 +42,38 @@ function Login(){
         }
       });
   }
+
+  function displayBTN(key){
+    let type;
+    let typeString;
+    let logo;
+
+    switch(key){
+      case "google":
+        type = "google-btn"; 
+        logo = <GoogleOutlined className="login-img"/>
+        typeString = "구글 아이디로 로그인";
+        break;
+      case "github":
+          type = "kakao-btn";     
+          logo = <MessageFilled className="login-img"/>
+          typeString = "카카오톡 아이디로 로그인";
+          break;
+      case "kakao":
+          type = "sns-btn";  
+          logo = <GlobalOutlined className="login-img"/>;   
+          typeString = "SNS 연동하기";
+          break;
+
+    }
+    return (
+      <div>
+        <Row><a href={data[key]} ><button type="button" className={type}>{logo}<p className="login-font">{typeString}</p> </button></a></Row><br/>
+      </div>
+    );
+  }
     
     return(
-      
         <div className="login-background">
             <a><ArrowLeftOutlined className="login-arrowLeft" style={{ fontSize: '30px'}} onClick={goBack}/></a>
             <br/><br/>
@@ -52,15 +81,11 @@ function Login(){
             <img src={require("./MainLogo.png")} className="login-logo"/>
                 <h1 className="title-visualUp">Visual Up!</h1><br/>
                 <div> 
-                  {data && data.length > 0
-                      ?data.map(login => {
-                        return <div>
-                                  <Row><a href={login.google} ><button type="button" className="google-btn"><GoogleOutlined className="login-img"/><p className="login-font">구글 아이디로 로그인</p> </button></a></Row><br/>
-                                  <Row><a href={login.kakao}><button type="button" className="kakao-btn" ><MessageFilled className="login-img"/><p className="login-font">카카오톡 아이디로 로그인</p> </button></a></Row><br/>
-                                  <Row><a href={login.github} ><button type="button" className="sns-btn" ><GlobalOutlined className="login-img"/><p className="login-font">SNS 연동하기</p></button></a></Row>
-                               </div>
-                      })
-                    : "loading.."}
+                  {data.length!==0
+                      ?Object.keys(data).map(key =>
+                        displayBTN(key)
+                      ):undefined
+                  }
                 </div>
             </Col>
            

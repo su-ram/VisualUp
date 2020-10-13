@@ -40,7 +40,7 @@ function Visualize() {
 
   useEffect(()=>{
     if(Object.keys(dbData).length!==0)
-      processDataToStore(dbData);
+      processDataToStore();
   },[dbData]);
 
   function getDataFromDB() {
@@ -266,7 +266,7 @@ function Visualize() {
 
   }
 
-  async function processDataToStore(dbData){
+  async function processDataToStore(){
     const tmpData = [{}];
     const tmpDaily = [{"title":"group"}]; // 기본 data와 index를 맞추기 위해 하나 넣어두기
     const tmpGData = [];

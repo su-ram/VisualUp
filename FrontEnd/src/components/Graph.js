@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { getIcon } from '../components/Icon';
 import { Tabs, Tooltip, Button } from 'antd';
 import { Area, Line, Bar } from '@ant-design/charts';
