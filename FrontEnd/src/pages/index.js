@@ -5,3 +5,4 @@ export { default as Login } from './Login';
 export { default as GoalList } from './GoalList';
 export { default as GoalSet } from './GoalSet';
 export { default as Error } from './Error';
+export { default as Test } from './Test';
