@@ -6,9 +6,9 @@ import "./FifthComponent.css"
 
 function FifthComponent() {
 
-  function gotoMain() {
-    window.location.href = "/";
-  }
+  // function gotoMain() {
+  //   window.location.href = "/";
+  // }
 
   return (
     <Fragment>
@@ -60,7 +60,9 @@ function FifthComponent() {
                 <h4>Excepteur sint occaecat cupidatat<br></br>
                     non proident, sunt in culpa qui</h4>
                 <Input type="text" placeholder="Email Address"></Input>
-                <Button type= "link" onClick={gotoMain}>SUBSCRIBE</Button>
+                {/* <Button type= "link" onClick={gotoMain}>SUBSCRIBE</Button> */}
+                <Button type= "link">SUBSCRIBE</Button>
+
               </div>
               <div className="fifth-info">
                 <address>497 Evergreen Rd. Roseville, CA 95673</address>
