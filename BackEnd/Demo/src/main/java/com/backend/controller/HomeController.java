@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class HomeController {
@@ -36,7 +37,7 @@ public class HomeController {
 		return "/home/userhome";
 	}
 	
-	@RequestMapping(value="/logout", method=RequestMethod.GET)
+	@RequestMapping(value="/logoutSample", method=RequestMethod.GET)
 	public String logout(HttpServletRequest request, Model model) {
 		
 		HttpSession session = request.getSession();
@@ -49,7 +50,7 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/login", method=RequestMethod.GET)
-	public String loginHome(HttpServletRequest request, Model model) {
+	public @ResponseBody HashMap<String, String> loginHome(HttpServletRequest request) {
 		
 		HttpSession session = request.getSession();
 		String id = (String)session.getAttribute("userid");
@@ -60,13 +61,9 @@ public class HomeController {
 		map.put("github", requestLogin.requestGithub());
 		map.put("google", requestLogin.requestGoogle());
 		map.put("kakao",requestLogin.requestKakao());
-		
-		
 
-		model.addAttribute("loginURL", map);
-		model.addAttribute("userid", id);
 	
-		return "/login/loginHome";
+		return map;
 	}
 	
 	

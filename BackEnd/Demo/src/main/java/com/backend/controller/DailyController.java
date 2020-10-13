@@ -40,6 +40,8 @@ public class DailyController {
 	
 	@RequestMapping(method=RequestMethod.PUT, produces="text/plain; charset=utf-8")
 	public ResponseEntity<String> updateDaily(HttpServletRequest request, @RequestBody DailyVO daily){
+		//데일리 체크 수정 
+		
 		
 		dailyId = request.getParameter("dailyId");
 		daily.setDailyId(dailyId);
@@ -58,6 +60,8 @@ public class DailyController {
 	
 	@RequestMapping(method=RequestMethod.DELETE, produces="text/plain; charset=utf-8")
 	public ResponseEntity<String> deleteDaily(HttpServletRequest request){
+		//데일리 체크 삭제 
+		
 		
 		dailyId = request.getParameter("dailyId");
 		

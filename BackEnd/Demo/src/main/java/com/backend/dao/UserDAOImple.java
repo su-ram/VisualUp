@@ -25,12 +25,9 @@ public class UserDAOImple implements UserDAO{
 	}
 	
 	@Override
-	public List<UserVO> newUser(String name, String email) throws Exception{
-		Map<String, String> map = new HashMap<>();
-		map.put("name", name);
-		map.put("email", email);
+	public List<UserVO> newUserCheck(UserVO user) throws Exception{
 		
-		return sqlSession.selectList(Namespace+".newUserCheck",map);
+		return sqlSession.selectList(Namespace+".newUserCheck",user);
 		
 	}
 	
@@ -70,6 +67,12 @@ public class UserDAOImple implements UserDAO{
 		UserVO user = sqlSession.selectOne(Namespace+".getById", userid);
 		
 		return user;
+	}
+
+	@Override
+	public void updateToken(UserVO user) throws Exception {
+		sqlSession.update(Namespace+".updateToken", user);
+		
 	}
 
 }

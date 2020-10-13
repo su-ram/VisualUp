@@ -9,16 +9,16 @@ import "./Graph.css";
 const { TabPane } = Tabs;
 
 export default function Graph(props){
-    const range = 0.8; // 나중에 비율 조정
+    const range = 0.6; // 나중에 비율 조정
 
-    const {dataSet, dailySet, graphDate, graphRate, setGraphDate, selectedGoalIdx, setSelGoalIdx} = props;
+    const {dataSet, dailySet, graphDate, graphRate, setGraphDate, selectedGoalIdx, setSelGoalIdx, getGoalDataFromDB} = props;
     const [selDateIdx, setSelDateIdx] = useState(-1);
     const [visible, setVisible] = useState(false);
 
     const carousel = useRef(null);
 
     useEffect(()=>{
-        function calGraphIdx(){
+        function calDailyIdx(){
 
           let diff = Number.MAX_VALUE;
           let idx = dailySet[selectedGoalIdx].dailys.length-1; // 제일 마지막 daily 가리키기
@@ -33,8 +33,12 @@ export default function Graph(props){
           setSelDateIdx(idx);
         }
 
-        if(Number(selectedGoalIdx)!==0) // group은 dailyset없어서 idx 필요없음
-          calGraphIdx();
+        if(Number(selectedGoalIdx)!==0) 
+          // dailySet이 들어온 후에 계산
+          // group은 dailyset없어서 idx 필요없음
+          calDailyIdx();
+
+        // tab 변경 시 endDate가 같아도, daily index는 갱신되어야하기 떄문에, selectedGoalIdx 변경도 같이 받기
     },[graphDate, selectedGoalIdx]);
 
     useEffect(()=>{ // 결정된 dailySet idx로 이동
@@ -83,13 +87,13 @@ export default function Graph(props){
           */}
           <Tooltip placement="top" title="트위터에 공유">
             <div>
-              <a class="twitter-share-button"
+              <a className="twitter-share-button"
                 href="http://www.twitter.com/share?url=https://www.notion.so/invite/338103323a4685fd95e7cfb2589a3ec8483e818f">
                 Tweet</a>
             </div>
           </Tooltip>
           <Tooltip placement="top" title="페이스북에 공유">
-            <div class="fb-share-button" data-href="https://www.notion.so/invite/338103323a4685fd95e7cfb2589a3ec8483e818f" data-layout="button" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Facebook</a></div>
+            <div className="fb-share-button" data-href="https://www.notion.so/invite/338103323a4685fd95e7cfb2589a3ec8483e818f" data-layout="button" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" className="fb-xfbml-parse-ignore">Facebook</a></div>
           </Tooltip>
           {/*
           <Tooltip placement="top" title="인스타그램에 공유">
@@ -102,6 +106,19 @@ export default function Graph(props){
 
     function getConfig(idx) {
       const data = dataSet[idx].dataSet;
+
+      let start; let end;
+      if(graphRate<=(range/2)){
+        start = 0;
+        end = range;
+      }else if(graphRate>=(1-range/2)){
+        start = 1-range;
+        end = 1;
+      }else{
+        start = (graphRate-(range/2)).toFixed(2);
+        end = (graphRate+(range/2)).toFixed(2);
+      }
+
       const config = {
         data, // 이름이 무조건 data여야함
         xField: 'date', // xfield에 적용할 변수
@@ -118,8 +135,8 @@ export default function Graph(props){
           {
             type: 'slider',
             cfg: {
-              start: graphRate - range / 2,
-              end: graphRate + range / 2,
+              start: start,
+              end: end,
             },
           },
         ],
@@ -128,11 +145,14 @@ export default function Graph(props){
           size: 3,
           shape: 'circle',
           style: {
-            fill: 'transparent',
+            fill: '#5D4215',
             stroke: 'white',
             lineWidth: 2,
           },
         },
+        label:{
+          visible: false,
+        }
         //smooth: true, // 그래프 부드럽게
       };
       return config;
@@ -179,7 +199,10 @@ export default function Graph(props){
                             carousel = {carousel}
                             dailySet = {dailySet}
                             selectedGoalIdx = {selectedGoalIdx}
+                            selDateIdx = {selDateIdx}
                             goTo = {goTo}
+                            goalIdx = {index}
+                            getGoalDataFromDB = {getGoalDataFromDB}
                           />:undefined
                       }
                   </div>
@@ -189,7 +212,7 @@ export default function Graph(props){
                   <span className="dailycheck-btn left" onClick={showDrawer}>{getIcon("leftOutlined")}</span>
                 </Tooltip>
               :undefined // 그룹은 dailycheck 안보임
-            }
+              }
           </div>
           <div className="bottom-graph-con">
             {getSNSCon()}
@@ -198,7 +221,7 @@ export default function Graph(props){
                 <a href={"/goalSet/"+dataSet[index].goalId}><span className="setting-btn"><SettingFilled /></span></a>
               </Tooltip>
               :undefined
-            }
+              }
           </div>
         </TabPane>
       );
@@ -209,7 +232,7 @@ export default function Graph(props){
         <React.Fragment>   
           <Tabs centered defaultActiveKey="0" className="graph-tab-con" tabBarExtraContent={operations} onChange={tabChanged}>
             {
-              dataSet!==null? // dataSet이 들어왔으면
+              Object.keys(dataSet).length!==0? // dataSet이 들어왔으면
                 Object.keys(dataSet).map((index) =>
                   // goal을 하나씩 TabPane으로 만들기
                   getTabPane(index)
