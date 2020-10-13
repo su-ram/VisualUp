@@ -51,7 +51,7 @@ function Visualize() {
       'Accept': 'application/json',
       'Content-Type': 'application/x-www-form-urlencoded'
     }
-    axios.get("http://visualup.koreacentral.cloudapp.azure.com:8080/graph?userId=user103", headers)
+    axios.get("https://virtserver.swaggerhub.com/VisualUp/VisualUp_Api/1.0.0/graph?userId=user103", headers)
     .then((res)=>{
       setDBdata(res.data);
       console.log(res.data);
