@@ -13,7 +13,7 @@ function Main(){
             <Switch>
                 <Route exact path="/" component={FullPage}/>
                 <Route exact path="/visualize" component={Visualize}/>
-                <Route exact path="/hashtag" component={HashTag}/>
+                <Route exact path="/hashtag/:hashtag" component={HashTag}/>
                 <Route exact path="/goalList" component={GoalList}/>
                 <Route exact path="/goalSet" component={GoalSet}/>
                 <Redirect path="*" to="/error" />
