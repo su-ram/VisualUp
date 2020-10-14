@@ -47,12 +47,12 @@
 .slider {
     margin: 0 auto;
     padding: 0px 40px 40px 40px;
-    margin-top: 10rem;
+    margin-top: 7rem;
     width: 70%;
 }
  .card-container .card-container-box{
-      background: #5f9ea0;
-      color: #fff;
+      background: white;
+      color: black;
       font-size: 18px;
       line-height: 200px;
       margin: 15px;
@@ -84,9 +84,17 @@
     opacity: 1;
     background: var(--unnamed-color-5d4215) 0% 0% no-repeat padding-box;
     background: #5D4215 0% 0% no-repeat padding-box;
+    color : white;
 }
 
 
   .center .card-container-box {
       transition: all .3s ease;
   }
+
+
+  .module-graph, .module-graph canvas{
+    width: 100%!important;
+    height: 80% !important;
+}
+
