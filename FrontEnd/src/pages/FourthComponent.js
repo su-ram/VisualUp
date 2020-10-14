@@ -4,7 +4,7 @@ import full_logo from "../../src/img/full_logo.png";
 import DOUBLESLASH from "../../src/img/DOUBLESLASH.png";
 // import {InstagramOutlined, TwitterOutlined, FacebookOutlined, GithubOutlined } from '@ant-design/icons';
 import "./FourthComponent.css"
-// import BGimg from "../../src/img/BGimg.png"
+import BGimg from "../../src/img/BGimg.png"
 //각자사진
 import HE from "../../src/img/HE.jpg";
 import EH from "../../src/img/EH.jpg";
@@ -21,6 +21,8 @@ function FourthComponent() {
   return (
     <Fragment>
       <div className="component fourth-component">
+        <img className = "bg-img"src = {BGimg} />
+
         <div className = "fourth-container">
           <div className="fourth-box container">
             
@@ -106,7 +108,6 @@ function FourthComponent() {
           
           </div>
         </div>
-        {/* <img className = "bg-img"src = {BGimg} /> */}
       </div>
     </Fragment>
   );
