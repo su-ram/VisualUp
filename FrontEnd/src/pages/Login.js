@@ -3,6 +3,7 @@ import { Row, Col } from 'antd';
 import { ArrowLeftOutlined, MessageFilled, GoogleOutlined, GlobalOutlined } from '@ant-design/icons'
 import "./Login.css";
 import axios from "axios";
+import cookie from 'react-cookies';
 
 function Login(){
     const [data, setData] = useState([]);
@@ -23,7 +24,7 @@ function Login(){
         'Accept': 'application/json',
         'Content-Type': 'application/x-www-form-urlencoded'
       }
-      axios.get("https://virtserver.swaggerhub.com/VisualUp/VisualUp_Api/1.0.0/login", headers)
+      axios.get("https://visualup.koreacentral.cloudapp.azure.com/login", headers)
       .then((res)=>{
         setData(res.data);
         console.dir(res);
@@ -55,15 +56,16 @@ function Login(){
         typeString = "구글 아이디로 로그인";
         break;
       case "github":
-          type = "kakao-btn";     
-          logo = <MessageFilled className="login-img"/>
-          typeString = "카카오톡 아이디로 로그인";
-          break;
-      case "kakao":
-          type = "sns-btn";  
-          logo = <GlobalOutlined className="login-img"/>;   
-          typeString = "SNS 연동하기";
-          break;
+        type = "sns-btn";  
+        logo = <GlobalOutlined className="login-img"/>;   
+        typeString = "SNS 연동하기";
+        break;
+          
+      case "kakao": 
+        type = "kakao-btn";     
+        logo = <MessageFilled className="login-img"/>
+        typeString = "카카오톡 아이디로 로그인";
+        break;
 
     }
     return (
