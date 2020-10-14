@@ -46,7 +46,6 @@ function FourthComponent() {
               name="박미현"
               part="디자인"
               insta = "https://www.instagram.com/mivseen/"
-              facebook = "https://www.facebook.com/profile.php?id=100007164814913"
               blog = "https://blog.naver.com/algus_0216"
            />
 
@@ -54,14 +53,14 @@ function FourthComponent() {
               img={SH}
               name="김서현"
               part="개발"
-              blog = "https://blog.naver.com/algus_0216"
+              github = "https://github.com/ksh0722k"
            />
 
             <FourthBox
               img={SR}
               name="김수람"
               part="개발"
-              blog = "https://github.com/su-ram"
+              github = "https://github.com/su-ram"
            />
 
           </div>
@@ -72,8 +71,7 @@ function FourthComponent() {
               name="우희은"
               part="개발"
               insta ="https://www.instagram.com/heun_w/"
-              facebook = "https://www.facebook.com/profile.php?id=100014172587733"
-              blog = "https://github.com/gmldms784"
+              github = "https://github.com/gmldms784"
             />
 
             <FourthBox
@@ -81,7 +79,7 @@ function FourthComponent() {
               name="이소정"
               part="개발"
               insta="https://www.instagram.com/iso3295/"
-              blog = "https://github.com/SJLEE316"
+              github = "https://github.com/SJLEE316"
             />
 
             <FourthBox
@@ -89,14 +87,14 @@ function FourthComponent() {
               name="임정민"
               part="개발"
               insta = "https://www.instagram.com/805_im_stagram"
-              blog = "https://github.com/lim-jeongmin"
+              github = "https://github.com/lim-jeongmin"
             />
 
             <FourthBox
               img={EH}
               name="조은학"
               part="개발"
-              blog ="https://github.com/Cho-Eunhak"
+              github ="https://github.com/Cho-Eunhak"
             />
 
             <div className = "fourth-box-content only">
