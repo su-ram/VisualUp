@@ -15,20 +15,19 @@ function HashTag({match}){
     //const [loading, setLoading] = useState(false);
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage] = useState(3);
-
+  
     useEffect(()=>{
       // 주소로 넘어온 hashtag setting 하기
       setHashTag(match.params.hashtag);
       setKeyWord(match.params.hashtag);
     },[match.params.hashtag])
 
-    //수람님이 새로 주신 주소는 net::ERR_CERT_AUTHORITY_INVALID 뜸
     useEffect(() => {
-      /*
+      
       const fetchPosts = async () => {
         //setLoading(true);
         const res = await axios(
-          `http://visualup.koreacentral.cloudapp.azure.com:8080/goal/hashtag?name=${hashtag}`
+          `https://visualup.koreacentral.cloudapp.azure.com/goal/hashtag?name=${match.params.hashtag}`
         ).then((res)=>{
           console.dir(res);
           setData(res.data);
@@ -50,8 +49,8 @@ function HashTag({match}){
       };
       // hashtag 세팅 후, api 데이터 받아오기
       fetchPosts();
-      */
-
+      
+      /*
     setData([
       {
         "userId": "user102",
@@ -113,7 +112,7 @@ function HashTag({match}){
         "template": "Bar",
         "graphColor": "red"
       }
-    ]);
+    ]);*/
     }, [hashtag]);
     
     function startSearching(){

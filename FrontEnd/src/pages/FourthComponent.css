@@ -22,6 +22,7 @@
 .fourth-box.container{
   display: flex;
   justify-content: center;
+  z-index: 100 !important;
 }
 
 .fourth-box-content.only{
@@ -31,6 +32,7 @@
 .only-text {
   display: table-cell; /* 가운데정렬 힘드네,,, */
   vertical-align: middle; /* 가운데정렬 힘드네,,, */
+  z-index: 40 !important;
 }
 
 .fourth-box-content.only h1{
