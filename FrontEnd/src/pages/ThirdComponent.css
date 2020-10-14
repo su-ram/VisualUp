@@ -23,38 +23,17 @@
     margin-top: 3rem;
 }
 
-/*
-.card-container {
-    width: 150px;
-    height : 250px;
-    margin: 10px;
-    display: inline-block;
-    background: rgb(231,229,230);
-    border-radius: 5px;
-    color:black;
-    padding: 3px 8px;
-    text-align: center;
-}
-
-.slick-slide{
-    margin: 5px;
-}
-
-.slick-prev, .slick-next {
-    top: 25% !important;
-}
-*/
 .slider {
     margin: 0 auto;
     padding: 0px 40px 40px 40px;
-    margin-top: 7rem;
-    width: 70%;
+    margin-top: 6.5rem;
+    width: 85%;
 }
  .card-container .card-container-box{
       background: white;
       color: black;
       font-size: 18px;
-      line-height: 200px;
+      line-height: 100px;
       margin: 15px;
       /* padding: 5%; */
       position: relative;
@@ -64,7 +43,7 @@
 
   
 .card-container-box .third-name{
-    line-height: 150px;
+    line-height: 130px;
     background: var(--unnamed-color-ffe5b2) 0% 0% no-repeat padding-box;
     background: #FFE5B2 0% 0% no-repeat padding-box;
     opacity: 0.7;
@@ -80,7 +59,7 @@
   }
 
   .center .slick-center .card-container-box .third-name{
-    line-height: 150px;
+    line-height: 140px;
     opacity: 1;
     background: var(--unnamed-color-5d4215) 0% 0% no-repeat padding-box;
     background: #5D4215 0% 0% no-repeat padding-box;
@@ -95,6 +74,6 @@
 
   .module-graph, .module-graph canvas{
     width: 100%!important;
-    height: 80% !important;
+    height: 330px !important;
 }
 
