@@ -262,8 +262,8 @@ function Visualize() {
           ]
         }
       ]
-    });*/
-
+    });
+*/
   }
 
   async function processDataToStore(){
