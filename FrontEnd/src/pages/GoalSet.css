@@ -1,0 +1,108 @@
+
+/*heeeun*/
+.goalset-con{
+    margin: 0 20%;
+    display: flex;
+    justify-content: space-around;
+}
+.col-goalset-con{
+    display: flex;
+    flex-direction: column;
+}
+.goalset-input-con{
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+.goalset-term-con{
+    display: flex;
+}
+.goalset-term-con>input{
+    width: 70%;
+}
+.goalset-hashtag-con{
+    display: flex;
+    flex-direction: column;
+}
+.goalset-hashtag-subcon{
+    display: flex;
+}
+.goalset-btn-con{
+    margin-top: 20px;
+}
+.goalset-input-con span{
+    margin-right: 5px;
+}
+.template-con{
+    border-radius: 12px;
+    color: #5D4215;
+    border: 2px solid #5D4215;
+    padding: 5px 15px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    background-color: #ffffff;
+}
+.selected-template{
+    background-color: #f5dfbb;
+
+}
+.graphdesc {
+    color: #5D4215;
+    font-weight: bold;
+    font-size: 1.0em;
+}
+.graphdesc>button{
+    margin: 0 10px;
+}
+
+.color-con{
+    width: 15px;
+    height: 15px;
+    background-color: black;
+    margin: 5px;
+    cursor: pointer;
+}
+.color1{
+    background-color: #FF6B29;
+}
+.color2{
+    background-color: #4EE23E;
+}
+.color3{
+    background-color: #41A0FF;
+}
+.color4{
+    background-color: #FFCB66;
+}
+.color5{
+    background-color: #DD52FF;
+}
+.color6{
+    background-color: #FF3939;
+}
+
+.color-pick-con{
+    width: 100px;
+    display: flex;
+    flex-wrap: wrap;
+    padding : 10px 20px;
+    border: 1px solid gray;
+    align-items: center;
+    justify-content: center;
+    background-color: white;
+    position: absolute;
+    right:0;
+    top:30px;
+}
+.color-palette{
+    display: flex;
+}
+.template-title{
+    display: flex;
+    justify-content: space-between;
+}
+.pick-color{
+    cursor: pointer;
+    text-decoration: underline;
+}

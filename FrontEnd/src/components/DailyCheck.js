@@ -166,8 +166,8 @@ function DailyCheck(props){
             <div key={index} className="dailycheck-contents-con">
               <div className="dailycheck-underborder dailycheck-title"><p className="check-db-data">{title}</p>
                 <div>
+                  {isToday(data.date)?<button className="save-btn" onClick={()=>saveToDB(index)}>저장하기</button>:undefined}
                   <button className="delete-btn" onClick={()=>deleteAtDB(index)}>삭제하기</button>
-                  {/*isToday(data.date)?*/<button className="save-btn" onClick={()=>saveToDB(index)}>저장하기</button>/*:undefined*/}
                 </div>
               </div>
               <div>
