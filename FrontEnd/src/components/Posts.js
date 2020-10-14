@@ -10,11 +10,11 @@ const Posts = ({ data })=>{ //, loading }) => {
     return (
             <Row align="middle" className="hash-col">
               {data.map((hash) => (
-                <div className="hash-post" key={hash.userId}>
-                  <div className="hash-userName">{hash.userId}</div>
+                <div className="hash-post" key={hash.userName}>
+                  <div className="hash-userName">{hash.userName}</div>
                   <div className="hash-graph">
                     <MakeGraph
-                        goalId="goal144" // 수람님이 api 수정해주시면, 여기에 goalId 넣으면 됩니다.
+                        goalId={hash.goalId} // 수람님이 api 수정해주시면, 여기에 goalId 넣으면 됩니다.
                     />
                   </div>
                   <div className="hash-goal">{hash.title}</div>
