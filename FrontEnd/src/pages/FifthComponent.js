@@ -3,6 +3,9 @@ import { Button, Input } from 'antd';
 import full_logo from "../../src/img/full_logo.png";
 import { TwitterOutlined , InstagramOutlined  ,FacebookOutlined ,CopyrightOutlined   } from '@ant-design/icons';
 import "./FifthComponent.css"
+import BGimg from "../../src/img/BGimg.png"
+
+
 
 function FifthComponent() {
 
@@ -13,6 +16,7 @@ function FifthComponent() {
   return (
     <Fragment>
       <div className="fifth-container">
+        <img className = "bg-img"src = {BGimg} />
         <footer className="fifth-box-container">
           <div className="fifth-box-content-container">
             <div className="fifth-box-content">
