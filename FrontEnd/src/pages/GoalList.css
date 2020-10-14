@@ -75,3 +75,13 @@ ul li a:hover, ul li a:focus {
 .ant-row{
     height: 310px;
 }
+
+.menu-button {
+    background-color: #FFE5B2;
+    width: 90px;
+    margin-left: 50px;
+}
+
+.goal-dropdown-link {
+    margin-left: 38px;
+  }
