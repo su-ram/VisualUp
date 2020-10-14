@@ -12,6 +12,9 @@ import SJ from "../../src/img/SJ.jpg";
 import YJ from "../../src/img/YJ.jpg";
 import MH from "../../src/img/MH.jpg";
 import JM from "../../src/img/JM.jpg";
+import SR from "../../src/img/SR.jpg";
+import SH from "../../src/img/SH.jpg";
+
 
 
 function FourthComponent() {
@@ -48,12 +51,14 @@ function FourthComponent() {
            />
 
             <FourthBox
+              img={SH}
               name="김서현"
               part="개발"
               blog = "https://blog.naver.com/algus_0216"
            />
 
             <FourthBox
+              img={SR}
               name="김수람"
               part="개발"
               blog = "https://github.com/su-ram"
