@@ -16,7 +16,7 @@
   flex-direction: column;
   justify-content: center;
   align-content:center; /* 왜아무반응없지 */
-  margin:auto;
+  margin: 50px auto;
 }
 
 .fourth-box.container{
