@@ -9,7 +9,9 @@ import PageHeader from '../components/PageHeader';
 
 function GoalList(){
     const [data, setData] = useState([]);
+    //const [goalId, setGoalId] = useState("");
     const name = "홍미주";
+    const goalId = "goal144";
 
     const [currentPage, setCurrentPage] = useState(1);
     const [postsPerPage] = useState(4);
@@ -38,69 +40,6 @@ function GoalList(){
         });
       };
       fetchPosts();
-      /*
-      setData([
-        {
-          "userId": "user102",
-          "title": "파이썬 뿌시기",
-          "termGoal": "예제 문제 1개씩 코드로 구현하기",
-          "open": true,
-          "startDate": "2020-10-22",
-          "endDate": "2020-12-31",
-          "term": 5,
-          "hashtags": "coding, commit, python, os",
-          "template": "Area",
-          "graphColor": "black"
-        },
-        {
-          "userId": "user102",
-          "title": "파이썬어어어엉ㄴ",
-          "termGoal": "서버 구현",
-          "open": true,
-          "startDate": "2020-10-21",
-          "endDate": "2020-12-20",
-          "term": 3,
-          "hashtags": "coding, commit, python, web",
-          "template": "Bar",
-          "graphColor": "red"
-        },
-        {
-          "userId": "user102",
-          "title": "파이썬어어어엉ㄴ",
-          "termGoal": "서버 구현",
-          "open": true,
-          "startDate": "2020-10-21",
-          "endDate": "2020-12-20",
-          "term": 3,
-          "hashtags": "coding, commit, python, web",
-          "template": "Bar",
-          "graphColor": "red"
-        },
-        {
-          "userId": "user102",
-          "title": "파이썬어어어엉ㄴ",
-          "termGoal": "서버 구현",
-          "open": true,
-          "startDate": "2020-10-21",
-          "endDate": "2020-12-20",
-          "term": 3,
-          "hashtags": "coding, commit, python, web",
-          "template": "Bar",
-          "graphColor": "red"
-        },
-        {
-          "userId": "user102",
-          "title": "파이썬어어어엉ㄴ",
-          "termGoal": "서버 구현",
-          "open": true,
-          "startDate": "2020-10-21",
-          "endDate": "2020-12-20",
-          "term": 3,
-          "hashtags": "coding, commit, python, web",
-          "template": "Bar",
-          "graphColor": "red"
-        }
-      ]);*/  
     }, []);
 
     //Get current posts
@@ -113,6 +52,10 @@ function GoalList(){
       e.preventDefault();
       setCurrentPage(pageNumber)
     };
+
+    function goToSetGoal(){
+      window.location = `/GoalSet`;
+    }
 
     return(
         <div>
@@ -128,6 +71,7 @@ function GoalList(){
               totalPosts={data.length} 
               paginate={paginate}
             />
+            <button type="button" className="goal-setG" onClick={goToSetGoal}>목표 등록하러 가기<ArrowRightOutlined/></button>
         </div>
     );
 };
