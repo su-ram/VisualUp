@@ -41,10 +41,14 @@
     margin-bottom: 20px;
     margin-left: 15px;
 }
+.pagination {
+    margin-top: 35px;
+}
 ul {
 	list-style: none;
     display: inline-block;
     width: 380px;
+    margin-top: 10px;
     margin-left: 45%;
 }
 ul li {
@@ -72,16 +76,23 @@ ul li a:hover, ul li a:focus {
     width: 230px;
     margin: 0 auto;
 }
-.ant-row{
-    height: 310px;
-}
-
 .menu-button {
     background-color: #FFE5B2;
     width: 90px;
     margin-left: 50px;
 }
-
 .goal-dropdown-link {
     margin-left: 38px;
   }
+.goal-setG {
+    background-color: white;
+    border: 3px solid#5C411D;
+    border-radius: 30px;
+    width: 189px;
+    height: 55px;
+    font-size: 1.3em;
+    float: right;
+    margin-right: 175px;
+    margin-top: -54px;
+    cursor: pointer;
+}
