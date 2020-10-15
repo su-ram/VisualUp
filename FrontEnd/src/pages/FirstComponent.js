@@ -6,7 +6,7 @@ import BGimg_first from "../../src/img/BGimg_first.jpg"
 function FirstComponent() {
 
   function gotoLogin() { // add goal 버튼 클릭 시
-    window.location.href = "/Login";
+    window.location.href = "/visualize";
   }
 
   return (

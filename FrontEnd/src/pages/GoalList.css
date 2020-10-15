@@ -76,10 +76,6 @@ ul li a:hover, ul li a:focus {
     width: 230px;
     margin: 0 auto;
 }
-.goal-post:hover{
-    background-color: #FFE5B2;
-    cursor: pointer;
-}
 .menu-button {
     background-color: #FFE5B2;
     width: 90px;
@@ -87,7 +83,7 @@ ul li a:hover, ul li a:focus {
 }
 .goal-dropdown-link {
     margin-left: 38px;
-}
+  }
 .goal-setG {
     background-color: white;
     border: 3px solid#5C411D;
@@ -99,11 +95,4 @@ ul li a:hover, ul li a:focus {
     margin-right: 175px;
     margin-top: -54px;
     cursor: pointer;
-}
-.goal-setG:hover{
-    background-color: #5D4215;
-    color: #FFE5B2;
-}
-.goal-setG:active{
-    outline: none;
 }
