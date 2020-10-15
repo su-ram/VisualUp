@@ -13,7 +13,7 @@ function Main(){
     console.log(page);
     return(
         <Col id="contents">
-            {page ==="https://localhost:3000/"?<Navigation/>:<Navigation2/>}
+            {page ==="http://localhost:3000/"?<Navigation/>:<Navigation2/>}
             <Switch>
                 <Route exact path="/" component={FullPage}/>
                 <Route exact path="/visualize" component={Visualize}/>
