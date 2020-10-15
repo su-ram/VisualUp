@@ -194,11 +194,11 @@ function GoalSet({match}){
                     <div className="goalset-input-con">
                         <p className={styles.name}><CalendarOutlined />날짜 선택</p>
                         {
-                            date.length!==0?
+                            (goalId==="" || date.length!==0)?
                             <RangePicker
                                 defaultValue={[moment(date[0]), moment(date[1])]}
                                 onChange={onChangeDate}
-                            />:"로딩중입니다..."
+                            />:undefined
                         }
                     </div>
                     <div className="goalset-input-con">
@@ -222,8 +222,6 @@ function GoalSet({match}){
                             <div className="goalset-hashtag-subcon">
                                 <input className={styles.input} onChange={onChangehashtag1} value={hashtag1} placeholder="ex)코테"/>
                                 <input className={styles.input} onChange={onChangehashtag2} value={hashtag2} placeholder="ex)C++"/>
-                            </div>
-                            <div className="goalset-hashtag-subcon">
                                 <input className={styles.input} onChange={onChangehashtag3} value={hashtag3} placeholder="ex)자바"/>
                                 <input className={styles.input} onChange={onChangehashtag4} value={hashtag4} placeholder="ex)취준"/>
                             </div>
