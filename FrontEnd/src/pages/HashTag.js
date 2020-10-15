@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Col, Row } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import "./HashTag.css";
-import axios from 'axios';
 import Posts from '../components/Posts';
 import Pagination from '../components/Pagination';
+import hashBackground from "../../src/img/hashBackground.jpg";
+import axios from 'axios';
     
 function HashTag({match}){
 
@@ -27,7 +28,7 @@ function HashTag({match}){
       const fetchPosts = async () => {
         //setLoading(true);
         const res = await axios(
-          `https://visualup.koreacentral.cloudapp.azure.com/goal/hashtag?name=${match.params.hashtag}`
+          `http://visualup.koreacentral.cloudapp.azure.com/goal/hashtag?name=${match.params.hashtag}`
         ).then((res)=>{
           console.dir(res);
           setData(res.data);
@@ -132,6 +133,7 @@ function HashTag({match}){
 
     return(
         <div className="hash-total">
+          <img src ={hashBackground} className="hash-back"/>
             <div className="hashtag-page-title-con">
                 <div className="hashtag-page-title">
                     <div className="hash-top">
