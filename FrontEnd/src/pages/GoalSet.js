@@ -194,11 +194,11 @@ function GoalSet({match}){
                     <div className="goalset-input-con">
                         <p className={styles.name}><CalendarOutlined />날짜 선택</p>
                         {
-                            date.length!==0?
+                            (goalId==="" || date.length!==0)?
                             <RangePicker
                                 defaultValue={[moment(date[0]), moment(date[1])]}
                                 onChange={onChangeDate}
-                            />:"로딩중입니다..."
+                            />:undefined
                         }
                     </div>
                     <div className="goalset-input-con">
@@ -222,8 +222,6 @@ function GoalSet({match}){
                             <div className="goalset-hashtag-subcon">
                                 <input className={styles.input} onChange={onChangehashtag1} value={hashtag1} placeholder="ex)코테"/>
                                 <input className={styles.input} onChange={onChangehashtag2} value={hashtag2} placeholder="ex)C++"/>
-                            </div>
-                            <div className="goalset-hashtag-subcon">
                                 <input className={styles.input} onChange={onChangehashtag3} value={hashtag3} placeholder="ex)자바"/>
                                 <input className={styles.input} onChange={onChangehashtag4} value={hashtag4} placeholder="ex)취준"/>
                             </div>
@@ -251,37 +249,35 @@ function GoalSet({match}){
                         }
                         <div>
                             <div onClick={(e)=>onChangeTemplate("Bar")} className={template==="Bar"?"selected-template template-con":"template-con"}>
-                                <div className={styles.graphname}>바 그래프
-                                <BarChartOutlined style={{ fontSize: '25px' }} /></div>
-                                <div className={styles.graphdesc}>일일 목표 달성률을 한 눈에 볼 수 있어요</div>
+                                <BarChartOutlined style={{ fontSize: '25px' }} />
+                                <div className={styles.graphname}>바 그래프</div>
+                                <div className="graphdesc">일일 목표 달성률을 한 눈에 볼 수 있어요</div>
                             </div>
                             <div onClick={(e)=>onChangeTemplate("Line")} className={template==="Line"?"selected-template template-con":"template-con"}>
-                                <div className={styles.graphname}>선 그래프
-                                <LineChartOutlined style={{ fontSize: '25px' }} /></div>
-                                <div className={styles.graphdesc}>기간 별 성장 추세를 한 눈에 볼 수 있어요</div>
+                                <LineChartOutlined style={{ fontSize: '25px' }} />
+                                <div className={styles.graphname}>선 그래프</div>
+                                <div className="graphdesc">기간 별 성장 추세를 한 눈에 볼 수 있어요</div>
                             </div>
                             <div onClick={(e)=>onChangeTemplate("Area")} className={template==="Area"?"selected-template template-con":"template-con"}>
-                                <div className={styles.graphname}>영역 그래프
-                                <AreaChartOutlined style={{ fontSize: '25px' }}/></div>
-                                <div className={styles.graphdesc}>여러 그래프의 포개어진 영역을 볼 수 있어요</div>
+                                <AreaChartOutlined style={{ fontSize: '25px' }}/>
+                                <div className={styles.graphname}>영역 그래프</div>
+                                <div className="graphdesc">여러 그래프의 포개어진 영역을 볼 수 있어요</div>
                             </div>
                         </div>
                     </div>
-                    <div className="goalset-input-con">
-                        <div >
+                    <div className="goalset-input-con private-con">
+                        <div className="private-subcon">
                             <div className={styles.open}>공개설정</div>
-                        </div>
-                        <div >
-                            <div className="graphdesc">
+                            <div className="goalset-private">
                                 공개
                                     <Switch onClick={() => setPrivate(!isPrivate)} checked={isPrivate} />
                                 비공개
                             </div>
                         </div>
-                        <div className="goalset-btn-con">
-                            <button type="button" onClick={saveDataToDB} className={styles.btn1}><p className={styles.font}>등록하기</p> </button>
-                            <button type="button" onClick={()=>{window.location.href="/";}} className={styles.btn2}><p className={styles.font}>취소</p></button>
-                        </div>
+                    </div>
+                    <div className="goalset-btn-con">
+                        <button type="button" onClick={saveDataToDB} className={styles.btn1}><p className={styles.font}>등록하기</p> </button>
+                        <button type="button" onClick={()=>{window.location.href="/";}} className={styles.btn2}><p className={styles.font}>취소</p></button>
                     </div>
                 </div>
             </div>

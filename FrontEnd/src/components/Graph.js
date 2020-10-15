@@ -93,7 +93,7 @@ export default function Graph(props){
             </div>
           </Tooltip>
           <Tooltip placement="top" title="페이스북에 공유">
-            <div className="fb-share-button" data-href="https://www.notion.so/invite/338103323a4685fd95e7cfb2589a3ec8483e818f" data-layout="button" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse" className="fb-xfbml-parse-ignore">Facebook</a></div>
+            <div className="fb-share-button" data-href="https://www.notion.so/invite/338103323a4685fd95e7cfb2589a3ec8483e818f" data-layout="button" data-size="small"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://www.notion.so/invite/338103323a4685fd95e7cfb2589a3ec8483e818f" className="fb-xfbml-parse-ignore">Facebook</a></div>
           </Tooltip>
           {/*
           <Tooltip placement="top" title="인스타그램에 공유">

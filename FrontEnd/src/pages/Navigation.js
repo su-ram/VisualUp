@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import { Link } from "react-router-dom";
+import { Tooltip } from 'antd';
 import "./Navigation.css";
 import Logo from "../../src/img/full_row_Logo.png";
 import { UserOutlined , UnorderedListOutlined ,SearchOutlined  } from '@ant-design/icons';
@@ -18,17 +19,23 @@ class Navigation extends React.Component {
           <div className = "icon">
               <div className="link">
                   <Link to="/login">
+                    <Tooltip placement="bottom" title="해시태그 검색">
                       <SearchOutlined style ={{fontSize : '25px', color : 'black'}}/>
+                    </Tooltip>
                   </Link>
               </div>
               <div className="link">
                   <Link to="/login">
+                    <Tooltip placement="bottom" title="목표 리스트">
                       <UnorderedListOutlined  style ={{fontSize : '25px', color : 'black'}}/>
+                    </Tooltip>
                   </Link>
               </div>
               <div className="link">
                   <Link to="/login">
-                      <UserOutlined style={{ fontSize : '25px', color: 'black' }}/>
+                      <Tooltip placement="bottom" title="목표 시각화">
+                        <UserOutlined style={{ fontSize : '25px', color: 'black' }}/>
+                      </Tooltip>
                   </Link>
               </div>
           </div>

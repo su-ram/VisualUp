@@ -22,7 +22,7 @@
 .link img {
     width: 150px;
     height: 53px;
-    margin-left: 4rem ;
+    margin-left: 10rem;
     margin-top: 1.1rem;
     padding: 0.2rem;
 }
@@ -30,7 +30,7 @@
 .links .icon{
     display: inline-flex;
     margin-left: auto;
-    padding-right: 3rem;
+    padding-right: 10rem;
     margin-top: 1.5rem;
 }
 .icon .link {

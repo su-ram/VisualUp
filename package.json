@@ -1,3 +1,5 @@
 {
-  "dependencies": {}
+  "dependencies": {
+    "react-cookies": "^0.1.1"
+  }
 }

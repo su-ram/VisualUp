@@ -23,7 +23,6 @@ function HashTag({match}){
     },[match.params.hashtag])
 
     useEffect(() => {
-      
       const fetchPosts = async () => {
         //setLoading(true);
         const res = await axios(
@@ -49,8 +48,7 @@ function HashTag({match}){
       };
       // hashtag 세팅 후, api 데이터 받아오기
       fetchPosts();
-      
-      /*
+     /*
     setData([
       {
         "userId": "user102",
@@ -112,7 +110,9 @@ function HashTag({match}){
         "template": "Bar",
         "graphColor": "red"
       }
-    ]);*/
+    ]);
+      */
+
     }, [hashtag]);
     
     function startSearching(){
@@ -151,7 +151,9 @@ function HashTag({match}){
                 {
                   data.length===0?
                   <h5>검색 결과가 없습니다.</h5>:
-                  <h5>{hashtag} 검색결과입니다.</h5>
+                    hashtag===undefined?
+                      <h5>검색어를 입력해주세요.</h5>:
+                        <h5>{hashtag} 검색결과입니다.</h5>
                 }
                 </div>
             </div><br/><br/>
