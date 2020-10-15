@@ -1,0 +1,38 @@
+#root{
+    width: 100%;
+    height: 100%;
+}
+#app{
+    width: 100%;
+    height: 100%;
+}
+
+.error-page-con{
+    width: 100%;
+    height: 100%;
+    background-image: url(/img/error_background.jpg);
+    background-size: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.error-contents-con{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.error-description{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 0 10px;
+}
+.error-goto-btn{
+    background-color: #5D4215;
+    color: white;
+    border: 0;
+    padding: 5px 10px;
+}
+.error-goto-btn:hover{
+    cursor: pointer;
+}
