@@ -10,13 +10,6 @@
 }
 .login-logo {
     margin-top: 40px;
-    width: 70px;
-    height: 70px;
-}
-.title-visualUp {
-    margin-top: -5px;
-    font-size: 2.4rem; 
-    color: #7a5e2e;
 }
 .login-body {
     background-color: rgba( 255, 255, 255, 0.8 );
