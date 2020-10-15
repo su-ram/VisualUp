@@ -73,7 +73,7 @@
   }
 
 
-  .module-graph, .module-graph canvas{
+ .card-container-box .module-graph, .module-graph canvas{
     width: 100%!important;
     height: 330px !important;
 }

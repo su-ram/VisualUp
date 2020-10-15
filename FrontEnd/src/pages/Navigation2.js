@@ -27,7 +27,7 @@ class Navigation extends React.Component {
                   </Link>
               </div>
               <div className="link">
-                  <Link to="/goalSet">
+                  <Link to="/login">
                       <UserOutlined style={{ fontSize : '25px', color: 'black' }}/>
                   </Link>
               </div>
