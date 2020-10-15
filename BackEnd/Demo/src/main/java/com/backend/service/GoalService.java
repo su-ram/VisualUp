@@ -18,4 +18,5 @@ public interface GoalService {
 	public String getTermGoal(String id);
 	public GoalVO getGoalInfo(String id);
 	
+	
 }

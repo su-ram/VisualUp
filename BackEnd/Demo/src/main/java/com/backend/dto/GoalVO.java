@@ -1,9 +1,5 @@
 package com.backend.dto;
 
-
-
-import java.sql.Date;
-
 import lombok.Data;
 
 @Data
@@ -11,7 +7,6 @@ public class GoalVO {
 	
 	private String goalId;
 	private String userId;
-	private String hashId;
 	private String title;
 	private String startDate;
 	private String endDate;

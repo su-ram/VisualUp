@@ -4,6 +4,9 @@ import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -16,7 +19,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.backend.dto.GoalVO;
+import com.backend.dto.UserVO;
 import com.backend.service.GoalService;
+import com.backend.service.UserService;
+import com.google.gson.Gson;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -27,7 +33,9 @@ public class GoalController {
 	
 	@Autowired
 	private GoalService goalService;
-	
+	@Autowired
+	private UserService userService;
+	private String userId;
 	private HttpHeaders responseHeaders;
 
 	
@@ -38,22 +46,34 @@ public class GoalController {
 		return responseHeaders; 
 	}
 	@RequestMapping(method=RequestMethod.GET)
-	public ResponseEntity<?> getGoalList(HttpServletRequest request) {
+	public ResponseEntity<?> getGoalList(HttpServletRequest request) throws Exception {
 		//사용자의 목표 조회
 		
+		String param = request.getParameter("userId");
 		
-		String userid = (String)request.getSession().getAttribute("userid");
-		List<GoalVO> result = goalService.getGoalList(userid);
-		
-		if (result == null) {
+		if (param != null) {
+			//파라미터로 명시해서 넘겨준 경우 : 로그인 안 되어 있음. 
+			userId=param;
 			
-			return new ResponseEntity<String>("userid가 없습니다.",getHeader(), HttpStatus.BAD_REQUEST);
-		}
-		else {
+		}else {
+			//로그인 되어 있는 경우.
 			
-			return new ResponseEntity<List<GoalVO>>(result , HttpStatus.OK);
-		
+			userId=(String)request.getSession().getAttribute("userId");
+			
+			if (userId == null)
+				return new ResponseEntity<String>("로그인 해주세요.", getHeader(), HttpStatus.BAD_REQUEST);
+			
+			
+			
 		}
+		
+		List<GoalVO> result = goalService.getGoalList(userId);
+		
+		if(result == null)
+			return new ResponseEntity<String>("없는 사용자입니다.", getHeader(), HttpStatus.UNAUTHORIZED);
+		
+		return new ResponseEntity<List<GoalVO>>(result , HttpStatus.OK);
+		
 		
 		
 	}
@@ -76,7 +96,7 @@ public class GoalController {
 		if(goalService.updateGoal(goal)) {
 			return new ResponseEntity<String>(goalid+"가 정상적으로 수정되었습니다.",getHeader(),HttpStatus.CREATED);
 		}
-		return new ResponseEntity<String>("goalId가 없습니다.", HttpStatus.BAD_REQUEST);
+		return new ResponseEntity<String>("goalId가 없습니다. goalId를 지정해주세요.", HttpStatus.BAD_REQUEST);
 		
 	}
 	
@@ -84,23 +104,30 @@ public class GoalController {
 	public ResponseEntity<?> newGoal(HttpServletRequest request , @RequestBody GoalVO newgoal) {
 		//새로운 목표 생성
 		
+		userId = newgoal.getUserId();
 		
-		String userid = newgoal.getUserId();
 		String newgoalid = "goal"+goalService.newGoalID();
 		
-		if(userid == null) {
+		if(userId == null) {
+			//로그인 되어 있는 경우. 
 			
-			userid = (String)request.getSession().getAttribute("userid");
-			newgoal.setUserId(userid);
+			
+			userId = (String)request.getSession().getAttribute("userid");
+			
 		}
 		
+		if(userId == null) {
+			return new ResponseEntity<String>("userlId를 지정하거나, 로그인해주세요.",getHeader(), HttpStatus.UNAUTHORIZED);
+		}
+		
+		newgoal.setUserId(userId);
 		newgoal.setGoalId(newgoalid);
 		
-		if(goalService.checkUserId(userid)) {
+		if(goalService.checkUserId(userId)) {
 			goalService.insertGoal(newgoal);
 			return new ResponseEntity<String>("새로운 목표 생성 : "+newgoalid, getHeader(), HttpStatus.OK);
 		}else {
-			return new ResponseEntity<String>("userlId가 없습니다.", HttpStatus.BAD_REQUEST);
+			return new ResponseEntity<String>("없는 사용자입니다.",getHeader(), HttpStatus.BAD_REQUEST);
 		}
 		
 		
@@ -121,11 +148,32 @@ public class GoalController {
 	}
 	
 	@RequestMapping(value="/hashtag", params="name", method=RequestMethod.GET)
-	public @ResponseBody List<GoalVO> goalsByHashtag(HttpServletRequest request) {
+	public @ResponseBody JSONArray goalsByHashtag(HttpServletRequest request) throws Exception{
 		//해시태그별로 목표 조회 
 		
 		String hashtag = request.getParameter("name");
-		return goalService.goalByHashtag(hashtag);
+		List<GoalVO> goals = goalService.goalByHashtag(hashtag);
+		
+		JSONArray dataSet = new JSONArray();
+		JSONParser parser = new JSONParser();
+		JSONObject goal;
+		Gson gson = new Gson();
+		
+		for(int i=0; i< goals.size(); i++) {
+			
+			goal = new JSONObject();
+			String str = gson.toJson(goals.get(i));
+			goal = (JSONObject)parser.parse(str);
+			UserVO tempUser = userService.getUserById(goals.get(i).getUserId());
+			goal.put("userName", tempUser.getUserName());
+			
+			dataSet.add(goal);
+			
+		}
+		
+		
+		
+		return dataSet;
 	}
 	
 	@RequestMapping(value = "/goalSet/{goalId}", method=RequestMethod.GET)

@@ -1,17 +1,4 @@
-.mainTitle {
-    text-align: center;
-    color: #5C411D;
-    font-weight: bold;
-    font-size: 2em;
-    margin-top: -5px;
-}
-.sub {
-    border: 2px solid #E9BE78;
-    border-radius: 15px;
-    width: 350px;
-    height: 30px;
-    margin:0 auto; 
-}
+
 .subSub {
     color: #5C411D;
     font-weight: bold;
@@ -43,9 +30,9 @@
 .btn1 {
     width: 150px;
     height: 35px;
-    border-radius: 12px;
+    border-radius: 5px;
     border: 1;
-    background-color: #f5dfbb;
+    background-color: #FDF0D7;
     color: #5D4215;
     border-color: #5D4215;
     margin-right: 10px;
@@ -54,12 +41,20 @@
 .btn2 {
     width: 150px;
     height: 35px;
-    border-radius: 12px;
+    border-radius: 5px;
     border: 1;
     background-color: #FFFFFF;
     color: #5D4215;
     border-color: #5D4215;
     cursor: pointer;
+}
+.btn1:hover{
+    outline: none;
+    background-color: #5D4215;
+    color: #FDF0D7;
+}
+.btn1:active, .btn2:active{
+    outline: none!important;
 }
 .font {
     font-size: 15px;

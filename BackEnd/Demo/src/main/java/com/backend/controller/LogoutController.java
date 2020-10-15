@@ -15,7 +15,9 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,33 +43,23 @@ public class LogoutController {
 	HashMap<String, String> map;
 	
 	@RequestMapping(method=RequestMethod.GET)
-	public @ResponseBody String logout(HttpServletRequest request) throws Exception{
+	public @ResponseBody String logout(HttpServletRequest request, HttpServletResponse response) throws Exception{
 		HttpSession session = request.getSession();
-
+		
 
 		String userid = (String)session.getAttribute("userid");
 		System.out.println("Your Session is -> "+session.toString());
 		UserVO user = userService.getUserById(userid);
-		String type = user.getType();
+		//String type = user.getType();
 		
-		try{
-			
-			
-			if(type.equals("kakao")) {
-				requestLogout(user);
-			}else if(type.equals("google")) {
-				//return "redirect:https://accounts.google.com/Logout";
-			}else if(type.equals("github")) {
 				
-			}
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
-		
-		
-		
 		session.invalidate();
-		return "user id : "+userid+", login type : "+type;
+		Cookie userCookie = new Cookie("userId", null);
+		userCookie.setMaxAge(0);
+		userCookie.setPath("/");
+		response.addCookie(userCookie);
+		
+		return "user id : "+userid;
 		
 	}
 	
