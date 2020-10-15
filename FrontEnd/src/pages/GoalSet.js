@@ -265,21 +265,19 @@ function GoalSet({match}){
                             </div>
                         </div>
                     </div>
-                    <div className="goalset-input-con">
-                        <div >
+                    <div className="goalset-input-con private-con">
+                        <div className="private-subcon">
                             <div className={styles.open}>공개설정</div>
-                        </div>
-                        <div >
                             <div className="goalset-private">
                                 공개
                                     <Switch onClick={() => setPrivate(!isPrivate)} checked={isPrivate} />
                                 비공개
                             </div>
                         </div>
-                        <div className="goalset-btn-con">
-                            <button type="button" onClick={saveDataToDB} className={styles.btn1}><p className={styles.font}>등록하기</p> </button>
-                            <button type="button" onClick={()=>{window.location.href="/";}} className={styles.btn2}><p className={styles.font}>취소</p></button>
-                        </div>
+                    </div>
+                    <div className="goalset-btn-con">
+                        <button type="button" onClick={saveDataToDB} className={styles.btn1}><p className={styles.font}>등록하기</p> </button>
+                        <button type="button" onClick={()=>{window.location.href="/";}} className={styles.btn2}><p className={styles.font}>취소</p></button>
                     </div>
                 </div>
             </div>

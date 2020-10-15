@@ -104,3 +104,6 @@ ul li a:hover, ul li a:focus {
     background-color: #5D4215;
     color: #FFE5B2;
 }
+.goal-setG:active{
+    outline: none;
+}
