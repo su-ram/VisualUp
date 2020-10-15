@@ -61,6 +61,13 @@
     border-color: #5D4215;
     cursor: pointer;
 }
+.btn1:hover, .btn2:hover{
+    outline: none;
+    box-shadow: 0 0 3px #5D4215;
+}
+.btn1:active, .btn2:active{
+    outline: none!important;
+}
 .font {
     font-size: 15px;
     font-weight: bold;

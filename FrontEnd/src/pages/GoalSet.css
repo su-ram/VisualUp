@@ -42,17 +42,25 @@
     margin-bottom: 5px;
     cursor: pointer;
     background-color: #ffffff;
+    display: flex;
+    align-items: center;
 }
 .selected-template{
     background-color: #f5dfbb;
-
 }
-.graphdesc {
+.template-con:hover{
+    box-shadow: 0 0 3px #5D4215;
+}
+
+.graphdesc{
+    margin-left: 10px;
+}
+.goalset-private {
     color: #5D4215;
     font-weight: bold;
     font-size: 1.0em;
 }
-.graphdesc>button{
+.goalset-private>button{
     margin: 0 10px;
 }
 
@@ -105,4 +113,8 @@
 .pick-color{
     cursor: pointer;
     text-decoration: underline;
+}
+.goalset-hashtag-subcon>input {
+    width: 100px;
+    margin-right: 2px;
 }
