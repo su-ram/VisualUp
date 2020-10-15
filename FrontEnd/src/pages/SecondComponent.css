@@ -17,7 +17,7 @@
   .second-component .second-container{
     display: flex;
     flex-direction: column;
-    padding-top: 40px;
+    padding-top: 25px;
   }
 
   .second-component .second-component-text {
@@ -30,11 +30,11 @@
     display: inline-flex;
     flex-direction: row;
     /* justify-content: space-between; */
-    padding-top: 1rem;
+    /* padding-top: 1rem; */
     padding-bottom: 1rem;
     text-align: center;
     width :1400px;
-    height: 540px;
+    height: 490px;
     background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
     background: #FFFFFF 0% 0% no-repeat padding-box;
     opacity: 0.7;

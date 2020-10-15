@@ -17,12 +17,12 @@ class Navigation extends React.Component {
           </div>
           <div className = "icon">
               <div className="link">
-                  <Link to="/hashtag">
+                  <Link to="/login">
                       <SearchOutlined style ={{fontSize : '25px', color : 'black'}}/>
                   </Link>
               </div>
               <div className="link">
-                  <Link to="/goalList">
+                  <Link to="/login">
                       <UnorderedListOutlined  style ={{fontSize : '25px', color : 'black'}}/>
                   </Link>
               </div>

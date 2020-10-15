@@ -1,9 +1,9 @@
 import React, { Fragment } from "react";
 import { PageHeader } from '../components';
 import ImgCode from "../../src/img/coding.jpg";
-import ImgStu from "../../src/img/studing.jpg";
+import ImgStu from "../../src/img/studying.jpg";
 import ImgGraph from "../../src/img/graph.jpg";
-import ImgClock from "../../src/img/clock.png";
+import ImgClock from "../../src/img/clock.jpg";
 import "./SecondComponent.css"
 import BGimg from "../../src/img/BGimg.png"
 

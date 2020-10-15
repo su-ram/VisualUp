@@ -25,11 +25,11 @@
   }
   
   .fourth-img{ 
-    margin-top:10%;
+    margin-top:5%;
+    margin-bottom: 10%;
     height: 100px;
     width:  100px;
     border-radius: 100px;
-    padding-bottom:5%;
   }
   
   .internet{

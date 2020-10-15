@@ -20,14 +20,14 @@
 }
 
 .third-component-text{
-    margin-top: 3rem;
+    margin-top: 1rem;
 }
 
 .slider {
     margin: 0 auto;
     padding: 0px 40px 40px 40px;
-    margin-top: 6.5rem;
-    width: 85%;
+    margin-top: 2.5rem;
+    width: 80%;
 }
  .card-container .card-container-box{
       background: white;
@@ -43,7 +43,7 @@
 
   
 .card-container-box .third-name{
-    line-height: 130px;
+    line-height: 120px;
     background: var(--unnamed-color-ffe5b2) 0% 0% no-repeat padding-box;
     background: #FFE5B2 0% 0% no-repeat padding-box;
     opacity: 0.7;
@@ -59,7 +59,7 @@
   }
 
   .center .slick-center .card-container-box .third-name{
-    line-height: 140px;
+    line-height: 130px;
     opacity: 1;
     background: var(--unnamed-color-5d4215) 0% 0% no-repeat padding-box;
     background: #5D4215 0% 0% no-repeat padding-box;
@@ -75,6 +75,6 @@
 
  .card-container-box .module-graph, .module-graph canvas{
     width: 100%!important;
-    height: 330px !important;
+    height: 300px !important;
 }
 
