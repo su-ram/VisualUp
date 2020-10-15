@@ -3,9 +3,9 @@ import { Row, Dropdown, Menu, Button } from 'antd';
 import { MoreOutlined, SettingOutlined, DeleteOutlined } from '@ant-design/icons';
 import axios from 'axios';
 
-const Posts2 = ({ data })=>{
+const Posts2 = ({ data, goalId })=>{
     //const [num, setNum] = useState(1);
-    const goalId = "goal144";
+    //const goalId = "goal144";
 
     if(data===undefined) {
         return <h2>Loading...</h2>;
@@ -18,11 +18,12 @@ const Posts2 = ({ data })=>{
     function deleteGoal(){
       //goal 삭제
       if(window.confirm("정말 삭제하시겠습니까?")){
-        axios.delete('https://virtserver.swaggerhub.com/VisualUp/VisualUp_Api/1.0.0/goal?userId=user102')
+        axios.delete(`https://virtserver.swaggerhub.com/VisualUp/VisualUp_Api/1.0.0/goal?goalId=${goalId}`)
           .then(function (response) {
           // handle success
           console.log(response);
         })
+        
         .catch((err)=>{
           const status = err?.response?.status;
           if (status === undefined) {
@@ -37,6 +38,7 @@ const Posts2 = ({ data })=>{
           }
           });
       }
+      window.location = `/Goallist/`;
     }
 
     function editGoal(){

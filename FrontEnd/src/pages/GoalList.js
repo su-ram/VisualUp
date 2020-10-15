@@ -64,7 +64,7 @@ function GoalList(){
                 subtitle="본인이 계획한 모든 목표들을 한 눈에 볼 수 있어요."
             /><br/>
             <Row>
-              <Posts2 data={currentPosts} /> 
+              <Posts2 data={currentPosts} goalId={goalId}/> 
             </Row>
             <Pagination2 
               postsPerPage={postsPerPage} 
