@@ -20,8 +20,8 @@
 }
 
 .link img {
-    width: 150px;
-    height: 53px;
+    width: 180px;
+    height: 65px;
     margin-left: 10rem;
     margin-top: 1.1rem;
     padding: 0.2rem;
@@ -36,5 +36,6 @@
 .icon .link {
     padding : 0.5rem;
     color: rgb(0,0, 0);
+    padding-right : 1.5rem 
 }
 
