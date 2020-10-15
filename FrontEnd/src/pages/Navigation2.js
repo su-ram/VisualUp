@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import { Link } from "react-router-dom";
 import "./Navigation2.css";
 import Logo from "../../src/img/full_row_Logo.png";
-import { UserOutlined , UnorderedListOutlined ,SearchOutlined  } from '@ant-design/icons';
+import { LogoutOutlined  , UnorderedListOutlined ,SearchOutlined  } from '@ant-design/icons';
 
 
 class Navigation extends React.Component {
@@ -17,18 +17,18 @@ class Navigation extends React.Component {
           </div>
           <div className = "icon">
               <div className="link">
-                  <Link to="/login">
-                      <SearchOutlined style ={{fontSize : '25px', color : 'black'}}/>
+                  <Link to="/HashTag">
+                      <SearchOutlined style ={{fontSize : '30px', color : 'black'}}/>
+                  </Link>
+              </div>
+              <div className="link">
+                  <Link to="/GoalList">
+                      <UnorderedListOutlined  style ={{fontSize : '30px', color : 'black'}}/>
                   </Link>
               </div>
               <div className="link">
                   <Link to="/login">
-                      <UnorderedListOutlined  style ={{fontSize : '25px', color : 'black'}}/>
-                  </Link>
-              </div>
-              <div className="link">
-                  <Link to="/login">
-                      <UserOutlined style={{ fontSize : '25px', color: 'black' }}/>
+                      <LogoutOutlined  style={{ fontSize : '30px', color: 'black' }}/>
                   </Link>
               </div>
           </div>
