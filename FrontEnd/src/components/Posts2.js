@@ -1,6 +1,6 @@
 import React from 'react';
-import { Row, Dropdown, Menu } from 'antd';
-import { MoreOutlined } from '@ant-design/icons';
+import { Row, Dropdown, Menu, Button } from 'antd';
+import { MoreOutlined, SettingOutlined, DeleteOutlined } from '@ant-design/icons';
 
 const Posts2 = ({ data })=>{
     //const [num, setNum] = useState(1);
@@ -45,25 +45,48 @@ const Posts2 = ({ data })=>{
     }
     */
     // onClick={()=>deleteAtDB(index)}
+    // const menu = (
+    //   <Menu>
+    //     <Menu.Item>
+    //       <button type="button" className="goal-drop" >수정하기</button>
+    //     </Menu.Item>
+    //     <Menu.Item>
+    //     <button type="button" className="goal-drop" >삭제하기</button>
+    //     </Menu.Item>
+    //   </Menu>
+    // );
+
     const menu = (
-      <Menu>
-        <Menu.Item>
-          <button type="button" className="goal-drop" >수정하기</button>
+      <Menu style = {{backgroundColor : "#FFE5B2"}}  className="menu-button">
+        <Menu.Item 
+          style={{color : "#5D4215"}} 
+          key="1" 
+          icon={<SettingOutlined /> }
+          >
+            수정하기
         </Menu.Item>
-        <Menu.Item>
-        <button type="button" className="goal-drop" >삭제하기</button>
+        <Menu.Item 
+         style={{color : "#5D4215"}} 
+         key="2" 
+         icon={<DeleteOutlined />}
+         >
+          삭제하기
         </Menu.Item>
       </Menu>
     );
+
 
     return (
             <Row align="middle" className="goal-col">
               {data.map((goal) => (
                 <div className="goal-post" key={goal.userId}>
                   <div className="goal-num" >목표</div>
-                  <Dropdown overlay={menu}>
+                  <Dropdown 
+                    overlay={menu} 
+                    placement="bottomCenter" arrow
+                  >
                     <a className="goal-dropdown-link" onClick={e => e.preventDefault()}>
-                    <MoreOutlined className="goal-dropImg"/>
+                    <MoreOutlined style={{color : "#5D4215"}}className="goal-dropImg"/>
                     </a>
                   </Dropdown>
                   <div className="goal-goal">{goal.title}</div>
