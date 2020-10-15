@@ -30,29 +30,40 @@
 }
 .goalset-btn-con{
     margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
 }
 .goalset-input-con span{
     margin-right: 5px;
 }
 .template-con{
-    border-radius: 12px;
+    border-radius: 2px;
     color: #5D4215;
     border: 2px solid #5D4215;
     padding: 5px 15px;
     margin-bottom: 5px;
     cursor: pointer;
     background-color: #ffffff;
+    display: flex;
+    align-items: center;
 }
 .selected-template{
-    background-color: #f5dfbb;
-
+    background-color: #FDF0D7;
 }
-.graphdesc {
+.template-con:hover{
+    box-shadow: 0 0 3px #5D4215;
+}
+
+.graphdesc{
+    margin-left: 10px;
+}
+.goalset-private {
     color: #5D4215;
     font-weight: bold;
     font-size: 1.0em;
+    margin-left: 10px;
 }
-.graphdesc>button{
+.goalset-private>button{
     margin: 0 10px;
 }
 
@@ -105,4 +116,21 @@
 .pick-color{
     cursor: pointer;
     text-decoration: underline;
+}
+.goalset-hashtag-subcon>input {
+    width: 100px;
+    margin-right: 2px;
+}
+.private-con{
+    flex-direction: row;
+    justify-content: flex-end;
+}
+.private-subcon{
+    width: 60%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid;
+    padding: 5px;
+    border-radius: 2px;
 }

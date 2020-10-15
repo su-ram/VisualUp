@@ -3,7 +3,7 @@ import { Row, Col } from 'antd';
 import { ArrowLeftOutlined, MessageFilled, GoogleOutlined, GlobalOutlined } from '@ant-design/icons'
 import "./Login.css";
 import axios from "axios";
-import cookie from 'react-cookies';
+import full_logo from "../../src/img/full_logo.png";
 
 function Login(){
     const [data, setData] = useState([]);
@@ -81,8 +81,7 @@ function Login(){
             <a><ArrowLeftOutlined className="login-arrowLeft" style={{ fontSize: '30px'}} onClick={goBack}/></a>
             <br/><br/>
             <Col align="middle" className="login-body">
-            <img src={require("./MainLogo.png")} className="login-logo"/>
-                <h1 className="title-visualUp">Visual Up!</h1><br/>
+                <img src ={full_logo} className="login-logo"/>
                 <div> 
                   {data.length!==0
                       ?Object.keys(data).map(key =>
