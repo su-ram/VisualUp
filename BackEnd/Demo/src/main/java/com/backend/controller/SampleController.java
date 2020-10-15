@@ -4,16 +4,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.backend.dto.UserVO;
@@ -24,11 +27,13 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 @RequestMapping("/sample/*")
 @Slf4j
+@ComponentScan({"javax.servlet.http.*","java.util.*"})
 public class SampleController {
 	
 	@Inject
 	private UserService service;
-	
+	@Autowired
+	private HttpSession session;
 	@GetMapping("/db")
 	public String returnDB(Model model) throws Exception{
 		
@@ -69,23 +74,32 @@ public class SampleController {
 	
 	
 	@GetMapping("/session")
-	public String session(HttpServletRequest request, @RequestParam("id") String id, Model model) {
+	public @ResponseBody Object session(HttpServletRequest request, HttpServletResponse response) {
 		
-		HttpSession session = request.getSession();
-		String str = (String)session.getAttribute("userid");
-		System.out.println(session+", "+str);
+		session = request.getSession();
+		session.setAttribute("key", "This is value.");
 		
-		return "session";
+		Cookie ck = new Cookie("userId","suram");
+		ck.setMaxAge(60*60*24*365);
+		ck.setPath("/");
+		//response.addCookie(ck);
+		
+		return session.toString();
+		
 		
 	}
 	
 	@GetMapping("/session2")
-	public String session2(HttpServletRequest request, Model model) {
+	public @ResponseBody Object session2(HttpServletRequest request, Model model) {
 		
 		HttpSession session = request.getSession();
-		System.out.println(session);
+		Cookie[] cookies = request.getCookies();
+		for(int i=0; i<cookies.length;i++) {
+			System.out.println(cookies[i].getName()+cookies[i].getValue());
+		}
+				
 
-		return "session";
+		return session.toString();
 		
 	}
 	
