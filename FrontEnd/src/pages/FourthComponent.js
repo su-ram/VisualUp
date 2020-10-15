@@ -4,7 +4,7 @@ import full_logo from "../../src/img/full_logo.png";
 import DOUBLESLASH from "../../src/img/DOUBLESLASH.png";
 // import {InstagramOutlined, TwitterOutlined, FacebookOutlined, GithubOutlined } from '@ant-design/icons';
 import "./FourthComponent.css"
-// import BGimg from "../../src/img/BGimg.png"
+import BGimg from "../../src/img/BGimg.png"
 //각자사진
 import HE from "../../src/img/HE.jpg";
 import EH from "../../src/img/EH.jpg";
@@ -12,12 +12,17 @@ import SJ from "../../src/img/SJ.jpg";
 import YJ from "../../src/img/YJ.jpg";
 import MH from "../../src/img/MH.jpg";
 import JM from "../../src/img/JM.jpg";
+import SR from "../../src/img/SR.jpg";
+import SH from "../../src/img/SH.jpg";
+
 
 
 function FourthComponent() {
   return (
     <Fragment>
       <div className="component fourth-component">
+        <img className = "bg-img"src = {BGimg} />
+
         <div className = "fourth-container">
           <div className="fourth-box container">
             
@@ -43,20 +48,21 @@ function FourthComponent() {
               name="박미현"
               part="디자인"
               insta = "https://www.instagram.com/mivseen/"
-              facebook = "https://www.facebook.com/profile.php?id=100007164814913"
               blog = "https://blog.naver.com/algus_0216"
            />
 
             <FourthBox
+              img={SH}
               name="김서현"
               part="개발"
-              blog = "https://blog.naver.com/algus_0216"
+              github = "https://github.com/ksh0722k"
            />
 
             <FourthBox
+              img={SR}
               name="김수람"
               part="개발"
-              blog = "https://github.com/su-ram"
+              github = "https://github.com/su-ram"
            />
 
           </div>
@@ -67,8 +73,7 @@ function FourthComponent() {
               name="우희은"
               part="개발"
               insta ="https://www.instagram.com/heun_w/"
-              facebook = "https://www.facebook.com/profile.php?id=100014172587733"
-              blog = "https://github.com/gmldms784"
+              github = "https://github.com/gmldms784"
             />
 
             <FourthBox
@@ -76,7 +81,7 @@ function FourthComponent() {
               name="이소정"
               part="개발"
               insta="https://www.instagram.com/iso3295/"
-              blog = "https://github.com/SJLEE316"
+              github = "https://github.com/SJLEE316"
             />
 
             <FourthBox
@@ -84,14 +89,14 @@ function FourthComponent() {
               name="임정민"
               part="개발"
               insta = "https://www.instagram.com/805_im_stagram"
-              blog = "https://github.com/lim-jeongmin"
+              github = "https://github.com/lim-jeongmin"
             />
 
             <FourthBox
               img={EH}
               name="조은학"
               part="개발"
-              blog ="https://github.com/Cho-Eunhak"
+              github ="https://github.com/Cho-Eunhak"
             />
 
             <div className = "fourth-box-content only">
@@ -103,7 +108,6 @@ function FourthComponent() {
           
           </div>
         </div>
-        {/* <img className = "bg-img"src = {BGimg} /> */}
       </div>
     </Fragment>
   );

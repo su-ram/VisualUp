@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import { Link } from "react-router-dom";
 import "./Navigation.css";
-import Logo from "../../src/img/logoFull.png";
+import Logo from "../../src/img/full_row_Logo.png";
 import { UserOutlined , UnorderedListOutlined ,SearchOutlined  } from '@ant-design/icons';
 
 
@@ -27,7 +27,7 @@ class Navigation extends React.Component {
                   </Link>
               </div>
               <div className="link">
-                  <Link to="/goalSet">
+                  <Link to="/login">
                       <UserOutlined style={{ fontSize : '25px', color: 'black' }}/>
                   </Link>
               </div>

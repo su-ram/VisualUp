@@ -28,7 +28,8 @@ function Login(){
       .then((res)=>{
         setData(res.data);
         console.dir(res);
-      })
+        
+      }) 
       .catch((err)=>{ 
         console.dir(err);
         const status = err?.response?.status;

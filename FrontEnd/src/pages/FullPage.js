@@ -17,7 +17,8 @@ export default class FullPage extends React.Component {
   }
 
   handlePageChange = number => {
-    this.setState({ currentPage: number }); // set currentPage number, to reset it from the previous selected.
+    this.setState({ 
+      currentPage: number }); // set currentPage number, to reset it from the previous selected.
   };
 
   getPagesNumbers = () => {
