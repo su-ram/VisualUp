@@ -25,7 +25,7 @@ function Visualize({match}) {
 
   useEffect(()=>{
     if(match.params.goalIdx!==undefined)
-      setSelGoalIdx(match.params.goalIdx+1);
+      setSelGoalIdx(match.params.goalIdx);
   },[match.params.goalIdx])
 
   useEffect(()=>{
