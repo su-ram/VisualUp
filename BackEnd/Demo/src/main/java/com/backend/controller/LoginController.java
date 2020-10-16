@@ -16,7 +16,9 @@ import java.util.Map;
 import java.util.Set;
 
 import javax.annotation.Resource;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
@@ -86,7 +88,7 @@ public class LoginController {
 	}
 	
 	@RequestMapping(params="type=kakao")
-	public ResponseEntity<String> kakaoLogin(HttpServletRequest request, Model model) throws IOException, ParseException {
+	public ResponseEntity<String> kakaoLogin(HttpServletRequest request, HttpServletResponse response) throws IOException, ParseException {
 		//카카오 로그인 콜백 페이지 
 		
 		session = request.getSession();
@@ -96,7 +98,7 @@ public class LoginController {
 		endpoint = "https://kauth.kakao.com/oauth/token?grant_type=authorization_code";
 		map = new HashMap<String, String>();
 		map.put("&client_id", "cead37f7d4b6971d3ce0be9d314f4852");
-		map.put("&redirect_uri", "https://visualup.koreacentral.cloudapp.azure.com/login?type=kakao");
+		map.put("&redirect_uri", "http://visualup.koreacentral.cloudapp.azure.com/login?type=kakao");
 		map.put("&code", code);
 		
 		resultString = requestToServer(endpoint,map);
@@ -138,6 +140,11 @@ public class LoginController {
         	userId = checkUser(user,"kakao");
         	session.setAttribute("userid", userId);
         	
+        	Cookie cookie = new Cookie("userId",userId);
+	    	cookie.setMaxAge(60*60*24);
+	    	cookie.setPath("/");
+	    	response.addCookie(cookie);
+        	
         	
         }catch(Exception e) {
         	e.printStackTrace();
@@ -152,7 +159,7 @@ public class LoginController {
 	
 	
 	@RequestMapping(params="type=google")
-	public @ResponseBody String googleLogin(HttpServletRequest request, Model model) throws IOException, ParseException{
+	public ResponseEntity<String> googleLogin(HttpServletRequest request, HttpServletResponse response) throws IOException, ParseException{
 
 		session = request.getSession();
 		
@@ -161,7 +168,7 @@ public class LoginController {
 
 		map.put("&client_id","637540086741-c6k444vhqd1eid2aid6p86hmh4pldpje.apps.googleusercontent.com");
 		map.put("&client_secret", "__BOsppoRfIu-xfU23qyzGit");
-		map.put("&redirect_uri", "https://visualup.koreacentral.cloudapp.azure.com/login?type=google");
+		map.put("&redirect_uri", "http://visualup.koreacentral.cloudapp.azure.com/login?type=google");
 		map.put("&code", code);
 		
 		
@@ -207,6 +214,11 @@ public class LoginController {
         	user.setUserName(userName);
 	    	
 	    	userId = checkUser(user,"google");
+	    	
+	    	Cookie cookie = new Cookie("userId",userId);
+	    	cookie.setMaxAge(60*60*24);
+	    	cookie.setPath("/");
+	    	response.addCookie(cookie);
 	    	session.setAttribute("userid", userId);
 	    	
 	    	
@@ -217,12 +229,12 @@ public class LoginController {
 	    
         
 	    	    
-	    return "google login : "+userId;
+	    return new ResponseEntity<String>(userId,HttpStatus.OK);
 	}
 
 
 	@RequestMapping(params="type=github")
-	public @ResponseBody String Callback(HttpServletRequest request, Model model) throws IOException{
+	public @ResponseBody String Callback(HttpServletRequest request, HttpServletResponse response) throws IOException{
 		
 		session = request.getSession();
 		
@@ -259,7 +271,8 @@ public class LoginController {
 	    	json= (JSONObject)jsonParser.parse(responseBody); 
 	    	userName = (String)json.get("name");
 	    	userEmail = (String)json.get("email");
-
+	    	
+	    	if(userName != null && userEmail != null) {
 
 	    	UserVO user = new UserVO();
         	user.setToken(access_Token);
@@ -269,7 +282,13 @@ public class LoginController {
 	        userId = checkUser(user,"github");
 	        session.setAttribute("userid", userId);
 	        
-	        
+	        Cookie cookie = new Cookie("userId",userId);
+	    	cookie.setMaxAge(60*60*24);
+	    	cookie.setPath("/");
+	    	response.addCookie(cookie);
+	    	
+	    	
+	    	}
 	    }catch(Exception e) {
 	    	e.printStackTrace();
 	    }

@@ -18,7 +18,7 @@
     </select>
     
     <select id="getByGoal" resultType="DailyVO">
-    	select * from daily where goalId=#{id}
+    	select * from daily where goalId=#{id} order by todayDate
     </select>
     
     <select id="checkDaily" parameterType="string" resultType="DailyVO">
