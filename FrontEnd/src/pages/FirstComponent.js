@@ -2,6 +2,8 @@ import React from "react";
 import { Button } from 'antd';
 import "./FirstComponent.css";
 import BGimg_first from "../../src/img/BGimg_first.jpg"
+import {ArrowDownOutlined } from '@ant-design/icons';
+
 
 function FirstComponent() {
 
@@ -18,6 +20,9 @@ function FirstComponent() {
         목표 시각화 사이트, Visual UP!</h1>
         <Button type= "link" onClick={gotoLogin}>바로가기</Button>
         <img className="bg-img" src ={BGimg_first}/>
+      </div>
+      <div>
+        <ArrowDownOutlined style ={{fontSize : '18px', color : '#5C411D', padding:'3px'}} />
       </div>
     </div>
   );

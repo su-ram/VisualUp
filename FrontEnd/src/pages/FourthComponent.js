@@ -15,6 +15,9 @@ import JM from "../../src/img/JM.jpg";
 import SR from "../../src/img/SR.jpg";
 import SH from "../../src/img/SH.jpg";
 
+import {ArrowDownOutlined } from '@ant-design/icons';
+
+
 
 
 function FourthComponent() {
@@ -108,6 +111,10 @@ function FourthComponent() {
           
           </div>
         </div>
+        <div className="downarrow">
+          <ArrowDownOutlined style ={{fontSize : '40px', color : '#5C411D', padding:'3px'}} />
+        </div>
+
       </div>
     </Fragment>
   );

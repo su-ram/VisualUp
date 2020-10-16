@@ -68,7 +68,7 @@ h2 {
 .pager li>a {
     display: inline-block;
     background-color: #D6A451;
-    border-style : none;
+    border-style : none;  /* 테두리없애기 */
     border-radius: 15px;
     align-self: flex-end;
     padding: 5px;
