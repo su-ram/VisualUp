@@ -12,6 +12,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -45,6 +46,8 @@ public class GoalController {
 		
 		return responseHeaders; 
 	}
+	
+
 	@RequestMapping(method=RequestMethod.GET)
 	public ResponseEntity<?> getGoalList(HttpServletRequest request) throws Exception {
 		//사용자의 목표 조회
@@ -94,7 +97,7 @@ public class GoalController {
 		goal.setGoalId(goalid);
 		
 		if(goalService.updateGoal(goal)) {
-			return new ResponseEntity<String>(goalid+"가 정상적으로 수정되었습니다.",getHeader(),HttpStatus.CREATED);
+			return new ResponseEntity<String>(goalid,HttpStatus.CREATED);
 		}
 		return new ResponseEntity<String>("goalId가 없습니다. goalId를 지정해주세요.", HttpStatus.BAD_REQUEST);
 		
@@ -106,15 +109,19 @@ public class GoalController {
 		
 		userId = newgoal.getUserId();
 		
-		String newgoalid = "goal"+goalService.newGoalID();
 		
 		if(userId == null) {
 			//로그인 되어 있는 경우. 
 			
 			
-			userId = (String)request.getSession().getAttribute("userid");
+			userId = request.getParameter("userId");
 			
 		}
+		
+		System.out.println(userId);
+		System.out.println(newgoal.getTitle());
+		String newgoalid = "goal"+goalService.newGoalID();
+		
 		
 		if(userId == null) {
 			return new ResponseEntity<String>("userlId를 지정하거나, 로그인해주세요.",getHeader(), HttpStatus.UNAUTHORIZED);

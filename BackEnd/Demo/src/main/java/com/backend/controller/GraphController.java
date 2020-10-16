@@ -68,11 +68,7 @@ public class GraphController {
 		
 		userId = request.getParameter("userId");
 		
-		Cookie[] ck = request.getCookies();
 		
-		for(int i=0; i< ck.length; i++) {
-			
-		}
 		
 		if(userId == null) {
 			userId = (String)request.getSession().getAttribute("userid");
