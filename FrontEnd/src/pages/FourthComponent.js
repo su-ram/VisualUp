@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { FourthBox } from '../components';
+import { FourthBox, DownArrow } from '../components';
 import full_logo from "../../src/img/full_logo.png";
 import DOUBLESLASH from "../../src/img/DOUBLESLASH.png";
 // import {InstagramOutlined, TwitterOutlined, FacebookOutlined, GithubOutlined } from '@ant-design/icons';
@@ -14,9 +14,6 @@ import MH from "../../src/img/MH.jpg";
 import JM from "../../src/img/JM.jpg";
 import SR from "../../src/img/SR.jpg";
 import SH from "../../src/img/SH.jpg";
-
-import {ArrowDownOutlined } from '@ant-design/icons';
-
 
 
 
@@ -111,10 +108,9 @@ function FourthComponent() {
           
           </div>
         </div>
-        <div className="downarrow">
-          <ArrowDownOutlined style ={{fontSize : '40px', color : '#5C411D', padding:'3px'}} />
-        </div>
-
+        <DownArrow>
+          
+        </DownArrow>
       </div>
     </Fragment>
   );

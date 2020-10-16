@@ -2,7 +2,7 @@ import React from "react";
 import { Button } from 'antd';
 import "./FirstComponent.css";
 import BGimg_first from "../../src/img/BGimg_first.jpg"
-import {ArrowDownOutlined } from '@ant-design/icons';
+import { DownArrow } from '../components';
 
 
 function FirstComponent() {
@@ -21,9 +21,10 @@ function FirstComponent() {
         <Button type= "link" onClick={gotoLogin}>바로가기</Button>
         <img className="bg-img" src ={BGimg_first}/>
       </div>
-      <div>
-        <ArrowDownOutlined style ={{fontSize : '18px', color : '#5C411D', padding:'3px'}} />
-      </div>
+      <DownArrow>
+          
+      </DownArrow>
+  
     </div>
   );
 };

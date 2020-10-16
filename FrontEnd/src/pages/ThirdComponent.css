@@ -1,3 +1,8 @@
+.component.third-component{
+    flex-direction: column;
+  }
+   
+ 
  .third-component{
     display: flex;
     position: relative;
@@ -77,4 +82,9 @@
     width: 100%!important;
     height: 300px !important;
 }
+
+.downarrow {
+    text-align:center;
+  }
+  
 
