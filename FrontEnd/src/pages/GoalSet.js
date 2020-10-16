@@ -29,7 +29,7 @@ function GoalSet({match}){
     const [hashtag4, setHashtag4] = useState("");
     const [template, setTemplate] = useState("");
     const [graphColor, setGraphColor] = useState("#FF6B29");
-    const [isPrivate, setPrivate] = useState(false);
+    const [notPrivate, setPrivate] = useState(false);
     const { RangePicker } = DatePicker;
 
     useEffect(()=>{
@@ -122,29 +122,17 @@ function GoalSet({match}){
             'Content-Type': 'application/x-www-form-urlencoded'
         }
         if(goalId===""){
-            axios.post(`http://visualup.koreacentral.cloudapp.azure.com/goal`, headers, {
-            
-            "userId":"user103",
-            "title": "title입니다.",
-            "termGoal": "termGoal입니다.",
-            "open": true,
-            "startDate": "2020-10-01",
-            "endDate": "2020-10-17",
-            "term": 2,
-            "hashtags": "hi, coding, here, c++",
-            "template": "Area",
-            "graphColor": "black"
-                /*
+            axios.post(`https://virtserver.swaggerhub.com/VisualUp/VisualUp_Api/1.0.0/goal`, headers, {
                 "userId":"user103",
                 "title": goal,
                 "termGoal": termGoal,
-                "open": isPrivate,
+                "open": notPrivate,
                 "startDate": date[0],
                 "endDate": date[1],
                 "term": term,
                 "hashtags": hash,
                 "template": template,
-                "graphColor": graphColor*/
+                "graphColor": graphColor
             }, { withCredentials: true })
             .then((res) => {
                 console.log(res);
@@ -164,11 +152,11 @@ function GoalSet({match}){
             }
             });
         }else{
-            axios.put(`http://visualup.koreacentral.cloudapp.azure.com/goal?goalId=${goalId}`, headers, {
+            axios.put(`https://virtserver.swaggerhub.com/VisualUp/VisualUp_Api/1.0.0/goal?goalId=${goalId}`, headers, {
                 "userId":"user103",
                 "title": goal,
                 "termGoal": termGoal,
-                "open": isPrivate,
+                "open": notPrivate,
                 "startDate": date[0],
                 "endDate": date[1],
                 "term": term,
@@ -285,9 +273,9 @@ function GoalSet({match}){
                         <div className="private-subcon">
                             <div className={styles.open}>공개설정</div>
                             <div className="goalset-private">
-                                공개
-                                    <Switch onClick={() => setPrivate(!isPrivate)} checked={isPrivate} />
                                 비공개
+                                    <Switch onClick={() => setPrivate(!notPrivate)} checked={!notPrivate} />
+                                공개
                             </div>
                         </div>
                     </div>
