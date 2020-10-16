@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { FourthBox } from '../components';
+import { FourthBox, DownArrow } from '../components';
 import full_logo from "../../src/img/full_logo.png";
 import DOUBLESLASH from "../../src/img/DOUBLESLASH.png";
 // import {InstagramOutlined, TwitterOutlined, FacebookOutlined, GithubOutlined } from '@ant-design/icons';
@@ -108,6 +108,9 @@ function FourthComponent() {
           
           </div>
         </div>
+        <DownArrow>
+          
+        </DownArrow>
       </div>
     </Fragment>
   );

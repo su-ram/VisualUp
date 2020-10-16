@@ -1,3 +1,6 @@
+.component.first-component{
+  flex-direction: column;
+}
 
 
 .first-component .bg-img{
@@ -19,7 +22,7 @@
   top: 418px;
   left: 140px;
   width: 753px;
-  height: 245px;
+  height: 200px;
   font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-600) 60px/80px var(--unnamed-font-family-lg-smart-ui);
   letter-spacing: var(--unnamed-character-spacing-0);
   color: var(--unnamed-color-5d4215);
@@ -28,12 +31,13 @@
   letter-spacing: 0px;
   color: #5D4215;
   opacity: 1;
+  line-height:150%;
 }
 
 .first-component-text>h4{
   top: 360px;
   left: 140px;
-  width: 100px;
+  width: 200px;
   height: 28px;
   font: italic normal var(--unnamed-font-weight-normal) var(--unnamed-font-size-25)/var(--unnamed-line-spacing-28) var(--unnamed-font-family-franklin-gothic);
   letter-spacing: var(--unnamed-character-spacing-0);

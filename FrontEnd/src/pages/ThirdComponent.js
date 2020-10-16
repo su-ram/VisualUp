@@ -5,6 +5,8 @@ import "./ThirdComponent.css";
 import BGimg from "../../src/img/BGimg.png"
 import { Area, Line, Bar } from '@ant-design/charts';
 import axios from "axios";
+import { DownArrow } from '../components';
+
 
 export default function ThirdComponent() {
     const [goalId, setGoalID] = useState("");
@@ -370,6 +372,10 @@ export default function ThirdComponent() {
           </Slider>
         </div>
         <img className = "bg-img"src = {BGimg} />
+        <DownArrow>
+
+        </DownArrow>
+
       </div>
     );
   }
