@@ -17,6 +17,7 @@ function Main(){
             <Switch>
                 <Route exact path="/" component={FullPage}/>
                 <Route exact path="/visualize" component={Visualize}/>
+                <Route exact path="/visualize/:goalIdx" component={Visualize}/>
                 <Route exact path="/hashtag" component={HashTag}/>
                 <Route exact path="/hashtag/:hashtag" component={HashTag}/>
                 <Route exact path="/goalList" component={GoalList}/>

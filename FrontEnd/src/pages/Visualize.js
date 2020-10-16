@@ -7,7 +7,7 @@ import "./Visualize.css";
 import axios from "axios";
 
 
-function Visualize() {
+function Visualize({match}) {
   // db와 연동되는 api는 이곳에서 => data 다루는 곳
 
   const [dbData, setDBdata] = useState({});
@@ -22,6 +22,10 @@ function Visualize() {
     // 여러 데이터를 array로 받기
     getDataFromDB();
   },[]);
+
+  useEffect(()=>{
+    setSelGoalIdx(match.params.goalIdx+1);
+  },[match.params.goalIdx])
 
   useEffect(()=>{
     // tab 클릭 시 마다 마지막 날짜로 이동
@@ -51,7 +55,7 @@ function Visualize() {
       'Accept': 'application/json',
       'Content-Type': 'application/x-www-form-urlencoded'
     }
-    axios.get("https://virtserver.swaggerhub.com/VisualUp/VisualUp_Api/1.0.0/graph?userId=user103", headers)
+    axios.get("http://visualup.koreacentral.cloudapp.azure.com/graph?userId=user102", headers)
     .then((res)=>{
       setDBdata(res.data);
       console.log(res.data);
@@ -275,13 +279,14 @@ function Visualize() {
 
     const a = dbData.goals.map((goal, index) => {
       // db에서 불러온 data에서 필요한 정보 추출
+      console.log(goal);
       const graphColor = goal.graphColor==null?"#5D4215":goal.graphColor;
 
       tmpData.push({ // 기본 data 넣기
         "goalId" : goal.goalId,
         "title" : goal.title,
-        "startDate" : goal.dailySet[0].date,
-        "endDate" : goal.dailySet[goal.dailySet.length-1].date,
+        "startDate" : dailySet.length!==0?goal.dailySet[0].date:"2020-10-17",
+        "endDate" : dailySet.length!==0?goal.dailySet[goal.dailySet.length-1].date:"2020-10-17",
         "template": goal.template,
         "graphColor": graphColor,
         "dataSet" : [] 
@@ -352,8 +357,8 @@ function Visualize() {
 
     const selDate = graphDate;
 
-    const start = dataSet[selectedGoalIdx].startDate;
-    const end = dataSet[selectedGoalIdx].endDate;
+    const start = dataSet[0].startDate;
+    const end = dataSet[0].endDate;
     const length = Date.parse(end)-Date.parse(start);
     const selLength = Date.parse(selDate)-Date.parse(start);
 
@@ -378,7 +383,7 @@ function Visualize() {
       'Accept': 'application/json',
       'Content-Type': 'application/x-www-form-urlencoded',
     }
-    axios.get(`http://visualup.koreacentral.cloudapp.azure.com:8080/graph/goal?goalId=${dbData.goals[idx-1].goalId}`, headers)
+    axios.get(`http://visualup.koreacentral.cloudapp.azure.com/graph/goal?goalId=${dbData.goals[idx-1].goalId}&userId=user102`, headers)
     .then((res)=>{
       let tmpDB = dbData;
       tmpDB.goals[idx-1]=res.data[0];

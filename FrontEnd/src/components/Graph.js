@@ -33,7 +33,7 @@ export default function Graph(props){
           setSelDateIdx(idx);
         }
 
-        if(Number(selectedGoalIdx)!==0) 
+        if(Number(selectedGoalIdx)!==0 && dailySet.length!==0) 
           // dailySet이 들어온 후에 계산
           // group은 dailyset없어서 idx 필요없음
           calDailyIdx();
