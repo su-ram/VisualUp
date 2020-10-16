@@ -29,9 +29,10 @@ export default function MakeGraph(props){
         'Accept': 'application/json',
         'Content-Type': 'application/x-www-form-urlencoded',
         }
-        axios.get(`http://visualup.koreacentral.cloudapp.azure.com/graph/goal?goalId=${goalId}`, headers)
+        axios.get(`http://visualup.koreacentral.cloudapp.azure.com/graph/goal?goalId=${goalId}&userId=user102`, headers)
         .then((res)=>{
-            setData(res.data[0]);
+            if(res.data[0]!==undefined)
+              setData(res.data[0]);
             console.log(res);
         })
         .catch((err)=>{
@@ -40,73 +41,29 @@ export default function MakeGraph(props){
             console.dir("데이터를 불러오던 중 예기치 못한 예외가 발생하였습니다.\n" + JSON.stringify(err));
         }
         else if (status === 400) {
-            alert("");
             console.dir("400에러");
+        }
+        else if (status === 401) {
+            console.dir("401에러, goal이 없습니다.");
         }
         else if (status === 500) {
             console.dir("내부 서버 오류입니다. 잠시만 기다려주세요.");
         }
         });
-/*
-        setData({
-            "goalId": "goal125",
-            "title": "typescript",
-            "startDate": "2020-10-01",
-            "endDate": "2020-12-31",
-            "termGoal": "1 chapter씩",
-            "term": 2,
-            "hashtags": "coding, commit, js, web, typescript",
-            "open": true,
-            "template": "Line",
-            "graphColor": "#41A0FF",
-            "dailySet": [
-              {
-                "date": "2020-10-01",
-                "whatIDone": "Chapter 1 clear",
-                "value": 100
-              },
-              {
-                "date": "2020-10-03",
-                "whatIDone": "Chapter 2 clear",
-                "value": 20
-              },
-              {
-                "date": "2020-10-05",
-                "whatIDone": "Chapter 3 clear",
-                "value": 80
-              },
-              {
-                "date": "2020-10-07",
-                "whatIDone": "Chapter 4 clear",
-                "value": 20
-              },
-              {
-                "date": "2020-10-9",
-                "whatIDone": "예제 문제 2개 코드로 구현하기",
-                "value": 0
-              },
-              {
-                "date": "2020-10-11",
-                "whatIDone": "예제 문제 2개 코드로 구현하기",
-                "value": 60
-              }
-            ]
-          });*/
     }
 
     function getGraph(){
         const type = data.template;
         const color = "black";
         switch (type) {
-            case "Area": return <Area className="module-graph" style={{width: props.width+"px",height:props.height+"px"}} {...getConfig(data.dailySet, color)} />
-            case "Line": return <Line className="module-graph" style={{width: props.width+"px",height:props.height+"px"}} {...getConfig(data.dailySet, color)} />
-            case "Bar": return <Bar className="module-graph" style={{width: props.width+"px",height:props.height+"px"}} {...getConfig(data.dailySet, color)} />
+            case "Area": return <Area className="module-graph" style={{width: props.width+"px",height:props.height+"px"}} {...getConfig(data.dailySet, data.graphColor)} />
+            case "Line": return <Line className="module-graph" style={{width: props.width+"px",height:props.height+"px"}} {...getConfig(data.dailySet, data.graphColor)} />
+            case "Bar": return <Bar className="module-graph" style={{width: props.width+"px",height:props.height+"px"}} {...getConfig(data.dailySet, data.graphColor)} />
         }
     }
 
     function getConfig(dailySet, color) {
         const data = dailySet;
-        console.log(data);
         const config = {
           data, // 이름이 무조건 data여야함
           xField: 'date', // xfield에 적용할 변수
@@ -126,6 +83,9 @@ export default function MakeGraph(props){
               stroke: 'white',
               lineWidth: 2,
             },
+          },
+          label:{
+            visible:false
           }
         };
         return config;

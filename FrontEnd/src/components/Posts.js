@@ -14,7 +14,9 @@ const Posts = ({ data })=>{ //, loading }) => {
                   <div className="hash-userName">{hash.userName}</div>
                   <div className="hash-graph">
                     <MakeGraph
-                        goalId={hash.goalId} // 수람님이 api 수정해주시면, 여기에 goalId 넣으면 됩니다.
+                        goalId={hash.goalId}
+                        width={300}
+                        height= {200}
                     />
                   </div>
                   <div className="hash-goal">{hash.title}</div>

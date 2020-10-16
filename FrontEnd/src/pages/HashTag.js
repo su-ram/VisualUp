@@ -150,16 +150,16 @@ function HashTag({match}){
                     </div>
                 </div><br/>
                 <div className="page-subtitle">
-{
+                  {
                     hashtag===undefined?
-                    <h5>검색해주세요.</h5>:
+                    <h5>검색할 해시태그를 입력해주세요.</h5>:
                     (data.length===0?
                       <h5>검색 결과가 없습니다.</h5>:
                       <h5>{hashtag} 검색결과입니다.</h5>
                     )
                   }                
                 </div>
-            </div><br/><br/>
+            </div>
             <Row>
               <Posts data={currentPosts} /> 
             </Row>

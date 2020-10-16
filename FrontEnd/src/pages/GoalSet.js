@@ -284,7 +284,7 @@ function GoalSet({match}){
                         </div>
                     </div>
                     <div className="goalset-btn-con">
-                        <button type="button" onClick={()=>{saveDataToDB(); /*history.goBack();*/}} className={styles.btn1}><p className={styles.font}>저장하기</p> </button>
+                        <button type="button" onClick={()=>{saveDataToDB(); history.goBack();}} className={styles.btn1}><p className={styles.font}>저장하기</p> </button>
                         <button type="button" onClick={()=>{history.goBack();}} className={styles.btn2}><p className={styles.font}>취소</p></button>
                     </div>
                 </div>
