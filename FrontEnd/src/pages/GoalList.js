@@ -20,7 +20,7 @@ function GoalList(){
       
       const fetchPosts = async () => {
         const res = await axios(
-          `http://visualup.koreacentral.cloudapp.azure.com/goal?userId=user103`
+          `http://visualup.koreacentral.cloudapp.azure.com/goal?userId=user102`
         ).then((res)=>{
           console.dir(res);
           setData(res.data);
@@ -71,7 +71,7 @@ function GoalList(){
               totalPosts={data.length} 
               paginate={paginate}
             />
-            <button type="button" className="goal-setG" onClick={goToSetGoal}>목표 등록하러 가기<ArrowRightOutlined/></button>
+            <button type="button" className="goal-setG" onClick={goToSetGoal}>목표 등록하러 가기 <ArrowRightOutlined/></button>
         </div>
     );
 };

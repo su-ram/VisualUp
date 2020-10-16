@@ -22,7 +22,7 @@ function GoalSet({match}){
     const [goal, setGoal] = useState("");
     const [term, setTerm] = useState("");
     const [termGoal, setTermGoal] = useState("");
-    const [date, setDate] = useState([]);
+    const [date, setDate] = useState(["2020-10-17", "2020-10-17"]);
     const [hashtag1, setHashtag1] = useState("");
     const [hashtag2, setHashtag2] = useState("");
     const [hashtag3, setHashtag3] = useState("");
@@ -44,6 +44,7 @@ function GoalSet({match}){
     useEffect(()=>{
         if(dbData!==undefined){
             const hash = getHashTag(dbData.hashtags);
+            console.log(hash);
             setGoal(dbData.title);
             setTerm(dbData.term);
             setTermGoal(dbData.termGoal);
@@ -61,7 +62,8 @@ function GoalSet({match}){
     function getHashTag(str){
         if(str==null)
             return "";
-        let strArr = str.split(', ');
+        let strArr = str.split(',');
+        strArr.length=4;
         return strArr;
     }
     
@@ -121,19 +123,21 @@ function GoalSet({match}){
             'Accept': 'application/json',
             'Content-Type': 'application/x-www-form-urlencoded'
         }
+
+        const data = {
+            "userId":"user102",
+            "title": goal,
+            "termGoal": termGoal,
+            "open": notPrivate,
+            "startDate": date[0],
+            "endDate": date[1],
+            "term": term,
+            "hashtags": hash,
+            "template": template,
+            "graphColor": graphColor
+        };
         if(goalId===""){
-            axios.post(`https://virtserver.swaggerhub.com/VisualUp/VisualUp_Api/1.0.0/goal`, headers, {
-                "userId":"user103",
-                "title": goal,
-                "termGoal": termGoal,
-                "open": notPrivate,
-                "startDate": date[0],
-                "endDate": date[1],
-                "term": term,
-                "hashtags": hash,
-                "template": template,
-                "graphColor": graphColor
-            }, { withCredentials: true })
+            axios.post(`http://visualup.koreacentral.cloudapp.azure.com/goal`, headers, data, { withCredentials: true })
             .then((res) => {
                 console.log(res);
             })
@@ -152,8 +156,8 @@ function GoalSet({match}){
             }
             });
         }else{
-            axios.put(`https://virtserver.swaggerhub.com/VisualUp/VisualUp_Api/1.0.0/goal?goalId=${goalId}`, headers, {
-                "userId":"user103",
+            axios.put(`http://visualup.koreacentral.cloudapp.azure.com/goal?goalId=${goalId}`, {
+                "userId":"user102",
                 "title": goal,
                 "termGoal": termGoal,
                 "open": notPrivate,
@@ -163,7 +167,7 @@ function GoalSet({match}){
                 "hashtags": hash,
                 "template": template,
                 "graphColor": graphColor
-            }, { withCredentials: true })
+            }, headers, { withCredentials: true })
                 .then((res) => {
                     console.log(res);
                 })
@@ -280,7 +284,7 @@ function GoalSet({match}){
                         </div>
                     </div>
                     <div className="goalset-btn-con">
-                        <button type="button" onClick={()=>{saveDataToDB(); /*window.location.href="/goalList";*/}} className={styles.btn1}><p className={styles.font}>저장하기</p> </button>
+                        <button type="button" onClick={()=>{saveDataToDB(); history.goBack();}} className={styles.btn1}><p className={styles.font}>저장하기</p> </button>
                         <button type="button" onClick={()=>{history.goBack();}} className={styles.btn2}><p className={styles.font}>취소</p></button>
                     </div>
                 </div>

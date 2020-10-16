@@ -10,6 +10,7 @@ import axios from "axios";
 function Visualize({match}) {
   // db와 연동되는 api는 이곳에서 => data 다루는 곳
 
+  const [update, setUpdate] = useState(false);
   const [dbData, setDBdata] = useState({});
   const [name, setName] = useState("");
   const [dataSet, setDataSet] = useState([]);
@@ -24,17 +25,18 @@ function Visualize({match}) {
   },[]);
 
   useEffect(()=>{
-    if(match.params.goalIdx!==undefined)
-      setSelGoalIdx(match.params.goalIdx);
-  },[match.params.goalIdx])
+    if(match.params.goalIdx!==undefined){
+      setSelGoalIdx(Number(match.params.goalIdx)+1);
+    }
+  },[match.params.goalIdx]);
 
   useEffect(()=>{
     // tab 클릭 시 마다 마지막 날짜로 이동
     // 이렇게 안하면, tab 변경했을 때, 기간 제대로 설정하라는 alert가 뜸
 
-    if(dataSet.length>0)
+    if(dataSet.length>0){
       setGraphDate(dataSet[selectedGoalIdx].endDate);
-
+    }
   },[selectedGoalIdx]);
 
   useEffect(()=>{
@@ -55,7 +57,7 @@ function Visualize({match}) {
       'Accept': 'application/json',
       'Content-Type': 'application/x-www-form-urlencoded'
     }
-    axios.get("https://virtserver.swaggerhub.com/VisualUp/VisualUp_Api/1.0.0/graph?userId=user103", headers)
+    axios.get("http://visualup.koreacentral.cloudapp.azure.com/graph?userId=user102", headers)
     .then((res)=>{
       setDBdata(res.data);
     })
@@ -351,6 +353,7 @@ function Visualize({match}) {
     .then((res)=>{
       let tmpDB = dbData;
       tmpDB.goals[idx-1]=res.data[0];
+      console.log(res.data);
       setDBdata(tmpDB);
     })
     .catch((err)=>{
@@ -366,6 +369,7 @@ function Visualize({match}) {
         console.dir("내부 서버 오류입니다. 잠시만 기다려주세요.");
       }
     });
+    setUpdate(!update);
   }
   
 
