@@ -150,7 +150,7 @@ function HashTag({match}){
                     </div>
                 </div><br/>
                 <div className="page-subtitle">
-                  {
+{
                     hashtag===undefined?
                     <h5>검색해주세요.</h5>:
                     (data.length===0?
