@@ -8,10 +8,12 @@ import styles from './GoalSet.module.css';
 import moment from 'moment';
 import { LineChartOutlined, BarChartOutlined, PieChartOutlined, AlignLeftOutlined, EditOutlined, AreaChartOutlined, CalendarOutlined, BarsOutlined, PushpinOutlined } from '@ant-design/icons'
 
+import { useHistory } from "react-router-dom";
 
 
 
 function GoalSet({match}){
+    const history = useHistory();
 
     const [goalId, setGoalId] = useState("");
     const [dbData, setDBdata] = useState();
@@ -71,7 +73,7 @@ function GoalSet({match}){
           'Accept': 'application/json',
           'Content-Type': 'application/x-www-form-urlencoded'
         }
-        axios.get(`https://virtserver.swaggerhub.com/VisualUp/VisualUp_Api/1.0.0/goal/goalSet/${goalId}`, headers)
+        axios.get(`http://visualup.koreacentral.cloudapp.azure.com/goal/goalSet/${goalId}`, headers)
         .then((res)=>{
           console.log(res.data);
           setDBdata(res.data);
@@ -82,7 +84,6 @@ function GoalSet({match}){
             console.dir("데이터를 불러오던 중 예기치 못한 예외가 발생하였습니다.\n" + JSON.stringify(err));
           }
           else if (status === 400) {
-            alert("");
             console.dir("400에러");
           }
           else if (status === 500) {
@@ -121,7 +122,20 @@ function GoalSet({match}){
             'Content-Type': 'application/x-www-form-urlencoded'
         }
         if(goalId===""){
-            axios.post(`https://virtserver.swaggerhub.com/VisualUp/VisualUp_Api/1.0.0/goal`, headers, {
+            axios.post(`http://visualup.koreacentral.cloudapp.azure.com/goal`, headers, {
+            
+            "userId":"user103",
+            "title": "title입니다.",
+            "termGoal": "termGoal입니다.",
+            "open": true,
+            "startDate": "2020-10-01",
+            "endDate": "2020-10-17",
+            "term": 2,
+            "hashtags": "hi, coding, here, c++",
+            "template": "Area",
+            "graphColor": "black"
+                /*
+                "userId":"user103",
                 "title": goal,
                 "termGoal": termGoal,
                 "open": isPrivate,
@@ -130,13 +144,14 @@ function GoalSet({match}){
                 "term": term,
                 "hashtags": hash,
                 "template": template,
-                "graphColor": graphColor
+                "graphColor": graphColor*/
             }, { withCredentials: true })
-                .then((res) => {
-                    console.log(res);
-                })
-                .catch((err) => {
+            .then((res) => {
+                console.log(res);
+            })
+            .catch((err) => {
             const status = err?.response?.status;
+            console.log(err);
             if (status === undefined) {
                 console.dir("데이터를 불러오던 중 예기치 못한 예외가 발생하였습니다.\n" + JSON.stringify(err));
             }
@@ -149,7 +164,8 @@ function GoalSet({match}){
             }
             });
         }else{
-            axios.put(`https://virtserver.swaggerhub.com/VisualUp/VisualUp_Api/1.0.0/goal/${goalId}`, headers, {
+            axios.put(`http://visualup.koreacentral.cloudapp.azure.com/goal?goalId=${goalId}`, headers, {
+                "userId":"user103",
                 "title": goal,
                 "termGoal": termGoal,
                 "open": isPrivate,
@@ -276,8 +292,8 @@ function GoalSet({match}){
                         </div>
                     </div>
                     <div className="goalset-btn-con">
-                        <button type="button" onClick={saveDataToDB} className={styles.btn1}><p className={styles.font}>등록하기</p> </button>
-                        <button type="button" onClick={()=>{window.location.href="/";}} className={styles.btn2}><p className={styles.font}>취소</p></button>
+                        <button type="button" onClick={()=>{saveDataToDB(); /*window.location.href="/goalList";*/}} className={styles.btn1}><p className={styles.font}>저장하기</p> </button>
+                        <button type="button" onClick={()=>{history.goBack();}} className={styles.btn2}><p className={styles.font}>취소</p></button>
                     </div>
                 </div>
             </div>
