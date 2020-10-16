@@ -24,7 +24,8 @@ function Visualize({match}) {
   },[]);
 
   useEffect(()=>{
-    setSelGoalIdx(match.params.goalIdx+1);
+    if(match.params.goalIdx!==undefined)
+      setSelGoalIdx(match.params.goalIdx);
   },[match.params.goalIdx])
 
   useEffect(()=>{
@@ -49,16 +50,14 @@ function Visualize({match}) {
 
   function getDataFromDB() {
     // db에서 해당 목표 정보 받아오기
-    
     const headers = {
       'Access-Control-Allow-Origin': '*',        
       'Accept': 'application/json',
       'Content-Type': 'application/x-www-form-urlencoded'
     }
-    axios.get("http://visualup.koreacentral.cloudapp.azure.com/graph?userId=user102", headers)
+    axios.get("https://virtserver.swaggerhub.com/VisualUp/VisualUp_Api/1.0.0/graph?userId=user103", headers)
     .then((res)=>{
       setDBdata(res.data);
-      console.log(res.data);
     })
     .catch((err)=>{
       const status = err?.response?.status;
@@ -75,13 +74,13 @@ function Visualize({match}) {
     });
     /*
     setDBdata({
-      "userId": "user103",
+      "userId": "user101",
       "userName": "김수람",
       "goals": [
         {
-          "goalId": "goal123",
+          "goalId": "goal101",
           "title": "python",
-          "startDate": "2020-10-22",
+          "startDate": "2020-10-02",
           "endDate": "2020-12-31",
           "termGoal": "예제 문제 1개씩 코드로 구현하기",
           "term": 5,
@@ -91,82 +90,32 @@ function Visualize({match}) {
           "graphColor": "#FF6B29",
           "dailySet": [
             {
-              "date": "2020-10-22",
+              "date": "2020-10-02",
               "whatIDone": "예제 문제 2개 코드로 구현하기",
               "value": 100
             },
             {
-              "date": "2020-10-27",
-              "whatIDone": "예제 문제 2개 코드로 구현하기",
-              "value": 0
-            },
-            {
-              "date": "2020-11-01",
-              "whatIDone": "예제 문제 2개 코드로 구현하기",
-              "value": 40
-            },
-            {
-              "date": "2020-11-06",
-              "whatIDone": "예제 문제 2개 코드로 구현하기",
-              "value": 60
-            },
-            {
-              "date": "2020-11-11",
-              "whatIDone": "예제 문제 2개 코드로 구현하기",
-              "value": 20
-            },
-            {
-              "date": "2020-11-16",
-              "whatIDone": "예제 문제 2개 코드로 구현하기",
-              "value": 40
-            },
-            {
-              "date": "2020-11-21",
-              "whatIDone": "예제 문제 2개 코드로 구현하기",
-              "value": 20
-            },
-            {
-              "date": "2020-11-26",
-              "whatIDone": "예제 문제 2개 코드로 구현하기",
-              "value": 0
-            },
-            {
-              "date": "2020-12-01",
-              "whatIDone": "예제 문제 2개 코드로 구현하기",
-              "value": 40
-            },
-            {
-              "date": "2020-12-06",
-              "whatIDone": "예제 문제 2개 코드로 구현하기",
-              "value": 80
-            },
-            {
-              "date": "2020-12-11",
-              "whatIDone": "예제 문제 2개 코드로 구현하기",
+              "date": "2020-10-7",
+              "whatIDone": "예제 문제 3개 코드로 구현하기",
               "value": 100
             },
             {
-              "date": "2020-12-16",
-              "whatIDone": "예제 문제 2개 코드로 구현하기",
+              "date": "2020-10-12",
+              "whatIDone": "예제 문제 1개 코드로 구현 실패..",
               "value": 20
             },
             {
-              "date": "2020-12-21",
-              "whatIDone": "예제 문제 2개 코드로 구현하기",
-              "value": 40
-            },
-            {
-              "date": "2020-12-26",
-              "whatIDone": "예제 문제 2개 코드로 구현하기",
+              "date": "2020-10-17",
+              "whatIDone": "시간이 없어서 못함",
               "value": 0
             }
           ]
         }
         ,{
-          "goalId": "goal124",
+          "goalId": "goal102",
           "title": "nodejs",
-          "startDate": "2020-10-07",
-          "endDate": "2020-12-31",
+          "startDate": "2020-08-02",
+          "endDate": "2020-10-17",
           "termGoal": "토이 프로젝트 1개씩",
           "term": 10,
           "hashtags": "coding, commit, js, web",
@@ -175,58 +124,58 @@ function Visualize({match}) {
           "graphColor": "#4EE23E",
           "dailySet": [
             {
-              "date": "2020-10-11",
-              "whatIDone": "예제 문제 2개 코드로 구현하기",
+              "date": "2020-08-02",
+              "whatIDone": "토이 프로젝트 시작",
               "value": 20
             },
             {
-              "date": "2020-10-17",
-              "whatIDone": "예제 문제 2개 코드로 구현하기",
+              "date": "2020-08-12",
+              "whatIDone": "첫번째 토이 프로젝트 완성",
               "value": 100
             },
             {
-              "date": "2020-10-27",
-              "whatIDone": "예제 문제 2개 코드로 구현하기",
-              "value": 60
-            },
-            {
-              "date": "2020-11-06",
-              "whatIDone": "예제 문제 2개 코드로 구현하기",
-              "value": 40
-            },
-            {
-              "date": "2020-11-16",
-              "whatIDone": "예제 문제 2개 코드로 구현하기",
-              "value": 20
-            },
-            {
-              "date": "2020-11-26",
-              "whatIDone": "예제 문제 2개 코드로 구현하기",
-              "value": 60
-            },
-            {
-              "date": "2020-12-06",
-              "whatIDone": "예제 문제 2개 코드로 구현하기",
+              "date": "2020-08-22",
+              "whatIDone": "두번째 토이 프로젝트 완성 (하지만 별로 맘에 안듬)",
               "value": 80
             },
             {
-              "date": "2020-12-16",
-              "whatIDone": "예제 문제 2개 코드로 구현하기",
+              "date": "2020-09-01",
+              "whatIDone": "세번째 토이 프로젝트 50%",
               "value": 20
             },
             {
-              "date": "2020-12-26",
-              "whatIDone": "예제 문제 2개 코드로 구현하기",
+              "date": "2020-09-11",
+              "whatIDone": "세번째 토이 프로젝트 80% (시간이 없음)",
+              "value": 40
+            },
+            {
+              "date": "2020-09-21",
+              "whatIDone": "시간이 없음..",
+              "value": 0
+            },
+            {
+              "date": "2020-10-01",
+              "whatIDone": "세번째 토이 프로젝트 완성 (만족)",
               "value": 100
+            },
+            {
+              "date": "2020-10-11",
+              "whatIDone": "네번째 토이 프로젝트 시작",
+              "value": 60
+            },
+            {
+              "date": "2020-10-17",
+              "whatIDone": "",
+              "value": 0
             }
           ]
         }
         ,{
-          "goalId": "goal125",
+          "goalId": "goal103",
           "title": "typescript",
           "startDate": "2020-10-01",
-          "endDate": "2020-12-31",
-          "termGoal": "1 chapter씩",
+          "endDate": "2020-10-17",
+          "termGoal": "패스트캠퍼스 1 chapter씩",
           "term": 2,
           "hashtags": "coding, commit, js, web, typescript",
           "open": true,
@@ -241,12 +190,12 @@ function Visualize({match}) {
             {
               "date": "2020-10-03",
               "whatIDone": "Chapter 2 clear",
-              "value": 20
+              "value": 100
             },
             {
               "date": "2020-10-05",
               "whatIDone": "Chapter 3 clear",
-              "value": 80
+              "value": 80 
             },
             {
               "date": "2020-10-07",
@@ -255,19 +204,34 @@ function Visualize({match}) {
             },
             {
               "date": "2020-10-09",
-              "whatIDone": "예제 문제 2개 코드로 구현하기",
+              "whatIDone": "이해 안돼서 Chapter 4 다시 보기",
+              "value": 40
+            },
+            {
+              "date": "2020-10-11",
+              "whatIDone": "Chapter 5 clear",
+              "value": 60
+            },
+            {
+              "date": "2020-10-13",
+              "whatIDone": "으... 바빠서 못했음",
               "value": 0
             },
             {
-              "date": "2020-10-12",
-              "whatIDone": "예제 문제 2개 코드로 구현하기",
+              "date": "2020-10-15",
+              "whatIDone": "Chapter 6 clear (다시 봐야할 듯)",
               "value": 60
+            },
+            {
+              "date": "2020-10-17",
+              "whatIDone": "",
+              "value": 0
             }
           ]
         }
       ]
     });
-*/
+    */
   }
 
   async function processDataToStore(){

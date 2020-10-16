@@ -109,8 +109,6 @@
 ul {
 	list-style: none;
     display: inline-block;
-    width: 380px;
-    margin-left: 46%;
 }
 ul li {
     float:left;

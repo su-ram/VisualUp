@@ -41,15 +41,10 @@
     margin-bottom: 20px;
     margin-left: 15px;
 }
-.pagination {
-    margin-top: 35px;
-}
 ul {
 	list-style: none;
     display: inline-block;
-    width: 380px;
     margin-top: 10px;
-    margin-left: 45%;
 }
 ul li {
     float:left;
@@ -95,4 +90,9 @@ ul li a:hover, ul li a:focus {
     margin-right: 175px;
     margin-top: -54px;
     cursor: pointer;
+}
+.pagination-con{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

@@ -37,7 +37,7 @@ class Navigation extends React.Component {
               <div className="link">
                   <Link to="/login">
 
-                      <Tooltip placement="bottom" title="목표 시각화">
+                      <Tooltip placement="bottom" title="로그아웃">
                         <LogoutOutlined style={{ fontSize : '30px', color: 'black' }}/>
                       </Tooltip>
                   </Link>
