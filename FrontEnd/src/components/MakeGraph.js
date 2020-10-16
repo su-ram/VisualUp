@@ -24,15 +24,15 @@ export default function MakeGraph(props){
     
     function getGoalDataFromDB(goalId){
         // goal마다 따로 받아와서 저장 => dataSet과 dailySet 업데이트 하면 됨
-/*
         const headers = {
         'Access-Control-Allow-Origin': '*',        
         'Accept': 'application/json',
         'Content-Type': 'application/x-www-form-urlencoded',
         }
-        axios.get(`https://virtserver.swaggerhub.com/VisualUp/VisualUp_Api/1.0.0/graph/goal?goalId=${goalId}`, headers)
+        axios.get(`http://visualup.koreacentral.cloudapp.azure.com/graph/goal?goalId=${goalId}`, headers)
         .then((res)=>{
             setData(res.data[0]);
+            console.log(res);
         })
         .catch((err)=>{
         const status = err?.response?.status;
@@ -47,9 +47,7 @@ export default function MakeGraph(props){
             console.dir("내부 서버 오류입니다. 잠시만 기다려주세요.");
         }
         });
-
-        */
-
+/*
         setData({
             "goalId": "goal125",
             "title": "typescript",
@@ -93,7 +91,7 @@ export default function MakeGraph(props){
                 "value": 60
               }
             ]
-          });
+          });*/
     }
 
     function getGraph(){
