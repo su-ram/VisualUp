@@ -20,7 +20,7 @@ function GoalList(){
       
       const fetchPosts = async () => {
         const res = await axios(
-          `https://virtserver.swaggerhub.com/VisualUp/VisualUp_Api/1.0.0/goal?userId=user102`
+          `http://visualup.koreacentral.cloudapp.azure.com/goal?userId=user103`
         ).then((res)=>{
           console.dir(res);
           setData(res.data);

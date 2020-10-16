@@ -123,26 +123,45 @@ function DailyCheck(props){
         return strArr;
     }
 
-    function saveToDB(idx){
+    function saveToDB(dailyId){
         // goal 단위로 DB에 저장하기 => daily 단위도 가능한지 물어보기
         // 저장 후 다시 받아오기 => 해당 goal에 대해서만! => Visaulize에서 실행
         //dailyId 받아오고 나서 하기
+        const headers = {
+            'Access-Control-Allow-Origin': '*',        
+            'Accept': 'application/json',
+            'Content-Type': 'application/x-www-form-urlencoded'
+        }
+        axios.delete(`https://visualup.koreacentral.cloudapp.azure.com/daily?dailyId=${dailyId}`, headers)
+        .then((res)=>{
+            console.log(res);
+        })
+        .catch((err)=>{
+        const status = err?.response?.status;
+        if (status === undefined) {
+            console.dir("데이터를 불러오던 중 예기치 못한 예외가 발생하였습니다.\n" + JSON.stringify(err));
+        }
+        else if (status === 400) {
+            console.dir("400에러");
+        }
+        else if (status === 500) {
+            console.dir("내부 서버 오류입니다. 잠시만 기다려주세요.");
+        }
+        });
         getGoalDataFromDB(selectedGoalIdx);
-
     }
-    function deleteAtDB(idx){
+
+    function deleteAtDB(dailyId){
         // dailycheck Data 삭제
         if(window.confirm("정말 삭제하시겠습니까?")){
-            /*
             const headers = {
                 'Access-Control-Allow-Origin': '*',        
                 'Accept': 'application/json',
                 'Content-Type': 'application/x-www-form-urlencoded'
             }
-            axios.get("http://visualup.koreacentral.cloudapp.azure.com:8080/graph?userId=user103", headers)
+            axios.delete(`http://visualup.koreacentral.cloudapp.azure.com/daily?dailyId=${dailyId}`, headers)
             .then((res)=>{
-            setDBdata(res.data);
-            console.log(res.data);
+                console.log(res);
             })
             .catch((err)=>{
             const status = err?.response?.status;
@@ -150,14 +169,12 @@ function DailyCheck(props){
                 console.dir("데이터를 불러오던 중 예기치 못한 예외가 발생하였습니다.\n" + JSON.stringify(err));
             }
             else if (status === 400) {
-                alert("");
                 console.dir("400에러");
             }
             else if (status === 500) {
                 console.dir("내부 서버 오류입니다. 잠시만 기다려주세요.");
             }
-            });*/
-            // dailyId 받아오고 나서 하기
+            });
         }
     }
 
@@ -166,8 +183,8 @@ function DailyCheck(props){
             <div key={index} className="dailycheck-contents-con">
               <div className="dailycheck-underborder dailycheck-title"><p className="check-db-data">{title}</p>
                 <div>
-                  {isToday(data.date)?<button className="save-btn" onClick={()=>saveToDB(index)}>저장하기</button>:undefined}
-                  <button className="delete-btn" onClick={()=>deleteAtDB(index)}>삭제하기</button>
+                  {isToday(data.date)?<button className="save-btn" onClick={()=>saveToDB(data.dailyId)}>저장하기</button>:undefined}
+                  <button className="delete-btn" onClick={()=>deleteAtDB(data.dailyId)}>삭제하기</button>
                 </div>
               </div>
               <div>
