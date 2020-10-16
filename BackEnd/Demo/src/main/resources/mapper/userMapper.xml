@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.backend.mapper.userMapper">
+    
+    <select id="selectUser" resultType="UserVO">
+        SELECT * from user
+    </select>
+    
+    <select id="newUserCheck" resultType="UserVO">
+    	select * from user where username='${userName}' and useremail='${userEmail}'
+    </select>
+    
+    <select id="getNewUserid" resultType="Integer">
+    	select newuser from newid
+    </select>
+    
+    <insert id="newUser" parameterType="UserVO">
+    	insert into user values(#{userId},#{userName},#{userEmail},#{type},#{token});
+    </insert>
+    
+    <select id="getUserid" resultType="string">
+    	select userid from user where username='${userName}' and useremail='${userEmail}'
+    </select>
+    
+    <update id="updateNewUser" parameterType="Integer">
+    	update newid set newuser = #{newUser}
+    </update>
+    
+    
+    <select id="getById" parameterType="string" resultType="UserVO">
+    	select * from user where userId= #{userId}
+    </select>
+    
+    <update id="updateToken" parameterType="UserVO">
+    	update user set token = #{token} where userid = #{userId}
+    </update>
+    
+   
+</mapper>

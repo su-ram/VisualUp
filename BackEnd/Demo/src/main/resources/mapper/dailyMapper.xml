@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.backend.mapper.dailyMapper">
+
+	<select id="newDailyId" resultType="Integer">
+		select newdaily from newid
+	</select>
+	
+	<update id="updateNewId" parameterType="Integer">
+		update newid set newdaily = #{newdaily}
+	</update>
+    
+    <select id="checkGoalId" parameterType="string" resultType="string">
+    	select goalId from goal where goalId=#{id}
+    </select>
+    
+    <select id="getByGoal" resultType="DailyVO">
+    	select * from daily where goalId=#{id} order by todayDate
+    </select>
+    
+    <select id="checkDaily" parameterType="string" resultType="DailyVO">
+    	select * from daily where dailyId=#{dailyId}
+    </select>
+    
+    <insert id="newDaily" parameterType="DailyVO">
+		insert into daily 
+		values(#{dailyId},#{goalId},#{todayDate},#{whatIdone},#{stars})
+	</insert>
+		
+    <update id="updateDaily" parameterType="DailyVO">
+    
+    	update daily
+    	set whatIdone=#{whatIdone}, stars=#{stars}
+    	where dailyId=#{dailyId}
+    	
+    </update>
+    
+    <delete id="deleteDaily" parameterType="string">
+    	delete from daily
+    	where dailyId=#{dailyId}
+    </delete>
+    
+</mapper>

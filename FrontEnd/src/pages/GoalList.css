@@ -1,0 +1,98 @@
+.goal-col {
+    width: 80%!important;
+    flex-wrap: nowrap!important;
+    border-top: 1.8px solid #80612D;
+    border-bottom: 1.8px solid #80612D;
+    float: left;
+    margin: 0 auto;
+    padding: 1.6%;
+}
+.goal-col>div{
+    margin: 0 3% 0 3%;
+    border: 4px solid#F0C379;
+}
+.goal-num {
+    color: #5D4215;
+    font-weight: bold;
+    font-size: 1.7em;
+    margin-top: 15px;
+    margin-left: 15px;
+    float: left;
+}
+.goal-dropImg {
+    margin-top: 18px;
+    margin-right: 12px;
+    float: right;
+    font-size: 25px;
+    color: #5D4215;
+}
+.goal-goal {
+    color: #5C411D;
+    font-weight: bold;
+    font-size: 1.7em;
+    margin-top: 120px;
+    margin-left: -35px;
+    float: left;
+}
+.goal-date {
+    color: #7E602D;
+    font-size: 1.1em;
+    margin-top: 170px;
+    margin-bottom: 20px;
+    margin-left: 15px;
+}
+.pagination {
+    margin-top: 35px;
+}
+ul {
+	list-style: none;
+    display: inline-block;
+    width: 380px;
+    margin-top: 10px;
+    margin-left: 45%;
+}
+ul li {
+    float:left;
+    margin-left: 9px;
+}
+ul li a {
+    float: left;
+    padding: 5px;
+    width: 36px;
+    height: 34px;
+	color:#5C411D;
+    border:1px solid#5C411D;
+    border-radius: 5px;
+    text-align:center;
+    margin-top: 28px;
+}
+ul li a:hover, ul li a:focus {
+	color:#fff;
+    border: 2px solid #5C411D;
+    border-radius: 5px;
+	background-color: #5C411D;
+}
+.goal-post{
+    width: 230px;
+    margin: 0 auto;
+}
+.menu-button {
+    background-color: #FFE5B2;
+    width: 90px;
+    margin-left: 50px;
+}
+.goal-dropdown-link {
+    margin-left: 38px;
+  }
+.goal-setG {
+    background-color: white;
+    border: 3px solid#5C411D;
+    border-radius: 30px;
+    width: 189px;
+    height: 55px;
+    font-size: 1.3em;
+    float: right;
+    margin-right: 175px;
+    margin-top: -54px;
+    cursor: pointer;
+}

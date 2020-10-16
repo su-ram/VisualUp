@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="com.backend.mapper.goalMapper">
+
+	<select id="generateNewGoalID" resultType="Integer">
+		select newgoal from newid
+	</select>
+	
+	<update id="updateNewGoal" parameterType="Integer">
+		update newid set newgoal=#{newGoal}
+	</update>
+    
+    <insert id="insertGoal" parameterType="GoalVO">
+        insert into goal values (#{goalId}, #{userId}, #{title},#{startDate}, #{endDate}, #{termGoal},#{hashtags},#{open},
+  #{template},#{graphColor},#{term})
+    </insert>
+    
+    <select id="getGoalList" resultType="GoalVO">
+    	select * from goal where userid = #{userid}
+    </select>
+    
+    <select id="checkGoalId" parameterType="string" resultType="string">
+    	select goalId from goal where goalId=#{goalid}
+    </select>
+    
+    <update id="updateGoal" parameterType="GoalVO">
+    	update goal 
+    	set title=#{title},startDate=#{startDate},endDate=#{endDate},term=#{term},hashtags=#{hashtags},open=#{open},termGoal=#{termGoal},template=#{template}, graphColor=#{graphColor}
+    	where goalId=#{goalId}
+    </update>
+    
+    <delete id="deleteGoal" parameterType="string">
+    	delete from goal
+    	where goalid=#{goalid}
+    </delete>
+    
+    <select id="newHashId" resultType="Integer">
+    	select newHash from newid
+    </select>
+    
+    <update id="updateHashId" parameterType="Integer">
+    	update newid set newHash=#{id}
+    </update>
+    
+    <select id="goalByHashtag" parameterType="string" resultType="GoalVO">
+    	select * from goal where hashtags like CONCAT('%', #{name}, '%')
+    </select>
+    
+    <select id="checkUserId" parameterType="string" resultType="UserVO">
+    	select * from user where userId=#{id}
+    </select>
+    
+    <select id="getTermGoal" parameterType="string" resultType="string">
+    	select termGoal from goal where goalId=#{id}
+    </select>
+    
+    
+    <select id="goalById" parameterType="string" resultType="GoalVO">
+    	select * from goal where goalId=#{id}
+    </select>
+</mapper>

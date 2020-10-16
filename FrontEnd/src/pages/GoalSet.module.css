@@ -1,0 +1,70 @@
+
+.subSub {
+    color: #5C411D;
+    font-weight: bold;
+    margin-top: 2.5px;
+}
+.name {
+    color: #5C411D;
+    font-weight: bold;
+    font-size: 1.3em;
+    float: left;
+    margin-bottom: 5px!important;
+}
+.ilmada {
+    color: #5C411D;
+    font-weight: bold;
+    font-size: 1.3em;
+}
+.graphname {
+    color: #5C411D;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+.open {
+    color: #5D4215;
+    font-weight: bold;
+    font-size: 1.3em;
+    float: center;
+}
+.btn1 {
+    width: 150px;
+    height: 35px;
+    border-radius: 5px;
+    border: 1;
+    background-color: #FDF0D7;
+    color: #5D4215;
+    border-color: #5D4215;
+    margin-right: 10px;
+    cursor: pointer;
+}
+.btn2 {
+    width: 150px;
+    height: 35px;
+    border-radius: 5px;
+    border: 1;
+    background-color: #FFFFFF;
+    color: #5D4215;
+    border-color: #5D4215;
+    cursor: pointer;
+}
+.btn1:hover{
+    outline: none;
+    background-color: #5D4215;
+    color: #FDF0D7;
+}
+.btn1:active, .btn2:active{
+    outline: none!important;
+}
+.font {
+    font-size: 15px;
+    font-weight: bold;
+    margin-top: 5px;
+}
+.input{
+    height: 30px;
+    width: 100%;
+    background-color: white;
+    border-color: #5C411D;
+    font-weight: 500;
+}

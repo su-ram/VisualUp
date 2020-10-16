@@ -1,0 +1,87 @@
+.mainTitle {
+    text-align: center;
+    color: #5C411D;
+    font-weight: bold;
+    font-size: 2em;
+    margin-top: -5px;
+}
+.sub {
+    border: 2px solid #E9BE78;
+    border-radius: 15px;
+    width: 350px;
+    height: 30px;
+    margin:0 auto; 
+}
+.subSub {
+    color: #5C411D;
+    font-weight: bold;
+    margin-top: 2.5px;
+}
+.body {
+    border-top: 2px solid #656563;
+    border-bottom: 2px solid #656563;
+    width: 80%;
+    height: 300px;
+    margin-top: 40px;
+    margin-left: 140px;
+}
+.content1 {
+    border: 5px solid #E9BE78;
+    width: 21%;
+    height: 80%;
+    margin-left: 45px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    background-color: #FFFFFF;
+}
+.graph {
+    margin-top: -20px;
+}
+.goal {
+    color: #5C411D;
+    font-weight: bold;
+    font-size: 1.3em;
+    margin-top: 8px;
+    margin-left: 24px;
+    float: left;
+}
+.title {
+    color: #5C411D;
+    font-weight: bold;
+    font-size: 1.5em;
+    margin-top: 70px;
+    margin-left: 24px;
+    float: left;
+}
+.date {
+    color: #7E602D;
+    font-size: 1.4em;
+    margin-top: 0px;
+    margin-left: 24px;
+    float: left;
+}
+.icon {
+    color: #5C411D;
+    font-weight: bold;
+    font-size: 2.0em;
+    margin-top: 8px;
+    margin-right: 24px;
+    float: right;
+}
+.btn {
+    width: 300px;
+    height: 60px;
+    float: right;
+    margin-right: 18.5%;
+    margin-top: 10px;
+    border-radius: 20px;
+    border: 1;
+    background-color: #FFFFFF;
+    color: #000000;
+    border-color: #000000;
+}
+.font {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 10px;
+}

@@ -1,0 +1,41 @@
+/* .navigation-bar{
+    height: 50px;
+} */
+
+.links {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin: 0;
+    margin-bottom: 10px;
+    padding: 0;
+    background-color: rgb(255, 255, 255);
+    list-style-type: none;
+}
+
+
+
+.links .link {
+    cursor: pointer;
+}
+
+.link img {
+    width: 250px ;
+    height: 80px ;
+    margin-left: 8rem;
+    margin-top: 0.5rem;
+    padding: 0.2rem;
+}
+
+.links .icon{
+    display: inline-flex;
+    margin-left: auto;
+    padding-right: 6rem;
+    margin-top: 1.5rem;
+}
+.icon .link {
+    padding : 0.5rem;
+    color: rgb(0,0, 0);
+    padding-right : 2.5rem !important;
+}
+

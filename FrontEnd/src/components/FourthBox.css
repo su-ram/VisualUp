@@ -1,0 +1,40 @@
+  .fourth-box-content{
+    width: 200px;
+    height : 300px;
+    margin: 10px;
+    /* display: inline-block; */
+    background: white;
+    opacity: 70%;
+    border-radius: 5px;
+    padding: 3px 8px;
+    text-align: center;
+    display:table;   /* 가운데정렬 힘드네,,, */  
+  }  
+    
+  .fourth-box-content h3{     /* 이름 굵게 */
+    color:#5C411D;
+    font-weight: bold;
+  }
+  
+  .fourth-box-content h5{
+    color:#5C411D;
+  }
+  
+  .fourth-box-content h4{
+    color:#5C411D;
+  }
+  
+  .fourth-img{ 
+    margin-top:5%;
+    margin-bottom: 10%;
+    height: 100px;
+    width:  100px;
+    border-radius: 100px;
+  }
+  
+  .internet{
+    width:1px;
+    height:1px;
+    /* cursor: pointer; */
+    color: #5C411D;
+  }

@@ -1,0 +1,139 @@
+.hashtag-page-title-con{
+    margin:15px 0;
+}
+.hashtag-page-title-con div{
+    text-align: center;
+}
+.hashtag-page-title-con div>*{
+    color: #5C411D;
+}
+.hashtag-page-title>h2{
+    font-weight: 600;
+}
+.page-subtitle>h5{
+    margin: 0;
+    border-radius: 15px;
+    border: 1px solid #CFA051;
+    padding: 2px 20px;
+    display: inline-block;
+}
+.hash-top {
+    width: 340px;
+    height: 50px;
+    border: 2px solid var(--unnamed-color-f0c379);
+    border: 2px solid #F0C379;
+    opacity: 1;
+    margin: 0 auto;
+}
+.hash-icon {
+    float: left;
+    color: #5D4215;
+    font-size: 32px;
+    margin-left: 9px;
+    margin-top: 6px;
+}
+.hash-input {
+    width: 220px;
+    height: 36px;
+    margin-top: 5px;
+    margin-left: 5px;
+    border-left: 2px solid #F0C379;
+    outline: 0;
+    border-right: 0;
+    border-top: 0;
+    border-bottom: 0;
+}
+.hash-submit {
+    width: 65px;
+    height: 49px;
+    float: right;
+    margin-top: -1px;
+    border: 0;
+    background-color: #F0C379;
+    color: #5D4215;
+    font-size: 18px;
+    font-weight: normal;
+}
+.hash-col {
+    width: 80%!important;
+    flex-wrap: nowrap!important;
+    border-top: 1.8px solid #80612D;
+    border-bottom: 1.8px solid #80612D;
+    float: left;
+    margin: 0 auto;
+    padding: 1.6%;
+}
+.hash-col>div{
+    margin: 0 2% 0 2%;
+    border: 1.73px solid #5D4215;
+    background-color: #ECECEC;
+}
+.hash-userName {
+    color: #5C411D;
+    font-weight: bold;
+    font-size: 1.5em;
+    margin-top: 28px;
+    margin-left: 24px;
+    float: left;
+}
+.hash-graph {
+    float: left;
+    width: 100%;
+    height: 200px;
+    margin-top: -40px;
+}
+.hash-goal {
+    color: #5C411D;
+    font-weight: bold;
+    font-size: 1.5em;
+    margin-left: 24px;
+    margin-top: 20px;
+    float: left;
+}
+.hash-date {
+    color: #7E602D;
+    font-size: 1.5em;
+    margin-top: 60px;
+    margin-left: -140px;
+    margin-bottom: 20px;
+    float: left;
+}
+ul {
+	list-style: none;
+    display: inline-block;
+    width: 380px;
+    margin-left: 46%;
+}
+ul li {
+    float:left;
+    margin-left: 9px;
+}
+ul li a {
+    float: left;
+    padding: 5px;
+    width: 36px;
+    height: 34px;
+	color:#5C411D;
+    border:1px solid#5C411D;
+    border-radius: 5px;
+    text-align:center;
+    margin-top: 28px;
+}
+ul li a:hover, ul li a:focus {
+	color:#fff;
+    border: 2px solid #5C411D;
+    border-radius: 5px;
+	background-color: #5C411D;
+}
+
+/* heeeun */
+.hash-graph>div{
+    width: 100%;
+    height: 100%;
+}
+.hash-submit{
+    cursor: pointer;
+}
+.hash-post{
+    width: 30%;
+}
