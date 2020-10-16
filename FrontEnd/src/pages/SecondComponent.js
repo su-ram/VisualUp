@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import { PageHeader } from '../components';
+import { PageHeader, DownArrow } from '../components';
 import ImgCode from "../../src/img/coding.jpg";
 import ImgStu from "../../src/img/studying.jpg";
 import ImgGraph from "../../src/img/graph.jpg";
@@ -60,6 +60,9 @@ function SecondComponent() {
           </div>
         </div>
         <img className = "bg-img"src = {BGimg} />
+        <DownArrow>
+          
+        </DownArrow>
       </div>
     </Fragment>
   );

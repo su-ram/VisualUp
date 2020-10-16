@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import { Col, Row } from 'antd';
 import { SearchOutlined } from '@ant-design/icons';
 import "./HashTag.css";
-import axios from 'axios';
 import Posts from '../components/Posts';
 import Pagination from '../components/Pagination';
+import hashBackground from "../../src/img/hashBackground.jpg";
+import axios from 'axios';
     
 function HashTag({match}){
 
@@ -23,10 +24,11 @@ function HashTag({match}){
     },[match.params.hashtag])
 
     useEffect(() => {
+      
       const fetchPosts = async () => {
         //setLoading(true);
         const res = await axios(
-          `https://visualup.koreacentral.cloudapp.azure.com/goal/hashtag?name=${match.params.hashtag}`
+          `http://visualup.koreacentral.cloudapp.azure.com/goal/hashtag?name=${match.params.hashtag}`
         ).then((res)=>{
           console.dir(res);
           setData(res.data);
@@ -48,7 +50,8 @@ function HashTag({match}){
       };
       // hashtag 세팅 후, api 데이터 받아오기
       fetchPosts();
-     /*
+      
+      /*
     setData([
       {
         "userId": "user102",
@@ -110,9 +113,7 @@ function HashTag({match}){
         "template": "Bar",
         "graphColor": "red"
       }
-    ]);
-      */
-
+    ]);*/
     }, [hashtag]);
     
     function startSearching(){
@@ -132,6 +133,7 @@ function HashTag({match}){
 
     return(
         <div className="hash-total">
+          <img src ={hashBackground} className="hash-back"/>
             <div className="hashtag-page-title-con">
                 <div className="hashtag-page-title">
                     <div className="hash-top">
@@ -148,13 +150,14 @@ function HashTag({match}){
                     </div>
                 </div><br/>
                 <div className="page-subtitle">
-                  {                      
+{
                     hashtag===undefined?
-                      <h5>검색할 해시태그를 입력해주세요.</h5>:
-                        data.length===0? 
-                        <h5>검색 결과가 없습니다.</h5>:
-                            <h5>{hashtag} 검색결과입니다.</h5>                   
-                  }        
+                    <h5>검색해주세요.</h5>:
+                    (data.length===0?
+                      <h5>검색 결과가 없습니다.</h5>:
+                      <h5>{hashtag} 검색결과입니다.</h5>
+                    )
+                  }                
                 </div>
             </div><br/><br/>
             <Row>

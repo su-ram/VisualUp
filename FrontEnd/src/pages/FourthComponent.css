@@ -7,9 +7,11 @@
   height: 100%;
 }
 
-/* .component.fourth-component{
-  background-image : url('../../src/img/BGimg.png');
-} */
+.component.fourth-component{
+  /* background-image : url('../../src/img/BGimg.png'); */
+  flex-direction: column;
+
+}
 
 .fourth-container{
   /* display: flex; */
@@ -48,4 +50,3 @@
   margin-top:10%;
   padding-bottom:5%;
 }
-

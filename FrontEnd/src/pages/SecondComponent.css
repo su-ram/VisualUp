@@ -4,6 +4,12 @@
     flex-direction: column;
     align-items: center;
   }
+  
+.component.second-component{
+    flex-direction: column;
+  }
+  
+  
  
   .second-component .bg-img {
     position: absolute;

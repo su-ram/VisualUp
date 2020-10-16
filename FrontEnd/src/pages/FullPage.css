@@ -67,15 +67,14 @@ h2 {
 
 .pager li>a {
     display: inline-block;
-    background-color: #fff;
-    border: 1px solid #ddd;
+    background-color: #D6A451;
+    border-style : none;  /* 테두리없애기 */
     border-radius: 15px;
     align-self: flex-end;
     padding: 5px;
     width: 10px;
     height: 10px;
     color: #5C411D;
-    /* border: 1px solid#5C411D; */
     text-align: center;
     margin-top: 15px;
   }

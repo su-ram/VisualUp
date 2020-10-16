@@ -1,0 +1,11 @@
+.downarrow {
+    text-align:center;
+    position: relative;
+    margin-top:auto;
+    z-index:100 !important;
+  }
+
+.arrow {
+  margin-bottom:110px;
+}
+  
