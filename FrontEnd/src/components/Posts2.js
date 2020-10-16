@@ -21,6 +21,7 @@ const Posts2 = ({ data })=>{
           .then(function (response) {
           // handle success
           console.log(response);
+          window.location.href="/GoalList";
         })
         .catch((err)=>{
           const status = err?.response?.status;

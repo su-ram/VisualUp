@@ -362,7 +362,6 @@ function Visualize({match}) {
         console.dir("데이터를 불러오던 중 예기치 못한 예외가 발생하였습니다.\n" + JSON.stringify(err));
       }
       else if (status === 400) {
-        alert("");
         console.dir("400에러");
       }
       else if (status === 500) {
