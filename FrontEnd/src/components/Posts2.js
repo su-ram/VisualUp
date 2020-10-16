@@ -71,18 +71,22 @@ const Posts2 = ({ data })=>{
     return (
             <Row align="middle" className="goal-col">
               {data.map((goal, index) => (
-                <div className="goal-post" key={goal.userId} onClick={()=>{window.location.href=`/visualize/${index}`}}>
-                  <div className="goal-num">목표</div>
+                <div className="goal-post" key={goal.userId}>
+                  <div className="goal-event-con" onClick={()=>{window.location.href=`/visualize/${index}`}}>
+                    <div className="goal-num">목표 {index+1}</div>
+                    <div>
+                      <div className="goal-goal">{goal.title}</div>
+                      <div className="goal-date">{goal.startDate}~{goal.endDate}</div>
+                    </div>
+                  </div>
                   <Dropdown 
                     overlay={menu(goal.goalId)} 
                     placement="bottomCenter" arrow
                   >
                     <a className="goal-dropdown-link" onClick={e => e.preventDefault()}>
-                    <MoreOutlined style={{color : "#5D4215"}}className="goal-dropImg"/>
+                    <MoreOutlined style={{color : "#5D4215"}} className="goal-dropImg"/>
                     </a>
                   </Dropdown>
-                  <div className="goal-goal">{goal.title}</div>
-                  <div className="goal-date">{goal.startDate}~{goal.endDate}</div>
                 </div>
               ))}
               

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Carousel, Input } from 'antd';
 import "./DailyCheck.css";
 import {getDateString} from "../shared/GetDateString";
@@ -23,12 +23,16 @@ const cheerUp = [
 function DailyCheck(props){
     const {carousel, dailySet, selectedGoalIdx, selDateIdx, goTo, goalIdx, getGoalDataFromDB} = props;
 
+    const [stars, setStars] = useState(0);
+    const [todayDescript, setTodayDescript] = useState("");
+
     useEffect(()=>{
         goTo(selDateIdx, true);
     },[selDateIdx]);
 
     function setStar(index, num){
         // 별 누르면 갯수만큼 켜지게 하기
+        setStars((num+1));
 
         for(let i=0; i<=num; i++){
             let target = null;
@@ -132,7 +136,12 @@ function DailyCheck(props){
             'Accept': 'application/json',
             'Content-Type': 'application/x-www-form-urlencoded'
         }
-        axios.delete(`https://visualup.koreacentral.cloudapp.azure.com/daily?dailyId=${dailyId}`, headers)
+        const data = {
+            "whatIdone": todayDescript,
+            "stars": stars
+        };
+        
+        axios.put(`http://visualup.koreacentral.cloudapp.azure.com/daily?dailyId=${dailyId}` ,data,  headers)
         .then((res)=>{
             console.log(res);
         })
@@ -197,7 +206,7 @@ function DailyCheck(props){
               </div>
               <div className="dailycheck-what-i-done">
                   <div>오늘 하루 정리</div>
-                  <div className="what-i-done-box"><TextArea defaultValue={data.whatIDone} disabled={!isToday(data.date)} autoSize={{ minRows: 3, maxRows: 4 }}/></div>
+                  <div className="what-i-done-box"><TextArea onChange={(e)=>{setTodayDescript(e.target.value);}}defaultValue={data.whatIDone} disabled={!isToday(data.date)} autoSize={{ minRows: 3, maxRows: 4 }}/></div>
                 </div>
               <div className="dailycheck-underborder dailycheck-cheerup"><p>cheer up!</p><p>{getCheerUp()}</p></div>
               <div className="dailycheck-hashtags"><p className="check-db-data">{getHashTag(hashtags)}</p></div>

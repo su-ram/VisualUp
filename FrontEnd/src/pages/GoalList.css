@@ -10,19 +10,16 @@
 .goal-col>div{
     margin: 0 3% 0 3%;
     border: 4px solid#F0C379;
+    padding: 20px;
 }
 .goal-num {
     color: #5D4215;
     font-weight: bold;
     font-size: 1.7em;
-    margin-top: 15px;
-    margin-left: 15px;
-    float: left;
 }
 .goal-dropImg {
     margin-top: 18px;
     margin-right: 12px;
-    float: right;
     font-size: 25px;
     color: #5D4215;
 }
@@ -30,16 +27,10 @@
     color: #5C411D;
     font-weight: bold;
     font-size: 1.7em;
-    margin-top: 120px;
-    margin-left: -35px;
-    float: left;
 }
 .goal-date {
     color: #7E602D;
     font-size: 1.1em;
-    margin-top: 170px;
-    margin-bottom: 20px;
-    margin-left: 15px;
 }
 ul {
 	list-style: none;
@@ -68,17 +59,28 @@ ul li a:hover, ul li a:focus {
 	background-color: #5C411D;
 }
 .goal-post{
-    width: 230px;
-    margin: 0 auto;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 280px;
+    height: 280px;
+    cursor: pointer;
+}
+.goal-post:hover{
+    background-color:#FFE5B2;
+}
+.goal-post>a{
+    position: absolute;
+    right: 0;
+    top: 0;
 }
 .menu-button {
     background-color: #FFE5B2;
     width: 90px;
     margin-left: 50px;
+    z-index: 1;
 }
-.goal-dropdown-link {
-    margin-left: 38px;
-  }
 .goal-setG {
     background-color: white;
     border: 3px solid#5C411D;
@@ -91,8 +93,26 @@ ul li a:hover, ul li a:focus {
     margin-top: -54px;
     cursor: pointer;
 }
+.goal-setG:hover{
+    background-color: #5C411D;
+    color: #FFE5B2;
+}
+.goal-setG:active{
+    outline: none!important;
+}
 .pagination-con{
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.click-event-con{
+    width: 100%;
+    height: 100%;
+}
+.goal-event-con{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
